@@ -32,7 +32,13 @@
 
     <div id="home-split-wrapper" class="fade-in">
         <div class="home-left">
-            <h2 class="text-7xl lg:text-9xl font-black italic tracking-tighter leading-none mb-10">SRT<br><span class="text-[#ff4e00]">guide</span></h2>
+            <div class="flex flex-col xl:flex-row items-start xl:items-end gap-8 mb-10">
+                <h2 class="text-7xl lg:text-8xl xl:text-9xl font-black italic tracking-tighter leading-none">SRT<br><span class="text-[#ff4e00]">guide</span></h2>
+                
+                <div class="w-full max-w-[360px] aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
             
             <div class="panel-grid">
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-about">ABOUT ME</h3></div>
@@ -70,7 +76,6 @@
     </div>
 
     <div id="standard-content" class="hidden">
-        
         <section id="page-about" class="page-container">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
