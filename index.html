@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3on3 FreeStyle | SRT guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="flex items-center gap-4 cursor-pointer mb-2 md:mb-0" onclick="showPage('home')">
+            <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
+        </div>
+        <nav class="nav-container">
+            <span class="nav-link active" onclick="showPage('home')" data-i18n="nav-home">HOME</span>
+            <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
+            <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
+            <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
+            <span class="nav-link" onclick="showPage('qa')" data-i18n="nav-qa">Q&A</span>
+            <span class="nav-link" onclick="showPage('bbs')" data-i18n="nav-bbs">BBS</span>
+        </nav>
+        <div class="flex gap-1 ml-auto">
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
+        </div>
+    </header>
+
+    <div id="home-split-wrapper" class="fade-in">
+        <div class="home-left">
+            <h2 class="text-7xl lg:text-9xl font-black italic tracking-tighter leading-none mb-10">SRT<br><span class="text-[#ff4e00]">guide</span></h2>
+            
+            <div class="panel-grid">
+                <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-about">ABOUT ME</h3></div>
+                <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-guide">GUIDE</h3></div>
+                <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-db">DATABASE</h3></div>
+                <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-pbuff">P-BUFF</h3></div>
+                <div class="panel-box" onclick="showPage('qa')"><i class="fas fa-question-circle text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-qa">Q&A</h3></div>
+                <div class="panel-box" onclick="showPage('bbs')"><i class="fas fa-comments text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-bbs">BBS</h3></div>
+                <a href="https://note.com/clean_squid9881" target="_blank" class="panel-box"><i class="fas fa-edit text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">NOTE</h3></a>
+                <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">YOUTUBE</h3></a>
+                <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">OFFICIAL</h3></a>
+            </div>
+
+            <div class="mt-12 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
+                <div class="bg-orange-500/20 p-3 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-users text-orange-500 text-2xl"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-gray-400 font-black italic mb-1" data-i18n="counter-title">総訪問者数</div>
+                    <div id="counter_area">
+                        <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script><noscript><img src="https://counter1.fc2.com/counter_img.php?id=15608402&main=1" /></noscript>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-right">
+            <video class="video-bg" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <video class="video-main" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-30 pointer-events-none z-10"></div>
+        </div>
+    </div>
+
+    <div id="standard-content" class="hidden">
+        
+        <section id="page-about" class="page-container">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
+                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl" alt="Message Image">
+                <div>
+                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">はじめに：作者より</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度は引退しましたが、このゲームの楽しさが忘れられず2024年に戻ってきました。</p>
+                    <p class="text-lg text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。皆でこのコミュニティを熱くしましょう！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-guide" class="page-container">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            <div class="space-y-16">
+                <div>
+                    <div class="step-badge">STEP 1</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step1-title">ポジションの特徴</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                        <div class="guide-card p-6"><h4 class="text-2xl text-orange-500 font-black mb-2">PG</h4><p class="text-gray-400 text-base" data-i18n="pg-desc">パスと機動力。守備の要。</p></div>
+                        <div class="guide-card p-6"><h4 class="text-2xl text-orange-500 font-black mb-2">SG</h4><p class="text-gray-400 text-base" data-i18n="sg-desc">最高得点能力。多彩なスキル。</p></div>
+                        <div class="guide-card p-6"><h4 class="text-2xl text-orange-500 font-black mb-2">SF</h4><p class="text-gray-400 text-base" data-i18n="sf-desc">攻守に貢献する万能型。</p></div>
+                        <div class="guide-card p-6"><h4 class="text-2xl text-orange-500 font-black mb-2">PF</h4><p class="text-gray-400 text-base" data-i18n="pf-desc">機動力ブロック。攻撃も可。</p></div>
+                        <div class="guide-card p-6"><h4 class="text-2xl text-orange-500 font-black mb-2">C</h4><p class="text-gray-400 text-base" data-i18n="c-desc">ゴール下の番人。リバウンド。</p></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-badge">STEP 2</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step2-title">おすすめキャラ</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="guide-card p-8"><h4 class="text-2xl font-black text-white mb-4" data-i18n="recom-free-title">無課金・初期のおすすめ</h4><p class="text-gray-300 text-lg" data-i18n="recom-free-desc">Murdock (PF): ブロック力が高く、最高の選択肢です。</p></div>
+                        <div class="guide-card p-8"><h4 class="text-2xl font-black text-white mb-4" data-i18n="recom-premium-title">最強キャラ (Premium)</h4>
+                            <div class="grid grid-cols-3 gap-3 text-sm font-black italic text-center text-orange-500">
+                                <div class="bg-black/50 p-3 rounded-lg">PG: KAJI</div><div class="bg-black/50 p-3 rounded-lg">SG: GENA</div><div class="bg-black/50 p-3 rounded-lg">SF: NATHAN</div>
+                                <div class="bg-black/50 p-3 rounded-lg">PF: GIANT G</div><div class="bg-black/50 p-3 rounded-lg">C: BLAIR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="step-badge">STEP 3</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">01</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow1-title">P5 昇級</h4><p class="text-gray-400 text-base" data-i18n="grow1-desc">全スキル解放が育成の基準。</p></div>
+                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">02</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow2-title">P-BUFF 構築</h4><p class="text-gray-400 text-base" data-i18n="grow2-desc">ポジション全員に影響。最優先。</p></div>
+                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">03</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow3-title">カード 厳選</h4><p class="text-gray-400 text-base" data-i18n="grow3-desc">Pバフ完成後にじっくり行う。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-db" class="page-container">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
+                <div class="flex gap-4">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search Name..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                </div>
+            </div>
+            <p class="text-base text-gray-400 mb-8 italic" data-i18n="db-note">※「▲」表記はバフ値（加算）です。基本値を知るには表示値からこれらを引く必要があります。</p>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="page-pbuff" class="page-container">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
+                <div class="flex gap-4">
+                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All">ALL POSITIONS</option>
+                        <option value="PG">PG (POINT GUARD)</option>
+                        <option value="SG">SG (SHOOTING GUARD)</option>
+                        <option value="SF">SF (SMALL FORWARD)</option>
+                        <option value="PF">PF (POWER FORWARD)</option>
+                        <option value="C">C (CENTER)</option>
+                    </select>
+                </div>
+            </div>
+            <div id="pbuff-grid-container" class="space-y-16"></div>
+        </section>
+
+        <section id="page-qa" class="page-container max-w-5xl">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
+            <div class="space-y-8">
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。基本性能を知るには表示値から▲値を差し引いてください。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。同じポジション全員に恩恵があるため最優先課題となります。</p></div>
+            </div>
+        </section>
+
+        <section id="page-bbs" class="page-container max-w-5xl">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
+            <p class="text-gray-300 mb-8 text-lg" data-i18n="bbs-desc">情報交換や質問、フレンド募集などご自由に書き込んでください！（※不適切な発言は管理者が削除・ブロックします）</p>
+            
+            <div class="qa-card p-8 bg-white/5 min-h-[400px]">
+                <script src="https://giscus.app/client.js"
+                        data-repo="mirimaru/SRTguide"
+                        data-repo-id="R_kgDON-zBdw"
+                        data-category="Announcements"
+                        data-category-id="DIC_kwDON-zBd84CnWj-"
+                        data-mapping="pathname"
+                        data-strict="0"
+                        data-reactions-enabled="1"
+                        data-emit-metadata="0"
+                        data-input-position="bottom"
+                        data-theme="dark"
+                        data-lang="ja"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+        </section>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
