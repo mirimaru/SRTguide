@@ -10,21 +10,51 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
 .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(30px) brightness(0.3); z-index: 0; transform: scale(1.1); pointer-events: none; }
 .video-main { position: relative; z-index: 1; width: auto; height: 65vh; max-height: 700px; max-width: 85%; object-fit: contain; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,1); border: 1px solid rgba(255,255,255,0.15); }
 
-/* 最強キャラ縦長特大バナー - キャラを大きく、顔を上に */
-.premium-banner-v { position: relative; flex: 1; min-height: 400px; overflow: hidden; border-right: 1px solid rgba(255,255,255,0.05); transition: 0.5s ease; cursor: pointer; }
-.premium-banner-v:last-child { border-right: none; }
-.premium-banner-v:hover { flex: 1.5; background: rgba(255,255,255,0.05); }
+/* 最強キャラ縦長特大バナー - 修正版 */
+.premium-banner-v { 
+    position: relative; 
+    flex: 1; 
+    overflow: hidden; 
+    border-right: 1px solid rgba(255,255,255,0.1); 
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+    cursor: pointer;
+    background: #000;
+}
+.premium-banner-v:hover { flex: 2; }
 
-/* キャラ絵の設定：大幅に拡大し、上にはみ出させる */
-.banner-img { position: absolute; height: 350%; /* 親要素の3.5倍の高さ */ top: -100px; /* 上にはみ出させて顔を上に配置 */ left: 50%; transform: translateX(-50%); object-fit: contain; z-index: 1; opacity: 0.8; filter: grayscale(20%) drop-shadow(-10px 0 15px rgba(0,0,0,0.8)); transition: 0.5s ease; pointer-events: none; }
+/* 画像の設定：確実に表示されるよう「object-fit: cover」と「position: top」を使用 */
+.banner-img { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* 枠いっぱいに広げる */
+    object-position: center 15%; /* ★ここが重要！上から15%の位置（顔付近）を基準にする */
+    z-index: 1; 
+    opacity: 0.6; 
+    filter: grayscale(40%); 
+    transition: 0.6s ease;
+}
+.premium-banner-v:hover .banner-img { 
+    opacity: 1; 
+    filter: grayscale(0%); 
+    transform: scale(1.1); /* ホバー時にさらに顔に寄る */
+}
 
-/* ホバー時の設定：少し上に動かして躍動感を出す */
-.premium-banner-v:hover .banner-img { transform: translateX(-50%) translateY(-10px); filter: grayscale(0%); opacity: 1; }
-
-/* 文字オーバーレイの設定 - キャラと重なるため、可読性を確保 */
-.banner-overlay { position: absolute; inset: 0; z-index: 2; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 30%, transparent 60%); }
-.pos-tag { color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 900; letter-spacing: 2px; text-shadow: 1px 1px 2px #000; }
-.name-tag { color: var(--brand-orange); font-size: 32px; /* 大きく */ font-weight: 900; font-family: 'Oswald'; font-style: italic; line-height: 1; margin-top: 4px; text-shadow: 2px 2px 4px #000; }
+/* 文字オーバーレイ */
+.banner-overlay { 
+    position: absolute; 
+    inset: 0; 
+    z-index: 2; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%); 
+}
+.pos-tag { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 900; letter-spacing: 2px; }
+.name-tag { color: var(--brand-orange); font-size: 28px; font-weight: 900; font-family: 'Oswald'; font-style: italic; line-height: 1.1; margin-top: 4px; text-shadow: 2px 2px 4px #000; }
 
 @media (max-width: 1024px) { 
     #home-split-wrapper { flex-direction: column; }
@@ -32,12 +62,12 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
     .home-right { height: 60vh; order: -1; } 
     .home-left { padding: 40px 20px; order: 1; }
     .video-main { height: 90%; max-height: none; }
-    .premium-banner-v { min-height: 150px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .banner-overlay { justify-content: center; background: linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 40%, transparent 70%); }
-    .banner-img { height: 250%; left: auto; right: -30%; top: 50%; transform: translateY(-50%); }
-    .premium-banner-v:hover .banner-img { transform: translateY(-50%) scale(1.02); }
+    .premium-banner-v { min-height: 180px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .banner-overlay { background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, transparent 70%); justify-content: center; }
+    .banner-img { object-position: center 25%; }
 }
 
+/* その他共通スタイルは維持 */
 .page-container { max-width: 1400px; margin: 0 auto; padding: 140px 20px 60px; display: none; }
 .active-page { display: block; }
 header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
