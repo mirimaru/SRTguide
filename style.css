@@ -10,7 +10,7 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
 .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(30px) brightness(0.3); z-index: 0; transform: scale(1.1); pointer-events: none; }
 .video-main { position: relative; z-index: 1; width: auto; height: 65vh; max-height: 700px; max-width: 85%; object-fit: contain; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,1); border: 1px solid rgba(255,255,255,0.15); }
 
-/* 最強キャラ縦長特大バナー - 修正版 */
+/* 最強キャラ縦長特大バナー - 安定版 */
 .premium-banner-v { 
     position: relative; 
     flex: 1; 
@@ -22,7 +22,7 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
 }
 .premium-banner-v:hover { flex: 2; }
 
-/* 画像の設定：確実に表示されるよう「object-fit: cover」と「position: top」を使用 */
+/* 画像の設定：確実に表示しつつ「顔」を狙う */
 .banner-img { 
     position: absolute; 
     top: 0; 
@@ -30,16 +30,16 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
     width: 100%; 
     height: 100%; 
     object-fit: cover; /* 枠いっぱいに広げる */
-    object-position: center 15%; /* ★ここが重要！上から15%の位置（顔付近）を基準にする */
+    object-position: center 12%; /* ★顔が中心に来るよう調整 */
     z-index: 1; 
-    opacity: 0.6; 
+    opacity: 0.5; 
     filter: grayscale(40%); 
     transition: 0.6s ease;
 }
 .premium-banner-v:hover .banner-img { 
     opacity: 1; 
     filter: grayscale(0%); 
-    transform: scale(1.1); /* ホバー時にさらに顔に寄る */
+    transform: scale(1.15); /* ホバー時にさらにドアップ */
 }
 
 /* 文字オーバーレイ */
@@ -47,27 +47,25 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
     position: absolute; 
     inset: 0; 
     z-index: 2; 
-    padding: 20px; 
+    padding: 24px; 
     display: flex; 
     flex-direction: column; 
     justify-content: flex-end; 
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%); 
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 35%, transparent 70%); 
 }
-.pos-tag { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 900; letter-spacing: 2px; }
-.name-tag { color: var(--brand-orange); font-size: 28px; font-weight: 900; font-family: 'Oswald'; font-style: italic; line-height: 1.1; margin-top: 4px; text-shadow: 2px 2px 4px #000; }
+.pos-tag { color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 900; letter-spacing: 2px; }
+.name-tag { color: var(--brand-orange); font-size: 32px; font-weight: 900; font-family: 'Oswald'; font-style: italic; line-height: 1; margin-top: 6px; text-shadow: 2px 2px 5px #000; }
 
 @media (max-width: 1024px) { 
     #home-split-wrapper { flex-direction: column; }
     .home-left, .home-right { width: 100%; }
     .home-right { height: 60vh; order: -1; } 
     .home-left { padding: 40px 20px; order: 1; }
-    .video-main { height: 90%; max-height: none; }
-    .premium-banner-v { min-height: 180px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .banner-overlay { background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, transparent 70%); justify-content: center; }
-    .banner-img { object-position: center 25%; }
+    .premium-banner-v { min-height: 200px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .banner-img { object-position: center 20%; }
+    .name-tag { font-size: 28px; }
 }
 
-/* その他共通スタイルは維持 */
 .page-container { max-width: 1400px; margin: 0 auto; padding: 140px 20px 60px; display: none; }
 .active-page { display: block; }
 header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
