@@ -7,6 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ★ データベース（ステータス）の画像と名前を少し小さくするCSS */
+        #grid div.bg-white\/5.p-8.rounded-3xl img {
+            width: 6rem; /* w-32 (8rem) -> w-24 (6rem) */
+            height: 6rem; /* h-32 (8rem) -> h-24 (6rem) */
+        }
+        #grid div.bg-white\/5.p-8.rounded-3xl h3 {
+            font-size: 1.875rem; /* text-4xl (2.25rem) -> text-3xl (1.875rem) */
+        }
+    </style>
 </head>
 <body>
 
@@ -51,7 +61,20 @@
                 <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">OFFICIAL</h3></a>
             </div>
 
-            <div class="mt-12 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
+            <div class="mt-12 bg-white/5 border border-white/10 rounded-3xl p-6 fade-in w-full max-w-[500px]">
+                <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
+                    <i class="fas fa-gift text-3xl"></i> <span data-i18n="village-map-title">ビレッジ プレゼント出現MAP</span>
+                </h3>
+                <div class="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black group relative cursor-pointer" onclick="window.open('ボックスの位置.jpg', '_blank')">
+                    <img src="ボックスの位置.jpg" alt="Village Present Map" class="w-full h-auto group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-400 mt-3 text-center" data-i18n="village-map-cap">※画像タップ（クリック）で拡大表示</p>
+            </div>
+
+            <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
                 <div class="bg-orange-500/20 p-3 rounded-xl flex items-center justify-center">
                     <i class="fas fa-users text-orange-500 text-2xl"></i>
                 </div>
@@ -171,7 +194,7 @@
                         <div class="space-y-12">
                             <div>
                                 <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 1: 役割の理解</h4>
-                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下。自分の仕事を絞ることで安心感を与えます。</p></div>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下. 自分の仕事を絞ることで安心感を与えます。</p></div>
                             </div>
                             <div>
                                 <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 2: 邪魔をしない</h4>
