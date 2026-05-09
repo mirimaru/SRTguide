@@ -14,7 +14,13 @@ const i18n = {
         "qa-q1": "Q: 数値の「▲」は何？", "qa-a1": "A: バフ値（強化分）です。基本性能を知るには表示値から▲値を差し引いてください。",
         "qa-q2": "Q: P-Buffとカードどちらが先？", "qa-a2": "A: P-Buffが先です。同じポジション全員に恩恵があるため最優先課題となります。",
         "counter-title": "総訪問者数",
-        "bbs-desc": "情報交換や質問、フレンド募集などご自由にどうぞ！<br><span style='font-size:0.85em; color:#ff4e00;'>※悪質な書き込みはIP記録の上、削除・アクセス禁止措置をとります。</span>"
+        "bbs-desc": "情報交換や質問、フレンド募集などご自由にどうぞ！<br><span style='font-size:0.85em; color:#ff4e00;'>※悪質な書き込みはIP記録の上、削除・アクセス禁止措置をとります。</span>",
+        "step4-title": "「最高のチームメイト」への進化",
+        "playbook-l1": "PGはボール運び、PF/Cはゴール下。自分の仕事を絞ることで味方に安心感を与えます。",
+        "playbook-l2-1": "ボール持ちの味方に近寄らない",
+        "playbook-l2-2": "味方のドライブコースを塞がない",
+        "playbook-l2-3": "インサイドに居座り続けない（スペースを作る）",
+        "playbook-comm": "ミスを責めず、ポジティブなエモートでチームを盛り上げましょう。"
     },
     en: { 
         "nav-home": "HOME", "nav-guide": "GUIDE", "nav-db": "DATABASE", "nav-pbuff": "P-BUFF", "nav-qa": "Q&A", "nav-about": "ABOUT ME", "nav-bbs": "BBS",
@@ -29,48 +35,25 @@ const i18n = {
         "qa-q1": "Q: What does '▲' mean?", "qa-a1": "A: It's the buff value. Subtract it from the display value to find the base performance.",
         "qa-q2": "Q: P-Buff or Cards first?", "qa-a2": "A: P-Buff first. It boosts everyone in the same position.",
         "counter-title": "TOTAL VISITORS",
-        "bbs-desc": "Feel free to recruit friends or ask questions!<br><span style='font-size:0.8em; color:#ff4e00;'>*Abusive posts will be blocked based on IP.</span>"
-    },
-    ko: { 
-        "nav-home": "홈", "nav-guide": "가이드", "nav-db": "데이터베이스", "nav-pbuff": "P-버프", "nav-qa": "Q&A", "nav-about": "소개", "nav-bbs": "게시판",
-        "about-title": "소개: 작성자",
-        "about-p1": "2016년부터 코트를 지켜봤습니다. 2024년에 다시 돌아왔습니다.", "about-p2": "함께 커뮤니티를 뜨겁게 만듭시다!",
-        "guide-title": "상위 티어로 가는 길", "step1-title": "포지션 특징", "step2-title": "캐릭터 추천", "step3-title": "육성 순서",
-        "pg-desc": "패스와 스피드. 수비의 핵심.", "sg-desc": "최고의 득점원. 다양한 스킬.", "sf-desc": "공수 만능형.", "pf-desc": "기동력 있는 블로커.", "c-desc": "골밑 수호자. 리바운더.",
-        "recom-free-title": "무과금 추천", "recom-free-desc": "Murdock (PF): 높은 블록, 최고의 선택.", "recom-premium-title": "최강 캐릭터 (프리미엄)",
-        "grow1-title": "P5 승급", "grow1-desc": "모든 스킬 해제.", "grow2-title": "P-버프 구축", "grow2-desc": "전체 포지션 적용. 최우선.", "grow3-title": "카드 세팅", "grow3-desc": "P-버프 완성 후 진행.",
-        "db-note": "*'▲' 표시는 버프 값입니다. 기본 능력치를 보려면 이 값을 빼야 합니다.",
-        "qa-q1": "Q: '▲'는 무엇입니까?", "qa-a1": "A: 버프 값입니다. 표시된 값에서 빼면 기본 성능을 알 수 있습니다.",
-        "qa-q2": "Q: P-버프와 카드 중 어느 것이 먼저입니까?", "qa-a2": "A: P-버프가 먼저입니다. 같은 포지션 모두를 강화합니다.",
-        "counter-title": "총 방문자 수",
-        "bbs-desc": "자유롭게 소통하세요!<br><span style='font-size:0.8em; color:#ff4e00;'>*악성 게시물은 IP 차단됩니다.</span>"
-    },
-    zh: { 
-        "nav-home": "首页", "nav-guide": "指南", "nav-db": "数据库", "nav-pbuff": "P-BUFF", "nav-qa": "常见问题", "nav-about": "关于我", "nav-bbs": "留言板",
-        "about-title": "关于作者",
-        "about-p1": "从2016年開始关注球場。2024年再次回归。", "about-p2": "希望能有更多玩家。让我们一起让この社区火热起来！",
-        "guide-title": "顶级联赛之路", "step1-title": "位置特征", "step2-title": "推荐角色", "step3-title": "養成順序",
-        "pg-desc": "传球与速度。防守核心。", "sg-desc": "最高得分力。技能多樣。", "sf-desc": "攻防全能型。", "pf-desc": "机动性盖帽。", "c-desc": "篮下守护。篮板专家。",
-        "recom-free-title": "平民推荐", "recom-free-desc": "Murdock (PF): 盖帽强，最佳选择。", "recom-premium-title": "最强角色 (高级)",
-        "grow1-title": "P5 晉升", "grow1-desc": "解鎖所有技能。", "grow2-title": "P-BUFF 构建", "grow2-desc": "影响全位置，最优先。", "grow3-title": "卡牌选择", "grow3-desc": "P-BUFF完成后进行。",
-        "db-note": "*“▲”表示增益值。请从显示值中减去该值以获得基础属性。",
-        "qa-q1": "Q: “▲”是什么意思？", "qa-a1": "A: 它是增益值。从显示值中减去它即可得出基础性能。",
-        "qa-q2": "Q: 先做P-Buff还是卡牌？", "qa-a2": "A: 先做P-Buff。它可以提升同一位置的所有角色。",
-        "counter-title": "总访问人数",
-        "bbs-desc": "请在这里自由交流。<br><span style='font-size:0.8em; color:#ff4e00;'>*恶意帖子的IP将被屏蔽。</span>"
+        "bbs-desc": "Feel free to recruit friends or ask questions!<br><span style='font-size:0.8em; color:#ff4e00;'>*Abusive posts will be blocked based on IP.</span>",
+        "step4-title": "BECOME THE BEST TEAMMATE",
+        "playbook-l1": "PG carries, PF/C guards paint. Knowing your job gives your team peace of mind.",
+        "playbook-l2-1": "Don't crowd the ball handler.",
+        "playbook-l2-2": "Don't block the drive lane.",
+        "playbook-l2-3": "Don't sit in the paint (create space).",
+        "playbook-comm": "Don't blame mistakes. Use positive emotes to boost morale."
     }
 };
 
 const termsDict = {
-    en: { "ポスト": "POST", "ミドル": "MID", "3点": "3PT", "Sレイ": "S-LAY", "Lレイ": "L-LAY", "Sダン": "S-DUNK", "Lダン": "L-DUNK", "パス": "PASS", "スティ": "STL", "Jブロ": "J-BLK", "Dブロ": "D-BLK", "当たり": "STR", "リバ": "REB", "ラン": "RUN", "持久": "STM", "一般の移動速度": "Move Speed", "Sダンク ブロック抵抗": "S-Dunk Blk Res", "持久力の最大量": "Max Stamina", "Sレイアップ ブロック抵抗": "S-Layup Blk Res", "Sダンク 発動確率": "S-Dunk Chance", "3点シュート 成功率": "3PT Success", "Sダンク 守備抵抗": "S-Dunk Def Res", "Sレイアップ 成功率": "S-Layup Success", "ミドルシュート 成功率": "Mid Success", "リバウンド": "Rebound", "ミドル守備抵抗": "Mid Def Res", "Dインシュート ブロック": "Drive-in Blk", "Jシュート ブロック": "Jump-shot Blk", "シュート妨害効果": "Shot Interfere", "当たり強さ": "Strength", "ロングダンク 成功率": "L-Dunk Success", "ポストショット 成功率": "Post Success", "Oリバウンド能力": "O-Rebound", "Dリバウンド能力": "D-Rebound", "Lダンク ブロック抵抗": "L-Dunk Blk Res", "ブロック抵抗成功率": "Blk Resist Success", "スティール成功率": "Steal Success", "ミドルシュート": "Mid Shot", "スティール": "Steal", "ランニング": "Running", "Sダンクの速度": "S-Dunk Speed", "持久力の回復量": "Stam Recovery", "レイアップ/ダンク距離": "Layup/Dunk Range", "Lレイ ブロック抵抗": "L-Lay Blk Res", "Sレイ 守備抵抗": "S-Lay Def Res", "Lダンク 発動確率": "L-Dunk Chance" },
-    ko: { "ポスト": "포스트", "ミドル": "미들", "3点": "3점", "Sレイ": "S레이업", "Lレイ": "L레이업", "Sダン": "S덩크", "Lダン": "L덩크", "パス": "패스", "スティ": "스틸", "Jブロ": "J블록", "Dブロ": "D블록", "当たり": "몸싸움", "リバ": "리바운드", "ラン": "달리기", "持久": "지구력", "一般の移動速度": "이동 속도", "Sダンク ブロック抵抗": "S덩크 블록 저항", "持久力の最大량": "최대 지구력", "Sレイアップ ブロック抵抗": "S레이업 블록 저항", "Sダンク 発動確率": "S덩크 발동 확률", "3点シュート 成功率": "3점 성공률", "Sダンク 守備抵抗": "S덩크 수비 저항", "Sレイアップ 成功率": "S레이업 성공률", "ミドルシュート 成功率": "미들 성공률", "リバウンド": "리바운드", "ミドル守備抵抗": "미들 수비 저항", "Dインシュート ブロック": "돌파 블록", "Jシュート ブロック": "점프슛 블록", "シュート妨害効果": "슛 방해", "当たり強さ": "몸싸움", "ロングダンク 成功率": "L덩크 성공률", "ポストショット 成功率": "포스트 성공률", "Oリバウンド能力": "공격 리바운드", "Dリバウンド能力": "수비 리바운드", "Lダンク ブロック抵抗": "L덩크 블록 저항", "ブロック抵抗成功率": "블록 저항 성공률", "スティール成功率": "스틸 성공률", "ミドルシュート": "미들슛", "スティール": "스틸", "ランニング": "달리기", "Sダンクの速度": "S덩크 속도", "持久力の回復量": "지구력 회복량", "レイアップ/ダンク距離": "레이업/덩크 거리", "Lレイ ブロック抵抗": "L레이업 블록 저항", "Sレイ 守備抵抗": "S레이업 수비 저항", "Lダンク 発動確率": "L덩크 발동 확률" },
-    zh: { "ポスト": "近投", "ミドル": "中投", "3点": "三分", "Sレイ": "近距上篮", "Lレイ": "远距上篮", "Sダン": "近距扣篮", "Lダン": "远距扣篮", "パス": "传球", "スティ": "抢断", "Jブロ": "跳投盖帽", "Dブロ": "上篮盖帽", "当たり": "对抗", "リバ": "篮板", "ラン": "跑动", "持久": "耐力", "一般の移動速度": "移动速度", "Sダンク ブロック抵抗": "近距扣篮抗盖帽", "持久力の最大量": "最大耐力", "Sレイアップ ブロック抵抗": "近距上篮抗盖帽", "Sダンク 発動確率": "近距扣篮触发率", "3点シュート 成功率": "三分命中率", "Sダンク 守備抵抗": "近距扣篮抗干扰", "Sレイアップ 成功率": "近距上篮命中率", "ミドルシュート 成功率": "中投命中率", "リバウンド": "篮板", "ミドル守備抵抗": "中投抗干扰", "Dインシュート ブロック": "突破盖帽", "Jシュート ブロック": "跳投盖帽", "シュート妨害効果": "投篮干扰", "当たり強さ": "对抗", "ロングダンク 成功率": "远距扣篮命中率", "ポストショット 成功率": "近投命中率", "Oリバウンド能力": "进攻篮板", "Dリバウンド能力": "防守篮板", "Lダンク ブロック抵抗": "远距扣篮抗盖帽", "ブロック抵抗成功率": "抗盖帽命中率", "スティール成功率": "抢断成功率", "ミドルシュート": "中投", "スティール": "抢断", "ランニング": "跑动", "Sダンクの速度": "近距扣篮速度", "持久力の回復量": "耐力恢复", "レイアップ/ダンク距离": "上篮/扣篮距离", "Lレイ ブロック抵抗": "远距上篮抗盖帽", "Sレイ 守備抵抗": "近距上篮抗干扰", "Lダンク 発動確率": "远距扣篮触发率" }
+    en: { "ポスト": "POST", "ミドル": "MID", "3点": "3PT", "Sレイ": "S-LAY", "Lレイ": "L-LAY", "Sダン": "S-DUNK", "Lダン": "L-DUNK", "パス": "PASS", "スティ": "STL", "Jブロ": "J-BLK", "Dブロ": "D-BLK", "当たり": "STR", "リバ": "REB", "ラン": "RUN", "持久": "STM", "一般の移動速度": "Move Speed", "Sダンク ブロック抵抗": "S-Dunk Blk Res", "持久力の最大量": "Max Stamina", "Sレイアップ ブロック抵抗": "S-Layup Blk Res", "Sダンク 発動確率": "S-Dunk Chance", "3点シュート 成功率": "3PT Success", "Sダンク 守備抵抗": "S-Dunk Def Res", "Sレイアップ 成功率": "S-Layup Success", "ミドルシュート 成功率": "Mid Success", "リバウンド": "Rebound", "ミドル守備抵抗": "Mid Def Res", "Dインシュート ブロック": "Drive-in Blk", "Jシュート ブロック": "Jump-shot Blk", "シュート妨害効果": "Shot Interfere", "当たり強さ": "Strength", "ロングダンク 成功率": "L-Dunk Success", "ポストショット 成功率": "Post Success", "Oリバウンド能力": "O-Rebound", "Dリバウンド能力": "D-Rebound", "Lダンク ブロック抵抗": "L-Dunk Blk Res", "ブロック抵抗成功率": "Blk Resist Success", "スティール成功率": "Steal Success", "ミドルシュート": "Mid Shot", "スティール": "Steal", "ランニング": "Running", "Sダンクの速度": "S-Dunk Speed", "持久力の回復量": "Stam Recovery", "レイアップ/ダンク距離": "Layup/Dunk Range", "Lレイ ブロック抵抗": "L-Lay Blk Res", "Sレイ 守備抵抗": "S-Lay Def Res", "Lダンク 発動確率": "L-Dunk Chance" }
 };
 
 const charImages = { 
     "Ayla": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_ayla.png", "Chloe": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_chloe.png", "Genesa": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png", "Genesa (Flash)": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png", "Genesa (Dynamic)": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png", "Noah": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_noah.png", "Mika": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/mika.png", "Ginger": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/ginger.png", "Little Fox": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/littlefox.png", "Professor": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/professor.png", "Cindy": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/cindy.png", "Helena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/helena.png", "Pedro": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/pedro.png", "Clara": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/clara/chr_b_clara.png", "Kaji": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png", "Ox Queen": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_oxqueen.png", "ANPAN": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/anpan/chr_b.png", "Kim": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/kim.png", "Fred": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/fred.png", "Rin": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rin.png", "Jason": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jason.png", "Carolina": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carolina.png", "Nadia": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/nadia.png", "Walker": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/walker.png", "Yuna": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/yuna/chr_b_yuna.png", "Gena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png", "MC.CC": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_mc_cc.png", "Liu": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_liu.png", "Jack": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jack.png", "Rebecca": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rebecca.png", "Saru": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/saru.png", "William": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/william.png", "Amanda": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/amanda.png", "Jessie": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_jessie.png", "Carter": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carter.png", "Joey": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/joey.png", "Nathan": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png", "Fox": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_fox.png", "Deacon": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/deacon.png", "Murdock": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/murdock.png", "Max": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/max.png", "Giant G": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png", "Marisol": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/marisol/chr_b_marisol.png", "Fei": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/fei.png", "Vandell": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/vandell/chr_b.png", "Double D": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_double_d.png", "Clarke": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/clarke.png", "Lulu": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/lulu.png", "DJ Bagman": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/djbagman/chr_b_djbagman.png", "Blair": "https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png", "Luther": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/luther.png", "Jimmy": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jimmy.png", "Howl": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_howl.png", "Camila": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/camila.png", "Siana": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/siana/chr_b_Siana.png", "Lyoid": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_lyoid.png", "Lee": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/lee.png", "Christa": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/christa.png", "Big Dog": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/bigdog.png", "Big Joe": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/bigjoe.png" 
 };
 
+// ステータスデータ（soraさんから頂いた最新版）
 const rawData = [
     {"名前":"クララ","en":"Clara","pos":"PG","s":[102,178,165,127,229,63,76,229,216,127,89,76,76,229,204]},
     {"名前":"カジ","en":"Kaji","pos":"PG","s":[113,153,178,114,140,114,191,178,178,178,89,127,153,140,204]},
@@ -85,7 +68,6 @@ const rawData = [
     {"名前":"ミカ","en":"Mika","pos":"PG","s":[140,191,140,127,204,63,76,229,165,114,89,76,76,216,216]},
     {"名前":"クロイ","en":"Chloe","pos":"PG","s":[113,203,216,127,191,63,89,191,203,101,89,76,76,216,216]},
     {"名前":"アンパン","en":"ANPAN","pos":"PG","s":[102,216,178,127,229,63,76,229,178,127,89,76,76,229,216]},
-
     {"名前":"ユナ","en":"Yuna","pos":"SG","s":[127,191,225,127,204,89,102,178,204,115,89,89,89,229,204]},
     {"名前":"GENA","en":"Gena","pos":"SG","s":[127,140,216,127,165,102,102,178,140,140,102,127,89,191,178]},
     {"名前":"牛魔王","en":"Ox Queen","pos":"SG","s":[127,217,229,127,165,89,153,165,140,140,114,89,89,216,204]},
@@ -98,7 +80,6 @@ const rawData = [
     {"名前":"ナディア","en":"Nadia","pos":"SG","s":[140,191,114,140,216,178,127,127,204,140,114,76,89,216,178]},
     {"名前":"ノア","en":"Noah","pos":"SG","s":[127,178,229,178,216,127,153,203,140,127,102,76,89,165,179]},
     {"名前":"MC.CC","en":"MC.CC","pos":"SG","s":[127,178,216,127,178,89,204,140,140,127,102,127,102,178,204]},
-
     {"名前":"リウ","en":"Liu","pos":"SF","s":[153,204,127,165,140,114,178,115,140,165,153,153,153,140,153]},
     {"名前":"ジェシー","en":"Jessie","pos":"SF","s":[140,229,178,140,178,102,127,165,153,153,127,127,114,178,165]},
     {"名前":"アマンダ","en":"Amanda","pos":"SF","s":[153,229,178,153,178,102,127,153,127,153,140,127,127,153,127]},
@@ -110,7 +91,6 @@ const rawData = [
     {"名前":"ジャック","en":"Jack","pos":"SF","s":[153,204,127,153,178,102,127,102,102,191,178,127,127,153,165]},
     {"名前":"DJ BAGMAN","en":"DJ Bagman","pos":"SF","s":[153,217,140,127,191,102,153,204,102,141,127,127,114,191,165]},
     {"名前":"ネイサン","en":"Nathan","pos":"SF","s":[140,191,178,127,140,102,217,191,102,165,127,153,114,178,153]},
-
     {"名前":"マードック","en":"Murdock","pos":"PF","s":[178,63,63,178,140,140,165,114,114,204,204,191,153,127,127]},
     {"名前":"マックス","en":"Max","pos":"PF","s":[165,89,89,165,127,127,140,114,127,204,204,191,165,140,102]},
     {"名前":"ジャイアントG","en":"Giant G","pos":"PF","s":[165,76,50,165,127,217,178,114,89,204,204,217,178,178,140]},
@@ -122,7 +102,6 @@ const rawData = [
     {"名前":"フォックス","en":"Fox","pos":"PF","s":[152,178,114,165,140,140,165,127,89,165,178,191,165,152,102]},
     {"名前":"ダブルD","en":"Double D","pos":"PF","s":[178,50,37,165,140,191,161,140,89,191,191,191,165,178,140]},
     {"名前":"ヴァンデル","en":"Vandell","pos":"PF","s":[152,50,37,127,140,127,127,140,166,140,167,217,204,191,191]},
-
     {"名前":"ブレア","en":"Blair","pos":"C","s":[193,180,130,168,117,203,130,104,117,143,181,168,168,130,143]},
     {"名前":"カミラ","en":"Camila","pos":"C","s":[229,127,63,178,114,165,140,191,76,127,191,216,204,127,114]},
     {"名前":"ルーサー","en":"Luther","pos":"C","s":[229,76,63,204,114,229,140,114,76,140,204,229,204,76,102]},
@@ -136,6 +115,7 @@ const rawData = [
     {"名前":"シアナ","en":"Siana","pos":"C","s":[229,51,39,204,152,229,140,114,63,127,229,178,227,76,160]}
 ];
 
+// P-BUFFデータ
 const pBuffData = {
     "C (CENTER)": [
         { name: "ルーサー", en: "Luther", buffs: [["Lダンク 発動確率", "+12%"], ["Lダンク ブロック抵抗", "+6%"], ["ブロック抵抗成功率", "+4.2%"], ["スティール成功率", "+16.8%"], ["一般の移動速度", "+7.2cm/s"]] },
