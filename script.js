@@ -1,12 +1,11 @@
 let currentLang = 'ja';
 
-// ★追加：ポジションごとの背景色定義（Tailwindクラス）
 const posColors = {
-    "PG": "bg-green-950/40 border-green-700/50",    // 緑
-    "SG": "bg-orange-950/40 border-orange-700/50",  // オレンジ
-    "SF": "bg-cyan-950/40 border-cyan-700/50",    // 水色
-    "PF": "bg-indigo-950/40 border-indigo-700/50",  // 濃い青
-    "C":  "bg-red-950/40 border-red-700/50"       // 赤
+    "PG": "bg-green-950/40 border-green-700/50",
+    "SG": "bg-orange-950/40 border-orange-700/50",
+    "SF": "bg-cyan-950/40 border-cyan-700/50",
+    "PF": "bg-indigo-950/40 border-indigo-700/50",
+    "C":  "bg-red-950/40 border-red-700/50"
 };
 
 function switchLanguage(lang, btnElement = null) {
@@ -21,7 +20,6 @@ function switchLanguage(lang, btnElement = null) {
             el.innerHTML = i18n[lang][key];
         }
     });
-    // DBとPバフを再描画
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -69,16 +67,11 @@ function initDb() {
         card.dataset.name = c.名前.toLowerCase(); 
         card.dataset.pos = c.pos;
         
-        // ★修正点：余白の調整、画像を右下に絶対配置、そしてポジションカラーの適用
         card.style.padding = '2.5rem';
         card.style.position = 'relative';
         card.style.overflow = 'hidden';
         
-        // ポジションごとのクラスを追加（背景色とボーダー色）
         if(posColors[c.pos]) {
-            // style.cssの bg-white/5 などを上書きするため、classListではなくstyle.cssを編集するか、
-            // ここで直接classNameを上書きする必要があります。
-            // 既存の Tailwind クラス（bg-white/5 border border-white/10）を削除し、新しいクラスを入れる
             card.className = card.className.replace('bg-white/5', '').replace('border-white/10', '');
             card.classList.add(...posColors[c.pos].split(' '));
         }
@@ -92,14 +85,14 @@ function initDb() {
         }); 
         sHtml += '</div>';
         
-        // ★修正点：DB側画像をさらに超巨大化（height: 230px）し、右下に配置。透過度は0.5に下げて文字を優先。
+        // ★絶対直す：!important を付与して古いCSSの呪縛を断ち切り、超特大(240px)にする
         card.innerHTML = `
             <div class="char-content relative z-10">
                 <div class="text-3xl font-black italic mb-2">${cName}</div>
                 <div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>
                 ${sHtml}
             </div>
-            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -20px; right: -20px; height: 230px; width: auto; opacity: 0.5; z-index: 1;">
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important;">
         `;
         grid.appendChild(card);
     });
@@ -116,13 +109,11 @@ function initPBuff() {
     for (const [posName, chars] of Object.entries(pBuffData)) {
         if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
         
-        // ★修正点：ポジション名の横に、指定された色の丸いアイコンを追加
-        const pCode = posName.substring(0, 2); // PG, SG, etc.
-        const titleColor = posColors[pCode] ? posColors[pCode].split(' ')[0].replace('bg-', 'text-').replace('950', '500') : 'text-white';
+        // ★絶対直す："C (CENTER)" から確実に "C" だけを抜き出す処理に変更
+        const pCode = posName.split(' ')[0];
 
         const title = document.createElement('h3'); 
         title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 inline-flex items-center gap-4 pb-2`; 
-        // ポジションカラーの丸
         const colorCircle = `<span class="w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20"></span>`;
         title.innerHTML = `${colorCircle} ${posName}`; 
         container.appendChild(title);
@@ -134,12 +125,9 @@ function initPBuff() {
             const card = document.createElement('div'); 
             card.className = 'pbuff-card';
             
-            // はみ出し防止と基準位置の設定
             card.style.position = 'relative';
             card.style.overflow = 'hidden';
 
-            // ★修正点：ポジションカラーの適用
-            const cardPos = char.en ? chars[0].en === char.en ? pCode : pCode : pCode; // charにpos属性がないので、親のposNameから推測
             if(posColors[pCode]) {
                 card.className = card.className.replace('bg-white/5', '').replace('border-white/10', '');
                 card.classList.add(...posColors[pCode].split(' '));
@@ -147,7 +135,6 @@ function initPBuff() {
 
             const cName = currentLang === 'ja' ? char.name : char.en;
             
-            // 文字が画像に被ってもOKな仕様に（右paddingなし）
             let bHtml = `
                 <div class="char-content" style="padding: 2.5rem; min-height: 220px;">
                     <h3 class="text-3xl font-black italic text-orange-500 mb-6 relative z-10">${cName}</h3>
@@ -159,11 +146,11 @@ function initPBuff() {
                 bHtml += `<div class="pbuff-item" style="font-size: 1.1rem;"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
             
-            // ★キャラ画像を右下に大きく(180px)配置し、文字が読みやすいように透過度を0.6に設定
+            // ★絶対直す：P-BUFF側も!importantを付与して画像を確実に大きく(200px)する
             bHtml += `
                     </div>
                 </div>
-                <img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -10px; height: 180px; width: auto; opacity: 0.6; z-index: 1;">
+                <img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; transform: none !important;">
             `;
             
             card.innerHTML = bHtml; 
