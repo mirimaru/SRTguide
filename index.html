@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ★ データベースグリッドの画像と名前を少し小さくするCSS */
-        #grid div.bg-white\/5.p-8.rounded-3xl img {
-            width: 6rem; /* w-32 (8rem) -> w-24 (6rem) */
-            height: 6rem; /* h-32 (8rem) -> h-24 (6rem) */
+        /* ★ データベース＆P-BUFFのキャラ画像と名前を縮小 (約2割〜2.5割減) */
+        #grid img, #pbuff-grid-container img {
+            width: 6rem !important;  /* 約96px (元の w-32 から縮小) */
+            height: 6rem !important; /* 約96px */
+            margin-left: auto;
+            margin-right: auto;
         }
-        #grid div.bg-white\/5.p-8.rounded-3xl h3 {
-            font-size: 1.875rem; /* text-4xl (2.25rem) -> text-3xl (1.875rem) */
+        #grid h3, #pbuff-grid-container h3, #pbuff-grid-container h4 {
+            font-size: 1.5rem !important; /* 約24px (文字サイズも縮小) */
         }
     </style>
 </head>
@@ -65,7 +67,7 @@
                 <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
                     <i class="fas fa-gift text-3xl"></i> <span data-i18n="village-map-title">ビレッジ プレゼント出現MAP</span>
                 </h3>
-                <div class="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black group relative cursor-pointer" onclick="window.open('ボックスの位置.jpg', '_blank')">
+                <div class="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black group relative cursor-pointer" onclick="openMapModal()">
                     <img src="ボックスの位置.jpg" alt="Village Present Map" class="w-full h-auto group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                         <i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i>
@@ -194,7 +196,7 @@
                         <div class="space-y-12">
                             <div>
                                 <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 1: 役割の理解</h4>
-                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下. 自分の仕事を絞ることで安心感を与えます。</p></div>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下。自分の仕事を絞ることで安心感を与えます。</p></div>
                             </div>
                             <div>
                                 <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 2: 邪魔をしない</h4>
@@ -271,7 +273,32 @@
         </section>
     </div>
 
+    <div id="map-modal" class="hidden fixed inset-0 z-[100] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[101]">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[100]" onclick="event.stopPropagation()">
+        
+        <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeMapModal()"></div>
+    </div>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        function openMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.remove('hidden');
+            // 少し遅延させることでフワッと表示するアニメーションを効かせる
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+        function closeMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.add('opacity-0');
+            // アニメーションが終わってから完全に隠す
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+    </script>
 </body>
 </html>
