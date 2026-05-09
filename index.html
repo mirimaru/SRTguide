@@ -11,7 +11,7 @@
 <body>
 
     <header>
-        <div class="flex items-center gap-4 cursor-pointer mb-2 md:mb-0" onclick="showPage('home')">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
             <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
         <nav class="nav-container">
@@ -64,10 +64,10 @@
             </div>
         </div>
         <div class="home-right">
-            <video class="video-bg" autoplay loop muted playsinline>
+            <video class="video-bg" autoplay loop muted playsinline preload="auto">
                 <source src="top_video.mp4" type="video/mp4">
             </video>
-            <video class="video-main" autoplay loop muted playsinline>
+            <video class="video-main" autoplay loop muted playsinline preload="auto">
                 <source src="top_video.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-30 pointer-events-none z-10"></div>
@@ -120,38 +120,23 @@
                             <div class="flex-1 flex flex-col sm:flex-row min-h-[450px]">
                                 <div class="premium-banner-v">
                                     <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="banner-img">
-                                    <div class="banner-overlay">
-                                        <span class="pos-tag">PG</span>
-                                        <span class="name-tag">KAJI</span>
-                                    </div>
+                                    <div class="banner-overlay"><span class="pos-tag">PG</span><span class="name-tag">KAJI</span></div>
                                 </div>
                                 <div class="premium-banner-v">
                                     <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="banner-img">
-                                    <div class="banner-overlay">
-                                        <span class="pos-tag">SG</span>
-                                        <span class="name-tag">GENA</span>
-                                    </div>
+                                    <div class="banner-overlay"><span class="pos-tag">SG</span><span class="name-tag">GENA</span></div>
                                 </div>
                                 <div class="premium-banner-v">
                                     <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="banner-img">
-                                    <div class="banner-overlay">
-                                        <span class="pos-tag">SF</span>
-                                        <span class="name-tag">NATHAN</span>
-                                    </div>
+                                    <div class="banner-overlay"><span class="pos-tag">SF</span><span class="name-tag">NATHAN</span></div>
                                 </div>
                                 <div class="premium-banner-v">
                                     <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="banner-img">
-                                    <div class="banner-overlay">
-                                        <span class="pos-tag">PF</span>
-                                        <span class="name-tag">GIANT G</span>
-                                    </div>
+                                    <div class="banner-overlay"><span class="pos-tag">PF</span><span class="name-tag">GIANT G</span></div>
                                 </div>
                                 <div class="premium-banner-v">
                                     <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="banner-img">
-                                    <div class="banner-overlay">
-                                        <span class="pos-tag">C</span>
-                                        <span class="name-tag">BLAIR</span>
-                                    </div>
+                                    <div class="banner-overlay"><span class="pos-tag">C</span><span class="name-tag">BLAIR</span></div>
                                 </div>
                             </div>
                         </div>
@@ -159,10 +144,24 @@
                 </div>
                 <div>
                     <div class="step-badge">STEP 3</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">01</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow1-title">P5 昇級</h4><p class="text-gray-400 text-base" data-i18n="grow1-desc">全スキル解放が育成の基準。</p></div>
-                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">02</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow2-title">P-BUFF 構築</h4><p class="text-gray-400 text-base" data-i18n="grow2-desc">ポジション全員に影響。最優先。</p></div>
-                        <div class="guide-card p-8"><div class="text-5xl font-black italic text-orange-500 mb-4">03</div><h4 class="text-2xl font-bold mb-3" data-i18n="grow3-title">カード 厳選</h4><p class="text-gray-400 text-base" data-i18n="grow3-desc">Pバフ完成後にじっくり行う。</p></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40">
+                            <img src="upgrade_pyramid.png" class="w-full h-auto block" alt="Upgrade Pyramid">
+                        </div>
+                        <div class="space-y-6">
+                            <div class="guide-card p-6 border-l-4 border-orange-500">
+                                <h4 class="text-xl font-black text-white mb-2" data-i18n="grow1-title">P5 昇級</h4>
+                                <p class="text-gray-400 text-sm" data-i18n="grow1-desc">全スキル解放が育成の基準。まずはここを目指しましょう。</p>
+                            </div>
+                            <div class="guide-card p-6 border-l-4 border-blue-500">
+                                <h4 class="text-xl font-black text-white mb-2" data-i18n="grow2-title">P-BUFF 構築</h4>
+                                <p class="text-gray-400 text-sm" data-i18n="grow2-desc">ポジション全員に影響する最重要インフラ。カードより優先です。</p>
+                            </div>
+                            <div class="guide-card p-6 border-l-4 border-gray-500">
+                                <h4 class="text-xl font-black text-white mb-2" data-i18n="grow3-title">カード 厳選</h4>
+                                <p class="text-gray-400 text-sm" data-i18n="grow3-desc">土台が完成した後の最終仕上げ。じっくり厳選しましょう。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -204,7 +203,7 @@
                     <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
                 </div>
             </div>
-            <p class="text-base text-gray-400 mb-8 italic" data-i18n="db-note">※「▲」表記はバフ値（加算）です。基本値を知るには表示値からこれらを引く必要があります。</p>
+            <p class="text-base text-gray-400 mb-8 italic" data-i18n="db-note">※「▲」表記はバフ値（加算）です。</p>
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
         </section>
 
@@ -214,11 +213,7 @@
                 <div class="flex gap-4">
                     <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
                         <option value="All">ALL POSITIONS</option>
-                        <option value="PG">PG (POINT GUARD)</option>
-                        <option value="SG">SG (SHOOTING GUARD)</option>
-                        <option value="SF">SF (SMALL FORWARD)</option>
-                        <option value="PF">PF (POWER FORWARD)</option>
-                        <option value="C">C (CENTER)</option>
+                        <option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option>
                     </select>
                 </div>
             </div>
@@ -228,14 +223,13 @@
         <section id="page-qa" class="page-container max-w-5xl">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
             <div class="space-y-8">
-                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。基本性能を知るには表示値から▲値を差し引いてください。</p></div>
-                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。同じポジション全員に恩恵があるため最優先課題となります。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p></div>
             </div>
         </section>
 
         <section id="page-bbs" class="page-container max-w-5xl">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
-            <p class="text-gray-300 mb-8 text-lg" data-i18n="bbs-desc"></p>
             <div class="rounded-xl overflow-hidden bg-white shadow-2xl">
                 <iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe>
             </div>
