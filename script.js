@@ -18,8 +18,7 @@ function switchLanguage(lang, btnElement = null) {
         initDb();
     }
     if (document.getElementById('pbuff-grid-container').children.length > 0) {
-        document.getElementById('pbuff-grid-container').innerHTML = '';
-        initPBuff();
+        initPBuff(); // フィルタ変更時と同じように呼び出す
     }
 }
 
@@ -76,7 +75,11 @@ function initDb() {
 
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
-    if(!container || container.children.length > 0) return;
+    if(!container) return;
+    
+    // 【重要】毎回コンテナの中身を空にする（これによりフィルタが正しく機能する）
+    container.innerHTML = '';
+    
     const posFilter = document.getElementById('pbuffPosFilter').value;
     for (const [posName, chars] of Object.entries(pBuffData)) {
         if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
