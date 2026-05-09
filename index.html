@@ -9,41 +9,50 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* =========================================
-           ★ データベース（ステータス側）のサイズ調整 
+           ★ データベース＆P-BUFF カードの余白調整
+           ========================================= */
+        /* 枠に対して文字がギュウギュウにならないよう、内側の余白をしっかり取る */
+        #grid > div, 
+        #pbuff-grid-container div[class*="bg-white/5"],
+        #pbuff-grid-container div[class*="bg-white/10"] {
+            padding: 2rem !important; /* 約32pxのゆったりした余白 */
+        }
+
+        /* =========================================
+           ★ データベース（ステータス側）の調整 
            ========================================= */
         #grid img {
-            width: 7.5rem !important;  /* 小さすぎたので少し戻しました（元の約90%のサイズ） */
+            width: 7.5rem !important;  /* 約120px: ちょうどいいサイズ感に */
             height: 7.5rem !important;
+            margin-bottom: 1rem !important;
             margin-left: auto !important;
             margin-right: auto !important;
         }
         #grid h3 {
-            font-size: 1.75rem !important; 
+            font-size: 1.6rem !important; /* 見出しもバランスよく縮小 */
+            margin-bottom: 1.25rem !important;
         }
 
         /* =========================================
-           ★ P-BUFF側のレイアウト＆余白バランス修正 
+           ★ P-BUFF側の調整
            ========================================= */
-        /* カード全体の余白（パディング）を広げて窮屈さを解消 */
-        #pbuff-grid-container > div > div {
-            padding: 1.5rem !important; 
-        }
-        
-        /* キャラ名（タイトル）の文字サイズと下部余白の確保 */
         #pbuff-grid-container h4 {
             font-size: 1.6rem !important;
             margin-bottom: 1.25rem !important;
             position: relative;
-            z-index: 10; /* 文字が画像の下に隠れないように */
+            z-index: 10; /* 文字が画像の下に隠れないようにする */
         }
-
-        /* キャラ画像のサイズを直接指定して「綺麗な2割減」を実現 */
+        #pbuff-grid-container ul {
+            position: relative;
+            z-index: 10; /* リストも画像の上に配置 */
+        }
         #pbuff-grid-container img {
-            height: 130px !important; /* 画像の高さを固定（ちょうどいいサイズ感に） */
+            height: 180px !important; /* 130pxから180pxに拡大して存在感を戻す */
             width: auto !important;
-            bottom: 0 !important;     /* カードの底辺にピタッと合わせる */
-            right: 0.5rem !important; /* 右側に少しだけゆとりを持たせる */
+            bottom: -5px !important;     
+            right: -10px !important; /* 少し右にはみ出すくらいが綺麗 */
             transform: none !important; /* 崩れの原因だったscaleを削除 */
+            opacity: 0.85; /* 文字と被っても見やすいようにほんの少し透過 */
         }
     </style>
 </head>
