@@ -10,7 +10,12 @@ const i18n = {
         "grow1-title": "P5 昇級", "grow1-desc": "全スキル解放が育成の基準。まずはここを目指しましょう。", "grow2-title": "P-BUFF 構築", "grow2-desc": "ポジション全員に影響する最重要インフラ。カードより優先です。", "grow3-title": "カード 厳選", "grow3-desc": "土台が完成した後の最終仕上げ。じっくり厳選しましょう。",
         "db-note": "※「▲」表記はバフ値（加算）です。", "qa-q1": "Q: 数値の「▲」は何？", "qa-a1": "A: バフ値（強化分）です。", "qa-q2": "Q: P-Buffとカードどちらが先？", "qa-a2": "A: P-Buffが先です。", "counter-title": "総訪問者数",
         "step4-title": "「最高のチームメイト」への進化", "playbook-l1": "PGはボール運び、PF/Cはゴール下。自分の仕事を絞ることで安心感を与えます。",
-        "playbook-l2-1": "ボール持ちの味方に近寄らない", "playbook-l2-2": "味方のドライブコースを塞がない", "playbook-l2-3": "インサイドに居座り続けない", "playbook-comm": "ミスを責めず、ポジティブなエモートでチームを盛り上げましょう。"
+        "playbook-l2-1": "ボール持ちの味方に近寄らない", "playbook-l2-2": "味方のドライブコースを塞がない", "playbook-l2-3": "インサイドに居座り続けない", "playbook-comm": "ミスを責めず、ポジティブなエモートでチームを盛り上げましょう。",
+        // --- 新規追加：画像キャプション ---
+        "img-cap-steps": "図解：良いチームメイトになるための4段階（役割把握 → 邪魔しない → 意図を読む → コミュニケーション）",
+        "img-cap-space": "図解：味方と同じ場所に立つと「渋滞」が起きます。ボール保持者に近づかない、ドライブコースを塞がないのが鉄則です。",
+        "img-cap-inside": "図解：インサイド（ゴール下）にずっと居座らないこと。ビッグマンのリバウンド位置とも被らないようにしましょう。",
+        "img-cap-comm": "図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。"
     },
     en: { 
         "nav-home": "HOME", "nav-guide": "GUIDE", "nav-db": "DATABASE", "nav-pbuff": "P-BUFF", "nav-qa": "Q&A", "nav-about": "ABOUT ME", "nav-bbs": "BBS",
@@ -21,7 +26,12 @@ const i18n = {
         "grow1-title": "P5 Promote", "grow1-desc": "Unlock all skills first. Start here.", "grow2-title": "P-BUFF Build", "grow2-desc": "Affects all in pos. Top priority infra.", "grow3-title": "Cards", "grow3-desc": "Final touch after the foundation is ready.",
         "db-note": "*'▲' indicates a buff.", "qa-q1": "Q: What does '▲' mean?", "qa-a1": "A: It's the buff value.", "qa-q2": "Q: P-Buff or Cards first?", "qa-a2": "A: P-Buff first.", "counter-title": "TOTAL VISITORS",
         "step4-title": "BECOME THE BEST TEAMMATE", "playbook-l1": "PG carries, PF/C guards paint. Knowing your job gives your team peace of mind.",
-        "playbook-l2-1": "Don't crowd the ball handler.", "playbook-l2-2": "Don't block the drive lane.", "playbook-l2-3": "Don't sit in the paint.", "playbook-comm": "Don't blame mistakes. Use positive emotes to boost morale."
+        "playbook-l2-1": "Don't crowd the ball handler.", "playbook-l2-2": "Don't block the drive lane.", "playbook-l2-3": "Don't sit in the paint.", "playbook-comm": "Don't blame mistakes. Use positive emotes to boost morale.",
+        // --- 新規追加：画像キャプション ---
+        "img-cap-steps": "Chart: 4 stages to becoming a great teammate (Role -> Space -> Read -> Comm)",
+        "img-cap-space": "Chart: Standing near teammates causes 'traffic jams'. Never crowd the ball handler or block their drive lane.",
+        "img-cap-inside": "Chart: Don't camp inside the paint. Make sure not to overlap with your big man's rebounding position.",
+        "img-cap-comm": "Chart: Use 'No Problem' for mistakes. Avoid spamming 'Pass', and say 'Sorry' when you mess up."
     },
     ko: { 
         "nav-home": "홈", "nav-guide": "가이드", "nav-db": "데이터베이스", "nav-pbuff": "P-버프", "nav-qa": "Q&A", "nav-about": "소개", "nav-bbs": "게시판",
@@ -32,7 +42,12 @@ const i18n = {
         "grow1-title": "P5 승급", "grow1-desc": "모든 스킬 해제. 육성의 기본.", "grow2-title": "P-버프 구축", "grow2-desc": "전체 포지션 적용. 가장 중요한 인프라.", "grow3-title": "카드 세팅", "grow3-desc": "기반이 완성된 후의 최종 마무리.",
         "db-note": "*'▲' 표시는 버프 값입니다.", "qa-q1": "Q: '▲'는 무엇입니까?", "qa-a1": "A: 버프 값입니다.", "qa-q2": "Q: P-버프와 카드 중 어느 것이 먼저입니까?", "qa-a2": "A: P-버프가 먼저입니다.", "counter-title": "총 방문자 수",
         "step4-title": "최고의 팀메이트로의 진화", "playbook-l1": "PG는 공 운반, PF/C는 골밑. 각자의 역할에 집중하십시오.",
-        "playbook-l2-1": "공을 가진 아군에게 너무 가까이 가지 마십시오.", "playbook-l2-2": "아군의 드라이브 코스를 방해하지 마십시오.", "playbook-l2-3": "페인트 존에 계속 머물지 마십시오.", "playbook-comm": "실수를 탓하지 말고 긍정적인 이모트를 사용합시다."
+        "playbook-l2-1": "공을 가진 아군에게 너무 가까이 가지 마십시오.", "playbook-l2-2": "아군의 드라이브 코스를 방해하지 마십시오.", "playbook-l2-3": "페인트 존에 계속 머물지 마십시오.", "playbook-comm": "실수를 탓하지 말고 긍정적인 이모트를 사용합시다.",
+        // --- 新規追加：画像キャプション ---
+        "img-cap-steps": "도해: 좋은 팀메이트가 되기 위한 4단계 (역할 -> 공간 -> 리딩 -> 소통)",
+        "img-cap-space": "도해: 아군과 같은 곳에 서면 '정체'가 발생합니다. 볼 핸들러에게 다가가거나 드라이브 경로를 막지 마세요.",
+        "img-cap-inside": "도해: 페인트 존에 계속 머물지 마세요. 빅맨의 리바운드 위치와 겹치지 않도록 주의하세요.",
+        "img-cap-comm": "도해: 실수에는 '괜찮아' 이모트를. 과도한 '패스' 요구는 피하고, 실수했을 때는 사과하는 것이 기본입니다."
     },
     zh: { 
         "nav-home": "首页", "nav-guide": "指南", "nav-db": "数据库", "nav-pbuff": "P-BUFF", "nav-qa": "常见问题", "nav-about": "关于我", "nav-bbs": "留言板",
@@ -43,7 +58,12 @@ const i18n = {
         "grow1-title": "P5 晉升", "grow1-desc": "解鎖所有技能。養成基礎。", "grow2-title": "P-BUFF 构建", "grow2-desc": "影响全位置，最重要的基础设施。", "grow3-title": "卡牌选择", "grow3-desc": "在基础完成后进行最终修饰。",
         "db-note": "*“▲”表示增益值。", "qa-q1": "Q: “▲”是什么意思？", "qa-a1": "A: 它是增益值。", "qa-q2": "Q: 先做P-Buff还是卡牌？", "qa-a2": "A: 先做P-Buff。", "counter-title": "总访问人数",
         "step4-title": "进化为“最佳队友”", "playbook-l1": "PG负责运球，PF/C负责篮下。各司其职。",
-        "playbook-l2-1": "不要靠近持球的队友。", "playbook-l2-2": "不要阻挡队友的突破路线。", "playbook-l2-3": "不要一直在禁区内停留。", "playbook-comm": "不要指责失误，用积极的表情鼓舞团队士气。"
+        "playbook-l2-1": "不要靠近持球的队友。", "playbook-l2-2": "不要阻挡队友的突破路线。", "playbook-l2-3": "不要一直在禁区内停留。", "playbook-comm": "不要指责失误，用积极的表情鼓舞团队士气。",
+        // --- 新規追加：画像キャプション ---
+        "img-cap-steps": "图解：成为优秀队友的4个阶段（角色 -> 空间 -> 意识 -> 沟通）",
+        "img-cap-space": "图解：与队友站在同一位置会导致“拥堵”。绝不要靠近持球队友或阻挡他们的突破路线。",
+        "img-cap-inside": "图解：不要一直停留在禁区内。确保不要与己方内线球员的篮板位置重叠。",
+        "img-cap-comm": "图解：失误时发“没关系”。避免疯狂发“传球”，自己失误时记得说“抱歉”。"
     }
 };
 
