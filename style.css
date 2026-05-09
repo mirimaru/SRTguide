@@ -24,7 +24,7 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
     .home-left, .home-right { width: 100%; }
     .home-right { height: 60vh; order: -1; } 
     .home-left { padding: 40px 20px; order: 1; }
-    .premium-banner-v { min-height: 200px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .premium-banner-v { min-height: 180px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .banner-img { object-position: center 20%; }
 }
 
@@ -54,3 +54,4 @@ header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(0,
 .fade-in { animation: fadeIn 0.5s ease-in-out; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .aspect-video { aspect-ratio: 16 / 9; }
+img { max-width: 100%; height: auto; display: block; }
