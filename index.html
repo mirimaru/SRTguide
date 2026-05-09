@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ★ データベース＆P-BUFFのキャラ画像と名前を「ちょうど約2割」縮小 */
-        
-        /* データベース側 */
+        /* =========================================
+           ★ データベース（ステータス側）のサイズ調整 
+           ========================================= */
         #grid img {
-            width: 6.5rem !important; 
-            height: 6.5rem !important;
+            width: 7.5rem !important;  /* 小さすぎたので少し戻しました（元の約90%のサイズ） */
+            height: 7.5rem !important;
             margin-left: auto !important;
             margin-right: auto !important;
         }
@@ -21,13 +21,29 @@
             font-size: 1.75rem !important; 
         }
 
-        /* P-BUFF側（レイアウトを崩さず縮小） */
-        #pbuff-grid-container h4 {
-            font-size: 1.75rem !important;
+        /* =========================================
+           ★ P-BUFF側のレイアウト＆余白バランス修正 
+           ========================================= */
+        /* カード全体の余白（パディング）を広げて窮屈さを解消 */
+        #pbuff-grid-container > div > div {
+            padding: 1.5rem !important; 
         }
+        
+        /* キャラ名（タイトル）の文字サイズと下部余白の確保 */
+        #pbuff-grid-container h4 {
+            font-size: 1.6rem !important;
+            margin-bottom: 1.25rem !important;
+            position: relative;
+            z-index: 10; /* 文字が画像の下に隠れないように */
+        }
+
+        /* キャラ画像のサイズを直接指定して「綺麗な2割減」を実現 */
         #pbuff-grid-container img {
-            transform: scale(0.8) !important; /* 純粋に2割縮小 */
-            transform-origin: bottom right !important; /* 右下の配置をキープして縮小 */
+            height: 130px !important; /* 画像の高さを固定（ちょうどいいサイズ感に） */
+            width: auto !important;
+            bottom: 0 !important;     /* カードの底辺にピタッと合わせる */
+            right: 0.5rem !important; /* 右側に少しだけゆとりを持たせる */
+            transform: none !important; /* 崩れの原因だったscaleを削除 */
         }
     </style>
 </head>
