@@ -9,15 +9,18 @@ const i18n = {
         "recom-free-title": "無課金・初期のおすすめ", "recom-free-desc": "Murdock (PF): ブロック力が高く、最高の選択肢です。", "recom-premium-title": "最強キャラ (Premium)",
         "grow1-title": "P5 昇級", "grow1-desc": "全スキル解放が育成の基準。まずはここを目指しましょう。", "grow2-title": "P-BUFF 構築", "grow2-desc": "ポジション全員に影響する最重要インフラ。カードより優先です。", "grow3-title": "カード 厳選", "grow3-desc": "土台が完成した後の最終仕上げ。じっくり厳選しましょう。",
         "db-note": "※「▲」表記はバフ値（加算）です。", "qa-q1": "Q: 数値の「▲」は何？", "qa-a1": "A: バフ値（強化分）です。", "qa-q2": "Q: P-Buffとカードどちらが先？", "qa-a2": "A: P-Buffが先です。", "counter-title": "総訪問者数",
-        "step4-title": "「最高のチームメイト」への進化", "playbook-l1": "PGはボール運び、PF/Cはゴール下。自分の仕事を絞ることで安心感を与えます。",
+        "step4-title": "「最高のチームメイト」への進化", "playbook-l1": "PGはボール運び、PF/Cはゴール下. 自分の仕事を絞ることで安心感を与えます。",
         "playbook-l2-1": "ボール持ちの味方に近寄らない", "playbook-l2-2": "味方のドライブコースを塞がない", "playbook-l2-3": "インサイドに居座り続けない", "playbook-comm": "ミスを責めず、ポジティブなエモートでチームを盛り上げましょう。",
+        // 画像キャプション
         "img-cap-role": "図解：各ポジションの役割。全てのプレイを1人でやろうとせず、自分の仕事に集中することが大切です。",
         "img-cap-pyramid": "図解：強者のピラミッド。まずはP5昇級で基盤を作り、P-BUFFを構築してからカード厳選に進むのが黄金律です。",
         "img-cap-roi": "図解：P-BUFFとカードの投資対効果。P-BUFFはポジション全体に永続的な恩恵をもたらすため、カードより圧倒的にコスパが良いです。",
         "img-cap-steps": "図解：良いチームメイトになるための4段階（役割把握 → 邪魔しない → 意図を読む → コミュニケーション）",
         "img-cap-space": "図解：味方と同じ場所に立つと「渋滞」が起きます。ボール保持者に近づかない、ドライブコースを塞がないのが鉄則です。",
         "img-cap-inside": "図解：インサイド（ゴール下）にずっと居座らないこと。ビッグマンのリバウンド位置とも被らないようにしましょう。",
-        "img-cap-comm": "図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。"
+        "img-cap-comm": "図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。",
+        "village-map-title": "ビレッジ プレゼント出現MAP",
+        "village-map-cap": "※画像タップ（クリック）で拡大表示"
     },
     en: { 
         "nav-home": "HOME", "nav-guide": "GUIDE", "nav-db": "DATABASE", "nav-pbuff": "P-BUFF", "nav-qa": "Q&A", "nav-about": "ABOUT ME", "nav-bbs": "BBS",
@@ -35,7 +38,9 @@ const i18n = {
         "img-cap-steps": "Chart: 4 stages to becoming a great teammate (Role -> Space -> Read -> Comm)",
         "img-cap-space": "Chart: Standing near teammates causes 'traffic jams'. Never crowd the ball handler or block their drive lane.",
         "img-cap-inside": "Chart: Don't camp inside the paint. Make sure not to overlap with your big man's rebounding position.",
-        "img-cap-comm": "Chart: Use 'No Problem' for mistakes. Avoid spamming 'Pass', and say 'Sorry' when you mess up."
+        "img-cap-comm": "Chart: Use 'No Problem' for mistakes. Avoid spamming 'Pass', and say 'Sorry' when you mess up.",
+        "village-map-title": "VILLAGE PRESENT MAP",
+        "village-map-cap": "*Tap/Click image to enlarge"
     },
     ko: { 
         "nav-home": "홈", "nav-guide": "가이드", "nav-db": "데이터베이스", "nav-pbuff": "P-버프", "nav-qa": "Q&A", "nav-about": "소개", "nav-bbs": "게시판",
@@ -43,7 +48,7 @@ const i18n = {
         "guide-title": "상위 티어로 가는 길", "step1-title": "포지션 특징", "step2-title": "캐릭터 추천", "step3-title": "육성 순서",
         "pg-desc": "패스와 스피드. 수비의 핵심.", "sg-desc": "최고의 득점원. 다양한 스킬.", "sf-desc": "공수 만능형.", "pf-desc": "기동력 있는 블로커.", "c-desc": "골밑 수호자. 리바운더.",
         "recom-free-title": "무과금 추천", "recom-free-desc": "Murdock (PF): 높은 블록, 최고의 선택.", "recom-premium-title": "최강 캐릭터 (Premium)",
-        "grow1-title": "P5 승급", "grow1-desc": "모든 스킬 해제. 육성의 기본.", "grow2-title": "P-버프 구축", "grow2-desc": "전체 포지션 적용. 가장 중요한 인프라.", "grow3-title": "카드 세팅", "grow3-desc": "기반이 완성된 후의 최종 마무리.",
+        "grow1-title": "P5 승급", "grow1-desc": "모든 ส킬 해제. 육성의 기본.", "grow2-title": "P-버프 구축", "grow2-desc": "전체 포지션 적용. 가장 중요한 인프라.", "grow3-title": "카드 세팅", "grow3-desc": "기반이 완성된 후의 최종 마무리.",
         "db-note": "*'▲' 표시는 버프 값입니다.", "qa-q1": "Q: '▲'는 무엇입니까?", "qa-a1": "A: 버프 값입니다.", "qa-q2": "Q: P-버프와 카드 중 어느 것이 먼저입니까?", "qa-a2": "A: P-버프가 먼저입니다.", "counter-title": "총 방문자 수",
         "step4-title": "최고의 팀메이트로의 진화", "playbook-l1": "PG는 공 운반, PF/C는 골밑. 각자의 역할에 집중하십시오.",
         "playbook-l2-1": "공을 가진 아군에게 너무 가까이 가지 마십시오.", "playbook-l2-2": "아군의 드라이브 코스를 방해하지 마십시오.", "playbook-l2-3": "페인트 존에 계속 머물지 마십시오.", "playbook-comm": "실수를 탓하지 말고 긍정적인 이모트를 사용합시다.",
@@ -53,7 +58,9 @@ const i18n = {
         "img-cap-steps": "도해: 좋은 팀메이트가 되기 위한 4단계 (역할 -> 공간 -> 리딩 -> 소통)",
         "img-cap-space": "도해: 아군과 같은 곳에 서면 '정체'가 발생합니다. 볼 핸들러에게 다가가거나 드라이브 경로를 막지 마세요.",
         "img-cap-inside": "도해: 페인트 존에 계속 머물지 마세요. 빅맨의 리바운드 위치와 겹치지 않도록 주의하세요.",
-        "img-cap-comm": "도해: 실수에는 '괜찮아' 이모트를. 과도한 '패스' 요구는 피하고, 실수했을 때는 사과하는 것이 기본입니다."
+        "img-cap-comm": "도해: 실수에는 '괜찮아' 이모트를. 과도한 '패스' 요구는 피하고, 실수했을 때는 사과하는 것이 기본입니다.",
+        "village-map-title": "빌리지 선물 등장 맵",
+        "village-map-cap": "*이미지 클릭 시 확대"
     },
     zh: { 
         "nav-home": "首页", "nav-guide": "指南", "nav-db": "数据库", "nav-pbuff": "P-BUFF", "nav-qa": "常见问题", "nav-about": "关于我", "nav-bbs": "留言板",
@@ -71,14 +78,16 @@ const i18n = {
         "img-cap-steps": "图解：成为优秀队友的4个阶段（角色 -> 空间 -> 意识 -> 沟通）",
         "img-cap-space": "图解：与队友站在同一位置会导致“拥堵”。绝不要靠近持球队友或阻挡他们的突破路线。",
         "img-cap-inside": "图解：不要一直停留在禁区内。确保不要与己方内线球员的篮板位置重叠。",
-        "img-cap-comm": "图解：失误时发“没关系”。避免疯狂发“传球”，自己失误时记得说“抱歉”。"
+        "img-cap-comm": "图解：失误时发“没关系”。避免疯狂发“传球”，自己失误时记得说“抱歉”。",
+        "village-map-title": "村庄礼物出现地图",
+        "village-map-cap": "*点击图片放大"
     }
 };
 
 const termsDict = {
     en: { "ポスト": "POST", "ミドル": "MID", "3点": "3PT", "Sレイ": "S-LAY", "Lレイ": "L-LAY", "Sダン": "S-DUNK", "Lダン": "L-DUNK", "パス": "PASS", "スティ": "STL", "Jブロ": "J-BLK", "Dブロ": "D-BLK", "当たり": "STR", "リバ": "REB", "ラン": "RUN", "持久": "STM", "一般の移動速度": "Move Speed", "Sダンク ブロック抵抗": "S-Dunk Blk Res", "持久力の最大量": "Max Stamina", "Sレイアップ ブロック抵抗": "S-Layup Blk Res", "Sダンク 発動確率": "S-Dunk Chance", "3点シュート 成功率": "3PT Success", "Sダンク 守備抵抗": "S-Dunk Def Res", "Sレイアップ 成功率": "S-Layup Success", "ミドルシュート 成功率": "Mid Success", "リバウンド": "Rebound", "ミドル守備抵抗": "Mid Def Res", "Dインシュート ブロック": "Drive-in Blk", "Jシュート ブロック": "Jump-shot Blk", "シュート妨害効果": "Shot Interfere", "当たり強さ": "Strength", "ロングダンク 成功率": "L-Dunk Success", "ポストショット 成功率": "Post Success", "Oリバウンド能力": "O-Rebound", "Dリバウンド能力": "D-Rebound", "Lダンク ブロック抵抗": "L-Dunk Blk Res", "ブロック抵抗成功率": "Blk Resist Success", "スティール成功率": "Steal Success", "ミドルシュート": "Mid Shot", "スティール": "Steal", "ランニング": "Running", "Sダンクの速度": "S-Dunk Speed", "持久力の回復量": "Stam Recovery", "レイアップ/ダンク距離": "Layup/Dunk Range", "Lレイ ブロック抵抗": "L-Lay Blk Res", "Sレイ 守備抵抗": "S-Lay Def Res", "Lダンク 発動確率": "L-Dunk Chance" },
-    ko: { "ポスト": "포스트", "ミドル": "미들", "3点": "3점", "Sレイ": "S레이업", "Lレイ": "L레이업", "Sダン": "S덩크", "Lダン": "L덩크", "パス": "패스", "スティ": "스틸", "Jブロ": "J블록", "Dブロ": "D블록", "当たり": "몸싸움", "リバ": "리바운드", "ラン": "달리기", "持久": "지구력", "一般の移動速度": "이동 속도", "Sダンク ブロック抵抗": "S덩크 블록 저항", "持久力の最大量": "최대 지구력", "Sレイアップ ブロック抵抗": "S레이업 블록 저항", "Sダンク 発動確率": "S덩크 발동 확률", "3点シュート 成功率": "3점 성공률", "Sダンク 守備抵抗": "S덩크 수비 저항", "Sレイアップ 成功率": "S레이업 성공률", "ミドルシュート 成功率": "미들 성공률", "リバウンド": "리바운드", "ミドル守備抵抗": "미들 수비 저항", "Dインシュート ブロック": "돌파 블록", "Jシュート ブロック": "점프슛 블록", "シュート妨害効果": "슛 방해", "当たり強さ": "몸싸움", "ロングダンク 成功率": "L덩크 성공률", "ポストショット 成功率": "포스트 성공률", "Oリバウンド能力": "공격 리바운드", "Dリバウンド能力": "수비 리바운드", "Lダンク ブロック抵抗": "L덩크 블록 저항", "ブロック抵抗成功率": "블록 저항 성공률", "スティール成功率": "스틸 성공률", "ミドルシュート": "미들슛", "スティール": "스틸", "ランニング": "달리기", "Sダンクの速度": "S덩크 속도", "持久力の回復量": "지구력 회복량", "レイアップ/ダンク距離": "레이업/덩크 거리", "Lレイ ブロック抵抗": "L레이업 블록 저항", "Sレイ 守備抵抗": "S레이업 수비 저항", "Lダンク 発動確率": "L덩크 발동 확률" },
-    zh: { "ポスト": "近投", "ミドル": "中投", "3点": "三分", "Sレイ": "近距上篮", "Lレイ": "远距上篮", "Sダン": "近距扣篮", "Lダン": "远距扣篮", "パス": "传球", "スティ": "抢断", "Jブロ": "跳投盖帽", "Dブロ": "上篮盖帽", "当たり": "对抗", "リバ": "篮板", "ラン": "跑动", "持久": "耐力", "一般の移動速度": "移动速度", "Sダンク ブロック抵抗": "近距扣篮抗盖帽", "持久力の最大量": "最大耐力", "Sレイアップ ブロック抵抗": "近距上篮抗盖帽", "Sダンク 発動確率": "近距扣篮触发率", "3点シュート 成功率": "三分命中率", "Sダンク 守備抵抗": "近距扣篮抗干扰", "Sレイアップ 成功率": "近距上篮命中率", "ミドルシュート 成功率": "中投命中率", "リバウンド": "篮板", "ミドル守備抵抗": "中投抗干扰", "Dインシュート ブロック": "突破盖帽", "Jシュート ブロック": "跳投盖帽", "シュート妨害効果": "投篮干扰", "当たり強さ": "对抗", "ロングダンク 成功率": "远距扣篮命中率", "ポストショット 成功率": "近投命中率", "Oリバウンド能力": "进攻篮板", "Dリバウンド能力": "防守篮板", "Lダンク ブロック抵抗": "远距扣篮抗盖帽", "ブロック抵抗成功率": "抗盖帽命中率", "スティール成功率": "抢断成功率", "ミドルシュート": "中投", "スティール": "抢断", "ランニング": "跑动", "Sダンクの速度": "近距扣篮速度", "持久力の回復量": "耐力恢复", "レイアップ/ダンク距离": "上篮/扣篮距离", "Lレイ ブロック抵抗": "远距上篮抗盖帽", "Sレイ 守備抵抗": "近距上篮抗干扰", "Lダンク 発動確率": "远距扣篮触发率" }
+    ko: { "ポスト": "포스트", "ミドル": "미들", "3点": "3점", "Sレイ": "S레이업", "Lレイ": "L레이업", "Sダン": "S덩크", "Lダン": "L덩크", "パス": "패스", "スティ": "스틸", "Jブロ": "J블록", "Dブロ": "D블록", "当たり": "몸싸움", "リバ": "리바운드", "ラン": "달리기", "持久": "지구력", "一般の移動速度": "이동 속도", "Sダンク ブロック抵抗": "S덩크 블록 저항", "持久力の最大量": "최대 지구력", "Sレイアップ ブロック抵抗": "S레이업 블록 저항", "Sダンク 発動確率": "S덩크 발동 확률", "3点シュート 成功率": "3점 성공률", "Sダンク 守備抵抗": "S덩크 수비 저항", "Sレイアップ 成功率": "S레이업 성공률", "ミドルシュート 成功率": "미들 성공률", "リバウンド": "리바운드", "ミドル守備抵抗": "미들 수비 저항", "Dインシュート ブロック": "돌파 블록", "Jシュート ブロック": "점프슛 블록", "シュート妨害効果": "슛 방해", "当たり強さ": "몸싸움", "ロングダンク 成功率": "L덩크 성공률", "ポストショット 成功率": "포스트 성공률", "Oリバウンド能力": "공격 리바운드", "Dリ바ウンド能力": "수비 리바운드", "Lダンク ブロック抵抗": "L덩크 블록 저항", "ブロック抵抗成功率": "블록 저항 성공률", "スティール成功率": "스틸 성공률", "ミドルシュート": "미들슛", "スティール": "스틸", "ランニング": "달리기", "Sダンクの速度": "S덩크 속도", "持久力の回復量": "지구력 회복량", "レイアップ/ダンク距離": "레이업/덩크 거리", "Lレイ ブロック抵抗": "L레이업 블록 저항", "Sレイ 守備抵抗": "S레이업 수비 저항", "Lダンク 発動確率": "L덩크 발동 확률" },
+    zh: { "ポスト": "近投", "ミドル": "中投", "3点": "三分", "Sレイ": "近距上篮", "Lレイ": "远距上篮", "Sダン": "近距扣篮", "Lダン": "远距扣篮", "パス": "传球", "スティ": "抢断", "Jブロ": "跳投盖帽", "Dブロ": "上篮盖帽", "当たり": "对抗", "リバ": "篮板", "ラン": "跑动", "持久": "耐力", "一般の移動速度": "移动速度", "Sダンク ブロック抵抗": "近距扣篮抗盖帽", "持久力の最大量": "最大耐力", "Sレイアップ ブロック抵抗": "近距上篮抗盖帽", "Sダンク 発動確率": "近距扣篮触发率", "3点シュート 成功率": "三分命中率", "Sダンク 守備抵抗": "近距扣篮抗干扰", "Sレイアップ 成功率": "近距上篮命中率", "ミドルシュート 成功率": "中投命中率", "リバウンド": "篮板", "ミドル抗干扰": "中投抗干扰", "Dインシュート ブロック": "突破盖帽", "Jシュート ブロック": "跳投盖帽", "シュート妨害効果": "投篮干扰", "当たり強さ": "对抗", "ロングダンク 成功率": "远距扣篮命中率", "ポストショット 成功率": "近投命中率", "Oリバウンド能力": "进攻篮板", "Dリバウンド能力": "防守篮板", "Lダンク ブロック抵抗": "远距扣篮抗盖帽", "ブロック抵抗成功率": "抗盖帽命中率", "スティール成功率": "抢断成功率", "ミドルシュート": "中投", "スティール": "抢断", "ランニング": "跑动", "Sダンクの速度": "近距扣篮速度", "持久力の回復量": "耐力恢复", "レイアップ/ダンク距离": "上篮/扣篮距离", "Lレイ ブロック抵抗": "远距上篮抗盖帽", "Sレイ 守備抵抗": "近距上篮抗干扰", "Lダンク 発動確率": "远距扣篮触发率" }
 };
 
 const charImages = { 
@@ -87,142 +96,290 @@ const charImages = {
     "Genesa (Flash)": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png",
     "Genesa (Dynamic)": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png",
     "Genesa": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_genesa.png",
-    "Noah": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_noah.png", "Mika": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/mika.png", "Ginger": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/ginger.png", "Little Fox": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/littlefox.png", "Professor": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/professor.png", "Cindy": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/cindy.png", "Helena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/helena.png", "Pedro": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/pedro.png", "Clara": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/clara/chr_b_clara.png", "Kaji": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png", "Ox Queen": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_oxqueen.png", "ANPAN": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/anpan/chr_b.png", "Kim": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/kim.png", "Fred": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/fred.png", "Rin": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rin.png", "Jason": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jason.png", "Carolina": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carolina.png", "Nadia": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/nadia.png", "Walker": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/walker.png", "Yuna": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/yuna/chr_b_yuna.png", "Gena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png", "MC.CC": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_mc_cc.png", "Liu": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_liu.png", "Jack": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jack.png", "Rebecca": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rebecca.png", "Saru": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/saru.png", "William": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/william.png", "Amanda": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/amanda.png", "Jessie": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_jessie.png", "Carter": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carter.png", "Joey": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/joey.png", "Nathan": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png", "Fox": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_fox.png", "Deacon": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/deacon.png", "Murdock": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/murdock.png", "Max": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/max.png", "Giant G": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png", "Marisol": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/marisol/chr_b_marisol.png", "Fei": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/fei.png", "Vandell": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/vandell/chr_b.png", "Double D": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_double_d.png", "Clarke": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/clarke.png", "Lulu": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/lulu.png", "DJ Bagman": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/djbagman/chr_b_djbagman.png", "Blair": "https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png", "Luther": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/luther.png", "Jimmy": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jimmy.png", "Howl": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_howl.png", "Camila": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/camila.png", "Siana": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/siana/chr_b_Siana.png", "Lyoid": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_lyoid.png", "Lee": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/lee.png", "Christa": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/christa.png", "Big Dog": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/bigdog.png", "Big Joe": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/bigjoe.png" 
-};
+    "Noah": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_noah.png", "Mika": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/mika.png", "Ginger": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/ginger.png", "Little Fox": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/littlefox.png", "Professor": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/professor.png", "Cindy": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/cindy.png", "Helena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/helena.png", "Pedro": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/pedro.png", "Clara": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/clara/chr_b_clara.png", "Kaji": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png", "Ox Queen": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_oxqueen.png", "ANPAN": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/anpan/chr_b.png", "Kim": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/kim.png", "Fred": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/fred.png", "Rin": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rin.png", "Jason": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jason.png", "Carolina": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carolina.png", "Nadia": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/nadia.png", "Walker": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/walker.png", "Yuna": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/yuna/chr_b_yuna.png", "Gena": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png", "MC.CC": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_mc_cc.png", "Liu": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_liu.png", "Jack": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/jack.png", "Rebecca": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/rebecca.png", "Saru": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/saru.png", "William": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/william.png", "Amanda": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/amanda.png", "Jessie": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_jessie.png", "Carter": "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/carter.png", "Joey": "https://common-cdn-api.joycityglobal.comフルコードをご提供いたします。
+`index.html` の `<style>` タグ内にデータベースグリッド調整用CSSを追加し、YouTube動画の右寄せ、ジェネーザのダイナミックモードのステータス計算、多言語STEPキャプション、そして画像ファイル名 `ボックスの位置.jpg` をすべて反映しています。
 
-// [ポスト, ミドル, 3点, Sレイ, Lレイ, Sダン, Lダン, パス, スティ, Jブロ, Dブロ, 当たり, リバ, ラン, 持久]
-const rawData = [
-    {"名前":"クララ","en":"Clara","pos":"PG","s":[102,178,165,127,229,63,76,229,216,127,89,76,76,229,204]},
-    {"名前":"カジ","en":"Kaji","pos":"PG","s":[113,153,178,114,140,114,191,178,178,178,89,127,153,140,204]},
-    
-    // ★ ジェネーザの2モード（Flash: デフォルト / Dynamic: 3点・スティ・ラン-40, ミドル・Lダン・Jブロ+40）
-    {"名前":"ジェネーザ(フラッシュ)","en":"Genesa (Flash)","pos":"PG","s":[153,153,178,102,178,127,164,165,231,140,127,114,114,224,191]},
-    {"名前":"ジェネーザ(ダイナミック)","en":"Genesa (Dynamic)","pos":"PG","s":[153,193,138,102,178,127,204,165,191,180,127,114,114,184,191]},
+以下の2つのファイル（`index.html` と `data.js`）を丸ごと上書きしてご利用ください。
 
-    {"名前":"アイラ","en":"Ayla","pos":"PG","s":[127,203,178,127,178,63,76,229,216,114,89,101,76,191,178]},
-    {"名前":"ペドロ","en":"Pedro","pos":"PG","s":[127,140,127,127,165,63,76,114,229,127,114,89,89,191,191]},
-    {"名前":"シンディー","en":"Cindy","pos":"PG","s":[140,191,191,140,178,76,89,191,191,114,89,76,89,204,178]},
-    {"名前":"ヘレナ","en":"Helena","pos":"PG","s":[127,178,178,127,178,63,76,229,216,114,89,76,89,204,178]},
-    {"名前":"プロフェッサー","en":"Professor","pos":"PG","s":[140,178,165,140,229,76,76,191,178,114,89,89,89,191,178]},
-    {"名前":"リトルフォックス","en":"Little Fox","pos":"PG","s":[140,153,130,140,204,76,76,229,165,153,89,89,89,216,191]},
-    {"名前":"ジンジャー","en":"Ginger","pos":"PG","s":[102,191,191,102,204,63,76,229,191,114,89,76,89,216,204]},
-    {"名前":"ミカ","en":"Mika","pos":"PG","s":[140,191,140,127,204,63,76,229,165,114,89,76,76,216,216]},
-    {"名前":"クロイ","en":"Chloe","pos":"PG","s":[113,203,216,127,191,63,89,191,203,101,89,76,76,216,216]},
-    {"名前":"アンパン","en":"ANPAN","pos":"PG","s":[102,216,178,127,229,63,76,229,178,127,89,76,76,229,216]},
-    {"名前":"ユナ","en":"Yuna","pos":"SG","s":[127,191,225,127,204,89,102,178,204,115,89,89,89,229,204]},
-    {"名前":"GENA","en":"Gena","pos":"SG","s":[127,140,216,127,165,102,102,178,140,140,102,127,89,191,178]},
-    {"名前":"牛魔王","en":"Ox Queen","pos":"SG","s":[127,217,229,127,165,89,153,165,140,140,114,89,89,216,204]},
-    {"名前":"キム","en":"Kim","pos":"SG","s":[153,204,217,127,178,89,114,153,178,140,114,89,102,191,114]},
-    {"名前":"カロリーナ","en":"Carolina","pos":"SG","s":[165,191,191,165,216,89,127,140,178,140,114,76,89,191,204]},
-    {"名前":"フレッド","en":"Fred","pos":"SG","s":[132,183,196,132,183,81,94,170,183,119,94,68,81,170,145]},
-    {"名前":"リン","en":"Rin","pos":"SG","s":[140,191,204,127,178,89,102,178,191,140,102,76,89,178,178]},
-    {"名前":"ジェイソン","en":"Jason","pos":"SG","s":[127,178,191,127,153,178,178,127,140,127,102,89,89,191,178]},
-    {"名前":"ウォーカー","en":"Walker","pos":"SG","s":[140,191,229,140,191,89,102,153,140,153,114,89,89,191,204]},
-    {"名前":"ナディア","en":"Nadia","pos":"SG","s":[140,191,114,140,216,178,127,127,204,140,114,76,89,216,178]},
-    {"名前":"ノア","en":"Noah","pos":"SG","s":[127,178,229,178,216,127,153,203,140,127,102,76,89,165,179]},
-    {"名前":"MC.CC","en":"MC.CC","pos":"SG","s":[127,178,216,127,178,89,204,140,140,127,102,127,102,178,204]},
-    {"名前":"リウ","en":"Liu","pos":"SF","s":[153,204,127,165,140,114,178,115,140,165,153,153,153,140,153]},
-    {"名前":"ジェシー","en":"Jessie","pos":"SF","s":[140,229,178,140,178,102,127,165,153,153,127,127,114,178,165]},
-    {"名前":"アマンダ","en":"Amanda","pos":"SF","s":[153,229,178,153,178,102,127,153,127,153,140,127,127,153,127]},
-    {"名前":"ジョイ","en":"Joey","pos":"SF","s":[153,191,127,165,191,114,127,140,114,153,127,127,127,165,165]},
-    {"名前":"ウィリアム","en":"William","pos":"SF","s":[165,204,127,153,178,114,153,127,102,178,153,165,140,140,127]},
-    {"名前":"カーター","en":"Carter","pos":"SF","s":[153,191,127,153,191,102,127,191,165,153,140,127,127,140,165]},
-    {"名前":"レベッカ","en":"Rebecca","pos":"SF","s":[153,178,127,153,204,102,127,102,102,153,140,127,114,165,165]},
-    {"名前":"サル","en":"Saru","pos":"SF","s":[165,229,127,165,207,102,165,102,102,153,127,127,114,165,165]},
-    {"名前":"ジャック","en":"Jack","pos":"SF","s":[153,204,127,153,178,102,127,102,102,191,178,127,127,153,165]},
-    {"名前":"DJ BAGMAN","en":"DJ Bagman","pos":"SF","s":[153,217,140,127,191,102,153,204,102,141,127,127,114,191,165]},
-    {"名前":"ネイサン","en":"Nathan","pos":"SF","s":[140,191,178,127,140,102,217,191,102,165,127,153,114,178,153]},
-    {"名前":"マードック","en":"Murdock","pos":"PF","s":[178,63,63,178,140,140,165,114,114,204,204,191,153,127,127]},
-    {"名前":"マックス","en":"Max","pos":"PF","s":[165,89,89,165,127,127,140,114,127,204,204,191,165,140,102]},
-    {"名前":"ジャイアントG","en":"Giant G","pos":"PF","s":[165,76,50,165,127,217,178,114,89,204,204,217,178,178,140]},
-    {"名前":"マリソル","en":"Marisol","pos":"PF","s":[152,138,191,127,127,153,178,140,127,191,153,178,165,165,127]},
-    {"名前":"クラーク","en":"Clarke","pos":"PF","s":[204,89,76,191,140,165,185,114,89,153,204,204,204,114,102]},
-    {"名前":"ルル","en":"Lulu","pos":"PF","s":[165,191,127,165,153,153,178,127,89,178,165,191,165,127,114]},
-    {"名前":"フェイ","en":"Fei","pos":"PF","s":[178,178,114,178,178,178,178,114,89,167,140,178,178,140,140]},
-    {"名前":"デコン","en":"Deacon","pos":"PF","s":[165,76,63,165,127,127,140,114,89,180,192,204,178,165,140]},
-    {"名前":"フォックス","en":"Fox","pos":"PF","s":[152,178,114,165,140,140,165,127,89,165,178,191,165,152,102]},
-    {"名前":"ダブルD","en":"Double D","pos":"PF","s":[178,50,37,165,140,191,161,140,89,191,191,191,165,178,140]},
-    {"名前":"ヴァンデル","en":"Vandell","pos":"PF","s":[152,50,37,127,140,127,127,140,166,140,167,217,204,191,191]},
-    {"名前":"ブレア","en":"Blair","pos":"C","s":[193,180,130,168,117,203,130,104,117,143,181,168,168,130,143]},
-    {"名前":"カミラ","en":"Camila","pos":"C","s":[229,127,63,178,114,165,140,191,76,127,191,216,204,127,114]},
-    {"名前":"ルーサー","en":"Luther","pos":"C","s":[229,76,63,204,114,229,140,114,76,140,204,229,204,76,102]},
-    {"名前":"ビッグドッグ","en":"Big Dog","pos":"C","s":[216,76,63,191,114,216,140,191,89,127,191,216,204,76,102]},
-    {"名前":"リー","en":"Lee","pos":"C","s":[165,153,127,178,127,165,127,127,89,153,165,191,178,114,114]},
-    {"名前":"クリスタ","en":"Christa","pos":"C","s":[216,76,63,191,114,216,140,114,89,140,216,229,191,76,102]},
-    {"名前":"ジミー","en":"Jimmy","pos":"C","s":[229,76,63,229,114,229,127,114,76,127,229,229,229,73,117]},
-    {"名前":"ビッグジョー","en":"Big Joe","pos":"C","s":[204,102,63,204,127,229,153,114,76,114,229,216,216,114,102]},
-    {"名前":"アウル","en":"Howl","pos":"C","s":[229,51,39,204,114,216,140,102,63,153,229,229,227,114,128]},
-    {"名前":"ロイド","en":"Lyoid","pos":"C","s":[208,132,132,196,144,144,106,183,68,93,144,221,208,55,133]},
-    {"名前":"シアナ","en":"Siana","pos":"C","s":[229,51,39,204,152,229,140,114,63,127,229,178,227,76,160]}
-];
+---
 
-const pBuffData = {
-    "C (CENTER)": [
-        { name: "ルーサー", en: "Luther", buffs: [["Lダンク 発動確率", "+12%"], ["Lダンク ブロック抵抗", "+6%"], ["ブロック抵抗成功率", "+4.2%"], ["スティール成功率", "+16.8%"], ["一般の移動速度", "+7.2cm/s"]] },
-        { name: "ビッグドッグ", en: "Big Dog", buffs: [["ミドルシュート 成功率", "+7.5%"], ["持久力の回復量", "+7.2"], ["Lレイ ブロック抵抗", "+6%"], ["Sレイ 守備抵抗", "+2.16%"], ["Lダンク 発動確率", "+6%"]] },
-        { name: "リー", en: "Lee", buffs: [["Sダンク 発動確率", "+12%"], ["3点シュート 成功率", "+6%"], ["Sダンク 守備抵抗", "+2.16%"], ["Sレイアップ 成功率", "+4.5%"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "クリスタ", en: "Christa", buffs: [["一般の移動速度", "+14.4cm/s"], ["Sダンク ブロック抵抗", "+6%"], ["持久力の最大量", "+12"], ["Sレイアップ ブロック抵抗", "+6%"], ["Sダンク 発動確率", "+6%"]] },
-        { name: "ジミー", en: "Jimmy", buffs: [["リバウンド", "+14"], ["当たり強さ", "+14"], ["持久力", "+14"], ["パス", "+14"], ["ランニング", "+10"]] },
-        { name: "ビッグジョー", en: "Big Joe", buffs: [["ロングダンク 成功率", "+3%"], ["ポストショット 成功率", "+3%"], ["一般 이동속도", "+7.2cm/s"], ["持久力の最大量", "+12"], ["当たり強さ", "+14"]] },
-        { name: "カミラ", en: "Camila", buffs: [["リバウンド", "+14"], ["ミドル守備抵抗", "+1.44%"], ["ミドルシュート 成功率", "+4%"], ["パス", "+14"], ["ポストショット 成功率", "+3%"]] },
-        { name: "アウル", en: "Howl", buffs: [["Dインシュート ブロック", "+12"], ["Jシュート ブロック", "+12"], ["持久力", "+12"], ["シュート妨害効果", "+6%"], ["当たり強さ", "+12"]] },
-        { name: "ロイド", en: "Lyoid", buffs: [["当たり強さ", "+12"], ["パス", "+12"], ["Oリバウンド能力", "+20"], ["Dリバウンド能力", "+20"], ["持久力", "+12"]] },
-        { name: "ブレア", en: "Blair", buffs: [["ミドルシュート", "+12"], ["Dインシュート ブロック", "+12"], ["持久力", "+12"], ["スティール", "+12"], ["ランニング", "+12"]] },
-        { name: "シアナ", en: "Siana", buffs: [["当たり強さ", "+18"], ["Sダンクの速度", "+3%"], ["Sダンク 守備抵抗", "+2.16%"], ["持久力の回復量", "+7.2"], ["レイアップ/ダンク距離", "+20cm"]] }
-    ],
-    "PF (POWER FORWARD)": [
-        { name: "クラーク", en: "Clarke", buffs: [["3点シュート 成功率", "+6%"], ["Sダンク ブロック抵抗", "+6%"], ["Sダンク 発動確率", "+12%"], ["持久力の最大量", "+12"], ["一般の移動速度", "+7.2cm/s"]] },
-        { name: "マードック", en: "Murdock", buffs: [["ミドルシュート 成功率", "+7.5%"], ["Lダンク ブロック抵抗", "+6%"], ["Sダンク 守備抵抗", "+2.16%"], ["ブロック抵抗成功率", "+4.2%"], ["3点シュートのブロック抵抗", "+3%"]] },
-        { name: "ルル", en: "Lulu", buffs: [["3点シュートのブロック抵抗", "+6%"], ["Lレイ ブロック抵抗", "+6%"], ["Sレイアップ 成功率", "+4.5%"], ["Sレイアップ ブロック抵抗", "+6%"], ["3点シュート 成功率", "+3.2%"]] },
-        { name: "マックス", en: "Max", buffs: [["一般の移動速度", "+14.4cm/s"], ["スティール成功率", "+16.8%"], ["Lダンク 発動確率", "+12%"], ["Lダンク 守備抵抗", "+2.16%"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "フェイ", en: "Fei", buffs: [["リバウンド", "+14"], ["Sダンク 成功率", "+2.4%"], ["ロングダンク 成功率", "+2.4%"], ["持久力の回復量", "+7.2"], ["スティール成功率", "+8.4%"]] },
-        { name: "デコン", en: "Deacon", buffs: [["リバウンド", "+14"], ["Lレイ ブロック抵抗", "+6%"], ["Sレイアップ ブロック抵抗", "+6%"], ["持久力の最大量", "+12"], ["当たり強さ", "+14"]] },
-        { name: "フォックス", en: "Fox", buffs: [["3点シュート", "+12"], ["ミドルシュート", "+12"], ["Dインシュート ブロック", "+12"], ["当たり強さ", "+12"], ["ロングダンク", "+12"]] },
-        { name: "ダブルＤ", en: "Double D", buffs: [["当たり強さ", "+12"], ["ロングダンク 成功率", "+3%"], ["3点シュート", "+12"], ["レイアップ/ダンク距離", "+20cm"], ["ロングダンク", "+12"]] },
-        { name: "ジャイアントG", en: "Giant G", buffs: [["Jシュート ブロック", "+12"], ["Dインシュート ブロック", "+12"], ["シュート妨害効果", "+5%"], ["Sダンク", "+12"], ["ランニング", "+12"]] },
-        { name: "マリソル", en: "Marisol", buffs: [["Lダンク ブロック抵抗", "+6%"], ["ミドルシュート", "+12"], ["Jシュート ブロック", "+12"], ["ランニング", "+12"], ["レイアップ/ダンク距離", "+20cm"]] },
-        { name: "ヴァンデル", en: "Vandell", buffs: [["持久力の回復量", "+8.4"], ["当たり強さ", "+14"], ["Sダンク", "+14"], ["ランニング", "+14"], ["Oリバウンド能力", "+25"]] }
-    ],
-    "SF (SMALL FORWARD)": [
-        { name: "アマンダ", en: "Amanda", buffs: [["一般の移動速度", "+14.4cm/s"], ["ブロック抵抗成功率", "+4.2%"], ["Lダンク ブロック抵抗", "+6%"], ["ミドル守備抵抗", "+1.44%"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "ジョイ", en: "Joey", buffs: [["Lダンク ブロック抵抗", "+6%"], ["ゴール下シュート成功率", "+3%"], ["Sダンク ブロック抵抗", "+6%"], ["Lレイ 守備抵抗", "+2.16%"], ["ミドルシュートのブロック抵抗", "+3%"]] },
-        { name: "ウィリアム", en: "William", buffs: [["ミドルシュートのブロック抵抗", "+6%"], ["3点シュートのブロック抵抗", "+6%"], ["Sレイアップ ブロック抵抗", "+6%"], ["持久力の回復量", "+7.2"], ["一般の移動速度", "+7.2cm/s"]] },
-        { name: "カーター", en: "Carter", buffs: [["3点シュート 成功率", "+6%"], ["スティール成功率", "+16.8%"], ["持久力の最大量", "+12"], ["Lレイ ブロック抵抗", "+6%"], ["Lダンク ブロック抵抗", "+3%"]] },
-        { name: "レベッカ", en: "Rebecca", buffs: [["ミドルシュート 成功率", "+7.5%"], ["Lダンク 発動確率", "+12%"], ["Sダンク 発動確率", "+12%"], ["ミドルシュート", "+14"], ["3点シュート 成功率", "+3.2%"]] },
-        { name: "サル", en: "Saru", buffs: [["ミドルシュート 成功率", "+4%"], ["Lレイ ブロック抵抗", "+3.75%"], ["Lダンク ブロック抵抗", "+3.75%"], ["持久力の最大量", "+12"], ["ゴール下シュート成功率", "+1.6%"]] },
-        { name: "ジャック", en: "Jack", buffs: [["Lレイ 守備抵抗", "+1.08%"], ["Sレイアップ 成功率", "+4.5%"], ["노마크 3점슛 성공률", "+3.2%"], ["3점슛", "+10"], ["일반 이동 속도", "+14.4cm/s"]] },
-        { name: "リウ", en: "Liu", buffs: [["Jシュート ブロック", "+12"], ["レイアップ/ダンク距離", "+20cm"], ["シュート妨害効果", "+6%"], ["スティール", "+12"], ["リバウンド", "+12"]] },
-        { name: "ジェシー", en: "Jessie", buffs: [["3点シュート距離增加", "+50cm"], ["アンクルブレイク抵抗", "+25%"], ["ドライブモーション速度", "+5.6%"], ["ミドル守備抵抗", "+1.44%"], ["パス", "+14"]] },
-        { name: "DJ Bagman", en: "DJ Bagman", buffs: [["ミドルショット", "+12"], ["持久力", "+12"], ["パス", "+12"], ["リバウンド", "+12"], ["ランニング", "+12"]] },
-        { name: "ネイサン", en: "Nathan", buffs: [["ロングダンク", "+12"], ["3点シュート 成功率", "+6%"], ["クイックジャンパー 成功率", "+2%"], ["ランニング", "+14"], ["当たり強さ", "+14"]] }
-    ],
-    "PG (POINT GUARD)": [
-        { name: "アンパン", en: "ANPAN", buffs: [["3点シュート", "+14"], ["ミドルシュート", "+14"], ["スティール", "+12"], ["ランニング", "+12"], ["当たり強さ", "+12"]] },
-        { name: "ペドロ", en: "Pedro", buffs: [["スティール成功率", "+16.8%"], ["3点シュートのブロック抵抗", "+6%"], ["ブロック抵抗成功率", "+4.2%"], ["ロングレイアップ成功率", "+3%"], ["3点シュート 成功率", "+3.2%"]] },
-        { name: "シンディー", en: "Cindy", buffs: [["Lレイ 守備抵抗", "+2.16%"], ["一般の移動速度", "+14.4cm/s"], ["Sレイアップ 成功率", "+4.5%"], ["持久力の最大量", "+12"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "ヘレナ", en: "Helena", buffs: [["ミドルシュート 成功率", "+7.5%"], ["ミドルシュートのブロック抵抗", "+6%"], ["Lレイ ブロック抵抗", "+6%"], ["Sレイアップ ブロック抵抗", "+6%"], ["Lレイ 守備抵抗", "+1.08%"]] },
-        { name: "プロフェッサー", en: "Professor", buffs: [["3点シュート 成功率", "+6%"], ["3点シュート", "+14"], ["Lダンク 発動確率", "+12%"], ["골밑슛 성공률", "+3%"], ["스틸 성공률", "+8.4%"]] },
-        { name: "リトルフォックス", en: "Little Fox", buffs: [["일반 이동 속도", "+14.4cm/s"], ["Sレイアップ 成功率", "+4.5%"], ["持久力の回復量", "+7.2"], ["스틸 모션 속도", "+8.4%"], ["3点シュート", "+10"]] },
-        { name: "ジンジャー", en: "Ginger", buffs: [["패스 속도", "+12cm/s"], ["ロングレイアップ 成功率", "+3%"], ["最大持久力", "+12"], ["スティール成功率", "+8.4%"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "ミカ", en: "Mika", buffs: [["パス", "+14"], ["ゴール下シュート守備抵抗", "+1.08%"], ["Sレイアップ 成功率", "+4.5%"], ["持久力", "+14"], ["一般の移動速度", "+14.4cm/s"]] },
-        { name: "アイラ", en: "Ayla", buffs: [["ミドルシュート", "+12"], ["パス", "+12"], ["リバウンド", "+12"], ["ロングレイアップ", "+10"], ["シュート妨害効果", "+5%"]] },
-        { name: "クロイ", en: "Chloe", buffs: [["ダイビングキャッチ成功率", "+7%"], ["ドライブモーション速度", "+5.6%"], ["持久力", "+12"], ["ミドルショット", "+12"], ["3点シュート距離增加", "+100cm"]] },
-        { name: "ジェネーザ", en: "Genesa", buffs: [["ロングダンク", "+12"], ["ロングダンク 成功率", "+2.4%"], ["最大持久力", "+12"], ["レイアップ/ダンク距離", "+20cm"], ["パス速度", "+12cm/s"]] },
-        { name: "クララ", en: "Clara", buffs: [["スティール", "+12"], ["ロングレイアップ", "+12"], ["ランニング", "+12"], ["3点シュートのブロック抵抗", "+3%"], ["ミドルシュート 成功率", "+7.5%"]] },
-        { name: "カジ", en: "Kaji", buffs: [["ドライブモーション速度", "+6.3%"], ["Jシュート ブロック", "+12"], ["リバウンド", "+12"], ["ロングダンク", "+12"], ["パス", "+14"]] }
-    ],
-    "SG (SHOOTING GUARD)": [
-        { name: "キム", en: "Kim", buffs: [["ゴール下シュート守備抵抗", "+2.16%"], ["ゴール下シュート成功率", "+3%"], ["Sダンク 発動確率", "+12%"], ["Sレイアップ ブロック抵抗", "+6%"], ["3点シュートのブロック抵抗", "+3%"]] },
-        { name: "カロリーナ", en: "Carolina", buffs: [["3点シュートのブロック抵抗", "+6%"], ["Lダンク 発動確率", "+12%"], ["Lレイ ブロック抵抗", "+6%"], ["Sレイアップ 成功率", "+4.5%"], ["3点シュート 成功率", "+3.2%"]] },
-        { name: "フレッド", en: "Fred", buffs: [["スティール成功率", "+16.8%"], ["ミドルシュートのブロック抵抗", "+6%"], ["持久力の回復量", "+7.2"], ["Lダンク ブロック抵抗", "+6%"], ["골밑슛 수비 저항", "+1.08%"]] },
-        { name: "リン", en: "Rin", buffs: [["ミドルシュート 成功率", "+7.5%"], ["일반 이동 속도", "+14.4cm/s"], ["最大持久力", "+12"], ["ノーマーク3点シュート成功率", "+3.2%"], ["スティール成功率", "+8.4%"]] },
-        { name: "ジェイソン", en: "Jason", buffs: [["3点シュート 成功率", "+6%"], ["ブロック抵抗成功率", "+4.2%"], ["3点シュート", "+14"], ["ミドル守備抵抗", "+1.44%"], ["ミドルシュート 成功率", "+4%"]] },
-        { name: "ウォーカー", en: "Walker", buffs: [["3点シュート守備抵抗", "+1.44%"], ["ミドルシュートのブロック抵抗", "+6%"], ["持久力の回復量", "+7.2"], ["一般の移動速度", "+14.4cm/s"], ["ゴール下シュート守備抵抗", "+1.08%"]] },
-        { name: "ナディア", en: "Nadia", buffs: [["最大持久力", "+12"], ["スティール成功率", "+16.8%"], ["ロングレイアップ ブロック抵抗", "+6%"], ["一般の移動速度", "+9cm/s"], ["ゴール下シュート守備抵抗", "+0.72%"]] },
-        { name: "ノア", en: "Noah", buffs: [["ドライブ時 'アンクル' 時間増加", "+2.8%"], ["3点シュート", "+10"], ["ロングレイアップ 守備抵抗", "+1.08%"], ["パス", "+14"], ["レイアップ/ダンク距離", "+20cm"]] },
-        { name: "牛魔王", en: "Ox Queen", buffs: [["持久力", "+12"], ["ドライブモーション速度", "+6.3%"], ["持久力の回復量", "+3.6"], ["シュート妨害効果", "+6%"], ["3点シュート", "+12"]] },
-        { name: "MC.CC", en: "MC.CC", buffs: [["アンクルブレイク抵抗", "+25%"], ["Jシュート ブロック", "+12"], ["ロングダンク ブロック抵抗", "+6%"], ["パス", "+12"], ["3点シュート距離增加", "+50cm"]] },
-        { name: "ユナ", en: "Yuna", buffs: [["3点シュート守備抵抗", "+1.56%"], ["ミドル守備抵抗", "+1.56%"], ["レイアップ/ダンク距離", "+22.5cm"], ["ランニング", "+12"], ["Jシュート ブロック", "+14"]] },
-        { name: "GENA", en: "Gena", buffs: [["3点シュート 成功率", "+6.8%"], ["ドライブモーション速度", "+6.3%"], ["3点シュート守備抵抗", "+1.56%"], ["ロングレイアップ 守備抵抗", "+2.16%"], ["持久力", "+12"]] }
-    ]
-};
+### 📄 1. `index.html` (完全版)
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3on3 FreeStyle | SRT guide</title>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <link rel="stylesheet" href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ★ データベースグリッドの画像と名前を少し小さくするCSS */
+        #grid div.bg-white\/5.p-8.rounded-3xl img {
+            width: 6rem; /* w-32 (8rem) -> w-24 (6rem) */
+            height: 6rem; /* h-32 (8rem) -> h-24 (6rem) */
+        }
+        #grid div.bg-white\/5.p-8.rounded-3xl h3 {
+            font-size: 1.875rem; /* text-4xl (2.25rem) -> text-3xl (1.875rem) */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
+            <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
+        </div>
+        <nav class="nav-container">
+            <span class="nav-link active" onclick="showPage('home')" data-i18n="nav-home">HOME</span>
+            <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
+            <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
+            <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
+            <span class="nav-link" onclick="showPage('qa')" data-i18n="nav-qa">Q&A</span>
+            <span class="nav-link" onclick="showPage('bbs')" data-i18n="nav-bbs">BBS</span>
+        </nav>
+        <div class="flex gap-1 ml-auto">
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
+            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
+        </div>
+    </header>
+
+    <div id="home-split-wrapper" class="fade-in">
+        <div class="home-left">
+            <div class="flex flex-col xl:flex-row items-start xl:items-end gap-8 xl:gap-16 mb-10">
+                <h2 class="text-7xl lg:text-8xl xl:text-9xl font-black italic tracking-tighter leading-none">SRT<br><span class="text-[#ff4e00]">guide</span></h2>
+                <div class="w-full max-w-[360px] aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black xl:ml-16">
+                    <iframe width="100%" height="100%" src="[https://www.youtube.com/embed/n1ZK-5ukGHI](https://www.youtube.com/embed/n1ZK-5ukGHI)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            <div class="panel-grid">
+                <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-about">ABOUT ME</h3></div>
+                <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-guide">GUIDE</h3></div>
+                <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-db">DATABASE</h3></div>
+                <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-pbuff">P-BUFF</h3></div>
+                <div class="panel-box" onclick="showPage('qa')"><i class="fas fa-question-circle text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-qa">Q&A</h3></div>
+                <div class="panel-box" onclick="showPage('bbs')"><i class="fas fa-comments text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl" data-i18n="nav-bbs">BBS</h3></div>
+                <a href="[https://note.com/clean_squid9881](https://note.com/clean_squid9881)" target="_blank" class="panel-box"><i class="fas fa-edit text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">NOTE</h3></a>
+                <a href="[https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ](https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ)" target="_blank" class="panel-box"><i class="fab fa-youtube text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">YOUTUBE</h3></a>
+                <a href="[https://3on3.fsgames.com/](https://3on3.fsgames.com/)" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">OFFICIAL</h3></a>
+            </div>
+
+            <div class="mt-12 bg-white/5 border border-white/10 rounded-3xl p-6 fade-in w-full max-w-[500px]">
+                <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
+                    <i class="fas fa-gift text-3xl"></i> <span data-i18n="village-map-title">ビレッジ プレゼント出現MAP</span>
+                </h3>
+                <div class="rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black group relative cursor-pointer" onclick="window.open('ボックスの位置.jpg', '_blank')">
+                    <img src="ボックスの位置.jpg" alt="Village Present Map" class="w-full h-auto group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                        <i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-400 mt-3 text-center" data-i18n="village-map-cap">※画像タップ（クリック）で拡大表示</p>
+            </div>
+
+            <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
+                <div class="bg-orange-500/20 p-3 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-users text-orange-500 text-2xl"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-gray-400 font-black italic mb-1" data-i18n="counter-title">総訪問者数</div>
+                    <div id="counter_area">
+                        <script language="javascript" type="text/javascript" src="[https://counter1.fc2.com/counter.php?id=15608402&main=1](https://counter1.fc2.com/counter.php?id=15608402&main=1)"></script><noscript><img src="[https://counter1.fc2.com/counter_img.php?id=15608402&main=1](https://counter1.fc2.com/counter_img.php?id=15608402&main=1)" /></noscript>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-right">
+            <video class="video-bg" autoplay loop muted playsinline preload="auto">
+                <source src="top_video.mp4" type="video/mp4">
+            </video>
+            <video class="video-main" autoplay loop muted playsinline preload="auto">
+                <source src="top_video.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-30 pointer-events-none z-10"></div>
+        </div>
+    </div>
+
+    <div id="standard-content" class="hidden">
+        <section id="page-about" class="page-container">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
+                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl" alt="Message Image">
+                <div>
+                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">はじめに：作者より</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度は引退しましたが、このゲームの楽しさが忘れられず2024年に戻ってきました。</p>
+                    <p class="text-lg text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。皆でこのコミュニティを熱くしましょう！</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-guide" class="page-container">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            <div class="space-y-16">
+                <div>
+                    <div class="step-badge">STEP 1</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step1-title">ポジションの特徴</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10">
+                        <div>
+                            <img src="guide_step1_role.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Roles">
+                            <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-role">図解：各ポジションの役割。全てのプレイを1人でやろうとせず、自分の仕事に集中することが大切です。</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">PG</h4><p class="text-gray-400 text-sm" data-i18n="pg-desc">パスと機動力。守備の要。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">SG</h4><p class="text-gray-400 text-sm" data-i18n="sg-desc">最高得点能力。多彩なスキル。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">SF</h4><p class="text-gray-400 text-sm" data-i18n="sf-desc">攻守に貢献する万能型。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="c-desc">ゴール下の番人。リバウンド。</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="step-badge">STEP 2</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step2-title">おすすめキャラ</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                        <div class="guide-card p-8 flex flex-col">
+                            <div><h4 class="text-2xl font-black text-white mb-4" data-i18n="recom-free-title">無課金・初期のおすすめ</h4><p class="text-gray-300 text-lg mb-6" data-i18n="recom-free-desc">Murdock (PF): ブロック力が高く、最高の選択肢です。</p></div>
+                            <div class="rounded-xl overflow-hidden border border-white/10 aspect-video bg-black shadow-xl mt-auto">
+                                <iframe width="100%" height="100%" src="[https://www.youtube.com/embed/Yz7PVs2Hd1Y](https://www.youtube.com/embed/Yz7PVs2Hd1Y)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="guide-card p-0 overflow-hidden flex flex-col">
+                            <div class="p-8 pb-4"><h4 class="text-2xl font-black text-white" data-i18n="recom-premium-title">最強キャラ (Premium)</h4></div>
+                            <div class="flex-1 flex flex-col sm:flex-row min-h-[450px]">
+                                <div class="premium-banner-v">
+                                    <img src="[https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png](https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png)" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">PG</span><span class="name-tag">KAJI</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="[https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png](https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png)" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">SG</span><span class="name-tag">GENA</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="[https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png](https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png)" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">SF</span><span class="name-tag">NATHAN</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="[https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png](https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png)" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">PF</span><span class="name-tag">GIANT G</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="[https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png](https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png)" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">C</span><span class="name-tag">BLAIR</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="step-badge">STEP 3</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
+                    <div class="space-y-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <img src="upgrade_pyramid.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Pyramid">
+                                <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-pyramid">図解：強者のピラミッド。まずはP5昇級で基盤を作り、P-BUFFを構築してからカード厳選に進むのが黄金律です。</p>
+                            </div>
+                            <div>
+                                <img src="roi_comparison.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Comparison">
+                                <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-roi">図解：P-BUFFとカードの投資対効果。P-BUFFはポジション全体に永続的な恩恵をもたらすため、カードより圧倒的にコスパが良いです。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="step-badge">STEP 4</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step4-title">「最高のチームメイト」への進化</h3>
+                    
+                    <div class="mb-12">
+                        <img src="guide_step4_steps.png" class="w-4/5 mx-auto block rounded-3xl border border-white/10 shadow-2xl" alt="Step4 Intro">
+                        <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-steps">図解：良いチームメイトになるための4段階（役割把握 → 邪魔しない → 意図を読む → コミュニケーション）</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-12">
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 1: 役割の理解</h4>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下. 自分の仕事を絞ることで安心感を与えます。</p></div>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 2: 邪魔をしない</h4>
+                                <div class="space-y-8">
+                                    <div>
+                                        <img src="guide_step4_space.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Space">
+                                        <p class="text-sm text-gray-400 mt-3 text-center px-4" data-i18n="img-cap-space">図解：味方と同じ場所に立つと「渋滞」が起きます。ボール保持者に近づかない、ドライブコースを塞がないのが鉄則です。</p>
+                                    </div>
+                                    <div>
+                                        <img src="guide_step4_inside.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Inside">
+                                        <p class="text-sm text-gray-400 mt-3 text-center px-4" data-i18n="img-cap-inside">図解：インサイド（ゴール下）にずっと居座らないこと。ビッグマンのリバウンド位置とも被らないようにしましょう。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-12">
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 3: 味方の意図を読む</h4>
+                                <div class="guide-card p-6 bg-white/5 space-y-4">
+                                    <div class="bg-blue-500/10 p-4 rounded-lg border-l-4 border-blue-500"><span class="text-blue-400 font-black">IF:</span> 味方がドライブ → <span class="text-white">THEN: スペースを空ける</span></div>
+                                    <div class="bg-blue-500/10 p-4 rounded-lg border-l-4 border-blue-500"><span class="text-blue-400 font-black">IF:</span> Cがスクリーン → <span class="text-white">THEN: その壁を使って動く</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 4: コミュニケーション</h4>
+                                <img src="guide_step4_comm.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Comm">
+                                <p class="text-sm text-gray-400 mt-3 mb-6 text-center px-4" data-i18n="img-cap-comm">図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。</p>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-400 text-sm italic" data-i18n="playbook-comm">ミスを責めず、ポジティブなエモートでチームを鼓舞しましょう。</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-db" class="page-container">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
+                <div class="flex gap-4">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search Name..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                </div>
+            </div>
+            <p class="text-base text-gray-400 mb-8 italic" data-i18n="db-note">※「▲」表記はバフ値（加算）です。</p>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="page-pbuff" class="page-container">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
+                <div class="flex gap-4">
+                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All">ALL POSITIONS</option>
+                        <option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option>
+                    </select>
+                </div>
+            </div>
+            <div id="pbuff-grid-container" class="space-y-16"></div>
+        </section>
+
+        <section id="page-qa" class="page-container max-w-5xl">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
+            <div class="space-y-8">
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p></div>
+            </div>
+        </section>
+
+        <section id="page-bbs" class="page-container max-w-5xl">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
+            <div class="rounded-xl overflow-hidden bg-white shadow-2xl">
+                <iframe src="[https://srtguide.bbs.fc2.com/](https://srtguide.bbs.fc2.com/)" width="100%" height="800px" style="border:none;"></iframe>
+            </div>
+        </section>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
