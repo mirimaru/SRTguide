@@ -12,6 +12,7 @@ function switchLanguage(lang, btnElement = null) {
             el.innerHTML = i18n[lang][key];
         }
     });
+    // 再描画が必要な要素を更新
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = ''; initDb();
     }
@@ -120,7 +121,7 @@ document.addEventListener('touchstart', function() {
     const vids = document.querySelectorAll('video');
     vids.forEach(v => {
         if (v.paused) {
-            v.play().catch(err => console.log("Video play failed:", err));
+            v.play().catch(err => console.log("Video failed:", err));
         }
     });
 }, { once: true });
