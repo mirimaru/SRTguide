@@ -7,6 +7,13 @@ body { background-color: var(--bg-dark); color: #fff; font-family: 'Noto Sans JP
 .home-right { width: 50%; position: relative; overflow: hidden; background: #050505; display: flex; justify-content: center; align-items: center; }
 .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(30px) brightness(0.3); z-index: 0; transform: scale(1.1); pointer-events: none; }
 .video-main { position: relative; z-index: 1; width: auto; height: 65vh; max-height: 700px; max-width: 85%; object-fit: contain; border-radius: 20px; box-shadow: 0 0 50px rgba(0,0,0,1); border: 1px solid rgba(255,255,255,0.15); }
+
+/* 最強キャラ縦長パネル用 */
+.premium-panel { position: relative; width: 100%; height: 120px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; transition: 0.3s; cursor: pointer; }
+.premium-panel:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); border-color: var(--brand-orange); }
+.premium-img { position: absolute; right: 0; top: 0; height: 150%; width: auto; object-fit: contain; z-index: 1; opacity: 0.8; filter: drop-shadow(-10px 0 10px rgba(0,0,0,0.5)); transform: translateY(-10%); }
+.premium-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.9) 20%, transparent 80%); z-index: 2; padding: 20px; display: flex; flex-direction: column; justify-content: center; }
+
 @media (max-width: 1024px) { 
     #home-split-wrapper { flex-direction: column; }
     .home-left, .home-right { width: 100%; }
