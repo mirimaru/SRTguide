@@ -31,8 +31,7 @@
     </header>
 
     <div id="home-split-wrapper" class="fade-in relative" style="background-image: url('image_5709c0.jpg'); background-size: cover; background-position: center; height: calc(100vh - 56px);">
-        <div class="absolute inset-y-0 left-0 w-[45%] bg-black z-0"></div>
-        <div class="absolute inset-0 bg-black/20 z-0"></div>
+        <div class="absolute inset-0 bg-black/10 z-0"></div>
 
         <div class="absolute top-4 right-6 z-30 flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1 shadow-[0_0_15px_rgba(255,78,0,0.5)]">
             <i class="fas fa-users text-orange-500 text-sm"></i>
@@ -42,17 +41,17 @@
         </div>
 
         <div class="home-left relative z-10">
-            <div class="mb-4">
+            <div class="mb-6">
                 <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
             </div>
             
-            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full max-w-sm shadow-2xl">
+            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-2xl mb-6">
                 <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
-                <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。2024年に戻ってきました。</p>
+                <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
                 <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
             </div>
 
-            <div class="mt-6 bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full max-w-sm shadow-2xl">
+            <div class="bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full shadow-2xl">
                 <h3 class="text-xs font-black italic text-orange-500 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> RECOMMENDED</h3>
                 <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
@@ -60,7 +59,7 @@
             </div>
         </div>
 
-        <div class="home-right relative z-10 flex items-center justify-center h-full">
+        <div class="home-right relative z-10">
             <div class="panel-grid">
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
                 <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
@@ -127,7 +126,7 @@
                         </div>
                         <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
                             <h4 class="text-2xl font-black mb-4">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-2 h-40">
+                            <div class="grid grid-cols-5 gap-2 h-40 overflow-hidden">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="guide-char-img">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="guide-char-img">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="guide-char-img">
@@ -141,8 +140,14 @@
                     <div class="step-badge inline-block bg-orange-500 text-black font-black px-4 py-1 rounded mb-4 italic">STEP 3</div>
                     <h3 class="text-3xl font-black italic mb-6">育成手順</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                        <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                        <div>
+                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                            <p class="text-sm text-gray-400 mt-4 text-center px-4">強者のピラミッド。P5昇級が基盤です。</p>
+                        </div>
+                        <div>
+                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                            <p class="text-sm text-gray-400 mt-4 text-center px-4">P-BUFFはカードより圧倒的に効率が良いです。</p>
+                        </div>
                     </div>
                 </div>
                 <div>
