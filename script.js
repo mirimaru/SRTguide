@@ -19,8 +19,7 @@ function switchLanguage(lang, btnElement = null) {
         if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
     });
     if (document.getElementById('grid').children.length > 0) {
-        document.getElementById('grid').innerHTML = '';
-        initDb();
+        document.getElementById('grid').innerHTML = ''; initDb();
     }
     if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
 }
@@ -28,12 +27,10 @@ function switchLanguage(lang, btnElement = null) {
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
-    if (id === 'home') {
-        split.style.display = 'flex';
-        standard.classList.add('hidden');
-    } else {
-        split.style.display = 'none';
-        standard.classList.remove('hidden');
+    if (id === 'home') { 
+        split.style.display = 'flex'; standard.classList.add('hidden'); 
+    } else { 
+        split.style.display = 'none'; standard.classList.remove('hidden'); 
     }
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
@@ -59,14 +56,10 @@ function initDb() {
     });
     rawData.forEach(c => {
         const card = document.createElement('div'); 
-        card.className = 'char-card'; 
-        card.dataset.name = c.名前.toLowerCase(); 
-        card.dataset.pos = c.pos;
+        card.className = 'char-card p-10 relative overflow-hidden'; 
+        card.dataset.name = c.名前.toLowerCase(); card.dataset.pos = c.pos;
+        if(posColors[c.pos]) card.classList.add(...posColors[c.pos].split(' '));
         
-        if(posColors[c.pos]) {
-            card.classList.add(...posColors[c.pos].split(' '));
-        }
-
         const cName = currentLang === 'ja' ? c.名前 : c.en;
         let sHtml = '<div class="stat-grid">'; 
         c.s.forEach((v, i) => { 
@@ -82,7 +75,7 @@ function initDb() {
                 <div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>
                 ${sHtml}
             </div>
-            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important;">
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">
         `;
         grid.appendChild(card);
     });
@@ -91,30 +84,29 @@ function initDb() {
 
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
-    if(!container) return;
-    container.innerHTML = '';
+    if(!container) return; container.innerHTML = '';
     const posFilter = document.getElementById('pbuffPosFilter').value;
     for (const [posName, chars] of Object.entries(pBuffData)) {
         if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
         const pCode = posName.split(' ')[0];
         const title = document.createElement('h3'); 
         title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 inline-flex items-center gap-4 pb-2`; 
-        const colorCircle = `<span class="w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20"></span> ${posName}`; 
-        title.innerHTML = colorCircle; 
+        title.innerHTML = `<span class="w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20"></span> ${posName}`; 
         container.appendChild(title);
         const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
         chars.forEach(char => {
             const card = document.createElement('div'); 
-            card.className = 'pbuff-card';
+            card.className = 'pbuff-card p-10 relative overflow-hidden';
             if(posColors[pCode]) card.classList.add(...posColors[pCode].split(' '));
+            
             const cName = currentLang === 'ja' ? char.name : char.en;
             let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
                 const effect = currentLang === 'ja' ? b[0] : (termsDict[currentLang] && termsDict[currentLang][b[0]]) || (termsDict['en'][b[0]] || b[0]);
                 bHtml += `<div class="pbuff-item text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; transform: none !important;">`;
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">`;
             card.innerHTML = bHtml; 
             grid.appendChild(card);
         });
