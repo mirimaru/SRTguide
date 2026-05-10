@@ -68,21 +68,21 @@ body {
     color: var(--brand-orange); 
 }
 
-/* ★ パネルグリッド：キャラ位置に合わせて右寄せ＆縮小 */
+/* ★ パネルグリッド：キャラエリア全体に拡大 */
 .panel-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 0.5rem; 
-    width: 100%;
-    max-width: 320px; /* 全体をもう一回り小さく */
-    margin-right: 12%; 
+    width: 90%; /* キャラエリア全体に拡大 */
+    max-width: none; /* 最大幅制限を解除 */
+    margin-right: 0; /* 右寄せマージンを解除 */
 }
 
 .panel-box { 
     background: #0f0f0f !important; /* 不透明黒背景 */
     border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 0.7rem 0.4rem; 
-    border-radius: 0.75rem; 
+    padding: 1.5rem 0.5rem; /* 上下パディングを拡大してパネルを大きく */
+    border-radius: 1.5rem; /* 角丸を拡大 */
     text-align: center; 
     cursor: pointer; 
     transition: all 0.2s ease-in-out;
@@ -90,9 +90,14 @@ body {
 
 .panel-box:hover { 
     background: #1a1a1a !important; 
-    transform: translateY(-3px); 
+    transform: translateY(-5px); 
     border-color: var(--brand-orange); 
-    box-shadow: 0 0 15px rgba(255, 78, 0, 0.6);
+    box-shadow: 0 0 25px rgba(255, 78, 0, 0.8); /* ホバー時の光を強調 */
+}
+
+.panel-box h3 {
+    margin-top: 0.5rem;
+    font-weight: 900;
 }
 
 /* ★ Guideキャラクター演出修正 */
@@ -147,5 +152,5 @@ body {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
     .home-left, .home-right { width: 100%; padding: 2rem 1.5rem; }
     .home-right { display: flex; flex-direction: column; gap: 2rem; }
-    .panel-grid { max-width: 100%; margin: 0 auto; }
+    .panel-grid { width: 100%; margin: 0 auto; }
 }
