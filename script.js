@@ -20,6 +20,7 @@ function switchLanguage(lang, btnElement = null) {
             el.innerHTML = i18n[lang][key];
         }
     });
+    // DBとP-BUFFを再描画して言語反映
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -82,7 +83,7 @@ function initDb() {
                 <div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>
                 ${sHtml}
             </div>
-            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important;">
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">
         `;
         grid.appendChild(card);
     });
@@ -113,7 +114,7 @@ function initPBuff() {
                 const effect = currentLang === 'ja' ? b[0] : (termsDict[currentLang] && termsDict[currentLang][b[0]]) || (termsDict['en'][b[0]] || b[0]);
                 bHtml += `<div class="pbuff-item text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; transform: none !important;">`;
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">`;
             card.innerHTML = bHtml; 
             grid.appendChild(card);
         });
