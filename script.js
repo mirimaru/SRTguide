@@ -20,7 +20,6 @@ function switchLanguage(lang, btnElement = null) {
             el.innerHTML = i18n[lang][key];
         }
     });
-    // DBとP-BUFFを再描画して言語を反映
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
