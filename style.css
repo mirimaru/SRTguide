@@ -4,25 +4,38 @@ body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; ma
 .home-left { width: 50%; padding: 3rem; overflow-y: auto; background: linear-gradient(to right, #000, #050505); }
 .home-right { width: 50%; position: relative; overflow: hidden; background: #000; }
 .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: blur(10px); }
-.video-main { position: relative; z-index: 2; width: 85%; border-radius: 2rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); margin: auto; top: 50%; transform: translateY(-50%); }
+
+/* ★ 動画のサイズを小さく調整 */
+.video-main { 
+    position: relative; 
+    z-index: 2; 
+    width: 65%; /* 元の85%から縮小 */
+    max-width: 600px; /* 巨大化を防ぐ上限 */
+    border-radius: 2rem; 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    margin: auto; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
 
 /* ナビゲーション */
 .nav-container { display: flex; gap: 2rem; margin-left: 3rem; }
 .nav-link { font-weight: 900; font-style: italic; cursor: pointer; transition: color 0.3s; color: #888; text-transform: uppercase; }
 .nav-link.active, .nav-link:hover { color: #ff4e00; }
 
-/* ★ パネルグリッド：半分サイズ＆詰める設定 */
+/* パネルグリッド（小型化） */
 .panel-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    gap: 0.5rem; /* 半分に縮小 */
+    gap: 0.5rem; 
     margin-top: 1rem; 
-    max-width: 450px; /* 全体を小さくまとめる */
+    max-width: 450px; 
 }
 .panel-box { 
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid rgba(255, 255, 255, 0.1); 
-    padding: 0.75rem 0.5rem; /* 半分に縮小 */
+    padding: 0.75rem 0.5rem; 
     border-radius: 0.75rem; 
     text-align: center; 
     cursor: pointer; 
@@ -57,3 +70,25 @@ body { background-color: #000; color: #fff; font-family: 'Inter', sans-serif; ma
 /* スクロールバー隠し */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==================================================
+   ★ スマホモード（レスポンシブ）設定：動画を消す
+   ================================================== */
+@media (max-width: 1024px) {
+    #home-split-wrapper {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    .home-left {
+        width: 100%;
+        padding: 2rem 1.5rem; /* スマホ用に余白を最適化 */
+        overflow-y: visible;
+    }
+    .home-right {
+        display: none !important; /* スマホやタブレット縦持ちの時は動画エリアを完全に消す */
+    }
+    .panel-grid {
+        max-width: 100%; /* パネルの幅を画面いっぱいに広げる */
+    }
+}
