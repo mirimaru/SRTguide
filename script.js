@@ -20,7 +20,7 @@ function switchLanguage(lang, btnElement = null) {
             el.innerHTML = i18n[lang][key];
         }
     });
-    // DBとP-BUFFを再描画して言語反映
+    // DBとP-BUFFを再描画して言語を反映
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -83,7 +83,7 @@ function initDb() {
                 <div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>
                 ${sHtml}
             </div>
-            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 220px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; transform: none !important; pointer-events: none !important;">
         `;
         grid.appendChild(card);
     });
