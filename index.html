@@ -10,9 +10,9 @@
 </head>
 <body class="bg-black">
 
-    <header class="sticky top-0 z-[100] bg-black/80 backdrop-blur-md px-4 py-3 flex items-center border-b border-white/10">
+    <header class="sticky top-0 z-[100] bg-black/90 backdrop-blur-md px-4 py-2 flex items-center border-b border-white/10">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
-            <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
+            <h1 class="text-xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
         <nav class="nav-container">
             <span class="nav-link active" onclick="showPage('home')" data-i18n="nav-home">HOME</span>
@@ -23,37 +23,37 @@
             <span class="nav-link" onclick="showPage('bbs')" data-i18n="nav-bbs">BBS</span>
         </nav>
         <div class="flex gap-1 ml-auto">
-            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
-            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
-            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
-            <button class="bg-white/10 hover:bg-white/20 text-xs font-black px-2 py-2 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
         </div>
     </header>
 
-    <div id="home-split-wrapper" class="fade-in relative" style="background-image: url('image_5709c0.jpg'); background-size: cover; background-position: center; height: 100vh;">
-        <div class="absolute inset-0 bg-black/30 z-0"></div>
+    <div id="home-split-wrapper" class="fade-in relative" style="background-image: url('image_5709c0.jpg'); background-size: cover; background-position: center; height: calc(100vh - 56px);">
+        <div class="absolute inset-0 bg-black/20 z-0"></div>
 
-        <div class="absolute top-8 right-12 z-30 flex items-center gap-4 bg-black/70 backdrop-blur-md border border-orange-500/50 rounded-full px-6 py-2 shadow-[0_0_20px_rgba(255,78,0,0.4)]">
-            <i class="fas fa-users text-orange-500 text-xl"></i>
-            <div id="counter_area">
+        <div class="absolute top-4 right-6 z-30 flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1 shadow-[0_0_15px_rgba(255,78,0,0.5)]">
+            <i class="fas fa-users text-orange-500 text-sm"></i>
+            <div id="counter_area" class="scale-75 origin-right">
                 <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
             </div>
         </div>
 
         <div class="home-left relative z-10">
-            <div class="mb-10">
-                <h2 class="text-6xl lg:text-7xl xl:text-8xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
+            <div class="mb-4">
+                <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
             </div>
             
-            <div class="about-me-status bg-black/60 border-l-4 border-orange-500 p-8 rounded-r-xl backdrop-blur-md w-full max-w-lg shadow-2xl">
-                <h3 class="text-2xl font-black italic text-orange-500 mb-4" data-i18n="about-title">ABOUT ME</h3>
-                <p class="text-lg text-gray-200 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
-                <p class="text-lg text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。皆でコミュニティを盛り上げましょう！</p>
+            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full max-w-sm shadow-2xl">
+                <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
+                <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。2024年に戻ってきました。</p>
+                <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
             </div>
 
-            <div class="mt-10 bg-black/60 border border-white/10 rounded-3xl p-6 w-full max-w-lg backdrop-blur-md">
-                <h3 class="text-lg font-black italic text-orange-500 mb-3 flex items-center gap-3"><i class="fab fa-youtube text-2xl"></i> RECOMMENDED</h3>
-                <div class="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl">
+            <div class="mt-6 bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full max-w-sm shadow-2xl">
+                <h3 class="text-xs font-black italic text-orange-500 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> RECOMMENDED</h3>
+                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
@@ -61,23 +61,23 @@
 
         <div class="home-right relative z-10">
             <div class="panel-grid">
-                <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-about">ABOUT ME</h3></div>
-                <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-guide">GUIDE</h3></div>
-                <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-db">DATABASE</h3></div>
-                <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-pbuff">P-BUFF</h3></div>
-                <div class="panel-box" onclick="showPage('qa')"><i class="fas fa-question-circle text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-qa">Q&A</h3></div>
-                <div class="panel-box" onclick="showPage('bbs')"><i class="fas fa-comments text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs" data-i18n="nav-bbs">BBS</h3></div>
-                <a href="https://note.com/clean_squid9881" target="_blank" class="panel-box"><i class="fas fa-edit text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs">NOTE</h3></a>
-                <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs">YOUTUBE</h3></a>
-                <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-2xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-xs">OFFICIAL</h3></a>
+                <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-about">ABOUT ME</h3></div>
+                <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-guide">GUIDE</h3></div>
+                <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-db">DATABASE</h3></div>
+                <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-pbuff">P-BUFF</h3></div>
+                <div class="panel-box" onclick="showPage('qa')"><i class="fas fa-question-circle text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-qa">Q&A</h3></div>
+                <div class="panel-box" onclick="showPage('bbs')"><i class="fas fa-comments text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]" data-i18n="nav-bbs">BBS</h3></div>
+                <a href="https://note.com/clean_squid9881" target="_blank" class="panel-box"><i class="fas fa-edit text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]">NOTE</h3></a>
+                <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]">YOUTUBE</h3></a>
+                <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-lg mb-1 text-[#ff4e00]"></i><h3 class="font-sporty text-[10px]">OFFICIAL</h3></a>
             </div>
 
-            <div class="absolute bottom-10 right-10 z-30">
-                <div class="bg-black/80 border border-orange-500/50 rounded-2xl p-4 cursor-pointer hover:border-orange-500 transition shadow-[0_0_20px_rgba(255,78,0,0.5)] backdrop-blur-md flex items-center gap-4" onclick="openMapModal()">
-                    <i class="fas fa-map-marked-alt text-3xl text-orange-500"></i>
-                    <div class="text-left">
-                        <div class="text-xs text-gray-400 font-bold tracking-widest">Village Map</div>
-                        <div class="text-lg font-black text-white italic">プレゼントMAP</div>
+            <div class="absolute bottom-6 right-8 z-30">
+                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.5)] flex items-center gap-3" onclick="openMapModal()">
+                    <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
+                    <div class="text-left leading-tight">
+                        <div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div>
+                        <div class="text-sm font-black text-white italic">プレゼントMAP</div>
                     </div>
                 </div>
             </div>
@@ -126,12 +126,12 @@
                         </div>
                         <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
                             <h4 class="text-2xl font-black mb-4">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-2 h-48 overflow-hidden">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="object-cover h-full bg-black/40 rounded-lg hover:scale-110 transition-transform">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="object-cover h-full bg-black/40 rounded-lg hover:scale-110 transition-transform">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="object-cover h-full bg-black/40 rounded-lg hover:scale-110 transition-transform">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="object-cover h-full bg-black/40 rounded-lg hover:scale-110 transition-transform">
-                                <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="object-cover h-full bg-black/40 rounded-lg hover:scale-110 transition-transform">
+                            <div class="grid grid-cols-5 gap-2 h-40">
+                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="guide-char-img">
+                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="guide-char-img">
+                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="guide-char-img">
+                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="guide-char-img">
+                                <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="guide-char-img">
                             </div>
                         </div>
                     </div>
@@ -140,19 +140,13 @@
                     <div class="step-badge inline-block bg-orange-500 text-black font-black px-4 py-1 rounded mb-4 italic">STEP 3</div>
                     <h3 class="text-3xl font-black italic mb-6">育成手順</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div>
-                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                            <p class="text-sm text-gray-400 mt-4 text-center px-4">強者のピラミッド。P5昇級が基盤です。</p>
-                        </div>
-                        <div>
-                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                            <p class="text-sm text-gray-400 mt-4 text-center px-4">P-BUFFはカードより圧倒的に効率が良いです。</p>
-                        </div>
+                        <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                        <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
                     </div>
                 </div>
                 <div>
                     <div class="step-badge inline-block bg-orange-500 text-black font-black px-4 py-1 rounded mb-4 italic">STEP 4</div>
-                    <h3 class="text-3xl font-black italic mb-6">「最高のチームメイト」への進化</h3>
+                    <h3 class="text-3xl font-black italic mb-6">チームプレイ</h3>
                     <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-8 shadow-2xl">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
                         <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
@@ -174,7 +168,7 @@
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
                 <div class="flex gap-4">
-                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search Name..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
                     <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
                 </div>
             </div>
@@ -202,15 +196,15 @@
 
         <section id="page-bbs" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
-            <div class="rounded-3xl overflow-hidden bg-white shadow-2xl">
+            <div class="rounded-xl overflow-hidden bg-white shadow-2xl">
                 <iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe>
             </div>
         </section>
     </div>
 
-    <div id="map-modal" class="hidden fixed inset-0 z-[110] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[111]"><i class="fas fa-times"></i></button>
-        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[110]" onclick="event.stopPropagation()">
+    <div id="map-modal" class="hidden fixed inset-0 z-[120] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[121]"><i class="fas fa-times"></i></button>
+        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[120]" onclick="event.stopPropagation()">
         <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeMapModal()"></div>
     </div>
 
