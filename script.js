@@ -16,13 +16,18 @@ function switchLanguage(lang, btnElement = null) {
     }
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
+        if (i18n[lang] && i18n[lang][key]) {
+            el.innerHTML = i18n[lang][key];
+        }
     });
+    // DBとPバフを再描画
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
     }
-    if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
+    if (document.getElementById('pbuff-grid-container').children.length > 0) {
+        initPBuff();
+    }
 }
 
 function showPage(id) {
@@ -107,7 +112,9 @@ function initPBuff() {
         chars.forEach(char => {
             const card = document.createElement('div'); 
             card.className = 'pbuff-card';
-            if(posColors[pCode]) card.classList.add(...posColors[pCode].split(' '));
+            if(posColors[pCode]) {
+                card.classList.add(...posColors[pCode].split(' '));
+            }
             const cName = currentLang === 'ja' ? char.name : char.en;
             let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
@@ -132,4 +139,7 @@ function filterCards() {
     });
 }
 
-window.onload = () => { switchLanguage('ja'); showPage('home'); };
+window.onload = () => {
+    switchLanguage('ja');
+    showPage('home');
+};
