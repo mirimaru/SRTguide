@@ -61,3 +61,57 @@ header { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(0,
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .aspect-video { aspect-ratio: 16 / 9; }
 img { max-width: 100%; height: auto; display: block; }
+
+/* =========================================
+   レスポンシブ・スマホ対応設定
+   ========================================= */
+
+/* モバイル（スマホ）向けの基本設定 */
+@media (max-width: 1024px) {
+    /* PCの分割レイアウトを解除して縦並びにする */
+    #home-split-wrapper {
+        flex-direction: column !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+
+    .home-left {
+        width: 100% !important;
+        padding: 2rem !important;
+        overflow-y: visible !important;
+    }
+
+    /* 動画背景はスマホでは重い or 表示しにくいため非表示にするか調整 */
+    .home-right {
+        display: none !important; 
+    }
+
+    /* タイトル文字をスマホサイズに */
+    h2.text-7xl, h2.text-8xl, h2.text-9xl {
+        font-size: 4rem !important;
+        line-height: 1 !important;
+    }
+
+    /* カードの並びをスマホ向けに */
+    .grid-cols-2, .2xl:grid-cols-3 {
+        grid-cols-1 !important;
+    }
+}
+
+/* =========================================
+   JSで制御している要素への強制上書き (前回までの修正分)
+   ========================================= */
+#grid > div,
+#pbuff-grid-container div[class*="bg-white/5"] {
+    padding: 2.5rem !important;
+    min-height: 220px !important;
+}
+
+#pbuff-grid-container li {
+    font-size: 1.1rem !important;
+}
+
+/* 画像の重なり順を制御 */
+.char-img {
+    pointer-events: none; /* 画像が文字のクリックを邪魔しないように */
+}
