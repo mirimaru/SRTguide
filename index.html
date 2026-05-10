@@ -10,7 +10,7 @@
 </head>
 <body class="bg-black">
 
-    <header class="sticky top-0 z-[100] bg-black/80 backdrop-blur-md">
+    <header class="sticky top-0 z-[100] bg-black/80 backdrop-blur-md px-4 py-3 flex items-center border-b border-white/10">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
             <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
@@ -48,7 +48,7 @@
                 <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-3 text-[#ff4e00]"></i><h3 class="font-sporty text-xl">OFFICIAL</h3></a>
             </div>
 
-            <div class="mt-12 grid grid-cols-1 xl:grid-cols-2 gap-8 fade-in w-full max-w-[1200px]">
+            <div class="mt-12 grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1200px]">
                 <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col">
                     <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
                         <i class="fas fa-gift text-3xl"></i> <span data-i18n="village-map-title">ビレッジ プレゼント出現MAP</span>
@@ -57,30 +57,30 @@
                         <img src="ボックスの位置.jpg" class="w-full h-full object-contain group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"><i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i></div>
                     </div>
-                    <p class="text-sm text-gray-400 mt-3 text-center" data-i18n="village-map-cap">※画像タップ（クリック）で拡大表示</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col">
-                    <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3"><i class="fab fa-youtube text-3xl"></i> <span class="tracking-widest">RECOMMENDED</span></h3>
+                    <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3"><i class="fab fa-youtube text-3xl"></i> <span>RECOMMENDED</span></h3>
                     <div class="w-full aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
                         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
+            <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in mx-auto lg:mx-0">
                 <i class="fas fa-users text-orange-500 text-2xl"></i>
                 <div id="counter_area">
                     <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
                 </div>
             </div>
         </div>
+
         <div class="home-right">
             <video class="video-bg" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
             <video class="video-main" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
         </div>
     </div>
 
-    <div id="standard-content" class="hidden">
+    <div id="standard-content" class="hidden px-6 lg:px-20 py-10">
         <section id="page-about" class="page-container">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -97,60 +97,19 @@
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
             <div class="space-y-16">
                 <div>
-                    <div class="step-badge">STEP 1</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step1-title">ポジションの特徴</h3>
+                    <div class="step-badge inline-block bg-orange-500 text-white font-black px-4 py-1 rounded mb-4">STEP 1</div>
+                    <h3 class="text-3xl font-black italic mb-6">ポジションの特徴</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
                         <img src="guide_step1_role.png" class="rounded-2xl w-full">
                         <div class="grid grid-cols-1 gap-4">
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-400 text-sm" data-i18n="pg-desc">パスと機動力。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="sg-desc">最高得点能力。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm" data-i18n="sf-desc">万能型。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="c-desc">ゴール下の番人。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm">パスと機動力。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm">最高得点能力。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm">万能型。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm">ゴール下の番人。</p></div>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="step-badge">STEP 2</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step2-title">おすすめキャラ</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-2xl font-black mb-4" data-i18n="recom-free-title">無課金・初期のおすすめ</h4>
-                            <div class="aspect-video rounded-xl overflow-hidden bg-black mb-4">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-2xl font-black mb-4" data-i18n="recom-premium-title">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-2 h-48 overflow-hidden">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="object-cover h-full bg-black/40 rounded-lg">
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div>
-                    <div class="step-badge">STEP 3</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                        <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                    </div>
-                </div>
-                <div>
-                    <div class="step-badge">STEP 4</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step4-title">チームプレイ</h3>
-                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4">Level 1 & 2</h4>
-                            <img src="guide_step4_space.png" class="rounded-xl mb-4 w-full">
-                        </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4">Level 3 & 4</h4>
-                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section id="page-db" class="page-container">
