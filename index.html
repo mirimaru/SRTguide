@@ -1,110 +1,59 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3on3 FreeStyle | SRT guide</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    </head>
-<body>
+/* ベーススタイル（既存のものがあればその下に追記、なければこれに差し替え） */
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
 
-    <header class="sticky top-0 z-[100] bg-black/80 backdrop-blur-md">
-        <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
-            <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
-        </div>
-        <nav class="nav-container overflow-x-auto whitespace-nowrap">
-            <span class="nav-link active" onclick="showPage('home')" data-i18n="nav-home">HOME</span>
-            <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
-            <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
-            <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
-            <span class="nav-link" onclick="showPage('qa')" data-i18n="nav-qa">Q&A</span>
-            <span class="nav-link" onclick="showPage('bbs')" data-i18n="nav-bbs">BBS</span>
-        </nav>
-        <div class="flex gap-1 ml-auto">
-            <button class="bg-white/10 text-[10px] font-black px-2 py-2 rounded lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
-            <button class="bg-white/10 text-[10px] font-black px-2 py-2 rounded lang-btn" onclick="switchLanguage('en', this)">EN</button>
-        </div>
-    </header>
+/* --- レスポンシブ・スマホ対応 --- */
+@media (max-width: 1024px) {
+    #home-split-wrapper {
+        flex-direction: column !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+    .home-left {
+        width: 100% !important;
+        padding: 1.5rem !important;
+        overflow-y: visible !important;
+    }
+    .home-right {
+        display: none !important; /* スマホでは右の動画を消して軽くする */
+    }
+    h2.text-7xl, h2.text-8xl, h2.text-9xl {
+        font-size: 4.5rem !important;
+        line-height: 1 !important;
+    }
+}
 
-    <div id="home-split-wrapper" class="fade-in">
-        <div class="home-left">
-            <div class="mb-10">
-                <h2 class="text-7xl lg:text-8xl xl:text-9xl font-black italic tracking-tighter leading-none">SRT<br><span class="text-[#ff4e00]">guide</span></h2>
-            </div>
-            
-            <div class="grid grid-cols-3 gap-3 mb-10">
-                <div class="panel-box py-6" onclick="showPage('about')"><i class="fas fa-user-ninja text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">ABOUT</h3></div>
-                <div class="panel-box py-6" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">GUIDE</h3></div>
-                <div class="panel-box py-6" onclick="showPage('db')"><i class="fas fa-database text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">DB</h3></div>
-                <div class="panel-box py-6" onclick="showPage('pbuff')"><i class="fas fa-bolt text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">P-BUFF</h3></div>
-                <div class="panel-box py-6" onclick="showPage('qa')"><i class="fas fa-question-circle text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">Q&A</h3></div>
-                <div class="panel-box py-6" onclick="showPage('bbs')"><i class="fas fa-comments text-2xl mb-2 text-[#ff4e00]"></i><h3 class="text-xs font-black">BBS</h3></div>
-            </div>
+/* --- JSで生成されるカードへの強制上書き --- */
+.char-card, .pbuff-card {
+    transition: all 0.3s ease;
+}
 
-            <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-6 w-full">
-                <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
-                    <h3 class="text-xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
-                        <i class="fas fa-gift text-2xl"></i> <span>VILLAGE MAP</span>
-                    </h3>
-                    <div class="aspect-video rounded-2xl overflow-hidden border border-white/20 bg-black group relative cursor-pointer" onclick="openMapModal()">
-                        <img src="ボックスの位置.jpg" class="w-full h-full object-contain">
-                    </div>
-                </div>
+/* データベース・Pバフ共通の余白 */
+#grid > div,
+#pbuff-grid-container div[class*="bg-white/5"] {
+    padding: 2.5rem !important;
+    min-height: 220px !important;
+}
 
-                <div class="bg-white/5 border border-white/10 rounded-3xl p-6">
-                    <h3 class="text-xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
-                        <i class="fab fa-youtube text-2xl"></i> <span>RECOMMENDED</span>
-                    </h3>
-                    <div class="aspect-video rounded-2xl overflow-hidden border border-white/20 bg-black">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
+/* キャラ絵の強制サイズ設定（DB側はJSで240px、Pバフは200pxに設定） */
+.char-img {
+    pointer-events: none; /* 文字のクリックを邪魔しない */
+}
 
-            <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit mx-auto lg:mx-0">
-                <i class="fas fa-users text-orange-500 text-xl"></i>
-                <div id="counter_area">
-                    <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
-                </div>
-            </div>
-        </div>
+/* リストの見やすさ */
+#pbuff-grid-container li {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.75rem !important;
+}
 
-        <div class="home-right">
-            <video class="video-bg" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
-            <video class="video-main" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
-        </div>
-    </div>
-
-    <div id="standard-content" class="hidden px-4 py-8">
-        <section id="page-about" class="page-container"> ... </section>
-        <section id="page-guide" class="page-container"> ... </section>
-        <section id="page-db" class="page-container"> ... </section>
-        <section id="page-pbuff" class="page-container"> ... </section>
-        <section id="page-qa" class="page-container"> ... </section>
-        <section id="page-bbs" class="page-container"> ... </section>
-    </div>
-
-    <div id="map-modal" class="hidden fixed inset-0 z-[100] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-4xl cursor-pointer z-[101]"><i class="fas fa-times"></i></button>
-        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[80vh] object-contain" onclick="event.stopPropagation()">
-        <div class="absolute inset-0 z-50" onclick="closeMapModal()"></div>
-    </div>
-
-    <script src="data.js"></script>
-    <script src="script.js"></script>
-    <script>
-        function openMapModal() {
-            const modal = document.getElementById('map-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
-        }
-        function closeMapModal() {
-            const modal = document.getElementById('map-modal');
-            modal.classList.add('opacity-0');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-    </script>
-</body>
-</html>
+/* --- ナビゲーションのスマホ対応 --- */
+.nav-container {
+    scrollbar-width: none; /* Firefox */
+}
+.nav-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
