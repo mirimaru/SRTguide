@@ -1,8 +1,4 @@
-// 動かなくなった原因を解消するため、エラー防止と全翻訳キーを完備
-let currentLang = 'ja';
-
-// ★ Guide・Q&Aも含めたすべての翻訳辞書。
-// redeclareエラーを避けるため、windowオブジェクトに紐付けます。
+// エラー防止のため、変数の再定義を避け window オブジェクトで管理します
 window.i18n = {
     'ja': {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
@@ -38,7 +34,7 @@ window.i18n = {
         'guide-s3-title': '육성 순서', 'guide-s3-p1': '강자의 피라미드. P5 승급이 기본입니다.', 'guide-s3-p2': 'P-버프는 카드보다 압도적으로 효율이 좋습니다.',
         'guide-s4-title': '팀 플레이', 'guide-s4-l12-t': 'Level 1 & 2: 기초', 'guide-s4-l12-d': '아군의 공간을 방해하지 마세요. 스페이스 확보가 철칙입니다.',
         'guide-s4-l34-t': 'Level 3 & 4: 응용', 'guide-s4-l34-d': '실수를 비난하지 말고, 긍정적인 이모트로 팀을 격려하세요.',
-        'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
+        'qa-q1': 'Q: 수치의 "▲\"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
         'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于',
@@ -50,10 +46,11 @@ window.i18n = {
         'guide-s3-title': '养成步骤', 'guide-s3-p1': '强者金字塔。P5晋级是基础。', 'guide-s3-p2': 'P-BUFF的效果远高于卡片。',
         'guide-s4-title': '团队配合', 'guide-s4-l12-t': 'Level 1 & 2: 基础', 'guide-s4-l12-d': '不要阻碍队友。保持拉开空间。不堵塞突破路线。',
         'guide-s4-l34-t': 'Level 3 & 4: 应用', 'guide-s4-l34-d': '不要责怪失误。使用积极的表情鼓励团队。',
-        'qa-q1': 'Q: 数值中的 "▲" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培养 P-Buff。'
+        'qa-q1': 'Q: 数值中的 "▲\" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培养 P-Buff。'
     }
 };
 
+let currentLang = 'ja';
 const posColors = {
     "PG": "bg-green-950/40 border-green-700/50",
     "SG": "bg-orange-950/40 border-orange-700/50",
@@ -121,10 +118,10 @@ function initDb() {
         c.s.forEach((v, i) => { 
             const isMax = v === maxStats[c.pos][i];
             const label = currentLang === 'ja' ? statNames[i] : (termsDict[currentLang] && termsDict[currentLang][statNames[i]]) || termsDict['en'][statNames[i]];
-            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`; 
+            sHtml += `<div class="stat-box"><div class=\"stat-lbl\">${label}</div><div class=\"stat-val ${isMax ? 'is-max' : ''}\">${v}</div></div>`; 
         }); 
         sHtml += '</div>';
-        card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; pointer-events: none !important;">`;
+        card.innerHTML = `<div class=\"char-content relative z-10\"><div class=\"text-3xl font-black italic mb-2\">${cName}</div><div class=\"text-[#ff4e00] font-black italic text-2xl mb-6\">${c.pos}</div>${sHtml}</div><img src=\"${charImages[c.en] || ''}\" class=\"char-img\" style=\"position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; pointer-events: none !important;\">`;
         grid.appendChild(card);
     });
     filterCards();
@@ -139,7 +136,7 @@ function initPBuff() {
         const pCode = posName.split(' ')[0];
         const title = document.createElement('h3'); 
         title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 inline-flex items-center gap-4 pb-2`; 
-        title.innerHTML = `<span class="w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20"></span> ${posName}`; 
+        title.innerHTML = `<span class=\"w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20\"></span> ${posName}`; 
         container.appendChild(title);
         const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
@@ -148,12 +145,12 @@ function initPBuff() {
             card.className = 'pbuff-card p-10 relative overflow-hidden';
             if(posColors[pCode]) card.classList.add(...posColors[pCode].split(' '));
             const cName = currentLang === 'ja' ? char.name : char.en;
-            let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
+            let bHtml = `<div class=\"char-content relative z-10 min-h-[220px]\"><h3 class=\"text-3xl font-black italic text-orange-500 mb-6\">${cName}</h3><div class=\"space-y-3\">`;
             char.buffs.forEach(b => { 
                 const effect = currentLang === 'ja' ? b[0] : (termsDict[currentLang] && termsDict[currentLang][b[0]]) || (termsDict['en'][b[0]] || b[0]);
-                bHtml += `<div class="pbuff-item text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
+                bHtml += `<div class=\"pbuff-item text-lg\"><span class=\"pbuff-name\">${effect}</span><span class=\"pbuff-val\">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; pointer-events: none !important;">`;
+            bHtml += `</div></div><img src=\"${charImages[char.en] || ''}\" class=\"char-img\" style=\"position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; pointer-events: none !important;\">`;
             card.innerHTML = bHtml; grid.appendChild(card);
         });
         container.appendChild(grid);
@@ -169,8 +166,5 @@ function filterCards() {
         card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
     });
 }
-
-// スマホ対応
-document.addEventListener('touchstart', function() {}, {passive: true});
 
 window.onload = () => { switchLanguage('ja'); showPage('home'); };
