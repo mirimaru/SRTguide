@@ -21,33 +21,33 @@ body {
     text-transform: uppercase; 
 }
 
-/* ★ HOME：左右の塗りつぶしを透過させて背景をうっすら見せる */
+/* ★ HOME：左右の塗りつぶし透過・中央を空ける */
 #home-split-wrapper { 
     display: flex; 
     width: 100%; 
     justify-content: space-between; 
 }
 
-/* 左側：幅を絞りつつ、rgbaでうっすら背景を透過 */
+/* 左側：幅をさらに右へ広げ(35%)、透過(0.85) */
 .home-left { 
-    width: 32%; 
-    min-width: 320px;
-    max-width: 400px;
-    padding: 60px 30px; 
+    width: 35%; 
+    min-width: 340px;
+    max-width: 420px;
+    padding: 60px 40px; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
-    background: rgba(0, 0, 0, 0.85) !important; /* 塗りつぶしを85%の不透明度に変更 */
+    background: rgba(0, 0, 0, 0.85) !important; 
     z-index: 10; 
     height: 100%;
-    box-shadow: 20px 0 30px rgba(0,0,0,0.7); 
+    box-shadow: 25px 0 40px rgba(0,0,0,0.8); 
 }
 
-/* 右側：さらに右端へ寄せつつ、rgbaでうっすら背景を透過 */
+/* 右側：さらに右端へ寄せ(32%)、透過(0.85) */
 .home-right { 
     width: 32%; 
     position: relative; 
-    background: rgba(0, 0, 0, 0.85) !important; /* 塗りつぶしを85%の不透明度に変更 */
+    background: rgba(0, 0, 0, 0.85) !important; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -56,12 +56,10 @@ body {
     box-shadow: -20px 0 30px rgba(0,0,0,0.7);
 }
 
-/* ナビゲーション */
 .nav-container { display: flex; gap: 1.5rem; margin-left: 2rem; }
 .nav-link { font-size: 0.9rem; font-weight: 900; font-style: italic; cursor: pointer; transition: color 0.3s; color: #888; text-transform: uppercase; }
 .nav-link.active, .nav-link:hover { color: var(--brand-orange); }
 
-/* パネルグリッド */
 .panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; width: 100%; max-width: 360px; }
 .panel-box { background: #0f0f0f !important; border: 1px solid rgba(255, 255, 255, 0.2); padding: 1.2rem 0.5rem; border-radius: 1.2rem; text-align: center; cursor: pointer; transition: all 0.2s ease-in-out; }
 .panel-box:hover { background: #1a1a1a !important; transform: translateY(-5px); border-color: var(--brand-orange); box-shadow: 0 0 20px rgba(255, 78, 0, 0.8); }
@@ -80,18 +78,16 @@ body {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .guide-char-img:hover {
-    transform: scale(1.15) translateY(-25px); /* 枠を飛び越えて大きくはみ出す */
+    transform: scale(1.15) translateY(-25px); 
     z-index: 50;
     border-color: var(--brand-orange); 
     box-shadow: 0 20px 40px rgba(255, 78, 0, 0.6); 
 }
 
-/* 下層ページ制御 */
 .page-container { display: none; }
 .page-container.active-page { display: block; }
 .step-badge { background: var(--brand-orange); color: #000; font-weight: 900; padding: 4px 14px; border-radius: 8px; font-style: italic; margin-bottom: 12px; display: inline-block; }
 
-/* データベース & P-BUFF カード */
 .char-card, .pbuff-card { border-radius: 2rem; border-width: 1px; position: relative; overflow: hidden; transition: transform 0.3s; }
 #grid > div, #pbuff-grid-container div[class*="bg-white/5"] { padding: 2.5rem !important; }
 .stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 20px; }
@@ -106,7 +102,6 @@ body {
 .fade-in { animation: fadeIn 0.8s ease-out forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* レスポンシブ */
 @media (max-width: 1024px) {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
     .home-left, .home-right { width: 100%; max-width: none; padding: 2rem 1.5rem; }
