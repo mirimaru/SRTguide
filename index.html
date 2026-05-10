@@ -7,10 +7,66 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-black">
+    <style>
+        /* =========================================
+           ★ データベース（ステータス）のサイズ＆余白調整
+           ========================================= */
+        #grid > div {
+            padding: 2.5rem !important; /* カード内側にゆったりした余白 */
+        }
+        #grid img {
+            width: 9rem !important;   /* 約144px: 豆粒からしっかりしたサイズへ拡大 */
+            height: 9rem !important;
+            object-fit: contain;      /* 画像が歪まないようにする */
+            margin-bottom: 1.5rem !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        #grid h3 {
+            font-size: 1.8rem !important; 
+            margin-bottom: 1rem !important;
+        }
 
-    <header class="sticky top-0 z-[100] bg-black/80 backdrop-blur-md px-4 py-3 flex items-center border-b border-white/10">
+        /* =========================================
+           ★ P-BUFF側のレイアウト＆余白バランス修正 
+           ========================================= */
+        /* カード全体の余白を広げて窮屈さを解消 */
+        #pbuff-grid-container div[class*="bg-white/5"] {
+            padding: 2rem !important; 
+            min-height: 220px; /* 画像がはみ出さないように高さを確保 */
+        }
+        
+        /* タイトルとリストの調整 */
+        #pbuff-grid-container h4 {
+            font-size: 1.7rem !important;
+            margin-bottom: 1.5rem !important;
+            position: relative;
+            z-index: 10;
+        }
+        #pbuff-grid-container ul {
+            position: relative;
+            z-index: 10;
+            padding-right: 150px; /* ★重要: キャラ画像と文字が被らないように右側の空間を空ける */
+        }
+        #pbuff-grid-container li {
+            margin-bottom: 0.75rem; /* リストの行間を少し広げて読みやすく */
+            font-size: 1.1rem;
+        }
+
+        /* キャラ画像 */
+        #pbuff-grid-container img {
+            height: 180px !important; /* 存在感のあるサイズ */
+            width: auto !important;
+            bottom: 0px !important;   /* 底辺に合わせる */
+            right: 0px !important;    /* 右端に合わせる */
+            transform: none !important; 
+            opacity: 0.85; /* 少しだけ透過させて馴染ませる */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
             <h1 class="text-2xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
@@ -49,114 +105,189 @@
             </div>
 
             <div class="mt-12 grid grid-cols-1 xl:grid-cols-2 gap-8 fade-in w-full max-w-[1200px]">
+                
                 <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col">
                     <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
                         <i class="fas fa-gift text-3xl"></i> <span data-i18n="village-map-title">ビレッジ プレゼント出現MAP</span>
                     </h3>
                     <div class="w-full aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black group relative cursor-pointer flex items-center justify-center" onclick="openMapModal()">
-                        <img src="ボックスの位置.jpg" class="w-full h-full object-contain group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"><i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i></div>
+                        <img src="ボックスの位置.jpg" alt="Village Present Map" class="w-full h-full object-contain group-hover:scale-105 group-hover:opacity-60 transition-all duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                            <i class="fas fa-search-plus text-5xl text-white drop-shadow-lg"></i>
+                        </div>
                     </div>
+                    <p class="text-sm text-gray-400 mt-3 text-center" data-i18n="village-map-cap">※画像タップ（クリック）で拡大表示</p>
                 </div>
+
                 <div class="bg-white/5 border border-white/10 rounded-3xl p-6 flex flex-col">
-                    <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3"><i class="fab fa-youtube text-3xl"></i> <span>RECOMMENDED</span></h3>
+                    <h3 class="text-2xl font-black italic text-orange-500 mb-4 flex items-center gap-3">
+                        <i class="fab fa-youtube text-3xl"></i> <span class="tracking-widest">RECOMMENDED</span>
+                    </h3>
                     <div class="w-full aspect-video rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
+                    <p class="text-sm text-gray-400 mt-3 text-center">※おすすめの解説動画</p>
                 </div>
+
             </div>
 
             <div class="mt-8 flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 w-fit fade-in">
-                <i class="fas fa-users text-orange-500 text-2xl"></i>
-                <div id="counter_area">
-                    <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
+                <div class="bg-orange-500/20 p-3 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-users text-orange-500 text-2xl"></i>
+                </div>
+                <div>
+                    <div class="text-xs text-gray-400 font-black italic mb-1" data-i18n="counter-title">総訪問者数</div>
+                    <div id="counter_area">
+                        <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script><noscript><img src="https://counter1.fc2.com/counter_img.php?id=15608402&main=1" /></noscript>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="home-right">
-            <video class="video-bg" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
-            <video class="video-main" autoplay loop muted playsinline><source src="top_video.mp4" type="video/mp4"></video>
+            <video class="video-bg" autoplay loop muted playsinline preload="auto">
+                <source src="top_video.mp4" type="video/mp4">
+            </video>
+            <video class="video-main" autoplay loop muted playsinline preload="auto">
+                <source src="top_video.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black opacity-30 pointer-events-none z-10"></div>
         </div>
     </div>
 
     <div id="standard-content" class="hidden">
-        <section id="page-about" class="page-container px-6 lg:px-20 py-10">
+        <section id="page-about" class="page-container">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
-                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl">
+                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl" alt="Message Image">
                 <div>
-                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">作者より</h3>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。2024年に戻ってきました。</p>
-                    <p class="text-lg text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。</p>
+                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">はじめに：作者より</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度は引退しましたが、このゲームの楽しさが忘れられず2024年に戻ってきました。</p>
+                    <p class="text-lg text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。皆でこのコミュニティを熱くしましょう！</p>
                 </div>
             </div>
         </section>
 
-        <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
+        <section id="page-guide" class="page-container">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
             <div class="space-y-16">
                 <div>
-                    <div class="step-badge inline-block bg-orange-500 text-white font-black px-4 py-1 rounded mb-4">STEP 1</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="step1-title">ポジションの特徴</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <img src="guide_step1_role.png" class="rounded-2xl w-full">
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm" data-i18n="pg-desc">パスと機動力。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="sg-desc">最高得点能力。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm" data-i18n="sf-desc">万能型。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="c-desc">ゴール下の番人。</p></div>
+                    <div class="step-badge">STEP 1</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step1-title">ポジションの特徴</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-10">
+                        <div>
+                            <img src="guide_step1_role.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Roles">
+                            <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-role">図解：各ポジションの役割。全てのプレイを1人でやろうとせず、自分の仕事に集中することが大切です。</p>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">PG</h4><p class="text-gray-400 text-sm" data-i18n="pg-desc">パスと機動力。守備の要。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">SG</h4><p class="text-gray-400 text-sm" data-i18n="sg-desc">最高得点能力。多彩なスキル。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">SF</h4><p class="text-gray-400 text-sm" data-i18n="sf-desc">攻守に貢献する万能型。</p></div>
+                            <div class="guide-card p-4"><h4 class="text-xl text-orange-500 font-black mb-1">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="c-desc">ゴール下の番人。リバウンド。</p></div>
                         </div>
                     </div>
                 </div>
+
                 <div>
-                    <div class="step-badge inline-block bg-orange-500 text-white font-black px-4 py-1 rounded mb-4">STEP 2</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="step2-title">おすすめキャラ</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-2xl font-black mb-4" data-i18n="recom-free-title">無課金・初期のおすすめ</h4>
-                            <div class="aspect-video rounded-xl overflow-hidden bg-black mb-4">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
+                    <div class="step-badge">STEP 2</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step2-title">おすすめキャラ</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                        <div class="guide-card p-8 flex flex-col">
+                            <div><h4 class="text-2xl font-black text-white mb-4" data-i18n="recom-free-title">無課金・初期のおすすめ</h4><p class="text-gray-300 text-lg mb-6" data-i18n="recom-free-desc">Murdock (PF): ブロック力が高く、最高の選択肢です。</p></div>
+                            <div class="rounded-xl overflow-hidden border border-white/10 aspect-video bg-black shadow-xl mt-auto">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-2xl font-black mb-4" data-i18n="recom-premium-title">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-2 h-48 overflow-hidden">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="object-cover h-full bg-black/40 rounded-lg">
-                                <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="object-cover h-full bg-black/40 rounded-lg">
+                        <div class="guide-card p-0 overflow-hidden flex flex-col">
+                            <div class="p-8 pb-4"><h4 class="text-2xl font-black text-white" data-i18n="recom-premium-title">最強キャラ (Premium)</h4></div>
+                            <div class="flex-1 flex flex-col sm:flex-row min-h-[450px]">
+                                <div class="premium-banner-v">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">PG</span><span class="name-tag">KAJI</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">SG</span><span class="name-tag">GENA</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">SF</span><span class="name-tag">NATHAN</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">PF</span><span class="name-tag">GIANT G</span></div>
+                                </div>
+                                <div class="premium-banner-v">
+                                    <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="banner-img">
+                                    <div class="banner-overlay"><span class="pos-tag">C</span><span class="name-tag">BLAIR</span></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div>
-                    <div class="step-badge inline-block bg-orange-500 text-white font-black px-4 py-1 rounded mb-4">STEP 3</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                        <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                    <div class="step-badge">STEP 3</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step3-title">育成手順</h3>
+                    <div class="space-y-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div>
+                                <img src="upgrade_pyramid.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Pyramid">
+                                <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-pyramid">図解：強者のピラミッド。まずはP5昇級で基盤を作り、P-BUFFを構築してからカード厳選に進むのが黄金律です。</p>
+                            </div>
+                            <div>
+                                <img src="roi_comparison.png" class="rounded-3xl border border-white/10 shadow-2xl w-full" alt="Comparison">
+                                <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-roi">図解：P-BUFFとカードの投資対効果。P-BUFFはポジション全体に永続的な恩恵をもたらすため、カードより圧倒的にコスパが良いです。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div>
-                    <div class="step-badge inline-block bg-orange-500 text-white font-black px-4 py-1 rounded mb-4">STEP 4</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="step4-title">チームプレイ</h3>
-                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4">Level 1 & 2</h4>
-                            <img src="guide_step4_space.png" class="rounded-xl mb-4 w-full">
+                    <div class="step-badge">STEP 4</div><h3 class="text-3xl font-black italic mb-6" data-i18n="step4-title">「最高のチームメイト」への進化</h3>
+                    
+                    <div class="mb-12">
+                        <img src="guide_step4_steps.png" class="w-4/5 mx-auto block rounded-3xl border border-white/10 shadow-2xl" alt="Step4 Intro">
+                        <p class="text-sm text-gray-400 mt-4 text-center px-4" data-i18n="img-cap-steps">図解：良いチームメイトになるための4段階（役割把握 → 邪魔しない → 意図を読む → コミュニケーション）</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-12">
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 1: 役割の理解</h4>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-300" data-i18n="playbook-l1">PGは運び、PF/Cはゴール下。自分の仕事を絞ることで安心感を与えます。</p></div>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 2: 邪魔をしない</h4>
+                                <div class="space-y-8">
+                                    <div>
+                                        <img src="guide_step4_space.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Space">
+                                        <p class="text-sm text-gray-400 mt-3 text-center px-4" data-i18n="img-cap-space">図解：味方と同じ場所に立つと「渋滞」が起きます。ボール保持者に近づかない、ドライブコースを塞がないのが鉄則です。</p>
+                                    </div>
+                                    <div>
+                                        <img src="guide_step4_inside.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Inside">
+                                        <p class="text-sm text-gray-400 mt-3 text-center px-4" data-i18n="img-cap-inside">図解：インサイド（ゴール下）にずっと居座らないこと。ビッグマンのリバウンド位置とも被らないようにしましょう。</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4">Level 3 & 4</h4>
-                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full">
+                        <div class="space-y-12">
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 3: 味方の意図を読む</h4>
+                                <div class="guide-card p-6 bg-white/5 space-y-4">
+                                    <div class="bg-blue-500/10 p-4 rounded-lg border-l-4 border-blue-500"><span class="text-blue-400 font-black">IF:</span> 味方がドライブ → <span class="text-white">THEN: スペースを空ける</span></div>
+                                    <div class="bg-blue-500/10 p-4 rounded-lg border-l-4 border-blue-500"><span class="text-blue-400 font-black">IF:</span> Cがスクリーン → <span class="text-white">THEN: その壁を使って動く</span></div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-orange-500 mb-6 italic border-b border-orange-500/30 pb-2">Level 4: コミュニケーション</h4>
+                                <img src="guide_step4_comm.png" class="w-4/5 mx-auto block rounded-2xl border border-white/10" alt="Comm">
+                                <p class="text-sm text-gray-400 mt-3 mb-6 text-center px-4" data-i18n="img-cap-comm">図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。</p>
+                                <div class="guide-card p-6 bg-white/5"><p class="text-gray-400 text-sm italic" data-i18n="playbook-comm">ミスを責めず、ポジティブなエモートでチームを鼓舞しましょう。</p></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="page-db" class="page-container px-6 lg:px-20 py-10">
+        <section id="page-db" class="page-container">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
                 <div class="flex gap-4">
@@ -164,42 +295,52 @@
                     <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
                 </div>
             </div>
+            <p class="text-base text-gray-400 mb-8 italic" data-i18n="db-note">※「▲」表記はバフ値（加算）です。</p>
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
         </section>
 
-        <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
-            <div class="flex gap-4 mb-10">
-                <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-                    <option value="All">ALL POSITIONS</option>
-                    <option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option>
-                </select>
+        <section id="page-pbuff" class="page-container">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
+                <div class="flex gap-4">
+                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All">ALL POSITIONS</option>
+                        <option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option>
+                    </select>
+                </div>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
 
-        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
+        <section id="page-qa" class="page-container max-w-5xl">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
             <div class="space-y-8">
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値です。</p></div>
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffです。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p></div>
+                <div class="qa-card p-8"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: P-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p></div>
             </div>
         </section>
 
-        <section id="page-bbs" class="page-container px-6 lg:px-20 py-10">
+        <section id="page-bbs" class="page-container max-w-5xl">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
-            <div class="rounded-3xl overflow-hidden bg-white"><iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe></div>
+            <div class="rounded-xl overflow-hidden bg-white shadow-2xl">
+                <iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe>
+            </div>
         </section>
     </div>
 
-    <div id="map-modal" class="hidden fixed inset-0 z-[110] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-4xl cursor-pointer z-[111]"><i class="fas fa-times"></i></button>
-        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[85vh] object-contain rounded-xl shadow-2xl" onclick="event.stopPropagation()">
+    <div id="map-modal" class="hidden fixed inset-0 z-[100] bg-black/90 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[101]">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[100]" onclick="event.stopPropagation()">
+        
         <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeMapModal()"></div>
     </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    
     <script>
         function openMapModal() {
             const modal = document.getElementById('map-modal');
