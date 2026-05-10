@@ -21,112 +21,75 @@ body {
     text-transform: uppercase; 
 }
 
-/* ★ HOMEレイアウトの最新調整 */
+/* ★ HOME：左右の塗りつぶしを右に寄せて中央を空ける最新設定 */
 #home-split-wrapper { 
     display: flex; 
     width: 100%; 
-    justify-content: space-between; /* 左右を端に寄せて中央を空ける */
+    justify-content: space-between; 
 }
 
-/* ★ 左側：幅を絞って中央のキャラの手を見せる */
+/* 左側：幅をさらに右へ広げ、ロゴ背後の安定感を出す */
 .home-left { 
-    width: 28%; /* 38%から28%へ縮小して右側へ押し込まないように */
-    min-width: 300px;
-    max-width: 360px; /* 広がりすぎないように制限 */
-    padding: 60px 30px; /* パディングも少しスリムに */
+    width: 32%; /* 28%から拡大。境界線が右へ移動 */
+    min-width: 320px;
+    max-width: 400px;
+    padding: 60px 30px; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     background: #000 !important; 
     z-index: 10; 
     height: 100%;
-    box-shadow: 15px 0 30px rgba(0,0,0,0.6); /* 境界線の影 */
+    box-shadow: 20px 0 30px rgba(0,0,0,0.7); 
 }
 
-/* ★ 右側：不透明黒で塗りつぶし、パネルを配置 */
+/* 右側：さらに右端へ寄せて中央キャラの手と胴体を見せる */
 .home-right { 
-    width: 35%; /* 中央を広く取るためにこちらも少し絞る */
+    width: 32%; /* 35%から縮小。左端が右へ移動し、キャラが露出 */
     position: relative; 
     background: #000 !important; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     z-index: 10;
-    padding-right: 5%;
-    box-shadow: -15px 0 30px rgba(0,0,0,0.6);
+    padding-right: 3%;
+    box-shadow: -20px 0 30px rgba(0,0,0,0.7);
 }
 
 /* ナビゲーション */
-.nav-container { 
-    display: flex; 
-    gap: 1.5rem; 
-    margin-left: 2rem; 
-}
-
-.nav-link { 
-    font-size: 0.9rem;
-    font-weight: 900; 
-    font-style: italic; 
-    cursor: pointer; 
-    transition: color 0.3s; 
-    color: #888; 
-    text-transform: uppercase; 
-}
-
-.nav-link.active, .nav-link:hover { 
-    color: var(--brand-orange); 
-}
+.nav-container { display: flex; gap: 1.5rem; margin-left: 2rem; }
+.nav-link { font-size: 0.9rem; font-weight: 900; font-style: italic; cursor: pointer; transition: color 0.3s; color: #888; text-transform: uppercase; }
+.nav-link.active, .nav-link:hover { color: var(--brand-orange); }
 
 /* パネルグリッド */
-.panel-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 0.5rem; 
-    width: 100%;
-    max-width: 380px; 
-}
-
-.panel-box { 
-    background: #0f0f0f !important; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 1.2rem 0.5rem; 
-    border-radius: 1.2rem; 
-    text-align: center; 
-    cursor: pointer; 
-    transition: all 0.2s ease-in-out;
-}
-
-.panel-box:hover { 
-    background: #1a1a1a !important; 
-    transform: translateY(-5px); 
-    border-color: var(--brand-orange); 
-    box-shadow: 0 0 20px rgba(255, 78, 0, 0.8); 
-}
-
+.panel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; width: 100%; max-width: 360px; }
+.panel-box { background: #0f0f0f !important; border: 1px solid rgba(255, 255, 255, 0.2); padding: 1.2rem 0.5rem; border-radius: 1.2rem; text-align: center; cursor: pointer; transition: all 0.2s ease-in-out; }
+.panel-box:hover { background: #1a1a1a !important; transform: translateY(-5px); border-color: var(--brand-orange); box-shadow: 0 0 20px rgba(255, 78, 0, 0.8); }
 .panel-box h3 { margin-top: 0.5rem; font-weight: 900; }
 
-/* ★ Guideキャラクター演出（縦長・はみ出し対応） */
+/* ★ Guideキャラクター演出（縦長・はみ出しポップアップ） */
 .guide-char-img {
     object-fit: cover; 
-    object-position: top; /* 顔が見えるように上寄せ */
+    object-position: top; 
     height: 100%; 
     width: 100%;
     background-color: rgba(0,0,0,0.4); 
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
     border: 2px solid transparent; 
     cursor: pointer; 
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 少し跳ねるようなアニメーション */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .guide-char-img:hover {
-    transform: scale(1.15) translateY(-10px); /* 枠外に大きくはみ出して浮き上がる */
-    z-index: 30; /* 手前に表示 */
+    transform: scale(1.15) translateY(-25px); /* さらに大きく枠外へはみ出す */
+    z-index: 50;
     border-color: var(--brand-orange); 
-    box-shadow: 0 15px 25px rgba(255, 78, 0, 0.5); /* 影も大きく */
+    box-shadow: 0 20px 40px rgba(255, 78, 0, 0.6); 
 }
 
-/* 下層ページ制御 */
+/* ページ制御 */
 .page-container { display: none; }
 .page-container.active-page { display: block; }
+.step-badge { background: var(--brand-orange); color: #000; font-weight: 900; padding: 4px 14px; border-radius: 8px; font-style: italic; margin-bottom: 12px; display: inline-block; }
 
 /* データベース & P-BUFF カード */
 .char-card, .pbuff-card { border-radius: 2rem; border-width: 1px; position: relative; overflow: hidden; transition: transform 0.3s; }
