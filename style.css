@@ -1,59 +1,140 @@
-/* ベーススタイル（既存のものがあればその下に追記、なければこれに差し替え） */
+/* ベーススタイル */
 body {
     background-color: #000;
     color: #fff;
     font-family: 'Inter', sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
 
-/* --- レスポンシブ・スマホ対応 --- */
-@media (max-width: 1024px) {
-    #home-split-wrapper {
-        flex-direction: column !important;
-        height: auto !important;
-        overflow-y: visible !important;
-    }
-    .home-left {
-        width: 100% !important;
-        padding: 1.5rem !important;
-        overflow-y: visible !important;
-    }
-    .home-right {
-        display: none !important; /* スマホでは右の動画を消して軽くする */
-    }
-    h2.text-7xl, h2.text-8xl, h2.text-9xl {
-        font-size: 4.5rem !important;
-        line-height: 1 !important;
-    }
+/* スプリットレイアウト */
+#home-split-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
 }
 
-/* --- JSで生成されるカードへの強制上書き --- */
-.char-card, .pbuff-card {
-    transition: all 0.3s ease;
+.home-left {
+    width: 50%;
+    padding: 3rem;
+    overflow-y: auto;
+    background: linear-gradient(to right, #000, #050505);
 }
 
-/* データベース・Pバフ共通の余白 */
-#grid > div,
-#pbuff-grid-container div[class*="bg-white/5"] {
-    padding: 2.5rem !important;
-    min-height: 220px !important;
+.home-right {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+    background: #000;
 }
 
-/* キャラ絵の強制サイズ設定（DB側はJSで240px、Pバフは200pxに設定） */
-.char-img {
-    pointer-events: none; /* 文字のクリックを邪魔しない */
+/* ビデオ背景 */
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: blur(10px);
 }
 
-/* リストの見やすさ */
-#pbuff-grid-container li {
-    font-size: 1.1rem !important;
-    margin-bottom: 0.75rem !important;
+.video-main {
+    position: relative;
+    z-index: 2;
+    width: 85%;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-/* --- ナビゲーションのスマホ対応 --- */
+/* ナビゲーション */
 .nav-container {
-    scrollbar-width: none; /* Firefox */
+    display: flex;
+    gap: 2rem;
+    margin-left: 3rem;
 }
-.nav-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+
+.nav-link {
+    font-weight: 900;
+    font-style: italic;
+    cursor: pointer;
+    transition: color 0.3s;
+    color: #888;
+}
+
+.nav-link.active, .nav-link:hover {
+    color: #ff4e00;
+}
+
+/* パネルグリッド */
+.panel-grid {
+    display: grid;
+    grid-template-cols: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.panel-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.panel-box:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: #ff4e00;
+}
+
+/* ページコンテナ */
+.page-container {
+    display: none;
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-container.active-page {
+    display: block;
+}
+
+/* カード共通 */
+.char-card, .pbuff-card {
+    border-radius: 2rem;
+    border-width: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.char-card:hover, .pbuff-card:hover {
+    transform: translateY(-5px);
+}
+
+/* フェードインアニメーション */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* スクロールバー隠し */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
