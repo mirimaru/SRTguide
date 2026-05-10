@@ -1,4 +1,3 @@
-// 重複定義を避けるため window オブジェクトを使用
 window.i18n = {
     'ja': {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
@@ -46,15 +45,27 @@ window.i18n = {
         'guide-s3-title': '养成步骤', 'guide-s3-p1': '强者金字塔。P5晋级是基础。', 'guide-s3-p2': 'P-BUFF的效果远高于卡片。',
         'guide-s4-title': '团队配合', 'guide-s4-l12-t': 'Level 1 & 2: 基础', 'guide-s4-l12-d': '不要阻碍队友。保持拉开空间。不堵塞突破路线。',
         'guide-s4-l34-t': 'Level 3 & 4: 应用', 'guide-s4-l34-d': '不要责怪失误。使用积极的表情鼓励团队。',
-        'qa-q1': 'Q: 数值中的 "▲" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培养 P-Buff。'
+        'qa-q1': 'Q: 数值中的 "▲" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培養 P-Buff。'
     }
 };
 
-// ★ 持久力などの統計・Pバフ名の翻訳辞書
+// 持久力を含むステータス全項目の辞書
 window.termsDict = {
-    'en': { '持久力': 'Stamina', '3点シュート成功率': '3pt Success', 'ミドルシュート成功率': 'Mid Success', '移動速度': 'Move Speed', 'リバウンド': 'Rebound' },
-    'ko': { '持久力': '지구력', '3点シュート成功率': '3점 성공률', 'ミドルシュート成功率': '미들 성공률', '移動速度': '이동 속도', 'リバウンド': '리바운드' },
-    'zh': { '持久力': '持久力', '3点シュート成功率': '三分成功率', 'ミドルシュート成功率': '中投成功率', '移動速度': '移动速度', 'リバウンド': '篮板' }
+    'en': { 
+        '持久力': 'Stamina', '3点シュート成功率': '3pt Success', 'ミドルシュート成功率': 'Mid Success', '移動速度': 'Move Speed', 
+        'リバウンド': 'Rebound', 'ブロック': 'Block', 'スティール': 'Steal', 'ダンク成功率': 'Dunk Success', 'レイアップ成功率': 'Layup Success',
+        '攻撃妨害抵抗': 'Shot Impediment', 'パス速度': 'Pass Speed', 'ドライブ速度': 'Drive Speed', 'ジャンプブロック': 'Jump Block', 'ドライブインブロック': 'Drive-in Block'
+    },
+    'ko': { 
+        '持久力': '지구력', '3点シュート成功率': '3점 성공률', 'ミドルシュート成功率': '미들 성공률', '移動速度': '이동 속도', 
+        'リバウンド': '리바운드', 'ブロック': '블록', 'スティール': '스틸', 'ダンク成功率': '덩크 성공률', 'レイアップ成功率': '레이업 성공률',
+        '攻撃妨害抵抗': '공격 방해 저항', 'パス速度': '패스 속도', 'ドライブ速度': '드라이브 속도', 'ジャンプブロック': '점프 블록', 'ドライブインブロック': '드라이브 인 블록'
+    },
+    'zh': { 
+        '持久力': '持久力', '3点シュート成功率': '三分成功率', 'ミドルシュート成功率': '中投成功率', '移動速度': '移动速度', 
+        'リバウンド': '篮板', 'ブロック': '盖帽', 'スティール': '抢断', 'ダンク成功率': '扣篮成功率', 'レイアップ成功率': '上篮成功率',
+        '攻撃妨害抵抗': '投篮干扰抗性', 'パス速度': '传球速度', 'ドライブ速度': '突破速度', 'ジャンプブロック': '跳跃盖帽', 'ドライブインブロック': '突破盖帽'
+    }
 };
 
 let currentLang = 'ja';
@@ -94,35 +105,47 @@ function showPage(id) {
 function initDb() {
     const grid = document.getElementById('grid');
     if (grid.children.length > 0) return;
+    const maxStats = {}; 
+    ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
+        maxStats[p] = Array(15).fill(0); 
+        rawData.filter(c => c.pos === p).forEach(c => { 
+            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; }); 
+        }); 
+    });
     rawData.forEach(c => {
         const card = document.createElement('div'); 
-        card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'}`;
+        card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
+        card.dataset.name = c.名前.toLowerCase(); card.dataset.pos = c.pos;
         const cName = currentLang === 'ja' ? c.名前 : c.en;
         let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
+            const isMax = v === maxStats[c.pos][i];
             const labelJa = statNames[i];
             const label = currentLang === 'ja' ? labelJa : (window.termsDict[currentLang] && window.termsDict[currentLang][labelJa]) || labelJa;
-            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val">${v}</div></div>`;
+            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
         card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -10px; height: 240px; opacity: 0.4; pointer-events: none;">`;
         grid.appendChild(card);
     });
+    filterCards();
 }
 
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
     if(!container) return; container.innerHTML = '';
+    const posFilter = document.getElementById('pbuffPosFilter').value;
     for (const [posName, chars] of Object.entries(pBuffData)) {
+        if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
+        const pCode = posName.split(' ')[0];
         const title = document.createElement('h3'); 
         title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
         title.innerText = posName;
         container.appendChild(title);
-        const grid = document.createElement('div'); 
-        grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
+        const grid = document.createElement('div'); grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
         chars.forEach(char => {
             const card = document.createElement('div'); 
-            card.className = `pbuff-card p-10 relative overflow-hidden ${posColors[posName.split(' ')[0]] || 'bg-white/5'}`;
+            card.className = `pbuff-card p-10 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
             const cName = currentLang === 'ja' ? char.name : char.en;
             let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
