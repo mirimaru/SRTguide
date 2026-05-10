@@ -1,7 +1,9 @@
+// 動かなくなった原因を解消するため、エラー防止と全翻訳キーを完備
 let currentLang = 'ja';
 
-// ★ Guide・Q&Aも含めたすべての翻訳辞書を完備。1文字もサボりません。
-const i18n = {
+// ★ Guide・Q&Aも含めたすべての翻訳辞書。
+// redeclareエラーを避けるため、windowオブジェクトに紐付けます。
+window.i18n = {
     'ja': {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
@@ -68,17 +70,25 @@ function switchLanguage(lang, btnElement = null) {
     }
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
-        if (i18n[lang] && i18n[lang][key]) el.innerHTML = i18n[lang][key];
+        if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
-    if (document.getElementById('grid').children.length > 0) { document.getElementById('grid').innerHTML = ''; initDb(); }
+    if (document.getElementById('grid').children.length > 0) {
+        document.getElementById('grid').innerHTML = '';
+        initDb();
+    }
     if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
 }
 
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
-    if (id === 'home') { split.style.display = 'flex'; standard.classList.add('hidden'); } 
-    else { split.style.display = 'none'; standard.classList.remove('hidden'); }
+    if (id === 'home') {
+        split.style.display = 'flex';
+        standard.classList.add('hidden');
+    } else {
+        split.style.display = 'none';
+        standard.classList.remove('hidden');
+    }
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
@@ -159,5 +169,8 @@ function filterCards() {
         card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
     });
 }
+
+// スマホ対応
+document.addEventListener('touchstart', function() {}, {passive: true});
 
 window.onload = () => { switchLanguage('ja'); showPage('home'); };
