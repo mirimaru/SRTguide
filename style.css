@@ -9,7 +9,7 @@ body {
     background-color: var(--bg-dark); 
     color: #fff; 
     font-family: 'Noto Sans JP', sans-serif; 
-    font-size: 16px; /* 全体を一回り縮小 */
+    font-size: 16px; 
     line-height: 1.6; 
     overflow-x: hidden; 
     margin: 0; 
@@ -21,30 +21,37 @@ body {
     text-transform: uppercase; 
 }
 
-/* HOMEレイアウト */
+/* ★ HOMEレイアウトの大幅修正 */
 #home-split-wrapper { 
     display: flex; 
     width: 100%; 
 }
 
+/* ★ 左側：背景を黒く塗りつぶし、幅を絞って左に寄せる */
 .home-left { 
-    width: 45%; 
-    padding: 80px 40px 40px; 
+    width: 35%; /* 中央キャラが見えるように幅を縮小 */
+    min-width: 320px;
+    max-width: 450px; 
+    padding: 60px 40px; 
     display: flex; 
     flex-direction: column; 
-    justify-content: flex-start; 
-    background: transparent !important; 
+    justify-content: center; 
+    background: rgba(0, 0, 0, 0.95) !important; /* 不透明な黒で塗りつぶし */
     z-index: 10; 
+    height: 100%;
+    box-shadow: 20px 0 30px rgba(0,0,0,0.5); /* 右側に影を落として境界を自然に */
 }
 
+/* ★ 右側：残りのスペースを使い、パネルを右のキャラ位置に寄せる */
 .home-right { 
-    width: 55%; 
+    flex-grow: 1; /* 残りのスペースを埋める */
     position: relative; 
     overflow: hidden; 
     background: transparent !important; 
     display: flex; 
-    justify-content: center; 
+    justify-content: flex-end; /* 右寄せ */
     align-items: center; 
+    padding-right: 8%; /* キャラと重なる位置に微調整 */
 }
 
 /* ナビゲーション */
@@ -68,21 +75,21 @@ body {
     color: var(--brand-orange); 
 }
 
-/* ★ パネルグリッド：キャラエリア全体に拡大 */
+/* ★ パネルグリッド：キャラ絵に合わせたサイズと配置 */
 .panel-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 0.5rem; 
-    width: 90%; /* キャラエリア全体に拡大 */
-    max-width: none; /* 最大幅制限を解除 */
-    margin-right: 0; /* 右寄せマージンを解除 */
+    width: 100%;
+    max-width: 380px; /* キャラ絵の幅にフィットさせる */
+    margin-right: 0; 
 }
 
 .panel-box { 
     background: #0f0f0f !important; /* 不透明黒背景 */
     border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 1.5rem 0.5rem; /* 上下パディングを拡大してパネルを大きく */
-    border-radius: 1.5rem; /* 角丸を拡大 */
+    padding: 1.5rem 0.5rem; 
+    border-radius: 1.5rem; 
     text-align: center; 
     cursor: pointer; 
     transition: all 0.2s ease-in-out;
@@ -92,7 +99,7 @@ body {
     background: #1a1a1a !important; 
     transform: translateY(-5px); 
     border-color: var(--brand-orange); 
-    box-shadow: 0 0 25px rgba(255, 78, 0, 0.8); /* ホバー時の光を強調 */
+    box-shadow: 0 0 25px rgba(255, 78, 0, 0.8); 
 }
 
 .panel-box h3 {
@@ -100,7 +107,7 @@ body {
     font-weight: 900;
 }
 
-/* ★ Guideキャラクター演出修正 */
+/* Guideキャラクター演出 */
 .guide-char-img {
     object-fit: cover; 
     height: 100%; 
@@ -150,7 +157,7 @@ body {
 /* レスポンシブ */
 @media (max-width: 1024px) {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
-    .home-left, .home-right { width: 100%; padding: 2rem 1.5rem; }
-    .home-right { display: flex; flex-direction: column; gap: 2rem; }
+    .home-left { width: 100%; max-width: none; padding: 2rem 1.5rem; }
+    .home-right { padding: 2rem 1.5rem; justify-content: center; }
     .panel-grid { width: 100%; margin: 0 auto; }
 }
