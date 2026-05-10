@@ -1,4 +1,4 @@
-// エラー防止のため、変数の再定義を避け window オブジェクトで管理します
+// 重複定義を避けるため window オブジェクトを使用
 window.i18n = {
     'ja': {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
@@ -34,7 +34,7 @@ window.i18n = {
         'guide-s3-title': '육성 순서', 'guide-s3-p1': '강자의 피라미드. P5 승급이 기본입니다.', 'guide-s3-p2': 'P-버프는 카드보다 압도적으로 효율이 좋습니다.',
         'guide-s4-title': '팀 플레이', 'guide-s4-l12-t': 'Level 1 & 2: 기초', 'guide-s4-l12-d': '아군의 공간을 방해하지 마세요. 스페이스 확보가 철칙입니다.',
         'guide-s4-l34-t': 'Level 3 & 4: 응용', 'guide-s4-l34-d': '실수를 비난하지 말고, 긍정적인 이모트로 팀을 격려하세요.',
-        'qa-q1': 'Q: 수치의 "▲\"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
+        'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
         'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于',
@@ -46,18 +46,19 @@ window.i18n = {
         'guide-s3-title': '养成步骤', 'guide-s3-p1': '强者金字塔。P5晋级是基础。', 'guide-s3-p2': 'P-BUFF的效果远高于卡片。',
         'guide-s4-title': '团队配合', 'guide-s4-l12-t': 'Level 1 & 2: 基础', 'guide-s4-l12-d': '不要阻碍队友。保持拉开空间。不堵塞突破路线。',
         'guide-s4-l34-t': 'Level 3 & 4: 应用', 'guide-s4-l34-d': '不要责怪失误。使用积极的表情鼓励团队。',
-        'qa-q1': 'Q: 数值中的 "▲\" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培养 P-Buff。'
+        'qa-q1': 'Q: 数值中的 "▲" 是什么？', 'qa-a1': 'A: 增益值（强化部分）。', 'qa-q2': 'Q: 应该先培养 P-Buff 还是卡片？', 'qa-a2': 'A: 先培养 P-Buff。'
     }
 };
 
-let currentLang = 'ja';
-const posColors = {
-    "PG": "bg-green-950/40 border-green-700/50",
-    "SG": "bg-orange-950/40 border-orange-700/50",
-    "SF": "bg-cyan-950/40 border-cyan-700/50",
-    "PF": "bg-indigo-950/40 border-indigo-700/50",
-    "C":  "bg-red-950/40 border-red-700/50"
+// ★ 持久力などの統計・Pバフ名の翻訳辞書
+window.termsDict = {
+    'en': { '持久力': 'Stamina', '3点シュート成功率': '3pt Success', 'ミドルシュート成功率': 'Mid Success', '移動速度': 'Move Speed', 'リバウンド': 'Rebound' },
+    'ko': { '持久力': '지구력', '3点シュート成功率': '3점 성공률', 'ミドルシュート成功率': '미들 성공률', '移動速度': '이동 속도', 'リバウンド': '리바운드' },
+    'zh': { '持久力': '持久力', '3点シュート成功率': '三分成功率', 'ミドルシュート成功率': '中投成功率', '移動速度': '移动速度', 'リバウンド': '篮板' }
 };
+
+let currentLang = 'ja';
+const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
 
 function switchLanguage(lang, btnElement = null) {
     currentLang = lang;
@@ -69,23 +70,15 @@ function switchLanguage(lang, btnElement = null) {
         const key = el.getAttribute("data-i18n");
         if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
-    if (document.getElementById('grid').children.length > 0) {
-        document.getElementById('grid').innerHTML = '';
-        initDb();
-    }
+    if (document.getElementById('grid').children.length > 0) { document.getElementById('grid').innerHTML = ''; initDb(); }
     if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
 }
 
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
-    if (id === 'home') {
-        split.style.display = 'flex';
-        standard.classList.add('hidden');
-    } else {
-        split.style.display = 'none';
-        standard.classList.remove('hidden');
-    }
+    if (id === 'home') { split.style.display = 'flex'; standard.classList.add('hidden'); } 
+    else { split.style.display = 'none'; standard.classList.remove('hidden'); }
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
@@ -101,56 +94,42 @@ function showPage(id) {
 function initDb() {
     const grid = document.getElementById('grid');
     if (grid.children.length > 0) return;
-    const maxStats = {}; 
-    ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
-        maxStats[p] = Array(15).fill(0); 
-        rawData.filter(c => c.pos === p).forEach(c => { 
-            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; }); 
-        }); 
-    });
     rawData.forEach(c => {
         const card = document.createElement('div'); 
-        card.className = 'char-card p-10 relative overflow-hidden'; 
-        card.dataset.name = c.名前.toLowerCase(); card.dataset.pos = c.pos;
-        if(posColors[c.pos]) card.classList.add(...posColors[c.pos].split(' '));
+        card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'}`;
         const cName = currentLang === 'ja' ? c.名前 : c.en;
-        let sHtml = '<div class="stat-grid">'; 
-        c.s.forEach((v, i) => { 
-            const isMax = v === maxStats[c.pos][i];
-            const label = currentLang === 'ja' ? statNames[i] : (termsDict[currentLang] && termsDict[currentLang][statNames[i]]) || termsDict['en'][statNames[i]];
-            sHtml += `<div class="stat-box"><div class=\"stat-lbl\">${label}</div><div class=\"stat-val ${isMax ? 'is-max' : ''}\">${v}</div></div>`; 
-        }); 
+        let sHtml = '<div class="stat-grid">';
+        c.s.forEach((v, i) => {
+            const labelJa = statNames[i];
+            const label = currentLang === 'ja' ? labelJa : (window.termsDict[currentLang] && window.termsDict[currentLang][labelJa]) || labelJa;
+            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val">${v}</div></div>`;
+        });
         sHtml += '</div>';
-        card.innerHTML = `<div class=\"char-content relative z-10\"><div class=\"text-3xl font-black italic mb-2\">${cName}</div><div class=\"text-[#ff4e00] font-black italic text-2xl mb-6\">${c.pos}</div>${sHtml}</div><img src=\"${charImages[c.en] || ''}\" class=\"char-img\" style=\"position: absolute !important; bottom: -10px !important; right: -10px !important; height: 240px !important; width: auto !important; opacity: 0.4 !important; z-index: 1 !important; pointer-events: none !important;\">`;
+        card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -10px; height: 240px; opacity: 0.4; pointer-events: none;">`;
         grid.appendChild(card);
     });
-    filterCards();
 }
 
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
     if(!container) return; container.innerHTML = '';
-    const posFilter = document.getElementById('pbuffPosFilter').value;
     for (const [posName, chars] of Object.entries(pBuffData)) {
-        if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
-        const pCode = posName.split(' ')[0];
         const title = document.createElement('h3'); 
-        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 inline-flex items-center gap-4 pb-2`; 
-        title.innerHTML = `<span class=\"w-6 h-6 rounded-full ${posColors[pCode] ? posColors[pCode].split(' ')[0] : 'bg-white'} border border-white/20\"></span> ${posName}`; 
+        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
+        title.innerText = posName;
         container.appendChild(title);
         const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
         chars.forEach(char => {
             const card = document.createElement('div'); 
-            card.className = 'pbuff-card p-10 relative overflow-hidden';
-            if(posColors[pCode]) card.classList.add(...posColors[pCode].split(' '));
+            card.className = `pbuff-card p-10 relative overflow-hidden ${posColors[posName.split(' ')[0]] || 'bg-white/5'}`;
             const cName = currentLang === 'ja' ? char.name : char.en;
-            let bHtml = `<div class=\"char-content relative z-10 min-h-[220px]\"><h3 class=\"text-3xl font-black italic text-orange-500 mb-6\">${cName}</h3><div class=\"space-y-3\">`;
+            let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
-                const effect = currentLang === 'ja' ? b[0] : (termsDict[currentLang] && termsDict[currentLang][b[0]]) || (termsDict['en'][b[0]] || b[0]);
-                bHtml += `<div class=\"pbuff-item text-lg\"><span class=\"pbuff-name\">${effect}</span><span class=\"pbuff-val\">${b[1]}</span></div>`; 
+                const effect = currentLang === 'ja' ? b[0] : (window.termsDict[currentLang] && window.termsDict[currentLang][b[0]]) || b[0];
+                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src=\"${charImages[char.en] || ''}\" class=\"char-img\" style=\"position: absolute !important; bottom: -5px !important; right: -10px !important; height: 200px !important; width: auto !important; opacity: 0.5 !important; z-index: 1 !important; pointer-events: none !important;\">`;
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -10px; height: 200px; opacity: 0.5; pointer-events: none;">`;
             card.innerHTML = bHtml; grid.appendChild(card);
         });
         container.appendChild(grid);
