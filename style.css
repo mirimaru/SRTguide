@@ -1,153 +1,148 @@
-/* ベーススタイル */
-body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+:root { 
+    --brand-orange: #ff4e00; 
+    --bg-dark: #000000; 
 }
 
-/* スプリットレイアウト */
-#home-split-wrapper {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+body { 
+    background-color: var(--bg-dark); 
+    color: #fff; 
+    font-family: 'Noto Sans JP', sans-serif; 
+    font-size: 18px; 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+    margin: 0; 
 }
 
-.home-left {
-    width: 40%; /* 少し狭める（ステータスエリア風） */
-    padding: 6rem 4rem 3rem;
-    overflow-y: auto;
-    background: linear-gradient(to right, #000, #050505);
-    z-index: 20;
+.font-sporty { 
+    font-family: 'Oswald', sans-serif; 
+    font-style: italic; 
+    text-transform: uppercase; 
 }
 
-.home-right {
-    width: 60%; /* 少し広げる（キャラ・パネルエリア風） */
-    position: relative;
-    overflow: hidden;
-    background: #000;
+/* HOME Split Layout (背景画像が透けるように調整) */
+#home-split-wrapper { 
+    display: flex; 
+    min-height: 100vh; 
+    width: 100%; 
 }
 
-/* ビデオ背景 */
-.video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5; /* 少し明るめに */
+.home-left { 
+    width: 45%; 
+    padding: 120px 60px 60px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start; 
+    background: transparent !important; 
+    z-index: 10; 
+}
+
+.home-right { 
+    width: 55%; 
+    position: relative; 
+    overflow: hidden; 
+    background: transparent !important; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 /* ナビゲーション */
-.nav-container {
-    display: flex;
-    gap: 2rem;
-    margin-left: 3rem;
+.nav-container { 
+    display: flex; 
+    gap: 2rem; 
+    margin-left: 3rem; 
 }
 
-.nav-link {
-    font-weight: 900;
-    font-style: italic;
-    cursor: pointer;
-    transition: color 0.3s;
-    color: #888;
-    text-transform: uppercase;
+.nav-link { 
+    font-weight: 900; 
+    font-style: italic; 
+    cursor: pointer; 
+    transition: color 0.3s; 
+    color: #888; 
+    text-transform: uppercase; 
 }
 
-.nav-link.active, .nav-link:hover {
-    color: #ff4e00;
+.nav-link.active, .nav-link:hover { 
+    color: var(--brand-orange); 
 }
 
-/* ★ パネルグリッド（右側にギュッと詰める） */
-.panel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-    max-width: 420px;
+/* パネルグリッド：キャラ位置に合わせてコンパクトに */
+.panel-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.75rem; 
+    width: 100%;
+    max-width: 420px; 
+    margin-right: 10%; 
 }
 
-.panel-box {
-    background: rgba(0, 0, 0, 0.7); /* ゲームHUDっぽく暗めに */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1rem 0.5rem;
-    border-radius: 0.75rem;
-    text-align: center;
-    cursor: pointer;
+.panel-box { 
+    background: rgba(0, 0, 0, 0.75); 
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    padding: 1.25rem 0.5rem; 
+    border-radius: 1rem; 
+    text-align: center; 
+    cursor: pointer; 
     transition: all 0.3s;
     backdrop-filter: blur(10px);
 }
 
-.panel-box:hover {
-    background: rgba(255, 78, 0, 0.2);
-    transform: translateX(-5px); /* 右側にあるので左に動くように変更 */
-    border-color: #ff4e00;
+.panel-box:hover { 
+    background: rgba(255, 78, 0, 0.25); 
+    transform: translateY(-5px); 
+    border-color: var(--brand-orange); 
 }
 
-/* ページコンテナ */
-.page-container {
-    display: none;
+.panel-box h3 {
+    margin-top: 0.5rem;
+    font-weight: 900;
 }
 
-.page-container.active-page {
-    display: block;
+/* ページ制御 */
+.page-container { 
+    display: none; 
 }
 
-/* カード共通 */
-.char-card, .pbuff-card {
-    border-radius: 2rem;
-    border-width: 1px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
+.page-container.active-page { 
+    display: block; 
 }
 
-.char-card:hover, .pbuff-card:hover {
-    transform: translateY(-5px);
+/* データベース・P-BUFF カード */
+.char-card, .pbuff-card { 
+    border-radius: 2rem; 
+    border-width: 1px; 
+    position: relative; 
+    overflow: hidden; 
+    transition: transform 0.3s; 
 }
 
-/* JS生成要素への強制ルール */
-#grid > div,
-#pbuff-grid-container div[class*="bg-white/5"] {
-    padding: 2.5rem !important;
+.char-card:hover, .pbuff-card:hover { 
+    transform: translateY(-5px); 
 }
 
-.pbuff-item {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 0.5rem 0;
+#grid > div, #pbuff-grid-container div[class*="bg-white/5"] { 
+    padding: 2.5rem !important; 
 }
 
+.stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 20px; }
+.stat-box { background: rgba(0,0,0,0.6); padding: 8px 4px; text-align: center; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+.stat-lbl { font-size: 0.65rem; color: #aaa; font-weight: 800; text-transform: uppercase; }
+.stat-val { font-size: 1.2rem; font-weight: 900; color: #fff; }
+.is-max { color: #facc15 !important; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); }
+
+.pbuff-item { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0; }
 .pbuff-name { color: #888; font-weight: bold; }
 .pbuff-val { color: #fff; font-weight: 900; }
 
-/* フェードインアニメーション */
-.fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* スクロールバー隠し */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-/* レスポンシブ（スマホ時は動画を消す設定を維持） */
+/* レスポンシブ */
 @media (max-width: 1024px) {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
     .home-left, .home-right { width: 100%; padding: 2rem 1.5rem; }
     .home-right { display: flex; flex-direction: column; gap: 2rem; }
-    .video-bg { display: none; }
     .panel-grid { max-width: 100%; margin: 0 auto; }
-    .absolute { position: relative !important; top: 0 !important; right: 0 !important; margin: 0 auto; }
 }
