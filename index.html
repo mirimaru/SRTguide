@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-black">
+<body class="bg-black text-white">
 
     <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
@@ -85,6 +85,7 @@
     </div>
 
     <div id="standard-content" class="hidden">
+        
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -99,6 +100,7 @@
 
         <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            
             <div class="space-y-16">
                 <div>
                     <div class="step-badge">STEP 1</div>
@@ -113,6 +115,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <div class="step-badge">STEP 2</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s2-title">おすすめキャラ</h3>
@@ -136,6 +139,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <div class="step-badge">STEP 3</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
@@ -150,6 +154,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <div class="step-badge">STEP 4</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
@@ -173,8 +178,14 @@
         <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
             <div class="space-y-8">
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p></div>
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: 育成はP-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p></div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4>
+                    <p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: 育成はP-Buffとカードどちらが先？</h4>
+                    <p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p>
+                </div>
             </div>
         </section>
 
@@ -183,7 +194,14 @@
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
                 <div class="flex gap-4">
                     <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
-                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All">ALL</option>
+                        <option value="PG">PG</option>
+                        <option value="SG">SG</option>
+                        <option value="SF">SF</option>
+                        <option value="PF">PF</option>
+                        <option value="C">C</option>
+                    </select>
                 </div>
             </div>
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
@@ -192,14 +210,23 @@
         <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
             <div class="flex gap-4 mb-10">
-                <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL POSITIONS</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                    <option value="All">ALL POSITIONS</option>
+                    <option value="PG">PG</option>
+                    <option value="SG">SG</option>
+                    <option value="SF">SF</option>
+                    <option value="PF">PF</option>
+                    <option value="C">C</option>
+                </select>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
 
         <section id="page-bbs" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-bbs">BBS</h2>
-            <div class="rounded-xl overflow-hidden bg-white shadow-2xl"><iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe></div>
+            <div class="rounded-xl overflow-hidden bg-white shadow-2xl">
+                <iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe>
+            </div>
         </section>
     </div>
 
