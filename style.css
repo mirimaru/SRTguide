@@ -21,37 +21,35 @@ body {
     text-transform: uppercase; 
 }
 
-/* ★ HOMEレイアウトの大幅修正 */
+/* ★ HOMEレイアウトの最新調整 */
 #home-split-wrapper { 
     display: flex; 
     width: 100%; 
+    justify-content: space-between; /* 左右を端に寄せて中央を空ける */
 }
 
-/* ★ 左側：背景を黒く塗りつぶし、幅を絞って左に寄せる */
+/* ★ 左側：塗りつぶし範囲を1文字分右に寄せて拡大 */
 .home-left { 
-    width: 35%; /* 中央キャラが見えるように幅を縮小 */
-    min-width: 320px;
-    max-width: 450px; 
-    padding: 60px 40px; 
+    width: 38%; /* 幅を広げて境界を右に移動 */
+    padding: 80px 40px; 
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
-    background: rgba(0, 0, 0, 0.95) !important; /* 不透明な黒で塗りつぶし */
+    background: #000 !important; /* 不透明黒で塗りつぶし */
     z-index: 10; 
     height: 100%;
-    box-shadow: 20px 0 30px rgba(0,0,0,0.5); /* 右側に影を落として境界を自然に */
 }
 
-/* ★ 右側：残りのスペースを使い、パネルを右のキャラ位置に寄せる */
+/* ★ 右側：不透明黒で塗りつぶし、パネルを配置 */
 .home-right { 
-    flex-grow: 1; /* 残りのスペースを埋める */
+    width: 38%; /* 右側も不透明なエリアを確保 */
     position: relative; 
     overflow: hidden; 
-    background: transparent !important; 
+    background: #000 !important; /* 不透明黒で塗りつぶし */
     display: flex; 
-    justify-content: flex-end; /* 右寄せ */
+    justify-content: center; 
     align-items: center; 
-    padding-right: 8%; /* キャラと重なる位置に微調整 */
+    z-index: 10;
 }
 
 /* ナビゲーション */
@@ -75,21 +73,20 @@ body {
     color: var(--brand-orange); 
 }
 
-/* ★ パネルグリッド：キャラ絵に合わせたサイズと配置 */
+/* パネルグリッド：縮小版 */
 .panel-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 0.5rem; 
     width: 100%;
-    max-width: 380px; /* キャラ絵の幅にフィットさせる */
-    margin-right: 0; 
+    max-width: 360px; 
 }
 
 .panel-box { 
-    background: #0f0f0f !important; /* 不透明黒背景 */
+    background: #0f0f0f !important; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 1.5rem 0.5rem; 
-    border-radius: 1.5rem; 
+    padding: 1.2rem 0.5rem; 
+    border-radius: 1.2rem; 
     text-align: center; 
     cursor: pointer; 
     transition: all 0.2s ease-in-out;
@@ -99,54 +96,34 @@ body {
     background: #1a1a1a !important; 
     transform: translateY(-5px); 
     border-color: var(--brand-orange); 
-    box-shadow: 0 0 25px rgba(255, 78, 0, 0.8); 
+    box-shadow: 0 0 20px rgba(255, 78, 0, 0.8); 
 }
 
-.panel-box h3 {
-    margin-top: 0.5rem;
-    font-weight: 900;
-}
+.panel-box h3 { margin-top: 0.5rem; font-weight: 900; }
 
 /* Guideキャラクター演出 */
 .guide-char-img {
-    object-fit: cover; 
-    height: 100%; 
-    width: 100%;
-    background-color: rgba(0,0,0,0.4); 
-    border-radius: 0.5rem;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    object-fit: cover; height: 100%; width: 100%;
+    background-color: rgba(0,0,0,0.4); border-radius: 0.5rem;
+    border: 2px solid transparent; cursor: pointer; transition: all 0.3s ease;
 }
-
 .guide-char-img:hover {
-    transform: scale(1.1);
-    z-index: 20;
-    border-color: var(--brand-orange);
-    box-shadow: 0 0 15px var(--brand-orange);
+    transform: scale(1.1); z-index: 20;
+    border-color: var(--brand-orange); box-shadow: 0 0 15px var(--brand-orange);
 }
 
-/* ページ制御 */
+/* 下層ページ制御 */
 .page-container { display: none; }
 .page-container.active-page { display: block; }
 
 /* データベース & P-BUFF カード */
-.char-card, .pbuff-card { 
-    border-radius: 2rem; 
-    border-width: 1px; 
-    position: relative; 
-    overflow: hidden; 
-    transition: transform 0.3s; 
-}
-
+.char-card, .pbuff-card { border-radius: 2rem; border-width: 1px; position: relative; overflow: hidden; transition: transform 0.3s; }
 #grid > div, #pbuff-grid-container div[class*="bg-white/5"] { padding: 2.5rem !important; }
-
 .stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 20px; }
 .stat-box { background: rgba(0,0,0,0.6); padding: 8px 4px; text-align: center; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
 .stat-lbl { font-size: 0.6rem; color: #aaa; font-weight: 800; text-transform: uppercase; }
 .stat-val { font-size: 1.1rem; font-weight: 900; color: #fff; }
 .is-max { color: #facc15 !important; text-shadow: 0 0 10px rgba(250, 204, 21, 0.5); }
-
 .pbuff-item { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.5rem 0; }
 .pbuff-name { color: #888; font-weight: bold; }
 .pbuff-val { color: #fff; font-weight: 900; }
@@ -157,7 +134,5 @@ body {
 /* レスポンシブ */
 @media (max-width: 1024px) {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
-    .home-left { width: 100%; max-width: none; padding: 2rem 1.5rem; }
-    .home-right { padding: 2rem 1.5rem; justify-content: center; }
-    .panel-grid { width: 100%; margin: 0 auto; }
+    .home-left, .home-right { width: 100%; padding: 2rem 1.5rem; }
 }
