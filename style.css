@@ -21,7 +21,7 @@ body {
     text-transform: uppercase; 
 }
 
-/* HOME Split Layout (背景画像が透けるように調整) */
+/* HOME Split Layout (背景絵が透けるように調整) */
 #home-split-wrapper { 
     display: flex; 
     min-height: 100vh; 
@@ -68,19 +68,19 @@ body {
     color: var(--brand-orange); 
 }
 
-/* パネルグリッド：キャラ位置に合わせてコンパクトに */
+/* パネルグリッド：キャラ位置に合わせてギュッとまとめる */
 .panel-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 0.75rem; 
     width: 100%;
     max-width: 420px; 
-    margin-right: 10%; 
+    margin-right: 15%; /* キャラの右側寄りに調整 */
 }
 
 .panel-box { 
     background: rgba(0, 0, 0, 0.75); 
-    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
     padding: 1.25rem 0.5rem; 
     border-radius: 1rem; 
     text-align: center; 
@@ -90,9 +90,10 @@ body {
 }
 
 .panel-box:hover { 
-    background: rgba(255, 78, 0, 0.25); 
+    background: rgba(255, 78, 0, 0.3); 
     transform: translateY(-5px); 
     border-color: var(--brand-orange); 
+    box-shadow: 0 0 15px rgba(255, 78, 0, 0.4);
 }
 
 .panel-box h3 {
@@ -109,7 +110,7 @@ body {
     display: block; 
 }
 
-/* データベース・P-BUFF カード */
+/* データベース・P-BUFF カード (キャラ画像を背景にする設定は削除) */
 .char-card, .pbuff-card { 
     border-radius: 2rem; 
     border-width: 1px; 
@@ -136,8 +137,12 @@ body {
 .pbuff-name { color: #888; font-weight: bold; }
 .pbuff-val { color: #fff; font-weight: 900; }
 
+/* アニメーション */
 .fade-in { animation: fadeIn 0.8s ease-out forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ステータスバッジ(Guide用) */
+.step-badge { background: var(--brand-orange); color: #000; font-weight: 900; padding: 4px 14px; border-radius: 8px; font-style: italic; margin-bottom: 12px; display: inline-block; }
 
 /* レスポンシブ */
 @media (max-width: 1024px) {
