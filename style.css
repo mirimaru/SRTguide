@@ -117,7 +117,7 @@ body {
     transform: translateY(-5px);
 }
 
-/* JS生成要素への強制ルール (重要) */
+/* JS生成要素への強制ルール */
 #grid > div,
 #pbuff-grid-container div[class*="bg-white/5"] {
     padding: 2.5rem !important;
@@ -133,13 +133,21 @@ body {
 .pbuff-name { color: #888; font-weight: bold; }
 .pbuff-val { color: #fff; font-weight: 900; }
 
-/* アニメーション */
-.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+/* フェードインアニメーション */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* スクロールバー非表示 */
-.scrollbar-hide::-webkit-scrollbar { display: none; }
-.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+/* スクロールバー隠し */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
