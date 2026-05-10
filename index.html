@@ -10,7 +10,7 @@
 </head>
 <body class="bg-black">
 
-    <header class="sticky top-0 z-[100] bg-black/90 backdrop-blur-md px-4 py-2 flex items-center border-b border-white/10">
+    <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home')">
             <h1 class="text-xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
@@ -30,10 +30,10 @@
         </div>
     </header>
 
-    <div id="home-split-wrapper" class="fade-in relative" style="background-image: url('image_5709c0.jpg'); background-size: cover; background-position: center; height: calc(100vh - 56px);">
-        <div class="absolute inset-0 bg-black/10 z-0"></div>
+    <div id="home-split-wrapper" class="fade-in relative" style="background-image: url('image_5709c0.jpg'); background-size: cover; background-position: center; height: calc(100vh - 64px);">
+        <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
 
-        <div class="absolute top-4 right-6 z-30 flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1 shadow-[0_0_15px_rgba(255,78,0,0.5)]">
+        <div class="absolute top-12 right-6 z-30 flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1.5 shadow-[0_0_15px_rgba(255,78,0,0.6)]">
             <i class="fas fa-users text-orange-500 text-sm"></i>
             <div id="counter_area" class="scale-75 origin-right">
                 <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
@@ -45,14 +45,14 @@
                 <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
             </div>
             
-            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-2xl mb-6">
-                <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
-                <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
+            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-6 rounded-r-xl w-full shadow-2xl mb-8">
+                <h3 class="text-xl font-black italic text-orange-500 mb-3" data-i18n="about-title">ABOUT ME</h3>
+                <p class="text-sm text-gray-200 leading-relaxed mb-3" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
                 <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
             </div>
 
-            <div class="bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full shadow-2xl">
-                <h3 class="text-xs font-black italic text-orange-500 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> RECOMMENDED</h3>
+            <div class="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5 w-full shadow-2xl">
+                <h3 class="text-xs font-black italic text-orange-500 mb-3 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> RECOMMENDED</h3>
                 <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
                     <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n1ZK-5ukGHI" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="absolute bottom-6 right-8 z-30">
-                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.5)] flex items-center gap-3" onclick="openMapModal()">
+                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openMapModal()">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
                     <div class="text-left leading-tight">
                         <div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div>
@@ -140,32 +140,14 @@
                     <div class="step-badge inline-block bg-orange-500 text-black font-black px-4 py-1 rounded mb-4 italic">STEP 3</div>
                     <h3 class="text-3xl font-black italic mb-6">育成手順</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div>
-                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                            <p class="text-sm text-gray-400 mt-4 text-center px-4">強者のピラミッド。P5昇級が基盤です。</p>
-                        </div>
-                        <div>
-                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
-                            <p class="text-sm text-gray-400 mt-4 text-center px-4">P-BUFFはカードより圧倒的に効率が良いです。</p>
-                        </div>
+                        <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
+                        <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl">
                     </div>
                 </div>
                 <div>
                     <div class="step-badge inline-block bg-orange-500 text-black font-black px-4 py-1 rounded mb-4 italic">STEP 4</div>
                     <h3 class="text-3xl font-black italic mb-6">チームプレイ</h3>
                     <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-8 shadow-2xl">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-left">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic">Level 1 & 2: 基礎</h4>
-                            <img src="guide_step4_space.png" class="rounded-xl mb-4 w-full border border-white/10">
-                            <p class="text-gray-300">味方の邪魔をしない。スペースを空ける。ドライブコースを塞がないのが鉄則です。</p>
-                        </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic">Level 3 & 4: 応用</h4>
-                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10">
-                            <p class="text-gray-300">ミスを責めず、ポジティブなエモートでチームを鼓舞しましょう。</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -190,14 +172,6 @@
                 </select>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
-        </section>
-
-        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
-            <div class="space-y-8">
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4><p class="text-xl text-gray-300">A: バフ値（強化分）です。</p></div>
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10"><h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: 育成はP-Buffとカードどちらが先？</h4><p class="text-xl text-gray-300">A: P-Buffが先です。</p></div>
-            </div>
         </section>
 
         <section id="page-bbs" class="page-container px-6 lg:px-20 py-10">
