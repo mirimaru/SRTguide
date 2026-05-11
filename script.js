@@ -49,7 +49,6 @@ window.i18n = {
     }
 };
 
-// ★ 用語辞書（中身の翻訳：持久力、成功率などすべて網羅）
 window.termsDict = {
     'en': { 
         'ポスト': 'Post', 'ミドル': 'Mid', '3点': '3pt', 'Sレイ': 'S-Lay', 'Lレイ': 'L-Lay', 'Sダン': 'S-Dunk', 'Lダン': 'L-Dunk', 'パス': 'Pass', 'スティ': 'Steal', 'Jプロ': 'J-Blk', 'Dプロ': 'D-Blk', '当たり': 'Tough', 'リバ': 'Reb', 'ラン': 'Run', '持久': 'Stam',
@@ -59,7 +58,7 @@ window.termsDict = {
     'ko': { 
         'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크', 'パス': '패스', 'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '충돌', 'リバ': '리바', 'ラン': '런', '持久': '지구',
         '持久力': '지구력', '持久力の回復量': '지구력 회복량', '3点シュート成功率': '3점 성공률', 'ミドルシュート成功率': '미들 성공률', '一般の移動速度': '일반 이동 속도', 'リバウンド': '리바운드', 'ブロック': '블록', 'スティール': '스틸', 'ダンク成功率': '덩크 성공률', 'レイアップ成功率': '레이업 성공률',
-        'Lダンク 発動確率': 'L-덩크 발동 확률', 'Lダンク ブロック抵抗': 'L-덩크 블록 저항', 'ブロック抵抗成功率': '블록 저항 성공률', 'スティール成功率': '스틸 성공률', 'Lレイ ブロック抵抗': 'L-레이 블록 저항', 'Sレイ 守備抵抗': 'S-레이 수비 저항', '3点シュート 成功率': '3점 성공률', 'Sダンク 守備抵抗': 'S-덩크 수비 저항', 'Sレイアップ 成功率': 'S-레이업 성공률', 'ミドルシュート 成功率': '미들 성공률'
+        'Lダンク 発動確率': 'L-덩크 발동 확률', 'Lダン가 ブロック抵抗': 'L-덩크 블록 저항', 'ブロック抵抗成功率': '블록 저항 성공률', 'スティール成功率': '스틸 성공률', 'Lレイ ブロック抵抗': 'L-레이 블록 저항', 'Sレイ 守備抵抗': 'S-레이 수비 저항', '3点シュート 成功率': '3점 성공률', 'Sダンク 守備抵抗': 'S-덩크 수비 저항', 'Sレイアップ 成功率': 'S-레이업 성공률', 'ミドルシュート 成功率': '미들 성공률'
     },
     'zh': { 
         'ポスト': '篮下', 'ミドル': '中投', '3点': '三分', 'Sレイ': 'S上篮', 'Lレイ': 'L上篮', 'Sダン': 'S扣篮', 'Lダン': 'L扣篮', 'パス': '传球', 'スティ': '抢断', 'Jプロ': 'J盖帽', 'Dプロ': 'D盖帽', '当たり': '对抗', 'リバ': '篮板', 'ラン': '跑動', '持久': '体力',
@@ -81,7 +80,6 @@ function switchLanguage(lang, btnElement = null) {
         const key = el.getAttribute("data-i18n");
         if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
-    // ★ 言語切替時に中身も再描画
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -121,18 +119,43 @@ function initDb() {
     rawData.forEach(c => {
         const card = document.createElement('div'); 
         card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
+        
+        // ★修正ポイント: 検索エラーを防ぎ、英・日どちらでも確実に検索できるように連結
+        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase();
+        card.dataset.name = searchName; 
+        card.dataset.pos = c.pos || 'All';
+        
         const cName = currentLang === 'ja' ? c.名前 : c.en;
         let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
-            const isMax = v === maxStats[c.pos][i];
+            const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
             const labelJa = statNames[i];
-            // ★ 中身のラベルを翻訳
             const label = currentLang === 'ja' ? labelJa : (window.termsDict[currentLang] && window.termsDict[currentLang][labelJa]) || labelJa;
             sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
         card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -10px; height: 240px; opacity: 0.4; pointer-events: none;">`;
         grid.appendChild(card);
+    });
+    // 初回描画時にもフィルターを反映させる
+    filterCards();
+}
+
+// ★修正ポイント: エラーで落ちない堅牢なフィルター関数
+function filterCards() {
+    const searchInput = document.getElementById('nameInput');
+    const posFilter = document.getElementById('posFilter');
+    if (!searchInput || !posFilter) return;
+    
+    const search = searchInput.value.toLowerCase();
+    const pos = posFilter.value;
+    
+    document.querySelectorAll('.char-card').forEach(card => {
+        const name = card.dataset.name || '';
+        const cardPos = card.dataset.pos || '';
+        const nameMatch = name.includes(search);
+        const posMatch = pos === 'All' || cardPos === pos;
+        card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
     });
 }
 
@@ -154,7 +177,6 @@ function initPBuff() {
             const cName = currentLang === 'ja' ? char.name : char.en;
             let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
-                // ★ バフ効果名を翻訳
                 const effect = currentLang === 'ja' ? b[0] : (window.termsDict[currentLang] && window.termsDict[currentLang][b[0]]) || b[0];
                 bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
@@ -163,16 +185,6 @@ function initPBuff() {
         });
         container.appendChild(grid);
     }
-}
-
-function filterCards() {
-    const search = document.getElementById('nameInput').value.toLowerCase();
-    const pos = document.getElementById('posFilter').value;
-    document.querySelectorAll('.char-card').forEach(card => {
-        const nameMatch = card.dataset.name.includes(search);
-        const posMatch = pos === 'All' || card.dataset.pos === pos;
-        card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
-    });
 }
 
 window.onload = () => { switchLanguage('ja'); showPage('home'); };
