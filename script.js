@@ -49,26 +49,81 @@ window.i18n = {
     }
 };
 
+// ★ パーツ自動結合に対応した超強化版・翻訳辞書
 window.termsDict = {
-    'en': { 
-        'ポスト': 'Post', 'ミドル': 'Mid', '3点': '3pt', 'Sレイ': 'S-Lay', 'Lレイ': 'L-Lay', 'Sダン': 'S-Dunk', 'Lダン': 'L-Dunk', 'パス': 'Pass', 'スティ': 'Steal', 'Jプロ': 'J-Blk', 'Dプロ': 'D-Blk', '当たり': 'Tough', 'リバ': 'Reb', 'ラン': 'Run', '持久': 'Stam',
-        '持久力': 'Stamina', '持久力の回復量': 'Stamina Recovery', '3点シュート成功率': '3pt Success', 'ミドルシュート成功率': 'Mid Success', '一般の移動速度': 'Move Speed', 'リバウンド': 'Rebound', 'ブロック': 'Block', 'スティール': 'Steal', 'ダンク成功率': 'Dunk Success', 'レイアップ成功率': 'Layup Success',
-        'Lダンク 発動確率': 'L-Dunk Rate', 'Lダンク ブロック抵抗': 'L-Dunk Blk Res', 'ブロック抵抗成功率': 'Blk Res Success', 'スティール成功率': 'Steal Success', 'Lレイ ブロック抵抗': 'L-Lay Blk Res', 'Sレイ 守備抵抗': 'S-Lay Def Res', '3点シュート 成功率': '3pt Success Rate', 'Sダンク 守備抵抗': 'S-Dunk Def Res', 'Sレイアップ 成功率': 'S-Lay Success Rate', 'ミドルシュート 成功率': 'Mid Success Rate'
+    'en': {
+        'ノーマーク': 'Open', 'シュートタッチ': 'Shooting Touch',
+        '3点シュート': '3pt', 'ミドルシュート': 'Mid', 'ゴール下シュート': 'Post Shot', 'ジャンプシュート': 'Jump Shot',
+        '遠距離ダンク': 'Long Dunk', '近距離ダンク': 'Short Dunk', '遠距離レイアップ': 'Long Lay', '近距離レイアップ': 'Short Lay',
+        'Sダンク': 'S-Dunk', 'Lダンク': 'L-Dunk', 'Sレイアップ': 'S-Lay', 'Lレイアップ': 'L-Lay',
+        'ドライブイン': 'Drive-in', 'フェイスアップ': 'Face-up', 'アリウープ': 'Alley-oop',
+        'ブロック': 'Block', 'スティール': 'Steal', 'リバウンド': 'Rebound', 'パス': 'Pass',
+        '一般の移動速度': 'Normal Move Speed', '移動速度': 'Move Speed', '持久力': 'Stam',
+        '回復量': 'Recovery', '最大値': 'Max', '最大': 'Max',
+        '成功率': 'Success', '発動確率': 'Rate', '守備抵抗': 'Def Resist', '抵抗': 'Resist',
+        '距離': 'Dist', '角度': 'Angle', '以降': 'After', '衝突': 'Collision', '減少': 'Decrease',
+        'ポスト': 'Post', 'ミドル': 'Mid', '3点': '3pt', 'Sレイ': 'S-Lay', 'Lレイ': 'L-Lay', 'Sダン': 'S-Dunk', 'Lダン': 'L-Dunk',
+        'スティ': 'Steal', 'Jプロ': 'J-Blk', 'Dプロ': 'D-Blk', '当たり': 'Tough', 'リバ': 'Reb', 'ラン': 'Run', '持久': 'Stam', 'Jブロ': 'J-Blk', 'Dブロ': 'D-Blk'
     },
-    'ko': { 
-        'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크', 'パス': '패스', 'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '충돌', 'リバ': '리바', 'ラン': '런', '持久': '지구',
-        '持久力': '지구력', '持久力の回復量': '지구력 회복량', '3点シュート成功率': '3점 성공률', 'ミドルシュート成功率': '미들 성공률', '一般の移動速度': '일반 이동 속도', 'リバウンド': '리바운드', 'ブロック': '블록', 'スティール': '스틸', 'ダンク成功率': '덩크 성공률', 'レイアップ成功率': '레이업 성공률',
-        'Lダンク 発動確率': 'L-덩크 발동 확률', 'Lダン가 ブロック抵抗': 'L-덩크 블록 저항', 'ブロック抵抗成功率': '블록 저항 성공률', 'スティール成功率': '스틸 성공률', 'Lレイ ブロック抵抗': 'L-레이 블록 저항', 'Sレイ 守備抵抗': 'S-레이 수비 저항', '3点シュート 成功率': '3점 성공률', 'Sダンク 守備抵抗': 'S-덩크 수비 저항', 'Sレイアップ 成功率': 'S-레이업 성공률', 'ミドルシュート 成功率': '미들 성공률'
+    'ko': {
+        'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
+        '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
+        '遠距離ダンク': '원거리 덩크', '近距離ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
+        'Sダンク': 'S-덩크', 'Lダンク': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
+        'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
+        'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
+        '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
+        '回復量': '회복량', '最大値': '최대치', '最大': '최대',
+        '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
+        '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
+        'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
+        'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', 'リバ': '리바', 'ラン': '런', '持久': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록'
     },
-    'zh': { 
-        'ポスト': '篮下', 'ミドル': '中投', '3点': '三分', 'Sレイ': 'S上篮', 'Lレイ': 'L上篮', 'Sダン': 'S扣篮', 'Lダン': 'L扣篮', 'パス': '传球', 'スティ': '抢断', 'Jプロ': 'J盖帽', 'Dプロ': 'D盖帽', '当たり': '对抗', 'リバ': '篮板', 'ラン': '跑動', '持久': '体力',
-        '持久力': '持久力', '持久力の回復量': '体力恢复量', '3点シュート成功率': '三分成功率', 'ミドルシュート成功率': '中投成功率', '一般の移動速度': '一般移动速度', 'リバウンド': '篮板球', 'ブロック': '盖帽', 'スティール': '抢断', 'ダンク成功率': '扣篮成功率', 'レイアップ成功率': '上篮成功率',
-        'Lダンク 発動確率': 'L扣篮发动概率', 'Lダンク ブロック抵抗': 'L扣篮盖帽抵抗', 'ブロック抵抗成功率': '盖帽抵抗成功率', 'スティール成功率': '抢断成功率', 'Lレイ ブロック抵抗': 'L上篮盖帽抵抗', 'Sレイ 守備抵抗': 'S上篮防守抵抗', '3点シュート 成功率': '三分成功率', 'Sダンク 守備抵抗': 'S扣篮防守抵抗', 'Sレイアップ 成功率': 'S上篮成功率', 'ミドルシュート 成功率': '中投成功率'
+    'zh': {
+        'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
+        '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
+        '遠距離ダンク': '远距离扣篮', '近距離ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
+        'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
+        'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
+        'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
+        '一般の移動速度': '一般移动速度', '移動速度': '移动速度', '持久力': '体力',
+        '回復量': '恢复量', '最大値': '最大值', '最大': '最大',
+        '成功率': '成功率', '発動確率': '发动概率', '守備抵抗': '防守抵抗', '抵抗': '抵抗',
+        '距離': '距离', '角度': '角度', '以降': '之后', '衝突': '碰撞', '減少': '减少',
+        'ポスト': '篮下', 'ミドル': '中投', '3点': '三分', 'Sレイ': 'S上篮', 'Lレイ': 'L上篮', 'Sダン': 'S扣篮', 'Lダン': 'L扣篮',
+        'スティ': '抢断', 'Jプロ': 'J盖帽', 'Dプロ': 'D盖帽', '当たり': '对抗', 'リバ': '篮板', 'ラン': '跑動', '持久': '体力', 'Jブロ': 'J盖帽', 'Dブロ': 'D盖帽'
     }
 };
 
 let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
+
+// ★最強翻訳エンジン（部分一致で自動結合）
+function getTranslatedText(text, lang) {
+    if (lang === 'ja') return text;
+    const dict = window.termsDict[lang];
+    if (!dict) return text;
+
+    // 1. まず完全一致をチェック
+    if (dict[text]) return dict[text];
+
+    // 2. スペースを一旦詰めて、長い単語から順番に置換していく
+    let normalizedText = text.replace(/\s+/g, '');
+    let result = normalizedText;
+    
+    // 誤爆を防ぐため、文字数の多いキーから優先して処理
+    const keys = Object.keys(dict).sort((a, b) => b.length - a.length);
+    
+    keys.forEach(k => {
+        if (result.includes(k)) {
+            // 単語の間にスペースを入れて置換（英語などでくっつかないように）
+            result = result.split(k).join(` ${dict[k]} `);
+        }
+    });
+
+    // 3. 余分なスペースを綺麗に整形して返す
+    return result.replace(/\s+/g, ' ').trim();
+}
 
 function switchLanguage(lang, btnElement = null) {
     currentLang = lang;
@@ -80,6 +135,7 @@ function switchLanguage(lang, btnElement = null) {
         const key = el.getAttribute("data-i18n");
         if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
+    // DBとPバフの動的コンテンツも再描画
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -120,7 +176,7 @@ function initDb() {
         const card = document.createElement('div'); 
         card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
         
-        // ★修正ポイント: 検索エラーを防ぎ、英・日どちらでも確実に検索できるように連結
+        // 検索エラー防止（英・日どちらでも検索可能に）
         const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase();
         card.dataset.name = searchName; 
         card.dataset.pos = c.pos || 'All';
@@ -130,18 +186,18 @@ function initDb() {
         c.s.forEach((v, i) => {
             const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
             const labelJa = statNames[i];
-            const label = currentLang === 'ja' ? labelJa : (window.termsDict[currentLang] && window.termsDict[currentLang][labelJa]) || labelJa;
+            // 最強翻訳エンジンを通す
+            const label = getTranslatedText(labelJa, currentLang);
             sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
         card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -10px; height: 240px; opacity: 0.4; pointer-events: none;">`;
         grid.appendChild(card);
     });
-    // 初回描画時にもフィルターを反映させる
     filterCards();
 }
 
-// ★修正ポイント: エラーで落ちない堅牢なフィルター関数
+// 検索エラーで落ちない堅牢なフィルター関数
 function filterCards() {
     const searchInput = document.getElementById('nameInput');
     const posFilter = document.getElementById('posFilter');
@@ -177,7 +233,8 @@ function initPBuff() {
             const cName = currentLang === 'ja' ? char.name : char.en;
             let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
             char.buffs.forEach(b => { 
-                const effect = currentLang === 'ja' ? b[0] : (window.termsDict[currentLang] && window.termsDict[currentLang][b[0]]) || b[0];
+                // 最強翻訳エンジンを通す
+                const effect = getTranslatedText(b[0], currentLang);
                 bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
             }); 
             bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -10px; height: 200px; opacity: 0.5; pointer-events: none;">`;
