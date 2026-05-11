@@ -73,7 +73,7 @@
             </div>
 
             <div class="absolute bottom-6 right-8 z-30">
-                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('ボックスの位置.jpg')">
+                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
                     <div class="text-left leading-tight">
                         <div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div>
@@ -233,13 +233,13 @@
     <script src="script.js"></script>
     
     <script>
-        // ★現在の画像 ＋ 追加の4枚 ＝ 計5枚のリスト
+        // ★半角英数字に変更したファイル名のリスト (計5枚)
         const bgImages = [
             'image_5709c0.jpg',
-            'オープニング.jpg',
-            'オープニングブレア.jpg',
-            'オープニングカミラ.jpg',
-            'オープニング牛.jpg'
+            'op_main.jpg',
+            'op_blair.jpg',
+            'op_camila.jpg',
+            'op_cow.jpg'
         ];
 
         // ★ランダムに背景を変える関数
@@ -252,7 +252,6 @@
 
         // ページを最初に開いたときにも1回実行する
         document.addEventListener('DOMContentLoaded', changeBackground);
-
 
         // 画像拡大用
         function openImageModal(src) {
