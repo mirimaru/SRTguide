@@ -73,7 +73,7 @@
             </div>
 
             <div class="absolute bottom-6 right-8 z-30">
-                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openMapModal()">
+                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('ボックスの位置.jpg')">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
                     <div class="text-left leading-tight">
                         <div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div>
@@ -88,7 +88,7 @@
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
-                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl">
+                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                 <div>
                     <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">ABOUT ME</h3>
                     <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
@@ -104,7 +104,7 @@
                     <div class="step-badge">STEP 1</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s1-title">ポジションの特徴</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <img src="guide_step1_role.png" class="rounded-2xl w-full">
+                        <img src="guide_step1_role.png" class="rounded-2xl w-full cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                         <div class="grid grid-cols-1 gap-4">
                             <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm" data-i18n="guide-s1-pg">パスと機動力。守備の要。</p></div>
                             <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sg">最高得点能力。多彩なスキル。</p></div>
@@ -143,25 +143,39 @@
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-center mb-12">
                         <div>
-                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4">
+                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                             <p class="text-sm text-gray-400" data-i18n="guide-s3-p1">強者のピラミッド。P5昇級が基盤です。</p>
                         </div>
                         <div>
-                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4">
+                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                             <p class="text-sm text-gray-400" data-i18n="guide-s3-p2">P-BUFFはカードより圧倒的に効率が良いです。</p>
                         </div>
                     </div>
                     
                     <div class="bg-[#0f0f0f] border-t-4 border-red-600 p-8 rounded-3xl text-center shadow-2xl max-w-4xl mx-auto">
-                        <img src="image_441842.jpg" class="rounded-2xl w-full border border-white/10 shadow-lg">
+                        <img src="image_441842.jpg" class="rounded-2xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                     </div>
                 </div>
 
                 <div>
                     <div class="step-badge">STEP 4</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
-                    <div class="max-w-5xl mx-auto text-center">
-                        <img src="image_3c2c72.jpg" class="w-full rounded-3xl border border-white/10 shadow-2xl">
+                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-10 shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2: 基礎</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                                <img src="guide_step4_space.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                                <img src="guide_step4_space2.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                            </div>
+                            <p class="text-gray-300" data-i18n="guide-s4-l12-d">味方の邪魔をしない。スペースを空ける。ドライブコースを塞がないのが鉄則です。</p>
+                        </div>
+
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4: 応用</h4>
+                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                            <p class="text-gray-300" data-i18n="guide-s4-l34-d">ミスを責めず、ポジティブなエモートでチームを鼓舞しましょう。</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -208,22 +222,26 @@
         </section>
     </div>
 
-    <div id="map-modal" class="hidden fixed inset-0 z-[120] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeMapModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[121]"><i class="fas fa-times"></i></button>
-        <img src="ボックスの位置.jpg" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[120]" onclick="event.stopPropagation()">
-        <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeMapModal()"></div>
+    <div id="image-modal" class="hidden fixed inset-0 z-[120] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[121]">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[120]" onclick="event.stopPropagation()">
+        <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeImageModal()"></div>
     </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    
     <script>
-        function openMapModal() {
-            const modal = document.getElementById('map-modal');
+        function openImageModal(src) {
+            document.getElementById('modal-image').src = src;
+            const modal = document.getElementById('image-modal');
             modal.classList.remove('hidden');
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
         }
-        function closeMapModal() {
-            const modal = document.getElementById('map-modal');
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
             modal.classList.add('opacity-0');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
