@@ -25,7 +25,7 @@ window.i18n = {
     },
     'ko': {
         'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개',
-        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가イ드를 공유합니다. 커뮤니티를 활성화합시다!',
+        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
         'guide-s1-pg': '패스와 기동력. 수비의 핵심.', 'guide-s1-sg': '최고의 득점력. 다채로운 스킬.', 'guide-s1-sf': '공수 양면의 만능형.', 'guide-s1-big': '골밑의 수호자. 리바운드.',
@@ -49,7 +49,6 @@ window.i18n = {
     }
 };
 
-// ★完全復旧版・パーツ結合翻訳辞書
 window.termsDict = {
     'en': {
         'ノーマーク': 'Open', 'シュートタッチ': 'Shooting Touch',
@@ -75,14 +74,14 @@ window.termsDict = {
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
         '回復量': '회복량', '最大値': '최대치', '最大': '최대',
         '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
-        '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
+        '거리': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
         'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
         'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', 'リバ': '리바', 'ラン': '런', '持久': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록'
     },
     'zh': {
         'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
         '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
+        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '近距离上篮',
         'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
         'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
         'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
@@ -97,6 +96,63 @@ window.termsDict = {
 
 let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
+
+
+// ★新規追加：韓国語の生データを強制的に日本語に自動修正する最強プログラム
+function autoFixKoreanData() {
+    const krFix = {
+        "리 윌리엄": "ウィリアム",
+        "일반 이동 속도": "一般の移動速度",
+        "3점슛": "3点シュート",
+        "S덩크 발동 확률": "Sダンク 発動確率",
+        "3점 성공률": "3点シュート 成功率",
+        "S덩크 수비 저항": "Sダンク 守備抵抗",
+        "S레이업 성공률": "Sレイアップ 成功率",
+        "미들 성공률": "ミドルシュート 成功率",
+        "리바운드": "リバウンド",
+        "미들 수비 저항": "ミドル守備抵抗",
+        "돌파 블록": "Dインシュート ブロック",
+        "점프슛 블록": "Jシュート ブロック",
+        "슛 방해": "シュート妨害効果",
+        "몸싸움": "当たり強さ",
+        "L덩크 성공률": "ロングダンク 成功率",
+        "포스트 성공률": "ポストショット 成功率",
+        "공격 리바운드": "Oリバウンド能力",
+        "수비 리바운드": "Dリバウンド能力",
+        "스틸 성공률": "スティール成功率",
+        "패스": "パス",
+        "스틸": "スティール",
+        "블록": "ブロック"
+    };
+
+    // rawDataの修正
+    if (typeof rawData !== 'undefined') {
+        rawData.forEach(c => {
+            if (krFix[c.名前]) c.名前 = krFix[c.名前];
+            if (krFix[c.name]) c.name = krFix[c.name];
+        });
+    }
+    
+    // pBuffDataの修正
+    if (typeof pBuffData !== 'undefined') {
+        for (const pos in pBuffData) {
+            pBuffData[pos].forEach(c => {
+                if (krFix[c.名前]) c.名前 = krFix[c.名前];
+                if (krFix[c.name]) c.name = krFix[c.name];
+                if (c.buffs) {
+                    c.buffs.forEach(b => {
+                        for (const [kr, ja] of Object.entries(krFix)) {
+                            if (b[0] && b[0].includes(kr)) {
+                                b[0] = b[0].replace(kr, ja);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    }
+}
+
 
 function getTranslatedText(text, lang) {
     if (lang === 'ja') return text;
@@ -207,12 +263,10 @@ function initPBuff() {
         title.innerText = posName;
         container.appendChild(title);
         
-        // ★修正ポイント：2xl:grid-cols-4 にして1列4キャラ表示へ
         const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
         
         chars.forEach(char => {
-            // ★修正ポイント：p-4にして余白を詰め、スペースを節約
             const card = document.createElement('div'); 
             card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
             const cName = char.en || char.name;
@@ -225,7 +279,6 @@ function initPBuff() {
                 bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-sm lg:text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-black text-[#ff4e00]">${b[1]}</span></div>`; 
             }); 
             
-            // ★修正ポイント：heightを210pxに拡大、位置を調整
             bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -15px; height: 210px; opacity: 0.45; pointer-events: none;">`;
             card.innerHTML = bHtml; grid.appendChild(card);
         });
@@ -233,4 +286,9 @@ function initPBuff() {
     }
 }
 
-window.onload = () => { switchLanguage('ja'); showPage('home'); };
+window.onload = () => { 
+    // ★ページを読み込んだ瞬間に、韓国語をすべて自動で日本語に直す！
+    autoFixKoreanData(); 
+    switchLanguage('ja'); 
+    showPage('home'); 
+};
