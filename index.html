@@ -32,6 +32,10 @@
 
     <div id="home-split-wrapper" class="fade-in relative transition-all duration-1000 ease-in-out" style="background-size: cover; background-position: center; height: calc(100vh - 64px);">
         <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
+        
+        <div class="absolute top-12 left-1/2 transform -translate-x-1/2 z-[45] w-[90%] max-w-xl cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImageModal('mvp.jpg')">
+            <img src="mvp.jpg" alt="MVP Update" class="w-full rounded-2xl shadow-2xl border border-white/20">
+        </div>
 
         <div class="absolute top-12 right-6 z-[50] flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1.5 shadow-[0_0_15px_rgba(255,78,0,0.6)]">
             <i class="fas fa-users text-orange-500 text-sm"></i>
@@ -44,13 +48,11 @@
             <div class="mb-6">
                 <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
             </div>
-            
-            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-2xl mb-8">
+            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-2xl mb-8 mt-16 md:mt-24">
                 <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
                 <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
                 <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
             </div>
-
             <div class="bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full shadow-2xl">
                 <h3 class="text-xs font-black italic text-orange-500 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> <span data-i18n="home-recommended">RECOMMENDED</span></h3>
                 <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
@@ -60,7 +62,7 @@
         </div>
 
         <div class="home-right relative z-10">
-            <div class="panel-grid">
+            <div class="panel-grid mt-16 md:mt-24">
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
                 <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
                 <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
@@ -71,20 +73,17 @@
                 <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">YOUTUBE</h3></a>
                 <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">OFFICIAL</h3></a>
             </div>
-
             <div class="absolute bottom-6 right-8 z-30">
                 <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
-                    <div class="text-left leading-tight">
-                        <div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div>
-                        <div class="text-sm font-black text-white italic" data-i18n="home-map">プレゼントMAP</div>
-                    </div>
+                    <div class="text-left leading-tight"><div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div><div class="text-sm font-black text-white italic" data-i18n="home-map">プレゼントMAP</div></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="standard-content" class="hidden">
+        
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -113,21 +112,20 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <div class="step-badge">STEP 2</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s2-title">おすすめキャラ</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <div>
                             <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-free-t">無課金・初期のおすすめ</h4>
                             <p class="text-gray-300 mb-6" data-i18n="guide-s2-free-d">Murdock (PF): ブロック力が高く、最高の選択肢です。</p>
                             <div class="aspect-video rounded-xl overflow-hidden bg-black shadow-xl">
                                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <div>
                             <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-best-t">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-3 h-[320px]">
+                            <div class="grid grid-cols-5 gap-3">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="guide-char-img cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="guide-char-img cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                                 <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="guide-char-img cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
@@ -137,7 +135,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <div class="step-badge">STEP 3</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
@@ -155,25 +152,21 @@
                         </div>
                     </div>
                 </div>
-
                 <div>
                     <div class="step-badge">STEP 4</div>
                     <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
                     <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-10 shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2: 基礎</h4>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2</h4>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
                                 <img src="guide_step4_space.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                                 <img src="guide_step4_space2.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                             </div>
-                            <p class="text-gray-300" data-i18n="guide-s4-l12-d">味方の邪魔をしない。スペースを空ける。ドライブコースを塞がないのが鉄則です。</p>
                         </div>
-
                         <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4: 応用</h4>
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4</h4>
                             <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            <p class="text-gray-300" data-i18n="guide-s4-l34-d">ミスを責めず、ポジティブなエモートでチームを鼓舞しましょう。</p>
                         </div>
                     </div>
                 </div>
@@ -219,30 +212,21 @@
                 <iframe src="https://srtguide.bbs.fc2.com/" width="100%" height="800px" style="border:none;"></iframe>
             </div>
         </section>
+
     </div>
 
-    <div id="image-modal" class="hidden fixed inset-0 z-[120] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
-        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl hover:text-orange-500 transition cursor-pointer z-[121]">
-            <i class="fas fa-times"></i>
-        </button>
-        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain relative z-[120]" onclick="event.stopPropagation()">
-        <div class="absolute inset-0 z-50 cursor-pointer" onclick="closeImageModal()"></div>
+    <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl z-[201]"><i class="fas fa-times"></i></button>
+        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain" onclick="event.stopPropagation()">
+        <div class="absolute inset-0 z-190 cursor-pointer" onclick="closeImageModal()"></div>
     </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
     
     <script>
-        // ★半角英数字に変更したファイル名のリスト (計5枚)
-        const bgImages = [
-            'image_5709c0.jpg',
-            'op_main.jpg',
-            'op_blair.jpg',
-            'op_camila.jpg',
-            'op_cow.jpg'
-        ];
+        const bgImages = ['image_5709c0.jpg', 'op_main.jpg', 'op_blair.jpg', 'op_camila.jpg', 'op_cow.jpg'];
 
-        // ★ランダムに背景を変える関数
         function changeBackground() {
             const bgWrapper = document.getElementById('home-split-wrapper');
             if (!bgWrapper) return;
@@ -250,21 +234,23 @@
             bgWrapper.style.backgroundImage = `url('${randomImg}')`;
         }
 
-        // ページを最初に開いたときにも1回実行する
-        document.addEventListener('DOMContentLoaded', changeBackground);
-
-        // 画像拡大用
         function openImageModal(src) {
-            document.getElementById('modal-image').src = src;
             const modal = document.getElementById('image-modal');
+            const img = document.getElementById('modal-image');
+            img.src = src;
             modal.classList.remove('hidden');
             setTimeout(() => modal.classList.remove('opacity-0'), 10);
         }
+
         function closeImageModal() {
             const modal = document.getElementById('image-modal');
             modal.classList.add('opacity-0');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            changeBackground();
+        });
     </script>
 </body>
 </html>
