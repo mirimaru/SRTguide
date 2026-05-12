@@ -49,7 +49,7 @@ window.i18n = {
     }
 };
 
-// ★ パーツ自動結合に対応した超強化版・翻訳辞書
+// ★完全復旧版・最強翻訳辞書
 window.termsDict = {
     'en': {
         'ノーマーク': 'Open', 'シュートタッチ': 'Shooting Touch',
@@ -82,7 +82,7 @@ window.termsDict = {
     'zh': {
         'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
         '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距離ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
+        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
         'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
         'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
         'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
@@ -103,25 +103,18 @@ function getTranslatedText(text, lang) {
     if (lang === 'ja') return text;
     const dict = window.termsDict[lang];
     if (!dict) return text;
-
-    // 1. まず完全一致をチェック
     if (dict[text]) return dict[text];
 
-    // 2. スペースを一旦詰めて、長い単語から順番に置換していく
     let normalizedText = text.replace(/\s+/g, '');
     let result = normalizedText;
     
-    // 誤爆を防ぐため、文字数の多いキーから優先して処理
     const keys = Object.keys(dict).sort((a, b) => b.length - a.length);
-    
     keys.forEach(k => {
         if (result.includes(k)) {
-            // 単語の間にスペースを入れて置換（英語などでくっつかないように）
             result = result.split(k).join(` ${dict[k]} `);
         }
     });
 
-    // 3. 余分なスペースを綺麗に整形して返す
     return result.replace(/\s+/g, ' ').trim();
 }
 
@@ -135,7 +128,6 @@ function switchLanguage(lang, btnElement = null) {
         const key = el.getAttribute("data-i18n");
         if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
-    // DBとPバフの動的コンテンツも再描画
     if (document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
@@ -173,31 +165,40 @@ function initDb() {
         }); 
     });
     rawData.forEach(c => {
+        // ★修正ポイント：パディングを p-10 から p-6 に縮小してコンパクト化
         const card = document.createElement('div'); 
-        card.className = `char-card p-10 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
-        
-        // 検索エラー防止（英・日どちらでも検索可能に）
-        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase();
-        card.dataset.name = searchName; 
+        card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
+        card.dataset.name = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
         card.dataset.pos = c.pos || 'All';
         
-        const cName = currentLang === 'ja' ? c.名前 : c.en;
+        // ★修正ポイント：キャラ名は常に英語(c.en)で固定
+        const cName = c.en || c.名前;
+        
         let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
             const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
             const labelJa = statNames[i];
-            // 最強翻訳エンジンを通す
             const label = getTranslatedText(labelJa, currentLang);
             sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
-        card.innerHTML = `<div class="char-content relative z-10"><div class="text-3xl font-black italic mb-2">${cName}</div><div class="text-[#ff4e00] font-black italic text-2xl mb-6">${c.pos}</div>${sHtml}</div><img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -10px; height: 240px; opacity: 0.4; pointer-events: none;">`;
+
+        // ★修正ポイント：名前を左詰め、ポジションを右詰めの1行レイアウト
+        card.innerHTML = `
+            <div class="char-content relative z-10">
+                <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
+                    <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                    <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
+                </div>
+                ${sHtml}
+            </div>
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 180px; opacity: 0.35; pointer-events: none;">
+        `;
         grid.appendChild(card);
     });
     filterCards();
 }
 
-// 検索エラーで落ちない堅牢なフィルター関数
 function filterCards() {
     const searchInput = document.getElementById('nameInput');
     const posFilter = document.getElementById('posFilter');
@@ -228,16 +229,22 @@ function initPBuff() {
         container.appendChild(title);
         const grid = document.createElement('div'); grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
         chars.forEach(char => {
+            // ★修正ポイント：P-BUFF側も p-6 にしてコンパクト化
             const card = document.createElement('div'); 
-            card.className = `pbuff-card p-10 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
-            const cName = currentLang === 'ja' ? char.name : char.en;
-            let bHtml = `<div class="char-content relative z-10 min-h-[220px]"><h3 class="text-3xl font-black italic text-orange-500 mb-6">${cName}</h3><div class="space-y-3">`;
+            card.className = `pbuff-card p-6 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
+            
+            // ★修正ポイント：P-BUFF側もキャラ名は常に英語(char.en)で固定
+            const cName = char.en || char.name;
+
+            let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
+                <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
+                <div class="space-y-2">`;
+            
             char.buffs.forEach(b => { 
-                // 最強翻訳エンジンを通す
                 const effect = getTranslatedText(b[0], currentLang);
-                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-lg"><span class="pbuff-name">${effect}</span><span class="pbuff-val">${b[1]}</span></div>`; 
+                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-bold">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -10px; height: 200px; opacity: 0.5; pointer-events: none;">`;
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 160px; opacity: 0.4; pointer-events: none;">`;
             card.innerHTML = bHtml; grid.appendChild(card);
         });
         container.appendChild(grid);
