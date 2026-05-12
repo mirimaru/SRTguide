@@ -25,7 +25,7 @@ window.i18n = {
     },
     'ko': {
         'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개',
-        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
+        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가イ드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
         'guide-s1-pg': '패스와 기동력. 수비의 핵심.', 'guide-s1-sg': '최고의 득점력. 다채로운 스킬.', 'guide-s1-sf': '공수 양면의 만능형.', 'guide-s1-big': '골밑의 수호자. 리바운드.',
@@ -49,7 +49,7 @@ window.i18n = {
     }
 };
 
-// ★完全復旧版・最強翻訳辞書
+// ★完全復旧版・パーツ結合翻訳辞書
 window.termsDict = {
     'en': {
         'ノーマーク': 'Open', 'シュートタッチ': 'Shooting Touch',
@@ -58,7 +58,7 @@ window.termsDict = {
         'Sダンク': 'S-Dunk', 'Lダンク': 'L-Dunk', 'Sレイアップ': 'S-Lay', 'Lレイアップ': 'L-Lay',
         'ドライブイン': 'Drive-in', 'フェイスアップ': 'Face-up', 'アリウープ': 'Alley-oop',
         'ブロック': 'Block', 'スティール': 'Steal', 'リバウンド': 'Rebound', 'パス': 'Pass',
-        '一般の移動速度': 'Normal Move Speed', '移動速度': 'Move Speed', '持久力': 'Stam',
+        '一般の移動速度': 'Normal Move Speed', '移動速度': 'Move Speed', '持久力': 'Stamina',
         '回復量': 'Recovery', '最大値': 'Max', '最大': 'Max',
         '成功率': 'Success', '発動確率': 'Rate', '守備抵抗': 'Def Resist', '抵抗': 'Resist',
         '距離': 'Dist', '角度': 'Angle', '以降': 'After', '衝突': 'Collision', '減少': 'Decrease',
@@ -98,23 +98,15 @@ window.termsDict = {
 let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
 
-// ★最強翻訳エンジン（部分一致で自動結合）
 function getTranslatedText(text, lang) {
     if (lang === 'ja') return text;
     const dict = window.termsDict[lang];
     if (!dict) return text;
     if (dict[text]) return dict[text];
-
     let normalizedText = text.replace(/\s+/g, '');
     let result = normalizedText;
-    
     const keys = Object.keys(dict).sort((a, b) => b.length - a.length);
-    keys.forEach(k => {
-        if (result.includes(k)) {
-            result = result.split(k).join(` ${dict[k]} `);
-        }
-    });
-
+    keys.forEach(k => { if (result.includes(k)) result = result.split(k).join(` ${dict[k]} `); });
     return result.replace(/\s+/g, ' ').trim();
 }
 
@@ -132,9 +124,7 @@ function switchLanguage(lang, btnElement = null) {
         document.getElementById('grid').innerHTML = '';
         initDb();
     }
-    if (document.getElementById('pbuff-grid-container').children.length > 0) {
-        initPBuff();
-    }
+    if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
 }
 
 function showPage(id) {
@@ -165,25 +155,18 @@ function initDb() {
         }); 
     });
     rawData.forEach(c => {
-        // ★修正ポイント：パディングを p-10 から p-6 に縮小してコンパクト化
         const card = document.createElement('div'); 
         card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
-        card.dataset.name = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
-        card.dataset.pos = c.pos || 'All';
-        
-        // ★修正ポイント：キャラ名は常に英語(c.en)で固定
+        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
+        card.dataset.name = searchName; card.dataset.pos = c.pos || 'All';
         const cName = c.en || c.名前;
-        
         let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
             const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
-            const labelJa = statNames[i];
-            const label = getTranslatedText(labelJa, currentLang);
+            const label = getTranslatedText(statNames[i], currentLang);
             sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
-
-        // ★修正ポイント：名前を左詰め、ポジションを右詰めの1行レイアウト
         card.innerHTML = `
             <div class="char-content relative z-10">
                 <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
@@ -203,15 +186,11 @@ function filterCards() {
     const searchInput = document.getElementById('nameInput');
     const posFilter = document.getElementById('posFilter');
     if (!searchInput || !posFilter) return;
-    
     const search = searchInput.value.toLowerCase();
     const pos = posFilter.value;
-    
     document.querySelectorAll('.char-card').forEach(card => {
-        const name = card.dataset.name || '';
-        const cardPos = card.dataset.pos || '';
-        const nameMatch = name.includes(search);
-        const posMatch = pos === 'All' || cardPos === pos;
+        const nameMatch = (card.dataset.name || '').includes(search);
+        const posMatch = pos === 'All' || (card.dataset.pos || '') === pos;
         card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
     });
 }
@@ -227,24 +206,27 @@ function initPBuff() {
         title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
         title.innerText = posName;
         container.appendChild(title);
-        const grid = document.createElement('div'); grid.className = 'grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8';
+        
+        // ★修正ポイント：2xl:grid-cols-4 にして1列4キャラ表示へ
+        const grid = document.createElement('div'); 
+        grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
+        
         chars.forEach(char => {
-            // ★修正ポイント：P-BUFF側も p-6 にしてコンパクト化
+            // ★修正ポイント：p-4にして余白を詰め、スペースを節約
             const card = document.createElement('div'); 
-            card.className = `pbuff-card p-6 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
-            
-            // ★修正ポイント：P-BUFF側もキャラ名は常に英語(char.en)で固定
+            card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
             const cName = char.en || char.name;
-
             let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
                 <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
-                <div class="space-y-2">`;
+                <div class="space-y-1.5">`;
             
             char.buffs.forEach(b => { 
                 const effect = getTranslatedText(b[0], currentLang);
-                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-bold">${b[1]}</span></div>`; 
+                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-sm lg:text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-black text-[#ff4e00]">${b[1]}</span></div>`; 
             }); 
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 160px; opacity: 0.4; pointer-events: none;">`;
+            
+            // ★修正ポイント：heightを210pxに拡大、位置を調整
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -15px; height: 210px; opacity: 0.45; pointer-events: none;">`;
             card.innerHTML = bHtml; grid.appendChild(card);
         });
         container.appendChild(grid);
