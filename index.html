@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3on3 FreeStyle | SRT guide</title>
+    <link rel="icon" href="favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -178,7 +179,14 @@
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
                 <div class="flex gap-4">
                     <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
-                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All" class="bg-gray-900 text-white">ALL</option>
+                        <option value="PG" class="bg-gray-900 text-white">PG</option>
+                        <option value="SG" class="bg-gray-900 text-white">SG</option>
+                        <option value="SF" class="bg-gray-900 text-white">SF</option>
+                        <option value="PF" class="bg-gray-900 text-white">PF</option>
+                        <option value="C" class="bg-gray-900 text-white">C</option>
+                    </select>
                 </div>
             </div>
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
@@ -187,7 +195,14 @@
         <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
             <div class="flex gap-4 mb-10">
-                <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer"><option value="All">ALL POSITIONS</option><option value="PG">PG</option><option value="SG">SG</option><option value="SF">SF</option><option value="PF">PF</option><option value="C">C</option></select>
+                <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                    <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+                    <option value="PG" class="bg-gray-900 text-white">PG</option>
+                    <option value="SG" class="bg-gray-900 text-white">SG</option>
+                    <option value="SF" class="bg-gray-900 text-white">SF</option>
+                    <option value="PF" class="bg-gray-900 text-white">PF</option>
+                    <option value="C" class="bg-gray-900 text-white">C</option>
+                </select>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
