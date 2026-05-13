@@ -34,10 +34,6 @@
     <div id="home-split-wrapper" class="fade-in relative transition-all duration-1000 ease-in-out" style="background-size: cover; background-position: center; height: calc(100vh - 64px);">
         <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
         
-        <div class="absolute top-24 right-6 z-[45] w-[50%] sm:w-[14rem] md:w-[16rem] lg:w-[20rem] cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openImageModal('event.jpg')">
-            <img src="event.jpg" alt="Event Info" class="w-full rounded-2xl shadow-2xl border border-white/20">
-        </div>
-
         <div class="absolute top-12 right-6 z-[50] flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1.5 shadow-[0_0_15px_rgba(255,78,0,0.6)]">
             <i class="fas fa-users text-orange-500 text-sm"></i>
             <div id="counter_area" class="scale-75 origin-right">
@@ -63,7 +59,11 @@
         </div>
 
         <div class="home-right relative z-10">
-            <div class="panel-grid mt-56 md:mt-64 lg:mt-72 pb-24">
+            <div class="mt-28 lg:mt-32 mb-8 ml-auto w-full max-w-[20rem] md:max-w-[22rem] lg:max-w-[26rem] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 hover:scale-105 transition-transform duration-300 bg-black">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/FWWawqKFa8I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="panel-grid pb-24">
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
                 <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
                 <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
@@ -74,6 +74,7 @@
                 <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">YOUTUBE</h3></a>
                 <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">OFFICIAL</h3></a>
             </div>
+            
             <div class="absolute bottom-6 right-8 z-30">
                 <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
