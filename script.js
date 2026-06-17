@@ -101,11 +101,11 @@ let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
 
 
-// ★最強・韓国語自動浄化プログラム（1400行のデータからハングルを全滅させます）
+// ★最強・韓国語自動浄化プログラム
 function autoFixKoreanData() {
     const krFix = {
         // キャラ名
-        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シンディ",
+        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
         "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
@@ -116,7 +116,7 @@ function autoFixKoreanData() {
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
         "카지": "カジ", "켄쇼": "ケンショウ", "더블 D": "ダブルD", "지미": "ジミー", "프레드": "フレッド",
 
-        // ステータス・バフ名（誤変換を防ぐため、長い文字列から先に置換されるように後でソートします）
+        // ステータス・バフ名
         "노마크 3점슛 성공률": "ノーマーク3点シュート成功率",
         "일반 이동 속도": "一般の移動速度",
         "3점슛 성공률": "3点シュート 成功率",
@@ -167,7 +167,6 @@ function autoFixKoreanData() {
         "노마크": "ノーマーク"
     };
 
-    // 文字列が長い順にソート（部分一致による誤爆を防ぐため）
     const sortedKeys = Object.keys(krFix).sort((a, b) => b.length - a.length);
 
     const replaceKr = (str) => {
@@ -175,13 +174,12 @@ function autoFixKoreanData() {
         let res = str;
         for (const kr of sortedKeys) {
             if (res.includes(kr)) {
-                res = res.split(kr).join(krFix[kr]); // 全て置換
+                res = res.split(kr).join(krFix[kr]); 
             }
         }
         return res;
     };
 
-    // rawData の浄化
     if (typeof rawData !== 'undefined') {
         rawData.forEach(c => {
             if (c.名前) c.名前 = replaceKr(c.名前);
@@ -189,7 +187,6 @@ function autoFixKoreanData() {
         });
     }
     
-    // pBuffData の浄化
     if (typeof pBuffData !== 'undefined') {
         for (const pos in pBuffData) {
             pBuffData[pos].forEach(c => {
@@ -252,6 +249,7 @@ function showPage(id) {
     window.scrollTo(0,0);
 }
 
+// ★修正箇所：initDbに合計値計算とバッジ表示を組み込みました！
 function initDb() {
     const grid = document.getElementById('grid');
     if (grid.children.length > 0) return;
@@ -275,10 +273,18 @@ function initDb() {
             sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
         sHtml += '</div>';
+
+        // ★ここで15項目の合計値を計算
+        const totalStat = c.s.reduce((sum, val) => sum + val, 0);
+
+        // ★名前の横に TOTALバッジを追加して描画
         card.innerHTML = `
             <div class="char-content relative z-10">
                 <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
-                    <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-[10px] font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
+                    </div>
                     <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
                 </div>
                 ${sHtml}
@@ -340,7 +346,7 @@ function initPBuff() {
 
 // ページを開いた瞬間に全て実行
 window.onload = () => { 
-    autoFixKoreanData(); // ハングルを検知して日本語に完全浄化！
+    autoFixKoreanData(); 
     switchLanguage('ja'); 
     showPage('home'); 
 };
