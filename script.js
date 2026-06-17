@@ -274,16 +274,15 @@ function initDb() {
         });
         sHtml += '</div>';
 
-        // ★ここで15項目の合計値を計算
         const totalStat = c.s.reduce((sum, val) => sum + val, 0);
 
-        // ★名前の横に TOTALバッジを追加して描画
+        // ★変更：text-[10px] から text-xs (12px) に変更して少しだけ大きくしました！
         card.innerHTML = `
             <div class="char-content relative z-10">
                 <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
                     <div class="flex items-center gap-3">
                         <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
-                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-[10px] font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
+                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-xs font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
                     </div>
                     <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
                 </div>
