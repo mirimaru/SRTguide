@@ -1,6 +1,6 @@
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'ポジションの特徴',
@@ -12,7 +12,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'Position Roles',
@@ -24,7 +24,7 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
@@ -36,7 +36,7 @@ window.i18n = {
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'guide-title': '迈向高阶之路', 'guide-s1-title': '位置特点',
@@ -69,7 +69,7 @@ window.termsDict = {
         'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
         '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
         '遠距離ダンク': '원거리 덩크', '近距離ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
-        'Sダンク': 'S-덩크', 'Lダンク': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
+        'Sダン가': 'S-덩크', 'Lダンク': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
         'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
@@ -105,7 +105,7 @@ const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg
 function autoFixKoreanData() {
     const krFix = {
         // キャラ名
-        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
+        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シンディ",
         "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
@@ -144,7 +144,7 @@ function autoFixKoreanData() {
         "블록 저항 성공률": "ブロック抵抗成功率",
         "최대 지구력": "最大持久力",
         "지구력 회복량": "持久力の回復量",
-        "레이업/덩크 거리": "レイアップ/ダンク距離",
+        "레이업/덩크 거리": "レイアップ/ダンク距离",
         "S덩크 속도": "Sダンクの速度",
         "블록 저항": "ブロック抵抗",
         "슛 방해": "シュート妨害効果",
@@ -225,11 +225,15 @@ function switchLanguage(lang, btnElement = null) {
         const key = el.getAttribute("data-i18n");
         if (window.i18n[lang] && window.i18n[lang][key]) el.innerHTML = window.i18n[lang][key];
     });
-    if (document.getElementById('grid').children.length > 0) {
+    if (document.getElementById('grid') && document.getElementById('grid').children.length > 0) {
         document.getElementById('grid').innerHTML = '';
         initDb();
     }
-    if (document.getElementById('pbuff-grid-container').children.length > 0) initPBuff();
+    if (document.getElementById('pbuff-grid-container') && document.getElementById('pbuff-grid-container').children.length > 0) {
+        initPBuff();
+    }
+    // 言語切り替え時にランキングも再描画
+    initRanking();
 }
 
 function showPage(id) {
@@ -240,19 +244,94 @@ function showPage(id) {
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
-    document.querySelectorAll('.nav-link').forEach(l => {
-        l.classList.remove('active');
-        if (l.getAttribute('onclick').includes(id)) l.classList.add('active');
-    });
+    
+    // ナビゲーションのactive制御
+    const navMap = {
+        'guide': 'nav-guide', 
+        'db': 'nav-db', 
+        'ranking': 'nav-ranking',
+        'pbuff': 'nav-pbuff', 
+        'survey': 'nav-survey',
+        'qa': 'nav-qa', 
+        'bbs': 'nav-bbs', 
+        'about': 'nav-about'
+    };
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    if (id === 'home') {
+        const navHome = document.querySelector('[data-i18n="nav-home"]');
+        if (navHome) navHome.classList.add('active');
+    } else {
+        const navEl = document.querySelector('[data-i18n="' + navMap[id] + '"]');
+        if (navEl) navEl.classList.add('active');
+    }
+
     if (id === 'db') initDb();
     if (id === 'pbuff') initPBuff();
+    if (id === 'ranking') initRanking();
     window.scrollTo(0,0);
 }
 
-// ★修正箇所：initDbに合計値計算とバッジ表示を組み込みました！
+// =====================================
+// ★ ランキング生成機能 ★
+// =====================================
+function initRanking() {
+    const container = document.getElementById('ranking-container');
+    if (!container) return;
+
+    // 各キャラの合計値を計算し、大きい順にソート
+    const rankedData = rawData.map(char => {
+        return {
+            ...char,
+            total: char.s.reduce((sum, val) => sum + val, 0)
+        };
+    }).sort((a, b) => b.total - a.total);
+
+    let html = `
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="border-b-2 border-orange-500 text-orange-500">
+                <th class="py-4 px-4 font-black italic text-xl w-24">RANK</th>
+                <th class="py-4 px-4 font-black italic text-xl">CHARACTER</th>
+                <th class="py-4 px-4 font-black italic text-xl">POS</th>
+                <th class="py-4 px-4 font-black italic text-xl text-right">TOTAL STATS</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    rankedData.forEach((char, idx) => {
+        const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
+        const rankNum = idx + 1;
+        
+        // 1〜3位は特別カラー設定
+        let rankStyle = "text-gray-400 font-bold";
+        let rowBg = "hover:bg-white/5";
+        if (rankNum === 1) { rankStyle = "text-yellow-400 font-black text-2xl drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"; rowBg = "bg-yellow-500/10 border-yellow-500/30"; }
+        else if (rankNum === 2) { rankStyle = "text-gray-300 font-black text-xl drop-shadow-[0_0_8px_rgba(209,213,219,0.8)]"; rowBg = "bg-white/10 border-white/20"; }
+        else if (rankNum === 3) { rankStyle = "text-orange-400 font-black text-xl drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]"; rowBg = "bg-orange-500/10 border-orange-500/20"; }
+
+        html += `
+        <tr class="border-b border-white/5 transition ${rowBg}">
+            <td class="py-3 px-4 ${rankStyle}">#${rankNum}</td>
+            <td class="py-3 px-4 flex items-center gap-4">
+                <img src="${charImages[char.en] || ''}" class="w-10 h-10 rounded-full object-cover bg-black/50 border border-white/10">
+                <span class="font-bold text-lg">${cName}</span>
+            </td>
+            <td class="py-3 px-4">
+                <span class="text-xs font-bold tracking-widest ${posColors[char.pos] ? posColors[char.pos].split('/')[0] : ''} px-3 py-1.5 rounded-full border border-white/10 text-white">${char.pos}</span>
+            </td>
+            <td class="py-3 px-4 text-right font-black text-2xl text-[#ff4e00]">${char.total}</td>
+        </tr>
+        `;
+    });
+
+    html += `</tbody></table>`;
+    container.innerHTML = html;
+}
+
 function initDb() {
     const grid = document.getElementById('grid');
-    if (grid.children.length > 0) return;
+    if (!grid || grid.children.length > 0) return;
     const maxStats = {}; 
     ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
         maxStats[p] = Array(15).fill(0); 
@@ -274,9 +353,9 @@ function initDb() {
         });
         sHtml += '</div>';
 
+        // ★合計値バッジ (文字サイズ text-xs (12px) に変更)
         const totalStat = c.s.reduce((sum, val) => sum + val, 0);
 
-        // ★変更：text-[10px] から text-xs (12px) に変更して少しだけ大きくしました！
         card.innerHTML = `
             <div class="char-content relative z-10">
                 <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
@@ -348,4 +427,5 @@ window.onload = () => {
     autoFixKoreanData(); 
     switchLanguage('ja'); 
     showPage('home'); 
+    initRanking(); // 初期ロード時にランキングも生成
 };
