@@ -19,6 +19,7 @@
             <span class="nav-link active" onclick="showPage('home'); changeBackground();" data-i18n="nav-home">HOME</span>
             <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
             <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
+            <span class="nav-link" onclick="showPage('ranking')" data-i18n="nav-ranking">RANKING</span>
             <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
             <span class="nav-link" onclick="showPage('survey')" data-i18n="nav-survey">SURVEY</span>
             <span class="nav-link" onclick="showPage('qa')" data-i18n="nav-qa">Q&A</span>
@@ -68,6 +69,7 @@
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
                 <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
                 <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
+                <div class="panel-box" onclick="showPage('ranking')"><i class="fas fa-trophy text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-ranking">RANKING</h3></div>
                 <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-pbuff">P-BUFF</h3></div>
                 <div class="panel-box" onclick="showPage('survey')"><i class="fas fa-clipboard-list text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-survey">SURVEY</h3></div>
                 <div class="panel-box" onclick="showPage('qa')"><i class="fas fa-question-circle text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-qa">Q&A</h3></div>
@@ -88,6 +90,13 @@
 
     <div id="standard-content" class="hidden">
         
+        <section id="page-ranking" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ranking">RANKING</h2>
+            <div class="bg-white/5 p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl overflow-x-auto">
+                <div id="ranking-container" class="min-w-[600px]"></div>
+            </div>
+        </section>
+
         <section id="page-survey" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
             <div class="bg-white/5 p-4 md:p-10 rounded-[30px] border border-white/10 text-center">
