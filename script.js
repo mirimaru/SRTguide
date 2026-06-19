@@ -1,11 +1,18 @@
 // ==========================================
 // ★ キャラクター紹介動画のID管理リスト ★
-// 動画が完成したら、ここにYouTubeのID（URLの v= の後ろ、または youtu.be/ の後ろの文字列）を追加してください。
-// IDが設定されていないキャラは「準備中」の表示になります。
+// 動画が完成したら、ここにキャラ名とYouTubeのID（v= の後ろの文字列）を追加してください。
+// 日本語名でも英語名でも反応するように強化しました！
 // ==========================================
 const charVideoIds = {
-    "Giant G": "", // ジャイアントG（ゴリラ）の動画が完成したらここにIDを入れます
-    // 例: "Fox": "abc123def45",
+    "Giant G": "", // ジャイアントG（現在制作中）
+    "牛魔王": "C8Shm4jd028",
+    "Ox Queen": "C8Shm4jd028",
+    "ルーサー": "ZDOSlNUUNGQ",
+    "Luther": "ZDOSlNUUNGQ",
+    "ビッグドッグ": "6MoEgbtd32Q",
+    "Big Dog": "6MoEgbtd32Q",
+    "ネイサン": "t6RT7MBjJ2I",
+    "Nathan": "t6RT7MBjJ2I"
 };
 
 window.i18n = {
@@ -13,7 +20,7 @@ window.i18n = {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
-        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。※まずはジャイアントG（ゴリラ）から順次公開・追加していく予定です！',
+        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。現在「牛魔王」「ルーサー」「ビッグドッグ」「ネイサン」公開中！今後も順次追加予定です！',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'ポジションの特徴',
         'guide-s1-pg': 'パスと機動力。守備の要。', 'guide-s1-sg': '最高得点能力。多彩なスキル。', 'guide-s1-sf': '攻守に貢献する万能型。', 'guide-s1-big': 'ゴール下の番人。リバウンド。',
         'guide-s2-title': 'おすすめキャラ', 'guide-s2-free-t': '無課金・初期のおすすめ', 'guide-s2-free-d': 'Murdock (PF): ブロック力が高く、最高の選択肢です。', 'guide-s2-best-t': '最強キャラ (Premium)',
@@ -26,7 +33,7 @@ window.i18n = {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
-        'videos-desc': 'Click a character icon to play their introduction video. *Starting with Giant G, more videos will be added sequentially!',
+        'videos-desc': 'Click a character icon to play their introduction video. Videos for Ox Queen, Luther, Big Dog, and Nathan are now available!',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'Position Roles',
         'guide-s1-pg': 'Pass & Speed. Defense key.', 'guide-s1-sg': 'Best scoring. Diverse skills.', 'guide-s1-sf': 'All-rounder for Offense/Defense.', 'guide-s1-big': 'Paint protector. Rebounding.',
         'guide-s2-title': 'Recommended Characters', 'guide-s2-free-t': 'F2P / Starter Picks', 'guide-s2-free-d': 'Murdock (PF): High block power, best choice.', 'guide-s2-best-t': 'Top Tier (Premium)',
@@ -39,7 +46,7 @@ window.i18n = {
         'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
-        'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다. ※자이언트 G를 시작으로 순차적으로 추가될 예정입니다!',
+        'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다. 새로운 영상이 계속 추가될 예정입니다!',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
         'guide-s1-pg': '패스와 기동력. 수비의 핵심.', 'guide-s1-sg': '최고의 득점력. 다채로운 스킬.', 'guide-s1-sf': '공수 양면의 만능형.', 'guide-s1-big': '골밑의 수호자. 리바운드.',
         'guide-s2-title': '추천 캐릭터', 'guide-s2-free-t': '무과금 / 초기 추천', 'guide-s2-free-d': 'Murdock (PF): 블록 능력이 뛰어나 최고의 선택입니다.', 'guide-s2-best-t': '최강 캐릭터 (Premium)',
@@ -52,7 +59,7 @@ window.i18n = {
         'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
-        'videos-desc': '点击角色图标播放介绍视频。※首先从Giant G（大猩猩）开始，将陆续发布！',
+        'videos-desc': '点击角色图标播放介绍视频。正在陆续添加新视频中！',
         'guide-title': '迈向高阶之路', 'guide-s1-title': '位置特点',
         'guide-s1-pg': '传球与机动性。防守的核心。', 'guide-s1-sg': '最强得分能力。多样化的技能。', 'guide-s1-sf': '攻守兼备的全能型。', 'guide-s1-big': '篮下守护者。篮板球。',
         'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
@@ -84,13 +91,13 @@ window.termsDict = {
         '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
         '遠距離ダンク': '원거리 덩크', '近距離ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
         'Sダンク': 'S-덩크', 'Lダンク': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
-        'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
+        'ドライブイン': '드라이브 인', '페이스アップ': '페이스업', 'アリウープ': '앨리웁',
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
         '回復量': '회복량', '最大値': '최대치', '最大': '최대',
         '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
         '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
-        'ポスト': '포스트', '미들': '미들', '3점': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
+        'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
         'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', 'リバ': '리바', 'ラン': '런', '持久': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
         '最大持久力': '최대 지구력', 'ノーマーク3点シュート成功率': '노마크 3점슛 성공률'
     },
@@ -121,12 +128,12 @@ function autoFixKoreanData() {
         "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
-        "레베카": "レベッカ", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
-        "리틀폭스": "リトルフォックス", "미카": "ミカ", "워커": "ウォーカー", "카밀라": "カミラ",
-        "나디아": "ナディア", "잭": "ジャック", "디콘": "ディーコン", "노아": "ノ아", "클로이": "クロエ",
-        "아일라": "アイラ", "로이드": "ロ이드", "하울": "ハウル", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
+        "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
+        "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
+        "나디아": "나디아", "잭": "ジャック", "디콘": "ディーコン", "노아": "ノ아", "클로이": "クロエ",
+        "아일라": "アイラ", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
-        "카지": "カ지", "켄쇼": "ケンショウ", "더블 D": "ダブルD", "지미": "ジミー", "프레드": "フレッド",
+        "카지": "카지", "켄쇼": "켄쇼", "더블 D": "ダブルD", "지미": "지미", "프레드": "프레드",
 
         "노마크 3점슛 성공률": "ノーマーク3点シュート成功率", "일반 이동 속도": "一般の移動速度",
         "3점슛 성공률": "3点シュート 成功率", "3점 성공률": "3点シュート 成功率",
@@ -139,9 +146,9 @@ function autoFixKoreanData() {
         "돌파 블록": "Dインシュート ブロック", "점프슛 블록": "Jシュート ブロック", "블록 저항 성공률": "ブロック抵抗成功率",
         "최대 지구력": "最大持久力", "지구력 회복량": "持久力の回復量", "레이업/덩크 거리": "レイアップ/ダンク距離",
         "S덩크 속도": "Sダンクの速度", "블록 저항": "ブロック抵抗", "슛 방해": "シュート妨害効果", "몸싸움": "当たり強さ",
-        "리바운드": "リバウンド", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
-        "3점슛": "3点シュート", "3점": "3点", "미들슛": "ミドルシュート", "미들": "ミドル",
-        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "Lレイアップ",
+        "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
+        "3점슛": "3点シュート", "3점": "3点", "미들슛": "ミドルシュート", "미들": "미들",
+        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "L레이업",
         "이동 속도": "移動速度", "노마크": "ノーマーク"
     };
 
@@ -235,7 +242,7 @@ function showPage(id) {
 }
 
 // =====================================
-// ★ 新機能：VIDEOSページ生成 ★
+// ★ VIDEOSページ生成機能 ★
 // =====================================
 function initVideos() {
     const grid = document.getElementById('video-grid');
@@ -250,10 +257,13 @@ function initVideos() {
 
         const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
         const imgUrl = charImages[char.en] || 'placeholder.png';
-        const videoId = charVideoIds[char.en];
+        
+        // 日本語名と英語名の両方で動画IDを照合する
+        const videoId = charVideoIds[char.en] || charVideoIds[char.名前];
+        
         const isGiantG = (char.en === 'Giant G' || char.名前 === 'ジャイアントG');
 
-        // 動画が登録されているか、あるいは進行中のジャイアントGか判定してバッジを付ける
+        // 動画が登録されているか判定してバッジを付ける
         let badge = '';
         let opacityClass = '';
         if (videoId) {
