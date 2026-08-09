@@ -1,110 +1,76 @@
 // ==========================================
 // ★ キャラクター紹介動画のID管理リスト ★
-// 動画が完成したら、ここにキャラ名とYouTubeのIDを追加してください。
 // ==========================================
 const charVideoIds = {
     "Giant G": "", 
-    "牛魔王": "C8Shm4jd028",
-    "Ox Queen": "C8Shm4jd028",
-    "ルーサー": "ZDOSlNUUNGQ",
-    "Luther": "ZDOSlNUUNGQ",
-    "ビッグドッグ": "6MoEgbtd32Q",
-    "Big Dog": "6MoEgbtd32Q",
-    "ネイサン": "t6RT7MBjJ2I",
-    "Nathan": "t6RT7MBjJ2I",
-    // ▼ 今回追加した4人の動画ID ▼
-    "Lulu": "b-01v1HsFDY",
-    "ルル": "b-01v1HsFDY",
-    "Murdock": "XGzjCnhXK3M",
-    "マードック": "XGzjCnhXK3M",
-    "Clarke": "qQHoLNlMKNE",
-    "クラーク": "qQHoLNlMKNE",
-    "LEE": "qNas3J33Bls",
-    "リー": "qNas3J33Bls"
+    "牛魔王": "C8Shm4jd028", "Ox Queen": "C8Shm4jd028",
+    "ルーサー": "ZDOSlNUUNGQ", "Luther": "ZDOSlNUUNGQ",
+    "ビッグドッグ": "6MoEgbtd32Q", "Big Dog": "6MoEgbtd32Q",
+    "ネイサン": "t6RT7MBjJ2I", "Nathan": "t6RT7MBjJ2I",
+    "Lulu": "b-01v1HsFDY", "ルル": "b-01v1HsFDY",
+    "Murdock": "XGzjCnhXK3M", "マードック": "XGzjCnhXK3M",
+    "Clarke": "qQHoLNlMKNE", "クラーク": "qQHoLNlMKNE",
+    "LEE": "qNas3J33Bls", "リー": "qNas3J33Bls"
 };
 
 // ==========================================
 // ★ システム強化：新キャラクター＆P-BUFF自動インジェクション ★
-// data.jsを上書きせずに新キャラ2名を全機能に登録します
 // ==========================================
 function injectNewCharacters() {
     if (typeof charImages === 'undefined') {
         window.charImages = {};
     }
-    // 公式イラストリンクの流し込み
     charImages["Lavieta"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/ravieta/chr_b.png";
     charImages["Luna"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/luna/chr_b.png";
 
-    // 1. ステータスデータの追加 (DATABASE, RANKING, VIDEOS用)
     if (typeof rawData !== 'undefined') {
-        // ラビエタ (SG) の重複登録を防止して追加
         const hasLavieta = rawData.some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
         if (!hasLavieta) {
             rawData.push({
-                "名前": "ラビエタ",
-                "en": "Lavieta",
-                "pos": "SG",
+                "名前": "ラビエタ", "en": "Lavieta", "pos": "SG",
                 "s": [127, 178, 229, 140, 204, 89, 89, 165, 152, 153, 102, 89, 89, 229, 191]
             });
         }
-        // ルナ (SF) の重複登録を防止して追加
         const hasLuna = rawData.some(c => c.en === 'Luna' || c.名前 === 'ルナ');
         if (!hasLuna) {
             rawData.push({
-                "名前": "ルナ",
-                "en": "Luna",
-                "pos": "SF",
+                "名前": "ルナ", "en": "Luna", "pos": "SF",
                 "s": [153, 204, 153, 127, 165, 114, 165, 140, 114, 178, 140, 114, 140, 153, 178]
             });
         }
     }
 
-    // 2. P-BUFFデータの追加 (P-BUFFページ用)
     if (typeof pBuffData !== 'undefined') {
-        // ラビエタ (SG) のP-BUFFを追加
         if (pBuffData["SG (シューティングガード)"]) {
             const hasLavietaBuff = pBuffData["SG (シューティングガード)"].some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
             if (!hasLavietaBuff) {
                 pBuffData["SG (シューティングガード)"].push({
-                    "名前": "ラビエタ",
-                    "en": "Lavieta",
-                    "buffs": [
-                        ["スティールの速度", "+8.4%"],
-                        ["持久力", "+14"],
-                        ["ランニング", "+14"],
-                        ["ロングレイアップ", "+12"],
-                        ["当たり強さ", "+14"]
-                    ]
+                    "名前": "ラビエタ", "en": "Lavieta",
+                    "buffs": [ ["スティールの速度", "+8.4%"], ["持久力", "+14"], ["ランニング", "+14"], ["ロングレイアップ", "+12"], ["当たり強さ", "+14"] ]
                 });
             }
         }
-
-        // ルナ (SF) のP-BUFFを追加
         if (pBuffData["SF (スモールフォワード)"]) {
             const hasLunaBuff = pBuffData["SF (スモールフォワード)"].some(c => c.en === 'Luna' || c.名前 === 'ルナ');
             if (!hasLunaBuff) {
                 pBuffData["SF (スモールフォワード)"].push({
-                    "名前": "ルナ",
-                    "en": "Luna",
-                    "buffs": [
-                        ["パス", "+14"],
-                        ["持久力", "+14"],
-                        ["ランニング", "+14"],
-                        ["ロングダンク", "+14"],
-                        ["3点シュート", "+14"]
-                    ]
+                    "名前": "ルナ", "en": "Luna",
+                    "buffs": [ ["パス", "+14"], ["持久力", "+14"], ["ランニング", "+14"], ["ロングダンク", "+14"], ["3点シュート", "+14"] ]
                 });
             }
         }
     }
 }
 
+// ==========================================
+// ★ 言語・翻訳辞書データ ★
+// ==========================================
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
-        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。ルル、マードック、クラーク、リー、牛魔王、ルーサー、ビッグドッグ、ネイサン公開中！今後も順次追加予定です！',
+        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'ポジションの特徴',
         'guide-s1-pg': 'パスと機動力。守備の要。', 'guide-s1-sg': '最高得点能力。多彩なスキル。', 'guide-s1-sf': '攻守に貢献する万能型。', 'guide-s1-big': 'ゴール下の番人。リバウンド。',
         'guide-s2-title': 'おすすめキャラ', 'guide-s2-free-t': '無課金・初期のおすすめ', 'guide-s2-free-d': 'Murdock (PF): ブロック力が高く、最高の選択肢です。', 'guide-s2-best-t': '最強キャラ (Premium)',
@@ -114,7 +80,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'videos-desc': 'Click a character icon to play their introduction video.',
@@ -127,7 +93,7 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
@@ -140,7 +106,7 @@ window.i18n = {
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'videos-desc': '点击角色图标播放介绍视频。',
@@ -188,7 +154,7 @@ window.termsDict = {
     'zh': {
         'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
         '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '远距离上篮',
+        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '近距离上篮',
         'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
         'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
         'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
@@ -205,7 +171,9 @@ window.termsDict = {
 let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
 
-// 韓国語自動浄化プログラム
+// ==========================================
+// ★ データ自動浄化＆言語切り替え ★
+// ==========================================
 function autoFixKoreanData() {
     const krFix = {
         "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
@@ -215,10 +183,9 @@ function autoFixKoreanData() {
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
         "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
         "나디아": "나디아", "잭": "ジャック", "디콘": "ディー콘", "노아": "ノ아", "클로이": "クロエ",
-        "아일라": "アイラ", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
+        "아일라": "アイ라", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
         "카지": "카지", "켄쇼": "켄쇼", "더블 D": "ダブルD", "지미": "지미", "프레드": "프레드",
-
         "노마크 3점슛 성공률": "ノーマーク3点シュート成功率", "일반 이동 속도": "一般の移動速度",
         "3점슛 성공률": "3点シュート 成功率", "3점 성공률": "3点シュート 成功率",
         "S덩크 발동 확률": "Sダンク 発動確率", "S덩크 수비 저항": "Sダンク 守備抵抗", "S덩크 블록 저항": "Sダンク ブロック抵抗",
@@ -232,7 +199,7 @@ function autoFixKoreanData() {
         "S덩크 속도": "Sダンクの速度", "블록 저항": "ブロック抵抗", "슛 방해": "シュート妨害効果", "몸싸움": "当たり強さ",
         "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
         "3점슛": "3点シュート", "3점": "3点", "미들슛": "ミドルシュート", "미들": "미들",
-        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "Lレイアップ",
+        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "L레이업",
         "이동 속도": "移動速度", "노마크": "ノーマーク"
     };
 
@@ -299,16 +266,25 @@ function switchLanguage(lang, btnElement = null) {
     }
 }
 
+// ==========================================
+// ★ ページナビゲーション機能・画像切り替え ★
+// ==========================================
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
-    if (id === 'home') { split.style.display = 'flex'; standard.classList.add('hidden'); } 
-    else { split.style.display = 'none'; standard.classList.remove('hidden'); }
-    document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
-    const target = document.getElementById('page-' + id);
-    if(target) target.classList.add('active-page');
+    if (id === 'home') { 
+        if(split) split.style.display = 'flex'; 
+        if(standard) standard.classList.add('hidden'); 
+    } else { 
+        if(split) split.style.display = 'none'; 
+        if(standard) standard.classList.remove('hidden'); 
+    }
     
-    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about' };
+    document.querySelectorAll('.page-container').forEach(p => p.classList.add('hidden'));
+    const target = document.getElementById('page-' + id);
+    if(target) target.classList.remove('hidden');
+    
+    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about' };
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     if (id === 'home') {
         const navHome = document.querySelector('[data-i18n="nav-home"]');
@@ -322,7 +298,319 @@ function showPage(id) {
     if (id === 'pbuff') initPBuff();
     if (id === 'ranking') initRanking();
     if (id === 'videos') initVideos();
+    
+    // ▼ Pingマップを表示した瞬間にアニメーションを開始するトリガー ▼
+    if (id === 'ping') setTimeout(initPingVisualizer, 50);
+    
     window.scrollTo(0,0);
+}
+
+// ▼ 背景画像のランダム切り替え処理 ▼
+const bgImages = ['image_5709c0.jpg', 'op_main.jpg', 'op_blair.jpg', 'op_camila.jpg', 'op_cow.jpg'];
+function changeBackground() {
+    const bgWrapper = document.getElementById('home-split-wrapper');
+    if (!bgWrapper) return;
+    const randomImg = bgImages[Math.floor(Math.random() * bgImages.length)];
+    bgWrapper.style.backgroundImage = `url('${randomImg}')`;
+}
+
+// ▼ 画像拡大（モーダル）処理 ▼
+function openImageModal(src) {
+    const modal = document.getElementById('image-modal');
+    const img = document.getElementById('modal-image');
+    if(!modal || !img) return;
+    img.src = src;
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.remove('opacity-0'), 10);
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    if(!modal) return;
+    modal.classList.add('opacity-0');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
+// =====================================
+// ★ PING MAP ビジュアライザー (D3.js) ★
+// 消えていたPingマップのアニメーション処理を完全復活！
+// =====================================
+const pingNodes = [
+    { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
+    { id: "Tohoku", label: "東北", x: 810, y: 220, type: "client" },
+    { id: "Tokyo", label: "東京", x: 770, y: 320, type: "server" },
+    { id: "Kansai", label: "関西", x: 670, y: 370, type: "client" },
+    { id: "Kyushu", label: "九州", x: 550, y: 410, type: "client" },
+    { id: "Okinawa", label: "沖縄", x: 420, y: 550, type: "client" },
+    { id: "Seoul", label: "ソウル", x: 470, y: 280, type: "server" },
+    { id: "Taiwan", label: "台湾", x: 300, y: 580, type: "client" },
+    { id: "HongKong", label: "香港", x: 160, y: 610, type: "client" },
+    { id: "Manila", label: "フィリピン", x: 340, y: 720, type: "client" },
+    { id: "Singapore", label: "シンガポール", x: 80, y: 840, type: "client" }
+];
+
+const pingDataMap = {
+    Hokkaido: { tokyo: 20, seoul: 50 },
+    Tohoku: { tokyo: 15, seoul: 45 },
+    Tokyo: { tokyo: 5, seoul: 40 },
+    Kansai: { tokyo: 12, seoul: 30 },
+    Kyushu: { tokyo: 22, seoul: 15 },
+    Okinawa: { tokyo: 40, seoul: 65 },
+    Seoul: { tokyo: 40, seoul: 5 },
+    Taiwan: { tokyo: 35, seoul: 60 },
+    HongKong: { tokyo: 45, seoul: 70 },
+    Manila: { tokyo: 75, seoul: 85 },
+    Singapore: { tokyo: 85, seoul: 95 }
+};
+
+let currentTarget = "tokyo";
+let isPingInitialized = false;
+let packetAnimations = [];
+
+function initPingVisualizer() {
+    if (typeof d3 === 'undefined') return;
+    const svg = d3.select("#map-svg");
+    if (svg.empty()) return;
+    
+    svg.attr("viewBox", "0 0 1000 950")
+       .attr("preserveAspectRatio", "xMidYMid meet");
+
+    if (!isPingInitialized) {
+        const bgLayer = svg.append("g").attr("class", "bg-labels opacity-10 font-black text-6xl tracking-widest pointer-events-none");
+        bgLayer.append("text").attr("x", 650).attr("y", 250).attr("fill", "#fff").attr("transform", "rotate(25, 650, 250)").text("JAPAN");
+        bgLayer.append("text").attr("x", 350).attr("y", 200).attr("fill", "#fff").text("KOREA");
+        bgLayer.append("text").attr("x", 20).attr("y", 500).attr("fill", "#fff").text("EAST ASIA");
+        bgLayer.append("text").attr("x", 100).attr("y", 750).attr("fill", "#fff").text("SEA");
+
+        svg.append("g").attr("class", "links");
+        svg.append("g").attr("class", "nodes");
+        svg.append("g").attr("class", "packets");
+        svg.append("g").attr("class", "labels");
+
+        isPingInitialized = true;
+
+        // サーバーアイコンの波紋アニメーション
+        d3.timer((elapsed) => {
+            const svgMap = d3.select("#map-svg");
+            if (!svgMap.empty()) {
+                svgMap.selectAll(".pulse-ring")
+                    .attr("r", function() {
+                        const parentData = d3.select(this.parentNode).datum();
+                        if(!parentData || parentData.id.toLowerCase() !== currentTarget) return 0;
+                        return 14 + (elapsed % 1500) / 1500 * 20;
+                    })
+                    .attr("opacity", function() {
+                        const parentData = d3.select(this.parentNode).datum();
+                        if(!parentData || parentData.id.toLowerCase() !== currentTarget) return 0;
+                        return 1 - (elapsed % 1500) / 1500;
+                    });
+            }
+        });
+        
+        // サーバー切り替えボタンの動作
+        const btnTokyo = document.getElementById('btn-tokyo');
+        const btnSeoul = document.getElementById('btn-seoul');
+        if(btnTokyo && btnSeoul) {
+            btnTokyo.addEventListener('click', function() {
+                this.classList.add('active');
+                this.classList.remove('text-slate-300');
+                btnSeoul.classList.remove('active');
+                btnSeoul.classList.add('text-slate-300');
+                renderMap('tokyo');
+            });
+
+            btnSeoul.addEventListener('click', function() {
+                this.classList.add('active');
+                this.classList.remove('text-slate-300');
+                btnTokyo.classList.remove('active');
+                btnTokyo.classList.add('text-slate-300');
+                renderMap('seoul');
+            });
+        }
+    }
+    renderMap(currentTarget);
+}
+
+function getColorByPing(ping) {
+    if (ping <= 30) return "#34d399";
+    if (ping <= 60) return "#38bdf8";
+    if (ping <= 90) return "#fbbf24";
+    return "#f43f5e";
+}
+
+function renderMap(targetServerId) {
+    currentTarget = targetServerId;
+    const targetNode = pingNodes.find(n => n.id.toLowerCase() === targetServerId);
+    const svg = d3.select("#map-svg");
+    if(svg.empty()) return;
+    
+    packetAnimations.forEach(timer => timer.stop());
+    packetAnimations = [];
+    svg.select(".packets").selectAll("*").remove();
+
+    const linksData = pingNodes.filter(n => n.id.toLowerCase() !== targetServerId).map(n => {
+        return {
+            source: n,
+            target: targetNode,
+            ping: pingDataMap[n.id][targetServerId]
+        };
+    });
+
+    const serverNode = pingNodes.find(n => n.type === 'server' && n.id.toLowerCase() !== targetServerId);
+    if(serverNode) {
+         linksData.push({
+            source: serverNode,
+            target: targetNode,
+            ping: pingDataMap[serverNode.id][targetServerId]
+         });
+    }
+
+    const linkLayer = svg.select(".links");
+    const links = linkLayer.selectAll("path")
+        .data(linksData, d => d.source.id);
+
+    links.enter()
+        .append("path")
+        .attr("class", "link-line")
+        .attr("fill", "none")
+        .attr("stroke-width", 2)
+        .merge(links)
+        .attr("d", d => {
+            const dx = d.target.x - d.source.x;
+            const dy = d.target.y - d.source.y;
+            const dr = Math.sqrt(dx * dx + dy * dy) * 1.5;
+            return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+        })
+        .attr("stroke", d => getColorByPing(d.ping))
+        .attr("stroke-opacity", 0.4)
+        .attr("id", d => `path-${d.source.id}`);
+
+    links.exit().remove();
+
+    const nodeLayer = svg.select(".nodes");
+    const nodeElements = nodeLayer.selectAll("g.node")
+        .data(pingNodes, d => d.id);
+    
+    const nodeEnter = nodeElements.enter().append("g").attr("class", "node")
+        .attr("transform", d => `translate(${d.x},${d.y})`);
+
+    nodeEnter.append("circle")
+        .attr("r", d => d.type === "server" ? 14 : 8)
+        .attr("fill", d => d.type === "server" ? "#1e293b" : "#334155")
+        .attr("stroke", d => d.type === "server" ? "#38bdf8" : "#94a3b8")
+        .attr("stroke-width", d => d.type === "server" ? 4 : 2)
+        .attr("class", d => d.type === "server" ? "node-server" : "node-client");
+        
+    nodeEnter.filter(d => d.type === "server").append("circle")
+        .attr("class", "pulse-ring")
+        .attr("r", 20)
+        .attr("fill", "none")
+        .attr("stroke", "#38bdf8")
+        .attr("stroke-width", 2)
+        .attr("opacity", 0);
+
+    nodeElements.selectAll(".node-server")
+        .attr("stroke", d => d.id.toLowerCase() === targetServerId ? "#34d399" : "#38bdf8");
+
+    const labelLayer = svg.select(".labels");
+    const labels = labelLayer.selectAll("g.label-group")
+        .data(pingNodes, d => d.id);
+        
+    const labelsEnter = labels.enter().append("g").attr("class", "label-group")
+        .attr("transform", d => `translate(${d.x},${d.y})`);
+
+    labelsEnter.append("text")
+        .attr("dy", -16)
+        .attr("text-anchor", "middle")
+        .attr("fill", "#f8fafc")
+        .attr("class", "text-sm font-bold glow-text")
+        .text(d => d.label);
+
+    const pingLabels = labelLayer.selectAll("text.ping-text")
+        .data(linksData, d => d.source.id);
+        
+    pingLabels.enter().append("text")
+        .attr("class", "ping-text text-xs font-bold")
+        .attr("text-anchor", "middle")
+        .attr("dy", -5)
+        .merge(pingLabels)
+        .attr("fill", d => getColorByPing(d.ping))
+        .text(d => `${d.ping}ms`)
+        .attr("transform", function(d) {
+            const path = document.getElementById(`path-${d.source.id}`);
+            if(path) {
+                const midPoint = path.getPointAtLength(path.getTotalLength() / 2);
+                return `translate(${midPoint.x},${midPoint.y})`;
+            }
+            return "";
+        });
+        
+    pingLabels.exit().remove();
+
+    const packetLayer = svg.select(".packets");
+    linksData.forEach(link => {
+        const pathEl = document.getElementById(`path-${link.source.id}`);
+        if(!pathEl) return;
+        
+        const pathLength = pathEl.getTotalLength();
+        const duration = Math.max(400, link.ping * 30); 
+        
+        function spawnPacket() {
+            if (currentTarget !== targetServerId) return;
+            
+            const packet = packetLayer.append("circle")
+                .attr("r", 4)
+                .attr("fill", getColorByPing(link.ping))
+                .attr("class", "packet");
+                
+            packet.transition()
+                .duration(duration)
+                .ease(d3.easeLinear)
+                .attrTween("transform", function() {
+                    return function(t) {
+                        const p = pathEl.getPointAtLength(t * pathLength);
+                        return `translate(${p.x},${p.y})`;
+                    }
+                })
+                .on("end", function() {
+                    d3.select(this).remove();
+                });
+        }
+
+        spawnPacket();
+        const spawnRate = Math.max(400, link.ping * 15);
+        const timer = d3.interval(spawnPacket, spawnRate);
+        packetAnimations.push(timer);
+    });
+
+    updateInfoPanel(targetServerId);
+}
+
+function updateInfoPanel(server) {
+    const titleEl = document.getElementById('info-title');
+    const descEl = document.getElementById('info-desc');
+    const kyushuPingEl = document.getElementById('kyushu-ping-text');
+    const taiwanPingEl = document.getElementById('taiwan-ping-text');
+    
+    if(!titleEl || !descEl || !kyushuPingEl || !taiwanPingEl) return;
+
+    const pingVal = pingDataMap["Kyushu"][server];
+    kyushuPingEl.textContent = pingVal;
+    kyushuPingEl.className = `text-2xl font-black ${pingVal <= 30 ? 'text-emerald-400' : 'text-sky-400'}`;
+    
+    const taiwanPingVal = pingDataMap["Taiwan"][server];
+    taiwanPingEl.textContent = taiwanPingVal;
+    taiwanPingEl.className = `text-2xl font-black ${taiwanPingVal <= 40 ? 'text-emerald-400' : 'text-amber-400'}`;
+    
+    if (server === 'tokyo') {
+        titleEl.textContent = "東京サーバー接続時";
+        titleEl.className = "text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2";
+        descEl.innerHTML = "日本国内からは一貫して低いPing（遅延）で接続可能です。<br><br>特に関東周辺からは1桁msの極めて快適な環境でプレイできます。<br><br><span class='text-sky-300 font-bold'>【注目: 台湾】</span>物理的な距離は韓国の方が近いですが、日本との間に極めて太く直通の海底ケーブルがあるため、東京サーバーの方がPingが低くなる逆転現象が起きます。";
+    } else {
+        titleEl.textContent = "韓国(ソウル)サーバー接続時";
+        titleEl.className = "text-xl font-bold text-emerald-400 mb-3 border-b border-slate-700 pb-2";
+        descEl.innerHTML = "韓国国内は数msの世界ですが、日本からも比較的快適にアクセスできます。<br><br><span class='text-amber-300 font-bold'>【注目: 九州】</span>九州地方は東京よりも釜山（韓国南端）を経由する海底ケーブルに近いため、<strong>東京サーバーへ繋ぐよりもPingが低くなる</strong>逆転現象が発生しています。";
+    }
 }
 
 // =====================================
@@ -560,11 +848,14 @@ function initPBuff() {
     }
 }
 
-// ページ起動時の全初期化処理
+// =====================================
+// ★ ページ起動時の全初期化処理 ★
+// =====================================
 window.onload = () => { 
     injectNewCharacters(); // 新キャラ2人のステータス＆P-BUFF＆イラストリンクを自動挿入
-    autoFixKoreanData();   // ハングル浄化
+    autoFixKoreanData();   // ハングル自動浄化
     switchLanguage('ja');  // 言語を日本語へ初期化
+    changeBackground();    // ▼ 背景画像のランダム切り替え処理の実行 ▼
     showPage('home');      // HOME画面をファーストビューに
     initRanking();         // ランキングの事前生成
 };
