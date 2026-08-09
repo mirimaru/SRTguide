@@ -19,8 +19,41 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .node-server {
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8));
+        }
+        .node-client {
+            filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.5));
+        }
+        .packet {
+            pointer-events: none;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+        .link-line {
+            transition: stroke 0.5s ease;
+        }
+        .btn-toggle {
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .btn-toggle.active {
+            background-color: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            border-color: #38bdf8;
+        }
+        .btn-toggle:not(.active):hover {
+            background-color: #1e293b;
+        }
+    </style>
 </head>
 <body class="bg-black text-white">
 
@@ -101,12 +134,68 @@
 
     <div id="standard-content" class="hidden">
 
-        <section id="page-ping" class="page-container px-6 lg:px-20 py-10 max-w-6xl mx-auto">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ping">PING MAP</h2>
-            <p class="text-gray-400 mb-8">地域別のサーバー間レイテンシー（応答速度）をリアルタイムでシミュレートする動的ビジュアライザーです。</p>
-            <div class="bg-white/5 p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
-                <div id="ping-visualizer" class="w-full h-[500px] bg-black/60 rounded-2xl relative overflow-hidden flex items-center justify-center border border-white/10">
-                    <div class="text-orange-500 animate-pulse text-sm font-mono">Loading Ping Visualizer...</div>
+        <section id="page-ping" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ping">PING MAP</h2>
+                    <p class="text-slate-400 text-sm mt-2 pl-6">アジア・日本圏 サーバーPing可視化マップ</p>
+                </div>
+                
+                <div class="flex gap-3 bg-slate-900 p-1.5 rounded-xl border border-slate-700 shadow-xl">
+                    <button id="btn-tokyo" class="btn-toggle active px-6 py-2 rounded-lg font-bold text-sm border border-transparent">
+                        東京サーバー
+                    </button>
+                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300">
+                        韓国(ソウル)サーバー
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row w-full gap-6">
+                <div class="w-full lg:w-3/4 bg-slate-900/60 rounded-3xl border border-slate-700 overflow-hidden relative shadow-2xl flex items-center justify-center min-h-[600px]">
+                    <svg id="map-svg" class="w-full h-full" style="max-height: 800px;"></svg>
+                    
+                    <div class="absolute bottom-4 left-4 bg-slate-950/80 backdrop-blur-sm p-4 rounded-xl border border-slate-700 text-xs shadow-xl">
+                        <h3 class="font-bold mb-2 text-slate-300">Ping (応答速度) の目安</h3>
+                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span> 非常に快適 (< 30ms)</div>
+                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]"></span> 快適 (30-60ms)</div>
+                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></span> プレイ可能 (60-90ms)</div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]"></span> 遅延あり (> 90ms)</div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/4 flex flex-col gap-4">
+                    <div class="bg-slate-900/80 rounded-3xl border border-slate-700 p-6 shadow-xl">
+                        <h3 id="info-title" class="text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2">
+                            東京サーバー接続時
+                        </h3>
+                        <p id="info-desc" class="text-slate-300 text-sm leading-relaxed mb-4">
+                            日本国内からは一貫して低いPing（遅延）で接続可能です。<br><br>特に関東周辺からは1桁msの極めて快適な環境でプレイできます。
+                        </p>
+                        <div class="bg-black/40 p-4 rounded-xl border border-slate-700 mb-3">
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">注目ポイント: 九州地方</span>
+                            <div class="flex justify-between items-end">
+                                <span class="text-slate-200">現在のPing:</span>
+                                <span id="kyushu-ping-text" class="text-2xl font-black text-emerald-400">22<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
+                            </div>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-xl border border-slate-700">
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">注目ポイント: 台湾の経路</span>
+                            <div class="flex justify-between items-end">
+                                <span class="text-slate-200">現在のPing:</span>
+                                <span id="taiwan-ping-text" class="text-2xl font-black text-sky-400">35<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-orange-500/10 rounded-3xl border border-orange-500/30 p-5 shadow-xl">
+                        <h4 class="text-sm font-bold text-orange-400 mb-2 flex items-center gap-2">
+                            <i class="fas fa-info-circle"></i> パケットアニメーション
+                        </h4>
+                        <p class="text-slate-300 text-xs leading-relaxed">
+                            光の粒（パケット）がサーバーへ向かう速度はPing値に連動しています。Pingが低いほど高速で移動します。
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -312,95 +401,268 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // 動的なPingマップ（D3.jsアニメーション）の初期化処理
+        // --- D3.js Ping Map Visualizer Logic ---
+        const nodes = [
+            { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
+            { id: "Tohoku", label: "東北", x: 810, y: 220, type: "client" },
+            { id: "Tokyo", label: "東京", x: 770, y: 320, type: "server" },
+            { id: "Kansai", label: "関西", x: 670, y: 370, type: "client" },
+            { id: "Kyushu", label: "九州", x: 550, y: 410, type: "client" },
+            { id: "Okinawa", label: "沖縄", x: 420, y: 550, type: "client" },
+            { id: "Seoul", label: "ソウル", x: 470, y: 280, type: "server" },
+            { id: "Taiwan", label: "台湾", x: 300, y: 580, type: "client" },
+            { id: "HongKong", label: "香港", x: 160, y: 610, type: "client" },
+            { id: "Manila", label: "フィリピン", x: 340, y: 720, type: "client" },
+            { id: "Singapore", label: "シンガポール", x: 80, y: 840, type: "client" }
+        ];
+
+        const pingData = {
+            Hokkaido: { tokyo: 20, seoul: 50 },
+            Tohoku: { tokyo: 15, seoul: 45 },
+            Tokyo: { tokyo: 5, seoul: 40 },
+            Kansai: { tokyo: 12, seoul: 30 },
+            Kyushu: { tokyo: 22, seoul: 15 },
+            Okinawa: { tokyo: 40, seoul: 65 },
+            Seoul: { tokyo: 40, seoul: 5 },
+            Taiwan: { tokyo: 35, seoul: 60 },
+            HongKong: { tokyo: 45, seoul: 70 },
+            Manila: { tokyo: 75, seoul: 85 },
+            Singapore: { tokyo: 85, seoul: 95 }
+        };
+
+        let currentTarget = "tokyo";
+        let isPingInitialized = false;
+        let packetAnimations = [];
+
         function initPingVisualizer() {
-            const container = document.getElementById('ping-visualizer');
-            if (!container || container.dataset.loaded) return;
-            container.innerHTML = '';
-            container.dataset.loaded = "true";
+            const svg = d3.select("#map-svg");
+            if (svg.empty()) return;
+            
+            svg.attr("viewBox", "0 0 1000 950")
+               .attr("preserveAspectRatio", "xMidYMid meet");
 
-            const width = container.clientWidth || 800;
-            const height = 500;
+            if (!isPingInitialized) {
+                // Background geographical labels
+                const bgLayer = svg.append("g").attr("class", "bg-labels opacity-10 font-black text-6xl tracking-widest pointer-events-none");
+                bgLayer.append("text").attr("x", 650).attr("y", 250).attr("fill", "#fff").attr("transform", "rotate(25, 650, 250)").text("JAPAN");
+                bgLayer.append("text").attr("x", 350).attr("y", 200).attr("fill", "#fff").text("KOREA");
+                bgLayer.append("text").attr("x", 20).attr("y", 500).attr("fill", "#fff").text("EAST ASIA");
+                bgLayer.append("text").attr("x", 100).attr("y", 750).attr("fill", "#fff").text("SEA");
 
-            const svg = d3.select("#ping-visualizer")
-                .append("svg")
-                .attr("width", "100%")
-                .attr("height", "100%")
-                .attr("viewBox", `0 0 ${width} ${height}`);
+                svg.append("g").attr("class", "links");
+                svg.append("g").attr("class", "nodes");
+                svg.append("g").attr("class", "packets");
+                svg.append("g").attr("class", "labels");
 
-            // 背景のグリッドやエフェクト
-            svg.append("rect")
-                .attr("width", width)
-                .attr("height", height)
-                .attr("fill", "#050505");
+                isPingInitialized = true;
+            }
 
-            // サンプルノード（拠点とサーバー）
-            const nodes = [
-                { name: "Tokyo Server", x: width * 0.7, y: height * 0.4, type: "server" },
-                { name: "Seoul Server", x: width * 0.55, y: height * 0.35, type: "server" },
-                { name: "Tokyo", x: width * 0.7, y: height * 0.5, type: "client" },
-                { name: "Nagoya", x: width * 0.65, y: height * 0.55, type: "client" },
-                { name: "Seoul", x: width * 0.5, y: height * 0.4, type: "client" },
-                { name: "Taipei", x: width * 0.45, y: height * 0.65, type: "client" },
-                { name: "North America", x: width * 0.15, y: height * 0.45, type: "client" }
-            ];
-
-            // 接続線（パルスアニメーション用）
-            const links = [
-                { source: nodes[2], target: nodes[0], ping: "8ms" },
-                { source: nodes[3], target: nodes[0], ping: "15ms" },
-                { source: nodes[4], target: nodes[1], ping: "5ms" },
-                { source: nodes[5], target: nodes[0], ping: "45ms" },
-                { source: nodes[6], target: nodes[0], ping: "120ms" }
-            ];
-
-            // 線の描画
-            links.forEach(link => {
-                svg.append("line")
-                    .attr("x1", link.source.x)
-                    .attr("y1", link.source.y)
-                    .attr("x2", link.target.x)
-                    .attr("y2", link.target.y)
-                    .attr("stroke", "#ff4e00")
-                    .attr("stroke-width", 2)
-                    .attr("stroke-opacity", 0.4)
-                    .attr("stroke-dasharray", "4,4");
-            });
-
-            // ノードの描画
-            const nodeGroup = svg.selectAll(".node")
-                .data(nodes)
-                .enter()
-                .append("g")
-                .attr("transform", d => `translate(${d.x}, ${d.y})`);
-
-            nodeGroup.append("circle")
-                .attr("r", d => d.type === "server" ? 10 : 6)
-                .attr("fill", d => d.type === "server" ? "#ff4e00" : "#ffffff")
-                .attr("class", "animate-ping");
-
-            nodeGroup.append("circle")
-                .attr("r", d => d.type === "server" ? 8 : 4)
-                .attr("fill", d => d.type === "server" ? "#ff4e00" : "#ffffff");
-
-            nodeGroup.append("text")
-                .attr("dx", 12)
-                .attr("dy", 4)
-                .text(d => d.name)
-                .attr("fill", "#ffffff")
-                .attr("font-size", "12px")
-                .attr("font-family", "sans-serif");
+            renderMap('tokyo');
         }
 
-        // ページ切り替え時にPingマップタブが開かれたらアニメーションをロードする拡張
+        function getColorByPing(ping) {
+            if (ping <= 30) return "#34d399";
+            if (ping <= 60) return "#38bdf8";
+            if (ping <= 90) return "#fbbf24";
+            return "#f43f5e";
+        }
+
+        function renderMap(targetServerId) {
+            currentTarget = targetServerId;
+            const targetNode = nodes.find(n => n.id.toLowerCase() === targetServerId);
+            const svg = d3.select("#map-svg");
+            
+            packetAnimations.forEach(timer => timer.stop());
+            packetAnimations = [];
+            svg.select(".packets").selectAll("*").remove();
+
+            const linksData = nodes.filter(n => n.id.toLowerCase() !== targetServerId).map(n => {
+                return {
+                    source: n,
+                    target: targetNode,
+                    ping: pingData[n.id][targetServerId]
+                };
+            });
+
+            const serverNode = nodes.find(n => n.type === 'server' && n.id.toLowerCase() !== targetServerId);
+            if(serverNode) {
+                 linksData.push({
+                    source: serverNode,
+                    target: targetNode,
+                    ping: pingData[serverNode.id][targetServerId]
+                 });
+            }
+
+            const linkLayer = svg.select(".links");
+            const links = linkLayer.selectAll("path")
+                .data(linksData, d => d.source.id);
+
+            links.enter()
+                .append("path")
+                .attr("class", "link-line")
+                .attr("fill", "none")
+                .attr("stroke-width", 2)
+                .merge(links)
+                .attr("d", d => {
+                    const dx = d.target.x - d.source.x;
+                    const dy = d.target.y - d.source.y;
+                    const dr = Math.sqrt(dx * dx + dy * dy) * 1.5;
+                    return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+                })
+                .attr("stroke", d => getColorByPing(d.ping))
+                .attr("stroke-opacity", 0.4)
+                .attr("id", d => `path-${d.source.id}`);
+
+            links.exit().remove();
+
+            const nodeLayer = svg.select(".nodes");
+            const nodeElements = nodeLayer.selectAll("g.node")
+                .data(nodes, d => d.id);
+            
+            const nodeEnter = nodeElements.enter().append("g").attr("class", "node")
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+
+            nodeEnter.append("circle")
+                .attr("r", d => d.type === "server" ? 14 : 8)
+                .attr("fill", d => d.type === "server" ? "#1e293b" : "#334155")
+                .attr("stroke", d => d.type === "server" ? "#38bdf8" : "#94a3b8")
+                .attr("stroke-width", d => d.type === "server" ? 4 : 2)
+                .attr("class", d => d.type === "server" ? "node-server" : "node-client");
+                
+            nodeEnter.filter(d => d.type === "server").append("circle")
+                .attr("class", "pulse-ring")
+                .attr("r", 20)
+                .attr("fill", "none")
+                .attr("stroke", "#38bdf8")
+                .attr("stroke-width", 2)
+                .attr("opacity", 0);
+
+            nodeElements.selectAll(".node-server")
+                .attr("stroke", d => d.id.toLowerCase() === targetServerId ? "#34d399" : "#38bdf8");
+
+            const labelLayer = svg.select(".labels");
+            const labels = labelLayer.selectAll("g.label-group")
+                .data(nodes, d => d.id);
+                
+            const labelsEnter = labels.enter().append("g").attr("class", "label-group")
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+
+            labelsEnter.append("text")
+                .attr("dy", -16)
+                .attr("text-anchor", "middle")
+                .attr("fill", "#f8fafc")
+                .attr("class", "text-sm font-bold glow-text")
+                .text(d => d.label);
+
+            const pingLabels = labelLayer.selectAll("text.ping-text")
+                .data(linksData, d => d.source.id);
+                
+            pingLabels.enter().append("text")
+                .attr("class", "ping-text text-xs font-bold")
+                .attr("text-anchor", "middle")
+                .attr("dy", -5)
+                .merge(pingLabels)
+                .attr("fill", d => getColorByPing(d.ping))
+                .text(d => `${d.ping}ms`)
+                .attr("transform", function(d) {
+                    const path = document.getElementById(`path-${d.source.id}`);
+                    if(path) {
+                        const midPoint = path.getPointAtLength(path.getTotalLength() / 2);
+                        return `translate(${midPoint.x},${midPoint.y})`;
+                    }
+                    return "";
+                });
+                
+            pingLabels.exit().remove();
+
+            const packetLayer = svg.select(".packets");
+            linksData.forEach(link => {
+                const pathEl = document.getElementById(`path-${link.source.id}`);
+                if(!pathEl) return;
+                
+                const pathLength = pathEl.getTotalLength();
+                const duration = Math.max(400, link.ping * 30); 
+                
+                function spawnPacket() {
+                    if (currentTarget !== targetServerId) return;
+                    
+                    const packet = packetLayer.append("circle")
+                        .attr("r", 4)
+                        .attr("fill", getColorByPing(link.ping))
+                        .attr("class", "packet");
+                        
+                    packet.transition()
+                        .duration(duration)
+                        .ease(d3.easeLinear)
+                        .attrTween("transform", function() {
+                            return function(t) {
+                                const p = pathEl.getPointAtLength(t * pathLength);
+                                return `translate(${p.x},${p.y})`;
+                            }
+                        })
+                        .on("end", function() {
+                            d3.select(this).remove();
+                        });
+                }
+
+                spawnPacket();
+                const spawnRate = Math.max(400, link.ping * 15);
+                const timer = d3.interval(spawnPacket, spawnRate);
+                packetAnimations.push(timer);
+            });
+
+            updateInfoPanel(targetServerId);
+        }
+
+        function updateInfoPanel(server) {
+            const titleEl = document.getElementById('info-title');
+            const descEl = document.getElementById('info-desc');
+            const kyushuPingEl = document.getElementById('kyushu-ping-text');
+            const taiwanPingEl = document.getElementById('taiwan-ping-text');
+            
+            const pingVal = pingData["Kyushu"][server];
+            kyushuPingEl.textContent = pingVal;
+            kyushuPingEl.className = `text-2xl font-black ${pingVal <= 30 ? 'text-emerald-400' : 'text-sky-400'}`;
+            
+            const taiwanPingVal = pingData["Taiwan"][server];
+            taiwanPingEl.textContent = taiwanPingVal;
+            taiwanPingEl.className = `text-2xl font-black ${taiwanPingVal <= 40 ? 'text-emerald-400' : 'text-amber-400'}`;
+            
+            if (server === 'tokyo') {
+                titleEl.textContent = "東京サーバー接続時";
+                titleEl.className = "text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2";
+                descEl.innerHTML = "日本国内からは一貫して低いPing（遅延）で接続可能です。<br><br>特に関東周辺からは1桁msの極めて快適な環境でプレイできます。<br><br><span class='text-sky-300 font-bold'>【注目: 台湾】</span>物理的な距離は韓国の方が近いですが、日本との間に極めて太く直通の海底ケーブルがあるため、東京サーバーの方がPingが低くなる逆転現象が起きます。";
+            } else {
+                titleEl.textContent = "韓国(ソウル)サーバー接続時";
+                titleEl.className = "text-xl font-bold text-emerald-400 mb-3 border-b border-slate-700 pb-2";
+                descEl.innerHTML = "韓国国内は数msの世界ですが、日本からも比較的快適にアクセスできます。<br><br><span class='text-amber-300 font-bold'>【注目: 九州】</span>九州地方は東京よりも釜山（韓国南端）を経由する海底ケーブルに近いため、<strong>東京サーバーへ繋ぐよりもPingが低くなる</strong>逆転現象が発生しています。";
+            }
+        }
+
+        document.getElementById('btn-tokyo').addEventListener('click', function() {
+            this.classList.add('active');
+            this.classList.remove('text-slate-300');
+            const seoulBtn = document.getElementById('btn-seoul');
+            seoulBtn.classList.remove('active');
+            seoulBtn.classList.add('text-slate-300');
+            renderMap('tokyo');
+        });
+
+        document.getElementById('btn-seoul').addEventListener('click', function() {
+            this.classList.add('active');
+            this.classList.remove('text-slate-300');
+            const tokyoBtn = document.getElementById('btn-tokyo');
+            tokyoBtn.classList.remove('active');
+            tokyoBtn.classList.add('text-slate-300');
+            renderMap('seoul');
+        });
+
+        // ページ切り替え処理にPingマップの初期化を連動させる
         const originalShowPage = window.showPage;
-        // もしscript.js側でshowPageが定義されている場合を考慮しつつフック
         window.showPage = function(pageId) {
-            // 元のページ切り替えを実行
             if (typeof originalShowPage === 'function') {
                 originalShowPage(pageId);
             } else {
-                // フォールバック（念のため）
                 document.querySelectorAll('.page-container').forEach(el => el.classList.add('hidden'));
                 document.getElementById('home-split-wrapper').classList.add('hidden');
                 document.getElementById('standard-content').classList.remove('hidden');
@@ -409,9 +671,27 @@
             }
 
             if (pageId === 'ping') {
-                setTimeout(initPingVisualizer, 100);
+                setTimeout(initPingVisualizer, 50);
             }
         };
+
+        // サーバー側の連続パルスアニメーション
+        d3.timer((elapsed) => {
+            const svg = d3.select("#map-svg");
+            if (!svg.empty()) {
+                svg.selectAll(".pulse-ring")
+                    .attr("r", function() {
+                        const parentData = d3.select(this.parentNode).datum();
+                        if(!parentData || parentData.id.toLowerCase() !== currentTarget) return 0;
+                        return 14 + (elapsed % 1500) / 1500 * 20;
+                    })
+                    .attr("opacity", function() {
+                        const parentData = d3.select(this.parentNode).datum();
+                        if(!parentData || parentData.id.toLowerCase() !== currentTarget) return 0;
+                        return 1 - (elapsed % 1500) / 1500;
+                    });
+            }
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             changeBackground();
