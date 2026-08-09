@@ -203,7 +203,7 @@
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
                 <div class="flex gap-4">
-                    <select id="videoPosFilter" onchange="initVideos()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                    <select id="videoPosFilter" onchange="filterVideos()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
                         <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
                         <option value="PG" class="bg-gray-900 text-white">PG</option>
                         <option value="SG" class="bg-gray-900 text-white">SG</option>
@@ -213,20 +213,20 @@
                     </select>
                 </div>
             </div>
-            <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターアイコンをクリックすると紹介動画を再生します。※動画は順次公開・追加予定です！</p>
-            <div id="video-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
+            <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターカードをクリックすると解説・紹介動画が再生されます！</p>
+            <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
-
-        <section id="page-survey" class="page-container px-6 lg:px-20 py-10">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
-            <div class="bg-white/5 p-4 md:p-10 rounded-[30px] border border-white/10 text-center">
-                <p class="text-lg text-gray-300 mb-8">サイトの改善や今後のコンテンツ作成のため、アンケートにご協力をお願いします！</p>
-                <div class="w-full max-w-4xl mx-auto rounded-xl overflow-hidden bg-white shadow-2xl">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+        <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY & PING LOG</h2>
+            <p class="text-gray-300 mb-8">あなたの地域と実際のPing値を投稿してください！</p>
+            
+            <div class="bg-white/5 p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl mb-12">
+                <h3 class="text-2xl font-black text-orange-500 mb-4 italic">Ping値 投稿フォーム</h3>
+                <div class="w-full rounded-2xl overflow-hidden bg-white shadow-2xl">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
                 </div>
             </div>
         </section>
-
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -378,6 +378,7 @@
     <script src="script.js"></script>
     
     <script>
+        // 背景画像のランダム切り替え配列
         const bgImages = ['image_5709c0.jpg', 'op_main.jpg', 'op_blair.jpg', 'op_camila.jpg', 'op_cow.jpg'];
 
         function changeBackground() {
@@ -398,6 +399,65 @@
         function closeImageModal() {
             const modal = document.getElementById('image-modal');
             modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        // --- 追加した4つのキャラクター紹介動画データ ---
+        const characterVideos = [
+            { name: "Lulu (ルル)", pos: "C", id: "b-01v1HsFDY", desc: "自由なダンクやボックスアウト、クイックポストアップ解説" },
+            { name: "Murdock (マードック)", pos: "PF", id: "XGzjCnhXK3M", desc: "ディフェンス特化・シャドウブロックとスリップスクリーンの解説" },
+            { name: "Clarke (クラーク)", pos: "PF", id: "qQHoLNlMKNE", desc: "マニュアルダンク・スカイフックの解説" },
+            { name: "LEE (リー)", pos: "C", id: "qNas3J33Bls", desc: "シュートタッチ、パワーリバウンド、シグネチャーシュートの解説" }
+        ];
+
+        function initVideos() {
+            const grid = document.getElementById('video-grid');
+            const filter = document.getElementById('videoPosFilter').value;
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            const filtered = filter === 'All' ? characterVideos : characterVideos.filter(v => v.pos === filter);
+
+            filtered.forEach(video => {
+                const card = document.createElement('div');
+                card.className = "bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500 transition cursor-pointer shadow-xl group";
+                card.onclick = () => openYtModal(`https://www.youtube.com/embed/${video.id}?autoplay=1`);
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-orange-500 text-black text-xs font-black px-2.5 py-1 rounded-md italic">${video.pos}</span>
+                            <i class="fab fa-youtube text-red-500 text-xl group-hover:scale-125 transition-transform"></i>
+                        </div>
+                        <h3 class="text-xl font-black italic mb-2 group-hover:text-orange-400 transition-colors">${video.name}</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">${video.desc}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-orange-500 font-bold">
+                        <span>WATCH VIDEO</span>
+                        <i class="fas fa-play text-[10px]"></i>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterVideos() {
+            initVideos();
+        }
+
+        function openYtModal(url) {
+            const modal = document.getElementById('yt-modal');
+            const iframe = document.getElementById('yt-iframe');
+            iframe.src = url;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeYtModal() {
+            const modal = document.getElementById('yt-modal');
+            const iframe = document.getElementById('yt-iframe');
+            modal.classList.add('opacity-0');
+            iframe.src = '';
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
@@ -442,7 +502,6 @@
                .attr("preserveAspectRatio", "xMidYMid meet");
 
             if (!isPingInitialized) {
-                // Background geographical labels
                 const bgLayer = svg.append("g").attr("class", "bg-labels opacity-10 font-black text-6xl tracking-widest pointer-events-none");
                 bgLayer.append("text").attr("x", 650).attr("y", 250).attr("fill", "#fff").attr("transform", "rotate(25, 650, 250)").text("JAPAN");
                 bgLayer.append("text").attr("x", 350).attr("y", 200).attr("fill", "#fff").text("KOREA");
@@ -657,7 +716,6 @@
             renderMap('seoul');
         });
 
-        // ページ切り替え処理にPingマップの初期化を連動させる
         const originalShowPage = window.showPage;
         window.showPage = function(pageId) {
             if (typeof originalShowPage === 'function') {
@@ -673,9 +731,11 @@
             if (pageId === 'ping') {
                 setTimeout(initPingVisualizer, 50);
             }
+            if (pageId === 'videos') {
+                initVideos();
+            }
         };
 
-        // サーバー側の連続パルスアニメーション
         d3.timer((elapsed) => {
             const svg = d3.select("#map-svg");
             if (!svg.empty()) {
@@ -695,6 +755,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             changeBackground();
+            initVideos();
         });
     </script>
 </body>
