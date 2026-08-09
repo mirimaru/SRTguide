@@ -18,6 +18,7 @@
     </script>
     <link rel="icon" href="favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -31,6 +32,7 @@
             <span class="nav-link active" onclick="showPage('home'); changeBackground();" data-i18n="nav-home">HOME</span>
             <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
             <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
+            <span class="nav-link" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
             <span class="nav-link" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
             <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
             <span class="nav-link" onclick="showPage('survey')" data-i18n="nav-survey">SURVEY</span>
@@ -79,6 +81,7 @@
                 <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
                 <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
                 <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
+                <div class="panel-box" onclick="showPage('ping')"><i class="fas fa-network-wired text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-ping">PING MAP</h3></div>
                 <div class="panel-box" onclick="showPage('videos')"><i class="fas fa-video text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-videos">VIDEOS</h3></div>
                 <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-pbuff">P-BUFF</h3></div>
                 <div class="panel-box" onclick="showPage('survey')"><i class="fas fa-clipboard-list text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-survey">SURVEY</h3></div>
@@ -98,6 +101,15 @@
 
     <div id="standard-content" class="hidden">
 
+        <section id="page-ping" class="page-container px-6 lg:px-20 py-10 max-w-6xl mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ping">PING MAP</h2>
+            <p class="text-gray-400 mb-8">地域別のサーバー間レイテンシー（応答速度）をリアルタイムでシミュレートする動的ビジュアライザーです。</p>
+            <div class="bg-white/5 p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl">
+                <div id="ping-visualizer" class="w-full h-[500px] bg-black/60 rounded-2xl relative overflow-hidden flex items-center justify-center border border-white/10">
+                    <div class="text-orange-500 animate-pulse text-sm font-mono">Loading Ping Visualizer...</div>
+                </div>
+            </div>
+        </section>
         <section id="page-videos" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
@@ -299,6 +311,107 @@
             modal.classList.add('opacity-0');
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
+
+        // 動的なPingマップ（D3.jsアニメーション）の初期化処理
+        function initPingVisualizer() {
+            const container = document.getElementById('ping-visualizer');
+            if (!container || container.dataset.loaded) return;
+            container.innerHTML = '';
+            container.dataset.loaded = "true";
+
+            const width = container.clientWidth || 800;
+            const height = 500;
+
+            const svg = d3.select("#ping-visualizer")
+                .append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("viewBox", `0 0 ${width} ${height}`);
+
+            // 背景のグリッドやエフェクト
+            svg.append("rect")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("fill", "#050505");
+
+            // サンプルノード（拠点とサーバー）
+            const nodes = [
+                { name: "Tokyo Server", x: width * 0.7, y: height * 0.4, type: "server" },
+                { name: "Seoul Server", x: width * 0.55, y: height * 0.35, type: "server" },
+                { name: "Tokyo", x: width * 0.7, y: height * 0.5, type: "client" },
+                { name: "Nagoya", x: width * 0.65, y: height * 0.55, type: "client" },
+                { name: "Seoul", x: width * 0.5, y: height * 0.4, type: "client" },
+                { name: "Taipei", x: width * 0.45, y: height * 0.65, type: "client" },
+                { name: "North America", x: width * 0.15, y: height * 0.45, type: "client" }
+            ];
+
+            // 接続線（パルスアニメーション用）
+            const links = [
+                { source: nodes[2], target: nodes[0], ping: "8ms" },
+                { source: nodes[3], target: nodes[0], ping: "15ms" },
+                { source: nodes[4], target: nodes[1], ping: "5ms" },
+                { source: nodes[5], target: nodes[0], ping: "45ms" },
+                { source: nodes[6], target: nodes[0], ping: "120ms" }
+            ];
+
+            // 線の描画
+            links.forEach(link => {
+                svg.append("line")
+                    .attr("x1", link.source.x)
+                    .attr("y1", link.source.y)
+                    .attr("x2", link.target.x)
+                    .attr("y2", link.target.y)
+                    .attr("stroke", "#ff4e00")
+                    .attr("stroke-width", 2)
+                    .attr("stroke-opacity", 0.4)
+                    .attr("stroke-dasharray", "4,4");
+            });
+
+            // ノードの描画
+            const nodeGroup = svg.selectAll(".node")
+                .data(nodes)
+                .enter()
+                .append("g")
+                .attr("transform", d => `translate(${d.x}, ${d.y})`);
+
+            nodeGroup.append("circle")
+                .attr("r", d => d.type === "server" ? 10 : 6)
+                .attr("fill", d => d.type === "server" ? "#ff4e00" : "#ffffff")
+                .attr("class", "animate-ping");
+
+            nodeGroup.append("circle")
+                .attr("r", d => d.type === "server" ? 8 : 4)
+                .attr("fill", d => d.type === "server" ? "#ff4e00" : "#ffffff");
+
+            nodeGroup.append("text")
+                .attr("dx", 12)
+                .attr("dy", 4)
+                .text(d => d.name)
+                .attr("fill", "#ffffff")
+                .attr("font-size", "12px")
+                .attr("font-family", "sans-serif");
+        }
+
+        // ページ切り替え時にPingマップタブが開かれたらアニメーションをロードする拡張
+        const originalShowPage = window.showPage;
+        // もしscript.js側でshowPageが定義されている場合を考慮しつつフック
+        window.showPage = function(pageId) {
+            // 元のページ切り替えを実行
+            if (typeof originalShowPage === 'function') {
+                originalShowPage(pageId);
+            } else {
+                // フォールバック（念のため）
+                document.querySelectorAll('.page-container').forEach(el => el.classList.add('hidden'));
+                document.getElementById('home-split-wrapper').classList.add('hidden');
+                document.getElementById('standard-content').classList.remove('hidden');
+                const target = document.getElementById('page-' + pageId);
+                if (target) target.classList.remove('hidden');
+            }
+
+            if (pageId === 'ping') {
+                setTimeout(initPingVisualizer, 100);
+            }
+        };
 
         document.addEventListener('DOMContentLoaded', () => {
             changeBackground();
