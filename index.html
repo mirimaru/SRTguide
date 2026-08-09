@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3on3 FreeStyle | SRT guide</title>
+
+    <!-- ▼▼▼ PWA（ホーム画面追加）用の設定ここから ▼▼▼ -->
+    <link rel="manifest" href="/SRTguide/manifest.json">
+    <link rel="apple-touch-icon" href="/SRTguide/icon-512x512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/SRTguide/sw.js');
+        });
+      }
+    </script>
+    <!-- ▲▲▲ PWA用の設定ここまで ▲▲▲ -->
+
     <link rel="icon" href="favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,6 +49,8 @@
             <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
         </div>
     </header>
+
+    <!-- （中略：以降はご提示いただいたコードと全く同じなので省略せずにそのままお使いください） -->
 
     <div id="home-split-wrapper" class="fade-in relative transition-all duration-1000 ease-in-out" style="background-size: cover; background-position: center; height: calc(100vh - 64px);">
         <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
