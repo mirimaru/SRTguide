@@ -11,7 +11,16 @@ const charVideoIds = {
     "ビッグドッグ": "6MoEgbtd32Q",
     "Big Dog": "6MoEgbtd32Q",
     "ネイサン": "t6RT7MBjJ2I",
-    "Nathan": "t6RT7MBjJ2I"
+    "Nathan": "t6RT7MBjJ2I",
+    // ▼ 今回追加した4人の動画ID ▼
+    "Lulu": "b-01v1HsFDY",
+    "ルル": "b-01v1HsFDY",
+    "Murdock": "XGzjCnhXK3M",
+    "マードック": "XGzjCnhXK3M",
+    "Clarke": "qQHoLNlMKNE",
+    "クラーク": "qQHoLNlMKNE",
+    "LEE": "qNas3J33Bls",
+    "リー": "qNas3J33Bls"
 };
 
 // ==========================================
@@ -95,7 +104,7 @@ window.i18n = {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
-        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。現在「牛魔王」「ルーサー」「ビッグドッグ」「ネイサン」公開中！今後も順次追加予定です！',
+        'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。ルル、マードック、クラーク、リー、牛魔王、ルーサー、ビッグドッグ、ネイサン公開中！今後も順次追加予定です！',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'ポジションの特徴',
         'guide-s1-pg': 'パスと機動力。守備の要。', 'guide-s1-sg': '最高得点能力。多彩なスキル。', 'guide-s1-sf': '攻守に貢献する万能型。', 'guide-s1-big': 'ゴール下の番人。リバウンド。',
         'guide-s2-title': 'おすすめキャラ', 'guide-s2-free-t': '無課金・初期のおすすめ', 'guide-s2-free-d': 'Murdock (PF): ブロック力が高く、最高の選択肢です。', 'guide-s2-best-t': '最強キャラ (Premium)',
@@ -108,7 +117,7 @@ window.i18n = {
         'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
-        'videos-desc': 'Click a character icon to play their introduction video. Videos for Ox Queen, Luther, Big Dog, and Nathan are now available!',
+        'videos-desc': 'Click a character icon to play their introduction video.',
         'guide-title': 'ROAD TO HIGH TIER', 'guide-s1-title': 'Position Roles',
         'guide-s1-pg': 'Pass & Speed. Defense key.', 'guide-s1-sg': 'Best scoring. Diverse skills.', 'guide-s1-sf': 'All-rounder for Offense/Defense.', 'guide-s1-big': 'Paint protector. Rebounding.',
         'guide-s2-title': 'Recommended Characters', 'guide-s2-free-t': 'F2P / Starter Picks', 'guide-s2-free-d': 'Murdock (PF): High block power, best choice.', 'guide-s2-best-t': 'Top Tier (Premium)',
@@ -121,7 +130,7 @@ window.i18n = {
         'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
-        'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다. 새로운 영상이 계속 추가될 예정입니다!',
+        'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
         'guide-s1-pg': '패스와 기동력. 수비의 핵심.', 'guide-s1-sg': '최고의 득점력. 다채로운 스킬.', 'guide-s1-sf': '공수 양면의 만능형.', 'guide-s1-big': '골밑의 수호자. 리바운드.',
         'guide-s2-title': '추천 캐릭터', 'guide-s2-free-t': '무과금 / 초기 추천', 'guide-s2-free-d': 'Murdock (PF): 블록 능력이 뛰어나 최고의 선택입니다.', 'guide-s2-best-t': '최강 캐릭터 (Premium)',
@@ -134,7 +143,7 @@ window.i18n = {
         'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
-        'videos-desc': '点击角色图标播放介绍视频。正在陆续添加新视频中！',
+        'videos-desc': '点击角色图标播放介绍视频。',
         'guide-title': '迈向高阶之路', 'guide-s1-title': '位置特点',
         'guide-s1-pg': '传球与机动性。防守的核心。', 'guide-s1-sg': '最强得分能力。多样化的技能。', 'guide-s1-sf': '攻守兼备的全能型。', 'guide-s1-big': '篮下守护者。篮板球。',
         'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
@@ -173,13 +182,13 @@ window.termsDict = {
         '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
         '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
         'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
-        'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', 'リバ': '리바', 'ラン': '런', '持久': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
+        'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', '리바': '리바', '런': '런', '지구': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
         '最大持久力': '최대 지구력', 'ノーマーク3点シュート成功率': '노마크 3점슛 성공률'
     },
     'zh': {
         'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
         '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '近距离上篮',
+        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '远距离上篮',
         'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
         'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
         'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
@@ -223,7 +232,7 @@ function autoFixKoreanData() {
         "S덩크 속도": "Sダンクの速度", "블록 저항": "ブロック抵抗", "슛 방해": "シュート妨害効果", "몸싸움": "当たり強さ",
         "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
         "3점슛": "3点シュート", "3점": "3点", "미들슛": "ミドルシュート", "미들": "미들",
-        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "L레이업",
+        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "Lレイアップ",
         "이동 속도": "移動速度", "노마크": "ノーマーク"
     };
 
