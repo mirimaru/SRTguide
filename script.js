@@ -272,6 +272,8 @@ function switchLanguage(lang, btnElement = null) {
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
+    
+    // ホーム画面とそれ以外のレイアウト切り替え
     if (id === 'home') { 
         if(split) split.style.display = 'flex'; 
         if(standard) standard.classList.add('hidden'); 
@@ -280,12 +282,15 @@ function showPage(id) {
         if(standard) standard.classList.remove('hidden'); 
     }
     
-    document.querySelectorAll('.page-container').forEach(p => p.classList.add('hidden'));
+    // ▼ ここが原因でした！元の「active-page」で切り替える方式に修正！ ▼
+    document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
-    if(target) target.classList.remove('hidden');
+    if(target) target.classList.add('active-page');
+    // ▲ ここまで ▲
     
     const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about' };
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    
     if (id === 'home') {
         const navHome = document.querySelector('[data-i18n="nav-home"]');
         if (navHome) navHome.classList.add('active');
@@ -299,7 +304,6 @@ function showPage(id) {
     if (id === 'ranking') initRanking();
     if (id === 'videos') initVideos();
     
-    // ▼ Pingマップを表示した瞬間にアニメーションを開始するトリガー ▼
     if (id === 'ping') setTimeout(initPingVisualizer, 50);
     
     window.scrollTo(0,0);
@@ -333,7 +337,6 @@ function closeImageModal() {
 
 // =====================================
 // ★ PING MAP ビジュアライザー (D3.js) ★
-// 消えていたPingマップのアニメーション処理を完全復活！
 // =====================================
 const pingNodes = [
     { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
@@ -389,7 +392,6 @@ function initPingVisualizer() {
 
         isPingInitialized = true;
 
-        // サーバーアイコンの波紋アニメーション
         d3.timer((elapsed) => {
             const svgMap = d3.select("#map-svg");
             if (!svgMap.empty()) {
@@ -407,7 +409,6 @@ function initPingVisualizer() {
             }
         });
         
-        // サーバー切り替えボタンの動作
         const btnTokyo = document.getElementById('btn-tokyo');
         const btnSeoul = document.getElementById('btn-seoul');
         if(btnTokyo && btnSeoul) {
@@ -855,7 +856,7 @@ window.onload = () => {
     injectNewCharacters(); // 新キャラ2人のステータス＆P-BUFF＆イラストリンクを自動挿入
     autoFixKoreanData();   // ハングル自動浄化
     switchLanguage('ja');  // 言語を日本語へ初期化
-    changeBackground();    // ▼ 背景画像のランダム切り替え処理の実行 ▼
+    changeBackground();    // 背景画像のランダム切り替え処理
     showPage('home');      // HOME画面をファーストビューに
     initRanking();         // ランキングの事前生成
 };
