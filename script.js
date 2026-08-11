@@ -3,14 +3,31 @@
 // ==========================================
 const charVideoIds = {
     "Giant G": "", 
-    "牛魔王": "C8Shm4jd028", "Ox Queen": "C8Shm4jd028",
-    "ルーサー": "ZDOSlNUUNGQ", "Luther": "ZDOSlNUUNGQ",
-    "ビッグドッグ": "6MoEgbtd32Q", "Big Dog": "6MoEgbtd32Q",
-    "ネイサン": "t6RT7MBjJ2I", "Nathan": "t6RT7MBjJ2I",
-    "Lulu": "b-01v1HsFDY", "ルル": "b-01v1HsFDY",
-    "Murdock": "XGzjCnhXK3M", "マードック": "XGzjCnhXK3M",
-    "Clarke": "qQHoLNlMKNE", "クラーク": "qQHoLNlMKNE",
-    "LEE": "qNas3J33Bls", "リー": "qNas3J33Bls"
+    "牛魔王": "C8Shm4jd028",
+    "Ox Queen": "C8Shm4jd028",
+    "ルーサー": "ZDOSlNUUNGQ",
+    "Luther": "ZDOSlNUUNGQ",
+    "ビッグドッグ": "6MoEgbtd32Q",
+    "Big Dog": "6MoEgbtd32Q",
+    "ネイサン": "t6RT7MBjJ2I",
+    "Nathan": "t6RT7MBjJ2I",
+    "ルル": "b-01v1HsFDY",
+    "Lulu": "b-01v1HsFDY",
+    "マードック": "XGzjCnhXK3M",
+    "Murdock": "XGzjCnhXK3M",
+    "クラーク": "qQHoLNlMKNE",
+    "Clarke": "qQHoLNlMKNE",
+    "リー": "qNas3J33Bls",
+    "Lee": "qNas3J33Bls",
+    // 今回追加した4キャラ
+    "ウィリアム": "OtulvdR3c6M",
+    "William": "OtulvdR3c6M",
+    "キム": "f5kAJLVytuo",
+    "Kim": "f5kAJLVytuo",
+    "ペドロ": "-7gSy0DTjmI",
+    "Pedro": "-7gSy0DTjmI",
+    "シンディー": "bHWSbqJiGRA",
+    "Cindy": "bHWSbqJiGRA"
 };
 
 // ==========================================
