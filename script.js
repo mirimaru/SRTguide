@@ -19,7 +19,6 @@ const charVideoIds = {
     "Clarke": "qQHoLNlMKNE",
     "リー": "qNas3J33Bls",
     "Lee": "qNas3J33Bls",
-    // 今回追加した4キャラ
     "ウィリアム": "OtulvdR3c6M",
     "William": "OtulvdR3c6M",
     "キム": "f5kAJLVytuo",
