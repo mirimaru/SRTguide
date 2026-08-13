@@ -876,3 +876,48 @@ window.onload = () => {
     showPage('home');      // HOME画面をファーストビューに
     initRanking();         // ランキングの事前生成
 };
+
+// =====================================
+// ★ MUSIC ページ（YouTube連動）機能 ★
+// =====================================
+function initMusic() {
+    const container = document.getElementById('music-list-container');
+    if (!container || container.children.length > 0) return;
+
+    // 初期状態で1曲目をプレイヤーにセット
+    if (typeof musicData !== 'undefined' && musicData.length > 0) {
+        selectYouTubeTrack(musicData[0].title, musicData[0].desc, musicData[0].youtubeId);
+    }
+
+    musicData.forEach((track) => {
+        const item = document.createElement('div');
+        item.className = `group bg-[#111] border border-white/10 rounded-xl p-4 flex items-center justify-between cursor-pointer hover:border-orange-500 hover:bg-white/5 transition duration-300`;
+        
+        item.innerHTML = `
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition duration-300">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold group-hover:text-orange-400 transition">${track.title}</h4>
+                    <p class="text-slate-400 text-xs">${track.desc}</p>
+                </div>
+            </div>
+        `;
+
+        item.onclick = () => selectYouTubeTrack(track.title, track.desc, track.youtubeId);
+        container.appendChild(item);
+    });
+}
+
+function selectYouTubeTrack(title, desc, youtubeId) {
+    const iframe = document.getElementById('youtube-player');
+    const titleEl = document.getElementById('current-yt-title');
+    const descEl = document.getElementById('current-yt-desc');
+
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = desc;
+    if (iframe) {
+        iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+    }
+}
