@@ -241,16 +241,3 @@ const characterVideos = [
     { name: "Clarke (クラーク)", pos: "PF", id: "qQHoLNlMKNE", desc: "マニュアルダンク・スカイフックの解説" },
     { name: "LEE (リー)", pos: "C", id: "qNas3J33Bls", desc: "シュートタッチ、パワーリバウンド、シグネチャーシュートの解説" }
 ];
-
-// ==========================================
-// ★ MUSIC ページ用 楽曲データ ★
-// ==========================================
-const musicData = [
-    {
-        id: 1,
-        title: "ミッドレンジマエストロ",
-        desc: "3on3 FreeStyle 音楽シリーズ",
-        youtubeId: "viz_d3NVNxU" // ← 動画IDを指定
-    }
-    // 2曲目以降があればここに追加できます
-];
