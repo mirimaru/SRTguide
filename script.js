@@ -30,18 +30,6 @@ const charVideoIds = {
 };
 
 // ==========================================
-// ★ MUSIC ページ用 楽曲データ ★
-// ==========================================
-const musicData = [
-    {
-        id: 1,
-        title: "ミッドレンジマエストロ",
-        desc: "3on3 FreeStyle 音楽シリーズ",
-        youtubeId: "viz_d3NVNxU"
-    }
-];
-
-// ==========================================
 // ★ システム強化：新キャラクター＆P-BUFF自動インジェクション ★
 // ==========================================
 function injectNewCharacters() {
@@ -95,7 +83,7 @@ function injectNewCharacters() {
 // ==========================================
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
         'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。',
@@ -108,7 +96,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'videos-desc': 'Click a character icon to play their introduction video.',
@@ -121,7 +109,7 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
@@ -134,7 +122,7 @@ window.i18n = {
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'videos-desc': '点击角色图标播放介绍视频。',
@@ -209,7 +197,7 @@ function autoFixKoreanData() {
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
-        "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "카ミラ",
+        "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
         "나디아": "나디아", "잭": "ジャック", "디콘": "ディー콘", "노아": "ノ아", "클로이": "クロエ",
         "아일라": "アイ라", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
@@ -310,13 +298,13 @@ function showPage(id) {
         if(standard) standard.classList.remove('hidden'); 
     }
     
+    // ▼ ここが原因でした！元の「active-page」で切り替える方式に修正！ ▼
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
+    // ▲ ここまで ▲
     
-    // ★ NAVMAP に MUSIC を追加
-    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about', 'music': 'nav-music' };
-    
+    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about' };
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     
     if (id === 'home') {
@@ -331,7 +319,6 @@ function showPage(id) {
     if (id === 'pbuff') initPBuff();
     if (id === 'ranking') initRanking();
     if (id === 'videos') initVideos();
-    if (id === 'music') initMusic(); // ★ MUSIC の初期化
     
     if (id === 'ping') setTimeout(initPingVisualizer, 50);
     
@@ -688,22 +675,27 @@ function initVideos() {
 
         card.innerHTML = `
             ${badge}
-            <div class="w-20 h-20 rounded-full bg-black/50 overflow-hidden border-2 border-slate-700 group-hover:border-orange-500 transition">
-                <img src="${imgUrl}" class="w-full h-full object-cover">
+            <div class="relative w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-orange-500 transition duration-300 z-10">
+                <img src="${imgUrl}" class="w-full h-full object-cover bg-black/50">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <i class="fab fa-youtube text-3xl text-orange-500 drop-shadow-md"></i>
+                </div>
             </div>
-            <div class="text-center">
-                <h4 class="text-white font-bold text-sm">${cName}</h4>
-                <p class="text-orange-500 text-xs font-black">${char.pos}</p>
+            <div class="text-center z-10">
+                <h4 class="font-black text-sm tracking-tighter">${cName}</h4>
+                <span class="text-[10px] text-gray-500 font-bold">${char.pos}</span>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
+// =====================================
+// ★ YouTubeモーダル制御 ★
+// =====================================
 function openYtModal(videoId) {
     const modal = document.getElementById('yt-modal');
     const iframe = document.getElementById('yt-iframe');
-    if (!modal || !iframe) return;
     iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
     modal.classList.remove('hidden');
     setTimeout(() => modal.classList.remove('opacity-0'), 10);
@@ -712,7 +704,6 @@ function openYtModal(videoId) {
 function closeYtModal() {
     const modal = document.getElementById('yt-modal');
     const iframe = document.getElementById('yt-iframe');
-    if (!modal || !iframe) return;
     modal.classList.add('opacity-0');
     setTimeout(() => {
         modal.classList.add('hidden');
@@ -735,12 +726,16 @@ function initRanking() {
     }).sort((a, b) => b.total - a.total);
 
     let html = `
-        <div class="grid grid-cols-[60px_1fr_80px_120px] gap-4 p-4 border-b border-white/20 text-slate-400 font-black text-sm uppercase tracking-wider">
-            <div class="text-center">RANK</div>
-            <div>CHARACTER</div>
-            <div class="text-center">POS</div>
-            <div class="text-right">TOTAL STATS</div>
-        </div>
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="border-b-2 border-orange-500 text-orange-500">
+                <th class="py-4 px-4 font-black italic text-xl w-24">RANK</th>
+                <th class="py-4 px-4 font-black italic text-xl">CHARACTER</th>
+                <th class="py-4 px-4 font-black italic text-xl">POS</th>
+                <th class="py-4 px-4 font-black italic text-xl text-right">TOTAL STATS</th>
+            </tr>
+        </thead>
+        <tbody>
     `;
 
     rankedData.forEach((char, idx) => {
@@ -749,27 +744,26 @@ function initRanking() {
         
         let rankStyle = "text-gray-400 font-bold";
         let rowBg = "hover:bg-white/5";
-        
         if (rankNum === 1) { rankStyle = "text-yellow-400 font-black text-2xl drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"; rowBg = "bg-yellow-500/10 border-yellow-500/30"; }
         else if (rankNum === 2) { rankStyle = "text-gray-300 font-black text-xl drop-shadow-[0_0_8px_rgba(209,213,219,0.8)]"; rowBg = "bg-white/10 border-white/20"; }
         else if (rankNum === 3) { rankStyle = "text-orange-400 font-black text-xl drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]"; rowBg = "bg-orange-500/10 border-orange-500/20"; }
 
         html += `
-        <div class="grid grid-cols-[60px_1fr_80px_120px] gap-4 p-4 items-center border-b border-white/5 transition duration-300 ${rowBg}">
-            <div class="text-center ${rankStyle}">#${rankNum}</div>
-            <div class="font-bold text-white text-lg drop-shadow">
-                ${cName}
-            </div>
-            <div class="text-center font-black text-orange-500 bg-orange-500/10 py-1 rounded">
-                ${char.pos}
-            </div>
-            <div class="text-right font-mono text-2xl font-black text-sky-400 drop-shadow-[0_0_5px_rgba(56,189,248,0.5)]">
-                ${char.total}
-            </div>
-        </div>
+        <tr class="border-b border-white/5 transition ${rowBg}">
+            <td class="py-3 px-4 ${rankStyle}">#${rankNum}</td>
+            <td class="py-3 px-4 flex items-center gap-4">
+                <img src="${charImages[char.en] || ''}" class="w-10 h-10 rounded-full object-cover bg-black/50 border border-white/10">
+                <span class="font-bold text-lg">${cName}</span>
+            </td>
+            <td class="py-3 px-4">
+                <span class="text-xs font-bold tracking-widest ${posColors[char.pos] ? posColors[char.pos].split('/')[0] : ''} px-3 py-1.5 rounded-full border border-white/10 text-white">${char.pos}</span>
+            </td>
+            <td class="py-3 px-4 text-right font-black text-2xl text-[#ff4e00]">${char.total}</td>
+        </tr>
         `;
     });
-    
+
+    html += `</tbody></table>`;
     container.innerHTML = html;
 }
 
@@ -779,63 +773,44 @@ function initRanking() {
 function initDb() {
     const grid = document.getElementById('grid');
     if (!grid || grid.children.length > 0) return;
-
-    const maxStats = {};
-    ["PG", "SG", "SF", "PF", "C"].forEach(p => {
-        maxStats[p] = Array(15).fill(0);
-        rawData.filter(c => c.pos === p).forEach(c => {
-            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; });
-        });
+    const maxStats = {}; 
+    ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
+        maxStats[p] = Array(15).fill(0); 
+        rawData.filter(c => c.pos === p).forEach(c => { 
+            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; }); 
+        }); 
     });
-
     rawData.forEach(c => {
-        const card = document.createElement('div');
-        card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10 rounded-2xl shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-orange-500/50`;
-        
-        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase();
-        card.dataset.name = searchName; 
-        card.dataset.pos = c.pos || 'All';
-
+        const card = document.createElement('div'); 
+        card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
+        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
+        card.dataset.name = searchName; card.dataset.pos = c.pos || 'All';
         const cName = c.en || c.名前;
-        const totalStat = c.s.reduce((sum, val) => sum + val, 0);
-        const imgUrl = charImages[c.en] || 'placeholder.png';
-
-        let sHtml = '';
+        let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
             const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
             const label = getTranslatedText(statNames[i], currentLang);
-            const valClass = isMax ? 'text-yellow-400 font-black text-lg drop-shadow-[0_0_5px_rgba(250,204,21,0.8)]' : 'text-white font-bold';
-            sHtml += `
-                <div class="flex justify-between items-center border-b border-white/5 pb-1">
-                    <span class="text-xs text-slate-400">${label}</span>
-                    <span class="${valClass}">${v}</span>
-                </div>
-            `;
+            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
         });
+        sHtml += '</div>';
+
+        const totalStat = c.s.reduce((sum, val) => sum + val, 0);
 
         card.innerHTML = `
-            <div class="absolute -right-4 -top-4 w-32 h-32 bg-orange-500/20 rounded-full blur-2xl"></div>
-            
-            <div class="flex items-center gap-4 mb-6 relative z-10 border-b border-white/10 pb-4">
-                <div class="w-16 h-16 rounded-full bg-black/50 overflow-hidden border-2 border-slate-700">
-                    <img src="${imgUrl}" class="w-full h-full object-cover">
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-2xl font-black text-white drop-shadow tracking-wide leading-tight">${cName}</h3>
-                    <div class="flex items-center gap-2 mt-1">
-                        <span class="bg-orange-500 text-white text-xs font-black px-2 py-0.5 rounded shadow">${c.pos}</span>
-                        <span class="bg-slate-800 text-sky-400 text-xs font-mono font-black px-2 py-0.5 rounded shadow border border-slate-700">TOTAL: ${totalStat}</span>
+            <div class="char-content relative z-10">
+                <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-xs font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
                     </div>
+                    <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
                 </div>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-x-4 gap-y-2 relative z-10">
                 ${sHtml}
             </div>
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 180px; opacity: 0.35; pointer-events: none;">
         `;
         grid.appendChild(card);
     });
-
     filterCards();
 }
 
@@ -843,10 +818,8 @@ function filterCards() {
     const searchInput = document.getElementById('nameInput');
     const posFilter = document.getElementById('posFilter');
     if (!searchInput || !posFilter) return;
-
     const search = searchInput.value.toLowerCase();
     const pos = posFilter.value;
-
     document.querySelectorAll('.char-card').forEach(card => {
         const nameMatch = (card.dataset.name || '').includes(search);
         const posMatch = pos === 'All' || (card.dataset.pos || '') === pos;
@@ -859,109 +832,47 @@ function filterCards() {
 // =====================================
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
-    if(!container) return;
-
-    container.innerHTML = '';
+    if(!container) return; container.innerHTML = '';
     const posFilter = document.getElementById('pbuffPosFilter').value;
-
     for (const [posName, chars] of Object.entries(pBuffData)) {
         if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
-
         const pCode = posName.split(' ')[0];
-        const title = document.createElement('h3');
-        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`;
+        const title = document.createElement('h3'); 
+        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
         title.innerText = posName;
         container.appendChild(title);
-
-        const grid = document.createElement('div');
+        
+        const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
-
+        
         chars.forEach(char => {
-            const card = document.createElement('div');
-            card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10 rounded-2xl shadow-xl`;
-            
+            const card = document.createElement('div'); 
+            card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
             const cName = char.en || char.name;
-            const imgUrl = charImages[char.en] || 'placeholder.png';
-
-            let bHtml = `
-                <div class="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
-                    <div class="w-12 h-12 rounded-full bg-black/50 overflow-hidden border border-slate-700">
-                        <img src="${imgUrl}" class="w-full h-full object-cover">
-                    </div>
-                    <h4 class="text-xl font-black text-white">${cName}</h4>
-                </div>
-                <div class="space-y-2">
-            `;
+            let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
+                <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
+                <div class="space-y-1.5">`;
             
-            char.buffs.forEach(b => {
+            char.buffs.forEach(b => { 
                 const effect = getTranslatedText(b[0], currentLang);
-                bHtml += `
-                    <div class="flex justify-between items-center bg-black/20 p-2 rounded">
-                        <span class="text-xs text-slate-300 font-bold">${effect}</span>
-                        <span class="text-orange-400 font-mono font-black text-sm">${b[1]}</span>
-                    </div>
-                `;
-            });
+                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-sm lg:text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-black text-[#ff4e00]">${b[1]}</span></div>`; 
+            }); 
             
-            bHtml += `</div>`;
-            card.innerHTML = bHtml;
-            grid.appendChild(card);
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -15px; height: 210px; opacity: 0.45; pointer-events: none;">`;
+            card.innerHTML = bHtml; grid.appendChild(card);
         });
-
         container.appendChild(grid);
     }
 }
 
 // =====================================
-// ★ MUSIC ページ（YouTube連携）機能 ★
+// ★ ページ起動時の全初期化処理 ★
 // =====================================
-function initMusic() {
-    const container = document.getElementById('music-list-container');
-    if (!container || container.children.length > 0) return;
-
-    if (typeof musicData !== 'undefined' && musicData.length > 0) {
-        selectYouTubeTrack(musicData[0].title, musicData[0].desc, musicData[0].youtubeId);
-    }
-
-    musicData.forEach((track) => {
-        const item = document.createElement('div');
-        item.className = `group bg-[#111] border border-white/10 rounded-xl p-4 flex items-center justify-between cursor-pointer hover:border-orange-500 hover:bg-white/5 transition duration-300`;
-        
-        item.innerHTML = `
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition duration-300">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold group-hover:text-orange-400 transition">${track.title}</h4>
-                    <p class="text-slate-400 text-xs">${track.desc}</p>
-                </div>
-            </div>
-        `;
-
-        item.onclick = () => selectYouTubeTrack(track.title, track.desc, track.youtubeId);
-        container.appendChild(item);
-    });
-}
-
-function selectYouTubeTrack(title, desc, youtubeId) {
-    const iframe = document.getElementById('youtube-player');
-    const titleEl = document.getElementById('current-yt-title');
-    const descEl = document.getElementById('current-yt-desc');
-
-    if (titleEl) titleEl.textContent = title;
-    if (descEl) descEl.textContent = desc;
-    if (iframe) {
-        iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
-    }
-}
-
-// =====================================
-// ★ 初期化起動 ★
-// =====================================
-window.onload = () => {
-    injectNewCharacters();
-    autoFixKoreanData();
-    switchLanguage('ja');
-    showPage('home');
+window.onload = () => { 
+    injectNewCharacters(); // 新キャラ2人のステータス＆P-BUFF＆イラストリンクを自動挿入
+    autoFixKoreanData();   // ハングル自動浄化
+    switchLanguage('ja');  // 言語を日本語へ初期化
+    changeBackground();    // 背景画像のランダム切り替え処理
+    showPage('home');      // HOME画面をファーストビューに
+    initRanking();         // ランキングの事前生成
 };
