@@ -374,13 +374,13 @@
         <div class="absolute inset-0 z-290 cursor-pointer" onclick="closeYtModal()"></div>
     </div>
 
-    <div id="yt-bgm-player-container" class="fixed bottom-4 right-4 z-50 bg-gray-900/90 backdrop-blur-md text-white px-4 py-2 rounded-full shadow-xl flex items-center space-x-3 border border-gray-700">
-        <button id="yt-bgm-toggle-btn" class="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 flex items-center justify-center text-white transition-all shadow-md cursor-pointer shrink-0" title="BGM再生/停止">
-            <i id="yt-bgm-icon" class="fas fa-play"></i>
+    <div id="yt-bgm-player-container" class="fixed bottom-16 md:bottom-6 right-4 z-50 bg-gray-900/95 backdrop-blur-md text-white px-3 py-2 rounded-2xl shadow-2xl flex items-center space-x-2 border border-orange-500/30">
+        <button id="yt-bgm-toggle-btn" class="w-9 h-9 rounded-xl bg-cyan-500 hover:bg-cyan-400 flex items-center justify-center text-white transition-all shadow-md cursor-pointer shrink-0" title="BGM再生/停止">
+            <i id="yt-bgm-icon" class="fas fa-play text-xs"></i>
         </button>
-        <div class="text-xs hidden sm:block flex flex-col justify-center">
-            <div class="font-bold text-cyan-300 mb-0.5">BGM PLAYER</div>
-            <select id="yt-bgm-select" class="bg-gray-800 text-white text-[10px] rounded border border-gray-600 px-1 py-0.5 outline-none cursor-pointer w-36 truncate">
+        <div class="text-xs flex flex-col justify-center">
+            <div class="font-bold text-orange-400 text-[10px] tracking-wider mb-0.5">BGM PLAYER</div>
+            <select id="yt-bgm-select" class="bg-gray-800 text-white text-[10px] rounded border border-gray-600 px-1.5 py-1 outline-none cursor-pointer w-32 sm:w-40 truncate">
                 </select>
             <div id="yt-bgm-status" class="text-gray-400 text-[9px] mt-0.5">停止中</div>
         </div>
@@ -777,7 +777,7 @@
         // ==========================================
         let isYtBgmPlaying = false;
         
-        // 追加していただいたプレイリストデータ
+        // プレイリストデータ
         const musicData = [
             { id: "GXqLuwYKZmc", title: "re.bound" },
             { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
@@ -795,7 +795,7 @@
         const status = document.getElementById('yt-bgm-status');
         const toggleBtn = document.getElementById('yt-bgm-toggle-btn');
 
-        // セレクトボックスに曲リストを自動追加する処理
+        // セレクトボックスに曲リストを自動追加
         musicData.forEach(music => {
             const option = document.createElement('option');
             option.value = music.id;
@@ -806,9 +806,7 @@
         // BGMを再生/停止する関数
         function updateBgmPlayer() {
             if(isYtBgmPlaying) {
-                // セレクトボックスで現在選ばれている曲のIDを取得
                 const currentId = bgmSelect.value;
-                // その曲を再生 (loopさせるためにplaylistにも同じIDを指定)
                 container.innerHTML = `<iframe width="10" height="10" src="https://www.youtube.com/embed/${currentId}?autoplay=1&loop=1&playlist=${currentId}" frameborder="0" allow="autoplay"></iframe>`;
                 
                 icon.classList.remove('fa-play');
@@ -818,7 +816,6 @@
                 toggleBtn.classList.replace('bg-cyan-500', 'bg-orange-500');
                 toggleBtn.classList.replace('hover:bg-cyan-400', 'hover:bg-orange-400');
             } else {
-                // 停止処理
                 container.innerHTML = '';
                 
                 icon.classList.remove('fa-pause');
@@ -830,15 +827,12 @@
             }
         }
 
-        // 再生ボタンをクリックしたとき
         toggleBtn.addEventListener('click', function() {
             isYtBgmPlaying = !isYtBgmPlaying;
             updateBgmPlayer();
         });
 
-        // リストから別の曲を選んだとき
         bgmSelect.addEventListener('change', function() {
-            // すでに再生中の場合のみ、選んだ瞬間に新しい曲に切り替える
             if (isYtBgmPlaying) {
                 updateBgmPlayer();
             }
