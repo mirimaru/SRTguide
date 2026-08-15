@@ -374,17 +374,17 @@
         <div class="absolute inset-0 z-290 cursor-pointer" onclick="closeYtModal()"></div>
     </div>
 
-    <div id="bgm-player-container" class="fixed bottom-4 right-4 z-50 bg-gray-900/90 backdrop-blur-md text-white px-4 py-2 rounded-full shadow-xl flex items-center space-x-3 border border-gray-700">
-        <button id="bgm-toggle-btn" class="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 flex items-center justify-center text-white transition-all shadow-md cursor-pointer" title="BGM再生/停止">
-            <i id="bgm-icon" class="fas fa-play"></i>
+    <div id="yt-bgm-player-container" class="fixed bottom-4 right-4 z-50 bg-gray-900/90 backdrop-blur-md text-white px-4 py-2 rounded-full shadow-xl flex items-center space-x-3 border border-gray-700">
+        <button id="yt-bgm-toggle-btn" class="w-10 h-10 rounded-full bg-cyan-500 hover:bg-cyan-400 flex items-center justify-center text-white transition-all shadow-md cursor-pointer shrink-0" title="BGM再生/停止">
+            <i id="yt-bgm-icon" class="fas fa-play"></i>
         </button>
-        <div class="text-xs hidden sm:block">
-            <div class="font-bold text-cyan-300">BGM PLAYER</div>
-            <div id="bgm-status" class="text-gray-300">停止中</div>
+        <div class="text-xs hidden sm:block flex flex-col justify-center">
+            <div class="font-bold text-cyan-300 mb-0.5">BGM PLAYER</div>
+            <select id="yt-bgm-select" class="bg-gray-800 text-white text-[10px] rounded border border-gray-600 px-1 py-0.5 outline-none cursor-pointer w-36 truncate">
+                </select>
+            <div id="yt-bgm-status" class="text-gray-400 text-[9px] mt-0.5">停止中</div>
         </div>
-        <audio id="bgm-audio" loop>
-            <source src="bgm.mp3" type="audio/mp3">
-        </audio>
+        <div id="yt-bgm-hidden-frame" class="hidden"></div>
     </div>
 
     <script src="data.js"></script>
@@ -770,6 +770,78 @@
         document.addEventListener('DOMContentLoaded', () => {
             changeBackground();
             initVideos();
+        });
+
+        // ==========================================
+        // ★ YouTube BGMプレイヤーの制御処理 (プレイリスト対応) ★
+        // ==========================================
+        let isYtBgmPlaying = false;
+        
+        // 追加していただいたプレイリストデータ
+        const musicData = [
+            { id: "GXqLuwYKZmc", title: "re.bound" },
+            { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
+            { id: "SFbfs9j4Q3Y", title: "最高のコンビネーション" },
+            { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
+            { id: "pHBtBIqk9mg", title: "チェックメイト" },
+            { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
+            { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
+            { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
+        ];
+
+        const bgmSelect = document.getElementById('yt-bgm-select');
+        const container = document.getElementById('yt-bgm-hidden-frame');
+        const icon = document.getElementById('yt-bgm-icon');
+        const status = document.getElementById('yt-bgm-status');
+        const toggleBtn = document.getElementById('yt-bgm-toggle-btn');
+
+        // セレクトボックスに曲リストを自動追加する処理
+        musicData.forEach(music => {
+            const option = document.createElement('option');
+            option.value = music.id;
+            option.textContent = music.title;
+            bgmSelect.appendChild(option);
+        });
+
+        // BGMを再生/停止する関数
+        function updateBgmPlayer() {
+            if(isYtBgmPlaying) {
+                // セレクトボックスで現在選ばれている曲のIDを取得
+                const currentId = bgmSelect.value;
+                // その曲を再生 (loopさせるためにplaylistにも同じIDを指定)
+                container.innerHTML = `<iframe width="10" height="10" src="https://www.youtube.com/embed/${currentId}?autoplay=1&loop=1&playlist=${currentId}" frameborder="0" allow="autoplay"></iframe>`;
+                
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                status.textContent = "再生中...";
+                
+                toggleBtn.classList.replace('bg-cyan-500', 'bg-orange-500');
+                toggleBtn.classList.replace('hover:bg-cyan-400', 'hover:bg-orange-400');
+            } else {
+                // 停止処理
+                container.innerHTML = '';
+                
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                status.textContent = "停止中";
+                
+                toggleBtn.classList.replace('bg-orange-500', 'bg-cyan-500');
+                toggleBtn.classList.replace('hover:bg-orange-400', 'hover:bg-cyan-400');
+            }
+        }
+
+        // 再生ボタンをクリックしたとき
+        toggleBtn.addEventListener('click', function() {
+            isYtBgmPlaying = !isYtBgmPlaying;
+            updateBgmPlayer();
+        });
+
+        // リストから別の曲を選んだとき
+        bgmSelect.addEventListener('change', function() {
+            // すでに再生中の場合のみ、選んだ瞬間に新しい曲に切り替える
+            if (isYtBgmPlaying) {
+                updateBgmPlayer();
+            }
         });
     </script>
 </body>
