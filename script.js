@@ -91,7 +91,7 @@ function injectNewCharacters() {
 // ==========================================
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
         'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。',
@@ -104,7 +104,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'videos-desc': 'Click a character icon to play their introduction video.',
@@ -117,7 +117,7 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
@@ -130,13 +130,13 @@ window.i18n = {
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'videos-desc': '点击角色图标播放介绍视频。',
         'guide-title': '迈向高阶之路', 'guide-s1-title': '位置特点',
         'guide-s1-pg': '传球与机动性。防守的核心。', 'guide-s1-sg': '最强得分能力。多样化的技能。', 'guide-s1-sf': '攻守兼备的全能型。', 'guide-s1-big': '篮下守护者。篮板球。',
-        'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
+        'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
         'guide-s3-title': '养成步骤', 'guide-s3-p1': '强者金字塔。P5晋级是基础。', 'guide-s3-p2': 'P-BUFF的效果远高于卡片。',
         'guide-s4-title': '团队配合', 'guide-s4-l12-t': 'Level 1 & 2: 基础', 'guide-s4-l12-d': '不要阻碍队友。保持拉开空间。不堵塞突破路线。',
         'guide-s4-l34-t': 'Level 3 & 4: 应用', 'guide-s4-l34-d': '不要责怪失误。使用积极的表情鼓励团队。',
@@ -163,7 +163,7 @@ window.termsDict = {
     'ko': {
         'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
         '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
-        '遠距離ダンク': '원거리 덩크', '近거리ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
+        '遠距離ダンク': '원거리 덩크', '近거리ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近거리 레이업': '근거리 레이업',
         'Sダンク': 'S-덩크', 'Lダン크': 'L-덩크', 'S레이アップ': 'S-레이업', 'L레이アップ': 'L-레이업',
         'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
@@ -201,7 +201,7 @@ const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg
 function autoFixKoreanData() {
     const krFix = {
         "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
-        "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
+        "헬레나": "ヘレナ", "페드로": "ペ드로", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
@@ -221,7 +221,7 @@ function autoFixKoreanData() {
         "돌파 블록": "Dインシュート ブロック", "점프슛 블록": "Jシュート ブロック", "블록 저항 성공률": "ブロック抵抗成功率",
         "최대 지구력": "最大持久力", "지구력 회복량": "持久力の回復量", "레이업/덩크 거리": "レイアップ/ダンク距離",
         "S덩크 속도": "Sダンクの速度", "블록 저항": "ブロック抵抗", "슛 방해": "シュート妨害効果", "몸싸움": "当たり強さ",
-        "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
+        "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久력", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
         "3점슛": "3点シュート", "3점": "3点", "미들슛": "ミドルシュート", "미들": "미들",
         "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "L레이업",
         "이동 속도": "移動速度", "노마크": "ノーマーク"
@@ -288,6 +288,9 @@ function switchLanguage(lang, btnElement = null) {
     if (document.getElementById('video-grid') && document.getElementById('video-grid').children.length > 0) {
         initVideos();
     }
+    if (document.getElementById('music-grid') && document.getElementById('music-grid').children.length > 0) {
+        initMusic();
+    }
 }
 
 // ==========================================
@@ -306,13 +309,11 @@ function showPage(id) {
         if(standard) standard.classList.remove('hidden'); 
     }
     
-    // ▼ ここが原因でした！元の「active-page」で切り替える方式に修正！ ▼
     document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active-page'));
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
-    // ▲ ここまで ▲
     
-    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about' };
+    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about', 'music': 'nav-music' };
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     
     if (id === 'home') {
@@ -327,6 +328,7 @@ function showPage(id) {
     if (id === 'pbuff') initPBuff();
     if (id === 'ranking') initRanking();
     if (id === 'videos') initVideos();
+    if (id === 'music') initMusic();
     
     if (id === 'ping') setTimeout(initPingVisualizer, 50);
     
@@ -871,6 +873,50 @@ function initPBuff() {
         });
         container.appendChild(grid);
     }
+}
+
+// =====================================
+// ★ MUSIC ページ生成機能 ★
+// =====================================
+const musicData = [
+    { id: "GXqLuwYKZmc", title: "re.bound" },
+    { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
+    { id: "SFbfs9j4Q3Y", title: "最高のコンビネーション" },
+    { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
+    { id: "pHBtBIqk9mg", title: "チェックメイト" },
+    { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
+    { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
+    { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
+];
+
+function initMusic() {
+    const grid = document.getElementById('music-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    musicData.forEach(music => {
+        const thumbUrl = `https://i.ytimg.com/vi/${music.id}/maxresdefault.jpg`;
+        const fallbackThumbUrl = `https://i.ytimg.com/vi/${music.id}/hqdefault.jpg`;
+
+        const card = document.createElement('div');
+        card.className = `group relative bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 shadow-xl cursor-pointer hover:border-orange-500 transition duration-300 flex flex-col gap-3`;
+        card.onclick = () => openYtModal(music.id);
+
+        card.innerHTML = `
+            <span class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">MUSIC</span>
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-transparent group-hover:border-orange-500 transition duration-300 z-10">
+                <img src="${thumbUrl}" onerror="this.src='${fallbackThumbUrl}'" class="w-full h-full object-cover bg-black/50">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <i class="fab fa-youtube text-4xl text-orange-500 drop-shadow-md"></i>
+                </div>
+            </div>
+            <div class="text-left z-10 mt-2">
+                <h4 class="font-black text-sm tracking-tighter text-gray-200 line-clamp-2">${music.title}</h4>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
 }
 
 // =====================================
