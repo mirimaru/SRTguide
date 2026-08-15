@@ -67,6 +67,7 @@
             <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
             <span class="nav-link" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
             <span class="nav-link" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
+            <span class="nav-link" onclick="showPage('music')" data-i18n="nav-music">MUSIC</span>
             <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
             <span class="nav-link" onclick="showPage('survey')" data-i18n="nav-survey">SURVEY</span>
         </nav>
@@ -116,6 +117,7 @@
                 <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
                 <div class="panel-box" onclick="showPage('ping')"><i class="fas fa-network-wired text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-ping">PING MAP</h3></div>
                 <div class="panel-box" onclick="showPage('videos')"><i class="fas fa-video text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-videos">VIDEOS</h3></div>
+                <div class="panel-box" onclick="showPage('music')"><i class="fas fa-music text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-music">MUSIC</h3></div>
                 <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-pbuff">P-BUFF</h3></div>
                 <div class="panel-box" onclick="showPage('survey')"><i class="fas fa-clipboard-list text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-survey">SURVEY</h3></div>
                 <a href="https://note.com/clean_squid9881" target="_blank" class="panel-box"><i class="fas fa-edit text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">NOTE</h3></a>
@@ -199,6 +201,7 @@
                 </div>
             </div>
         </section>
+
         <section id="page-videos" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
@@ -216,6 +219,15 @@
             <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターカードをクリックすると解説・紹介動画が再生されます！</p>
             <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
+
+        <section id="page-music" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-music">MUSIC</h2>
+            </div>
+            <p class="text-gray-400 mb-8">楽曲カードをクリックすると、YouTubeのBGM動画が再生されます！</p>
+            <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        </section>
+
         <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY & PING LOG</h2>
             <p class="text-gray-300 mb-8">あなたの地域と実際のPing値を投稿してください！</p>
@@ -374,19 +386,6 @@
         <div class="absolute inset-0 z-290 cursor-pointer" onclick="closeYtModal()"></div>
     </div>
 
-    <div id="yt-bgm-player-container" class="fixed bottom-16 md:bottom-6 right-4 z-50 bg-gray-900/95 backdrop-blur-md text-white px-3 py-2 rounded-2xl shadow-2xl flex items-center space-x-2 border border-orange-500/30">
-        <button id="yt-bgm-toggle-btn" class="w-9 h-9 rounded-xl bg-cyan-500 hover:bg-cyan-400 flex items-center justify-center text-white transition-all shadow-md cursor-pointer shrink-0" title="BGM再生/停止">
-            <i id="yt-bgm-icon" class="fas fa-play text-xs"></i>
-        </button>
-        <div class="text-xs flex flex-col justify-center">
-            <div class="font-bold text-orange-400 text-[10px] tracking-wider mb-0.5">BGM PLAYER</div>
-            <select id="yt-bgm-select" class="bg-gray-800 text-white text-[10px] rounded border border-gray-600 px-1.5 py-1 outline-none cursor-pointer w-32 sm:w-40 truncate">
-                </select>
-            <div id="yt-bgm-status" class="text-gray-400 text-[9px] mt-0.5">停止中</div>
-        </div>
-        <div id="yt-bgm-hidden-frame" class="hidden"></div>
-    </div>
-
     <script src="data.js"></script>
     <script src="script.js"></script>
     
@@ -415,7 +414,7 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // --- 追加した4つのキャラクター紹介動画データ ---
+        // --- キャラクター紹介動画データ ---
         const characterVideos = [
             { name: "Lulu (ルル)", pos: "C", id: "b-01v1HsFDY", desc: "自由なダンクやボックスアウト、クイックポストアップ解説" },
             { name: "Murdock (マードック)", pos: "PF", id: "XGzjCnhXK3M", desc: "ディフェンス特化・シャドウブロックとスリップスクリーンの解説" },
@@ -454,8 +453,44 @@
             });
         }
 
-        function filterVideos() {
-            initVideos();
+        // --- ★ご指定のMUSIC（BGM）リストとカード生成処理 ---
+        const musicData = [
+            { id: "GXqLuwYKZmc", title: "re.bound" },
+            { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
+            { id: "SFbfs9j4Q3Y", title: "最高のコンビネーション" },
+            { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
+            { id: "pHBtBIqk9mg", title: "チェックメイト" },
+            { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
+            { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
+            { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
+        ];
+
+        function initMusic() {
+            const grid = document.getElementById('music-grid');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+            musicData.forEach((music, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500 transition cursor-pointer shadow-xl group";
+                card.onclick = () => openYtModal(`https://www.youtube.com/embed/${music.id}?autoplay=1`);
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-[#ff4e00] text-black text-xs font-black px-2.5 py-1 rounded-md italic">TRACK 0${index + 1}</span>
+                            <i class="fas fa-music text-orange-500 text-xl group-hover:scale-125 transition-transform"></i>
+                        </div>
+                        <h3 class="text-xl font-black italic mb-2 group-hover:text-orange-400 transition-colors">${music.title}</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">クリックして試聴・再生</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-orange-500 font-bold">
+                        <span>PLAY TRACK</span>
+                        <i class="fas fa-play text-[10px]"></i>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
         function openYtModal(url) {
@@ -729,7 +764,7 @@
             renderMap('seoul');
         });
 
-        // 既存の showPage に連動させる処理
+        // 既存の showPage に連動させる処理（VIDEOSやMUSICページが開かれたときの自動初期化）
         const originalShowPage = window.showPage;
         window.showPage = function(pageId) {
             if (typeof originalShowPage === 'function') {
@@ -747,6 +782,9 @@
             }
             if (pageId === 'videos') {
                 initVideos();
+            }
+            if (pageId === 'music') {
+                initMusic();
             }
         };
 
@@ -770,72 +808,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             changeBackground();
             initVideos();
-        });
-
-        // ==========================================
-        // ★ YouTube BGMプレイヤーの制御処理 (プレイリスト対応) ★
-        // ==========================================
-        let isYtBgmPlaying = false;
-        
-        // プレイリストデータ
-        const musicData = [
-            { id: "GXqLuwYKZmc", title: "re.bound" },
-            { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
-            { id: "SFbfs9j4Q3Y", title: "最高のコンビネーション" },
-            { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
-            { id: "pHBtBIqk9mg", title: "チェックメイト" },
-            { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
-            { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
-            { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
-        ];
-
-        const bgmSelect = document.getElementById('yt-bgm-select');
-        const container = document.getElementById('yt-bgm-hidden-frame');
-        const icon = document.getElementById('yt-bgm-icon');
-        const status = document.getElementById('yt-bgm-status');
-        const toggleBtn = document.getElementById('yt-bgm-toggle-btn');
-
-        // セレクトボックスに曲リストを自動追加
-        musicData.forEach(music => {
-            const option = document.createElement('option');
-            option.value = music.id;
-            option.textContent = music.title;
-            bgmSelect.appendChild(option);
-        });
-
-        // BGMを再生/停止する関数
-        function updateBgmPlayer() {
-            if(isYtBgmPlaying) {
-                const currentId = bgmSelect.value;
-                container.innerHTML = `<iframe width="10" height="10" src="https://www.youtube.com/embed/${currentId}?autoplay=1&loop=1&playlist=${currentId}" frameborder="0" allow="autoplay"></iframe>`;
-                
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-pause');
-                status.textContent = "再生中...";
-                
-                toggleBtn.classList.replace('bg-cyan-500', 'bg-orange-500');
-                toggleBtn.classList.replace('hover:bg-cyan-400', 'hover:bg-orange-400');
-            } else {
-                container.innerHTML = '';
-                
-                icon.classList.remove('fa-pause');
-                icon.classList.add('fa-play');
-                status.textContent = "停止中";
-                
-                toggleBtn.classList.replace('bg-orange-500', 'bg-cyan-500');
-                toggleBtn.classList.replace('hover:bg-orange-400', 'hover:bg-cyan-400');
-            }
-        }
-
-        toggleBtn.addEventListener('click', function() {
-            isYtBgmPlaying = !isYtBgmPlaying;
-            updateBgmPlayer();
-        });
-
-        bgmSelect.addEventListener('change', function() {
-            if (isYtBgmPlaying) {
-                updateBgmPlayer();
-            }
+            initMusic();
         });
     </script>
 </body>
