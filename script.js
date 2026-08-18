@@ -34,7 +34,19 @@ const charVideoIds = {
     "ミカ": "uEhANr3fS6E",
     "Mika": "uEhANr3fS6E",
     "ウォーカー": "Sbj-9Ltwx2c",
-    "Walker": "Sbj-9Ltwx2c"
+    "Walker": "Sbj-9Ltwx2c",
+    "サル": "FMmpcJ0-mHI",
+    "Saru": "FMmpcJ0-mHI",
+    "ジャック": "VS_E1f1IIm4",
+    "Jack": "VS_E1f1IIm4",
+    "リウ": "z79N8GXwWSk",
+    "Liu": "z79N8GXwWSk",
+    "ジンジャー": "FQ6P-tpPzx0",
+    "Ginger": "FQ6P-tpPzx0",
+    "ビッグジョー": "11NHcI7kenQ",
+    "Big Joe": "11NHcI7kenQ",
+    "ナディア": "dPs5Y_KYNws",
+    "Nadia": "dPs5Y_KYNws"
 };
 
 // ==========================================
