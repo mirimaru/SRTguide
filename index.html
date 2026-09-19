@@ -57,7 +57,7 @@
 </head>
 <body class="bg-black text-white">
 
-    <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
+   <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home'); changeBackground();">
             <h1 class="text-xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
@@ -66,7 +66,6 @@
             <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
             <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
             <span class="nav-link" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
-            <span class="nav-link" onclick="showPage('ranking')" data-i18n="nav-ranking">RANKING</span>
             <span class="nav-link" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
             <span class="nav-link" onclick="showPage('music')" data-i18n="nav-music">MUSIC</span>
             <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
@@ -90,23 +89,25 @@
             </div>
         </div>
 
-        <div class="absolute top-24 right-10 md:right-16 lg:right-32 xl:right-48 z-[45] w-[50%] sm:w-[14rem] md:w-[16rem] lg:w-[20rem] aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 hover:scale-105 transition-transform duration-300 bg-black">
+        <div class="absolute top-24 right-10 md:right-16 lg:right-32 xl:right-48 z-[45] w-[50%] sm:w-[14rem] md:w-[16rem] lg:w-[20rem] aspect-video rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/20 hover:scale-105 transition-transform duration-300 bg-black">
             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/FWWawqKFa8I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
         <div class="home-left relative z-10">
             <div class="mb-6">
-                <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap">SRT <span class="text-[#ff4e00]">guide</span></h2>
+                <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                    SRT <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">guide</span>
+                </h2>
             </div>
-            <div class="about-me-status bg-[#0f0f0f] border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-2xl mb-8 mt-16 md:mt-24">
+            <div class="about-me-status bg-gray-900/80 backdrop-blur-md border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-[0_0_20px_rgba(255,78,0,0.3)] transition-all hover:shadow-[0_0_30px_rgba(255,78,0,0.6)] mb-8 mt-16 md:mt-24">
                 <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
                 <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
                 <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
             </div>
-            <div class="bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 w-full shadow-2xl">
-                <h3 class="text-xs font-black italic text-orange-500 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> <span data-i18n="home-recommended">RECOMMENDED</span></h3>
+            <div class="bg-gray-900/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-4 w-full shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:border-cyan-400/50">
+                <h3 class="text-xs font-black italic text-cyan-400 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> <span data-i18n="home-recommended">RECOMMENDED</span></h3>
                 <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/W3PSbK1VpGI" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -127,7 +128,7 @@
             </div>
             
             <div class="absolute bottom-6 right-8 z-30">
-                <div class="bg-[#0a0a0a] border border-orange-500/50 rounded-xl p-3 cursor-pointer hover:border-orange-500 transition shadow-[0_0_15px_rgba(255,78,0,0.6)] flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
+                <div class="bg-gray-900/90 backdrop-blur-md border border-orange-500/50 rounded-xl p-3 cursor-pointer transition-all shadow-[0_0_20px_rgba(255,78,0,0.4)] hover:shadow-[0_0_30px_rgba(255,78,0,0.8)] hover:border-orange-400 flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
                     <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
                     <div class="text-left leading-tight"><div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div><div class="text-sm font-black text-white italic" data-i18n="home-map">プレゼントMAP</div></div>
                 </div>
@@ -240,7 +241,6 @@
                 </div>
             </div>
         </section>
-
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -358,24 +358,17 @@
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
         </section>
 
-        <!-- P-BUFF ページ（ALL POSITIONS を先頭に配置） -->
-        <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
-                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
-                <div class="flex gap-4">
-                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-                        <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
-                        <option value="PG" class="bg-gray-900 text-white">PG</option>
-                        <option value="SG" class="bg-gray-900 text-white">SG</option>
-                        <option value="SF" class="bg-gray-900 text-white">SF</option>
-                        <option value="PF" class="bg-gray-900 text-white">PF</option>
-                        <option value="C" class="bg-gray-900 text-white">C</option>
-                    </select>
-                </div>
+        <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+    <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+    <option value="PG" class="bg-gray-900 text-white">PG</option>
+    <option value="SG" class="bg-gray-900 text-white">SG</option>
+    <option value="SF" class="bg-gray-900 text-white">SF</option>
+    <option value="PF" class="bg-gray-900 text-white">PF</option>
+    <option value="C" class="bg-gray-900 text-white">C</option>
+</select>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
-
     </div>
 
     <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
@@ -396,6 +389,7 @@
     <script src="script.js"></script>
     
     <script>
+        // 背景画像のランダム切り替え配列
         const bgImages = ['image_5709c0.jpg', 'op_main.jpg', 'op_blair.jpg', 'op_camila.jpg', 'op_cow.jpg'];
 
         function changeBackground() {
@@ -419,6 +413,7 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
+        // --- キャラクター紹介動画データ ---
         const characterVideos = [
             { name: "Lulu (ルル)", pos: "C", id: "b-01v1HsFDY", desc: "自由なダンクやボックスアウト、クイックポストアップ解説" },
             { name: "Murdock (マードック)", pos: "PF", id: "XGzjCnhXK3M", desc: "ディフェンス特化・シャドウブロックとスリップスクリーンの解説" },
@@ -457,6 +452,7 @@
             });
         }
 
+        // --- ★ご指定のMUSIC（BGM）リストとカード生成処理 ---
         const musicData = [
             { id: "GXqLuwYKZmc", title: "re.bound" },
             { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
@@ -512,6 +508,7 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
+        // --- D3.js Ping Map Visualizer Logic ---
         const nodes = [
             { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
             { id: "Tohoku", label: "東北", x: 810, y: 220, type: "client" },
@@ -766,6 +763,7 @@
             renderMap('seoul');
         });
 
+        // 既存の showPage に連動させる処理（VIDEOSやMUSICページが開かれたときの自動初期化）
         const originalShowPage = window.showPage;
         window.showPage = function(pageId) {
             if (typeof originalShowPage === 'function') {
