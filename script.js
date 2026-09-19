@@ -56,25 +56,25 @@ function injectNewCharacters() {
     if (typeof charImages === 'undefined') {
         window.charImages = {};
     }
+    // 新キャラ＆バスキーの公式イラストリンク
     charImages["Lavieta"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/ravieta/chr_b.png";
     charImages["Luna"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/luna/chr_b.png";
+    charImages["Basky"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/basky/chr_b.png"; // バスキーの画像URL
 
-    if (typeof rawData !== 'undefined') {
-        const hasLavieta = rawData.some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
-        if (!hasLavieta) {
-            rawData.push({
-                "名前": "ラビエタ", "en": "Lavieta", "pos": "SG",
-                "s": [127, 178, 229, 140, 204, 89, 89, 165, 152, 153, 102, 89, 89, 229, 191]
-            });
-        }
-        const hasLuna = rawData.some(c => c.en === 'Luna' || c.名前 === 'ルナ');
-        if (!hasLuna) {
-            rawData.push({
-                "名前": "ルナ", "en": "Luna", "pos": "SF",
-                "s": [153, 204, 153, 127, 165, 114, 165, 140, 114, 178, 140, 114, 140, 153, 178]
-            });
+    // P-BUFFへの自動インジェクションにバスキーを追加する場合
+    if (typeof pBuffData !== 'undefined') {
+        // 例: C もしくは該当ポジションにバスキーを追加
+        if (pBuffData["C (CENTER)"]) {
+            const hasBasky = pBuffData["C (CENTER)"].some(c => c.en === 'Basky' || c.名前 === 'バスキー');
+            if (!hasBasky) {
+                pBuffData["C (CENTER)"].push({
+                    "名前": "バスキー", "en": "Basky",
+                    "buffs": [ ["リバウンド", "+14"], ["当たり強さ", "+14"], ["持久力", "+14"], ["パス", "+14"], ["ランニング", "+10"] ] // 実際のバフ値に合わせて書き換えてください
+                });
+            }
         }
     }
+}
 
     if (typeof pBuffData !== 'undefined') {
         if (pBuffData["SG (シューティングガード)"]) {
