@@ -682,11 +682,12 @@ function closeYtModal() {
 
 // ▼ 背景画像のランダム切り替え処理 ▼
 const bgImages = [
-    'image_5709c0.jpg', 
+    'bsk.png', 
     'op_main.jpg', 
     'op_blair.png', 
     'op_camila.jpg', 
-    'op_cow.png'
+    'op_cow.png',
+    'burea.jpg',
 ];
 function changeBackground() {
     const bgWrapper = document.getElementById('home-split-wrapper');
