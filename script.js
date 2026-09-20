@@ -46,11 +46,22 @@ const charVideoIds = {
     "ビッグジョー": "11NHcI7kenQ",
     "Big Joe": "11NHcI7kenQ",
     "ナディア": "dPs5Y_KYNws",
-    "Nadia": "dPs5Y_KYNws"
+    "Nadia": "dPs5Y_KYNws",
+    "バスキー(C)": "",
+    "Basky(C)": "",
+    "バスキー(PF)": "",
+    "Basky(PF)": "",
+    "バスキー(SF)": "",
+    "Basky(SF)": "",
+    "バスキー(SG)": "",
+    "Basky(SG)": "",
+    "バスキー(PG)": "",
+    "Basky(PG)": ""
 };
 
 // ==========================================
 // ★ システム強化：新キャラクター＆P-BUFF自動インジェクション ★
+// ALL枠で独立させず、各ポジションに自動でバスキーを組み込みます
 // ==========================================
 function injectNewCharacters() {
     if (typeof charImages === 'undefined') {
@@ -58,6 +69,14 @@ function injectNewCharacters() {
     }
     charImages["Lavieta"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/ravieta/chr_b.png";
     charImages["Luna"] = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/luna/chr_b.png";
+    
+    // バスキー用公式イラスト（各ポジション名に対応）
+    const baskyImg = "https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/basky/chr_b.png";
+    charImages["Basky(C)"] = baskyImg;
+    charImages["Basky(PF)"] = baskyImg;
+    charImages["Basky(SF)"] = baskyImg;
+    charImages["Basky(SG)"] = baskyImg;
+    charImages["Basky(PG)"] = baskyImg;
 
     if (typeof rawData !== 'undefined') {
         const hasLavieta = rawData.some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
@@ -74,27 +93,78 @@ function injectNewCharacters() {
                 "s": [153, 204, 153, 127, 165, 114, 165, 140, 114, 178, 140, 114, 140, 153, 178]
             });
         }
+
+        // 🌟 バスキー（バフを引いた素のステータス）を各ポジションに展開
+        const baskyStats = [
+            { pos: "C", s: [145, 145, 125, 145, 145, 145, 145, 145, 125, 145, 175, 175, 175, 125, 145] },
+            { pos: "PF", s: [145, 145, 130, 145, 145, 145, 170, 145, 130, 170, 145, 145, 170, 130, 145] },
+            { pos: "SF", s: [135, 165, 145, 145, 165, 145, 145, 145, 135, 165, 145, 135, 145, 145, 145] },
+            { pos: "SG", s: [125, 175, 175, 145, 145, 145, 145, 145, 145, 145, 145, 125, 125, 175, 145] },
+            { pos: "PG", s: [145, 145, 145, 145, 145, 145, 145, 175, 175, 145, 125, 125, 125, 175, 145] }
+        ];
+        
+        baskyStats.forEach(b => {
+            const hasBasky = rawData.some(c => c.en === `Basky(${b.pos})` || c.名前 === `バスキー(${b.pos})`);
+            if (!hasBasky) {
+                rawData.push({
+                    "名前": `バスキー(${b.pos})`, "en": `Basky(${b.pos})`, "pos": b.pos, "s": b.s
+                });
+            }
+        });
     }
 
     if (typeof pBuffData !== 'undefined') {
-        if (pBuffData["SG (シューティングガード)"]) {
-            const hasLavietaBuff = pBuffData["SG (シューティングガード)"].some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
+        // ラビエタ (SG)
+        const sgKey = Object.keys(pBuffData).find(k => k.startsWith("SG"));
+        if (sgKey) {
+            const hasLavietaBuff = pBuffData[sgKey].some(c => c.en === 'Lavieta' || c.名前 === 'ラビエタ');
             if (!hasLavietaBuff) {
-                pBuffData["SG (シューティングガード)"].push({
+                pBuffData[sgKey].push({
                     "名前": "ラビエタ", "en": "Lavieta",
                     "buffs": [ ["スティールの速度", "+8.4%"], ["持久力", "+14"], ["ランニング", "+14"], ["ロングレイアップ", "+12"], ["当たり強さ", "+14"] ]
                 });
             }
         }
-        if (pBuffData["SF (スモールフォワード)"]) {
-            const hasLunaBuff = pBuffData["SF (スモールフォワード)"].some(c => c.en === 'Luna' || c.名前 === 'ルナ');
+        
+        // ルナ (SF)
+        const sfKey = Object.keys(pBuffData).find(k => k.startsWith("SF") || k.includes("SMALL"));
+        if (sfKey) {
+            const hasLunaBuff = pBuffData[sfKey].some(c => c.en === 'Luna' || c.名前 === 'ルナ');
             if (!hasLunaBuff) {
-                pBuffData["SF (スモールフォワード)"].push({
+                pBuffData[sfKey].push({
                     "名前": "ルナ", "en": "Luna",
                     "buffs": [ ["パス", "+14"], ["持久力", "+14"], ["ランニング", "+14"], ["ロングダンク", "+14"], ["3点シュート", "+14"] ]
                 });
             }
+        } else {
+            // SFカテゴリ自体が存在しない場合の保険
+            pBuffData["SF (SMALL FORWARD)"] = [{
+                "名前": "ルナ", "en": "Luna",
+                "buffs": [ ["パス", "+14"], ["持久力", "+14"], ["ランニング", "+14"], ["ロングダンク", "+14"], ["3点シュート", "+14"] ]
+            }];
         }
+        
+        // 🌟 バスキーのP-BUFF（全ポジションにそれぞれ独立して追加）
+        const baskyBuffs = [
+            ["3点シュート", "+12"],
+            ["ミドルシュート", "+12"],
+            ["Dインシュート ブロック", "+12"],
+            ["当たり強さ", "+12"],
+            ["ロングダンク", "+12"]
+        ];
+        
+        ["C", "PF", "SF", "SG", "PG"].forEach(pos => {
+            const posKey = Object.keys(pBuffData).find(k => k.startsWith(pos));
+            if (posKey) {
+                const hasBaskyBuff = pBuffData[posKey].some(c => c.en === `Basky(${pos})` || c.名前 === `バスキー(${pos})`);
+                if (!hasBaskyBuff) {
+                    pBuffData[posKey].push({
+                        "名前": `バスキー(${pos})`, "en": `Basky(${pos})`,
+                        "buffs": baskyBuffs
+                    });
+                }
+            }
+        });
     }
 }
 
@@ -181,7 +251,7 @@ window.termsDict = {
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
         '回復量': '회복량', '最大値': '최대치', '最大': '최대',
-        '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
+        '成功率': '성공률', '발동 확률': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
         '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
         'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
         'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', '리바': '리바', '런': '런', '지구': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
@@ -215,13 +285,14 @@ function autoFixKoreanData() {
         "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
         "헬레나": "ヘレナ", "페드로": "ペ드로", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
-        "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
+        "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラー크", "룰루": "ルル", "빅독": "ビッグドッグ",
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
         "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
         "나디아": "나디아", "잭": "ジャック", "디콘": "ディー콘", "노아": "ノ아", "클로이": "クロエ",
         "아일라": "アイ라", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
         "카지": "카지", "켄쇼": "켄쇼", "더블 D": "ダブルD", "지미": "지미", "프레드": "프레드",
+        "바스키": "バスキー", "Basky": "Basky",
         "노마크 3점슛 성공률": "ノーマーク3点シュート成功率", "일반 이동 속도": "一般の移動速度",
         "3점슛 성공률": "3点シュート 成功率", "3점 성공률": "3点シュート 成功率",
         "S덩크 발동 확률": "Sダンク 発動確率", "S덩크 수비 저항": "Sダンク 守備抵抗", "S덩크 블록 저항": "Sダンク ブロック抵抗",
@@ -298,21 +369,17 @@ function switchLanguage(lang, btnElement = null) {
     }
     initRanking();
     if (document.getElementById('video-grid') && document.getElementById('video-grid').children.length > 0) {
-        initVideos();
+        if(typeof initVideos === 'function') initVideos();
     }
     if (document.getElementById('music-grid') && document.getElementById('music-grid').children.length > 0) {
-        initMusic();
+        if(typeof initMusic === 'function') initMusic();
     }
 }
 
-// ==========================================
-// ★ ページナビゲーション機能・画像切り替え ★
-// ==========================================
 function showPage(id) {
     const split = document.getElementById('home-split-wrapper');
     const standard = document.getElementById('standard-content');
     
-    // ホーム画面とそれ以外のレイアウト切り替え
     if (id === 'home') { 
         if(split) split.style.display = 'flex'; 
         if(standard) standard.classList.add('hidden'); 
@@ -339,12 +406,243 @@ function showPage(id) {
     if (id === 'db') initDb();
     if (id === 'pbuff') initPBuff();
     if (id === 'ranking') initRanking();
-    if (id === 'videos') initVideos();
-    if (id === 'music') initMusic();
-    
-    if (id === 'ping') setTimeout(initPingVisualizer, 50);
+    if (id === 'videos' && typeof initVideos === 'function') initVideos();
+    if (id === 'music' && typeof initMusic === 'function') initMusic();
+    if (id === 'ping' && typeof initPingVisualizer === 'function') setTimeout(initPingVisualizer, 50);
     
     window.scrollTo(0,0);
+}
+
+function initRanking() {
+    const container = document.getElementById('ranking-container');
+    if (!container) return;
+
+    const rankedData = rawData.map(char => {
+        return {
+            ...char,
+            total: char.s.reduce((sum, val) => sum + val, 0)
+        };
+    }).sort((a, b) => b.total - a.total);
+
+    let html = `
+    <table class="w-full text-left border-collapse">
+        <thead>
+            <tr class="border-b-2 border-orange-500 text-orange-500">
+                <th class="py-4 px-4 font-black italic text-xl w-24">RANK</th>
+                <th class="py-4 px-4 font-black italic text-xl">CHARACTER</th>
+                <th class="py-4 px-4 font-black italic text-xl">POS</th>
+                <th class="py-4 px-4 font-black italic text-xl text-right">TOTAL STATS</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+
+    rankedData.forEach((char, idx) => {
+        const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
+        const rankNum = idx + 1;
+        
+        let rankStyle = "text-gray-400 font-bold";
+        let rowBg = "hover:bg-white/5";
+        if (rankNum === 1) { rankStyle = "text-yellow-400 font-black text-2xl drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"; rowBg = "bg-yellow-500/10 border-yellow-500/30"; }
+        else if (rankNum === 2) { rankStyle = "text-gray-300 font-black text-xl drop-shadow-[0_0_8px_rgba(209,213,219,0.8)]"; rowBg = "bg-white/10 border-white/20"; }
+        else if (rankNum === 3) { rankStyle = "text-orange-400 font-black text-xl drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]"; rowBg = "bg-orange-500/10 border-orange-500/20"; }
+
+        html += `
+        <tr class="border-b border-white/5 transition ${rowBg}">
+            <td class="py-3 px-4 ${rankStyle}">#${rankNum}</td>
+            <td class="py-3 px-4 flex items-center gap-4">
+                <img src="${charImages[char.en] || ''}" class="w-10 h-10 rounded-full object-cover bg-black/50 border border-white/10">
+                <span class="font-bold text-lg">${cName}</span>
+            </td>
+            <td class="py-3 px-4">
+                <span class="text-xs font-bold tracking-widest ${posColors[char.pos] ? posColors[char.pos].split('/')[0] : ''} px-3 py-1.5 rounded-full border border-white/10 text-white">${char.pos}</span>
+            </td>
+            <td class="py-3 px-4 text-right font-black text-2xl text-[#ff4e00]">${char.total}</td>
+        </tr>
+        `;
+    });
+
+    html += `</tbody></table>`;
+    container.innerHTML = html;
+}
+
+function initDb() {
+    const grid = document.getElementById('grid');
+    if (!grid || grid.children.length > 0) return;
+    const maxStats = {}; 
+    ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
+        maxStats[p] = Array(15).fill(0); 
+        rawData.filter(c => c.pos === p).forEach(c => { 
+            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; }); 
+        }); 
+    });
+    rawData.forEach(c => {
+        const card = document.createElement('div'); 
+        card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
+        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
+        card.dataset.name = searchName; card.dataset.pos = c.pos || 'All';
+        const cName = c.en || c.名前;
+        let sHtml = '<div class="stat-grid">';
+        c.s.forEach((v, i) => {
+            const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
+            const label = getTranslatedText(statNames[i], currentLang);
+            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
+        });
+        sHtml += '</div>';
+
+        const totalStat = c.s.reduce((sum, val) => sum + val, 0);
+
+        card.innerHTML = `
+            <div class="char-content relative z-10">
+                <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
+                    <div class="flex items-center gap-3">
+                        <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-xs font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
+                    </div>
+                    <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
+                </div>
+                ${sHtml}
+            </div>
+            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 180px; opacity: 0.35; pointer-events: none;">
+        `;
+        grid.appendChild(card);
+    });
+    filterCards();
+}
+
+function filterCards() {
+    const searchInput = document.getElementById('nameInput');
+    const posFilter = document.getElementById('posFilter');
+    if (!searchInput || !posFilter) return;
+    const search = searchInput.value.toLowerCase();
+    const pos = posFilter.value;
+    document.querySelectorAll('.char-card').forEach(card => {
+        const nameMatch = (card.dataset.name || '').includes(search);
+        const posMatch = pos === 'All' || (card.dataset.pos || '') === pos;
+        card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
+    });
+}
+
+function initPBuff() {
+    const container = document.getElementById('pbuff-grid-container');
+    if(!container) return; container.innerHTML = '';
+    const posFilter = document.getElementById('pbuffPosFilter').value;
+    
+    for (const [posName, chars] of Object.entries(pBuffData)) {
+        if (posName.startsWith("ALL")) continue; // ALL枠があれば無視
+        
+        const pCode = posName.split(' ')[0]; // "PG", "SG" 等を取得
+        if (posFilter !== 'All' && pCode !== posFilter) continue;
+        
+        const title = document.createElement('h3'); 
+        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
+        title.innerText = posName;
+        container.appendChild(title);
+        
+        const grid = document.createElement('div'); 
+        grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
+        
+        chars.forEach(char => {
+            const card = document.createElement('div'); 
+            card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
+            const cName = char.en || char.name;
+            let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
+                <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
+                <div class="space-y-1.5">`;
+            
+            char.buffs.forEach(b => { 
+                const effect = getTranslatedText(b[0], currentLang);
+                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-sm lg:text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-black text-[#ff4e00]">${b[1]}</span></div>`; 
+            }); 
+            
+            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -15px; height: 210px; opacity: 0.45; pointer-events: none;">`;
+            card.innerHTML = bHtml; grid.appendChild(card);
+        });
+        container.appendChild(grid);
+    }
+}
+
+// =====================================
+// ★ VIDEOS ページ生成機能 ★
+// =====================================
+function initVideos() {
+    const grid = document.getElementById('video-grid');
+    const posFilter = document.getElementById('videoPosFilter');
+    if (!grid || !posFilter) return;
+
+    grid.innerHTML = '';
+    const filterVal = posFilter.value;
+
+    rawData.forEach(char => {
+        if (filterVal !== 'All' && char.pos !== filterVal) return;
+
+        const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
+        const imgUrl = charImages[char.en] || 'placeholder.png';
+        
+        const videoId = charVideoIds[char.en] || charVideoIds[char.名前];
+        const isGiantG = (char.en === 'Giant G' || char.名前 === 'ジャイアントG');
+
+        let badge = '';
+        let opacityClass = '';
+        if (videoId) {
+            badge = `<span class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">WATCH</span>`;
+        } else if (isGiantG) {
+            badge = `<span class="absolute top-2 right-2 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20 animate-pulse">WIP(制作中)</span>`;
+        } else {
+            badge = `<span class="absolute top-2 right-2 bg-gray-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">準備中</span>`;
+            opacityClass = 'opacity-50 grayscale hover:grayscale-0 hover:opacity-100';
+        }
+
+        const card = document.createElement('div');
+        card.className = `group relative bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 shadow-xl cursor-pointer hover:border-orange-500 transition duration-300 flex flex-col items-center gap-3 ${opacityClass}`;
+        card.onclick = () => {
+            if (videoId) {
+                openYtModal(videoId);
+            } else if (isGiantG) {
+                alert(cName + ' の紹介動画は現在、絶賛制作中です！もうしばらくお待ちください！');
+            } else {
+                alert(cName + ' の紹介動画は準備中です。公開をお楽しみに！');
+            }
+        };
+
+        card.innerHTML = `
+            ${badge}
+            <div class="relative w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-orange-500 transition duration-300 z-10">
+                <img src="${imgUrl}" class="w-full h-full object-cover bg-black/50">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <i class="fab fa-youtube text-3xl text-orange-500 drop-shadow-md"></i>
+                </div>
+            </div>
+            <div class="text-center z-10">
+                <h4 class="font-black text-sm tracking-tighter">${cName}</h4>
+                <span class="text-[10px] text-gray-500 font-bold">${char.pos}</span>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// =====================================
+// ★ YouTubeモーダル制御 ★
+// =====================================
+function openYtModal(videoId) {
+    const modal = document.getElementById('yt-modal');
+    const iframe = document.getElementById('yt-iframe');
+    if(iframe) iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    if(modal) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+    }
+}
+
+function closeYtModal() {
+    const modal = document.getElementById('yt-modal');
+    const iframe = document.getElementById('yt-iframe');
+    if(modal) modal.classList.add('opacity-0');
+    setTimeout(() => {
+        if(modal) modal.classList.add('hidden');
+        if(iframe) iframe.src = ''; 
+    }, 300);
 }
 
 // ▼ 背景画像のランダム切り替え処理 ▼
@@ -652,293 +950,11 @@ function updateInfoPanel(server) {
     }
 }
 
-// =====================================
-// ★ VIDEOS ページ生成機能 ★
-// =====================================
-function initVideos() {
-    const grid = document.getElementById('video-grid');
-    const posFilter = document.getElementById('videoPosFilter');
-    if (!grid || !posFilter) return;
-
-    grid.innerHTML = '';
-    const filterVal = posFilter.value;
-
-    rawData.forEach(char => {
-        if (filterVal !== 'All' && char.pos !== filterVal) return;
-
-        const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
-        const imgUrl = charImages[char.en] || 'placeholder.png';
-        
-        const videoId = charVideoIds[char.en] || charVideoIds[char.名前];
-        const isGiantG = (char.en === 'Giant G' || char.名前 === 'ジャイアントG');
-
-        let badge = '';
-        let opacityClass = '';
-        if (videoId) {
-            badge = `<span class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">WATCH</span>`;
-        } else if (isGiantG) {
-            badge = `<span class="absolute top-2 right-2 bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20 animate-pulse">WIP(制作中)</span>`;
-        } else {
-            badge = `<span class="absolute top-2 right-2 bg-gray-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">準備中</span>`;
-            opacityClass = 'opacity-50 grayscale hover:grayscale-0 hover:opacity-100';
-        }
-
-        const card = document.createElement('div');
-        card.className = `group relative bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 shadow-xl cursor-pointer hover:border-orange-500 transition duration-300 flex flex-col items-center gap-3 ${opacityClass}`;
-        card.onclick = () => {
-            if (videoId) {
-                openYtModal(videoId);
-            } else if (isGiantG) {
-                alert(cName + ' の紹介動画は現在、絶賛制作中です！もうしばらくお待ちください！');
-            } else {
-                alert(cName + ' の紹介動画は準備中です。公開をお楽しみに！');
-            }
-        };
-
-        card.innerHTML = `
-            ${badge}
-            <div class="relative w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-orange-500 transition duration-300 z-10">
-                <img src="${imgUrl}" class="w-full h-full object-cover bg-black/50">
-                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                    <i class="fab fa-youtube text-3xl text-orange-500 drop-shadow-md"></i>
-                </div>
-            </div>
-            <div class="text-center z-10">
-                <h4 class="font-black text-sm tracking-tighter">${cName}</h4>
-                <span class="text-[10px] text-gray-500 font-bold">${char.pos}</span>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-// =====================================
-// ★ YouTubeモーダル制御 ★
-// =====================================
-function openYtModal(videoId) {
-    const modal = document.getElementById('yt-modal');
-    const iframe = document.getElementById('yt-iframe');
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    modal.classList.remove('hidden');
-    setTimeout(() => modal.classList.remove('opacity-0'), 10);
-}
-
-function closeYtModal() {
-    const modal = document.getElementById('yt-modal');
-    const iframe = document.getElementById('yt-iframe');
-    modal.classList.add('opacity-0');
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        iframe.src = ''; 
-    }, 300);
-}
-
-// =====================================
-// ★ RANKING ページ生成機能 ★
-// =====================================
-function initRanking() {
-    const container = document.getElementById('ranking-container');
-    if (!container) return;
-
-    const rankedData = rawData.map(char => {
-        return {
-            ...char,
-            total: char.s.reduce((sum, val) => sum + val, 0)
-        };
-    }).sort((a, b) => b.total - a.total);
-
-    let html = `
-    <table class="w-full text-left border-collapse">
-        <thead>
-            <tr class="border-b-2 border-orange-500 text-orange-500">
-                <th class="py-4 px-4 font-black italic text-xl w-24">RANK</th>
-                <th class="py-4 px-4 font-black italic text-xl">CHARACTER</th>
-                <th class="py-4 px-4 font-black italic text-xl">POS</th>
-                <th class="py-4 px-4 font-black italic text-xl text-right">TOTAL STATS</th>
-            </tr>
-        </thead>
-        <tbody>
-    `;
-
-    rankedData.forEach((char, idx) => {
-        const cName = currentLang === 'ja' ? char.名前 : (char.en || char.名前);
-        const rankNum = idx + 1;
-        
-        let rankStyle = "text-gray-400 font-bold";
-        let rowBg = "hover:bg-white/5";
-        if (rankNum === 1) { rankStyle = "text-yellow-400 font-black text-2xl drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"; rowBg = "bg-yellow-500/10 border-yellow-500/30"; }
-        else if (rankNum === 2) { rankStyle = "text-gray-300 font-black text-xl drop-shadow-[0_0_8px_rgba(209,213,219,0.8)]"; rowBg = "bg-white/10 border-white/20"; }
-        else if (rankNum === 3) { rankStyle = "text-orange-400 font-black text-xl drop-shadow-[0_0_8px_rgba(251,146,60,0.8)]"; rowBg = "bg-orange-500/10 border-orange-500/20"; }
-
-        html += `
-        <tr class="border-b border-white/5 transition ${rowBg}">
-            <td class="py-3 px-4 ${rankStyle}">#${rankNum}</td>
-            <td class="py-3 px-4 flex items-center gap-4">
-                <img src="${charImages[char.en] || ''}" class="w-10 h-10 rounded-full object-cover bg-black/50 border border-white/10">
-                <span class="font-bold text-lg">${cName}</span>
-            </td>
-            <td class="py-3 px-4">
-                <span class="text-xs font-bold tracking-widest ${posColors[char.pos] ? posColors[char.pos].split('/')[0] : ''} px-3 py-1.5 rounded-full border border-white/10 text-white">${char.pos}</span>
-            </td>
-            <td class="py-3 px-4 text-right font-black text-2xl text-[#ff4e00]">${char.total}</td>
-        </tr>
-        `;
-    });
-
-    html += `</tbody></table>`;
-    container.innerHTML = html;
-}
-
-// =====================================
-// ★ DATABASE ページ生成機能 ★
-// =====================================
-function initDb() {
-    const grid = document.getElementById('grid');
-    if (!grid || grid.children.length > 0) return;
-    const maxStats = {}; 
-    ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
-        maxStats[p] = Array(15).fill(0); 
-        rawData.filter(c => c.pos === p).forEach(c => { 
-            c.s.forEach((v, i) => { if (v > maxStats[p][i]) maxStats[p][i] = v; }); 
-        }); 
-    });
-    rawData.forEach(c => {
-        const card = document.createElement('div'); 
-        card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
-        const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
-        card.dataset.name = searchName; card.dataset.pos = c.pos || 'All';
-        const cName = c.en || c.名前;
-        let sHtml = '<div class="stat-grid">';
-        c.s.forEach((v, i) => {
-            const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
-            const label = getTranslatedText(statNames[i], currentLang);
-            sHtml += `<div class="stat-box"><div class="stat-lbl">${label}</div><div class="stat-val ${isMax ? 'is-max' : ''}">${v}</div></div>`;
-        });
-        sHtml += '</div>';
-
-        const totalStat = c.s.reduce((sum, val) => sum + val, 0);
-
-        card.innerHTML = `
-            <div class="char-content relative z-10">
-                <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
-                    <div class="flex items-center gap-3">
-                        <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
-                        <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-xs font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
-                    </div>
-                    <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
-                </div>
-                ${sHtml}
-            </div>
-            <img src="${charImages[c.en] || ''}" class="char-img" style="position: absolute; bottom: -5px; right: -5px; height: 180px; opacity: 0.35; pointer-events: none;">
-        `;
-        grid.appendChild(card);
-    });
-    filterCards();
-}
-
-function filterCards() {
-    const searchInput = document.getElementById('nameInput');
-    const posFilter = document.getElementById('posFilter');
-    if (!searchInput || !posFilter) return;
-    const search = searchInput.value.toLowerCase();
-    const pos = posFilter.value;
-    document.querySelectorAll('.char-card').forEach(card => {
-        const nameMatch = (card.dataset.name || '').includes(search);
-        const posMatch = pos === 'All' || (card.dataset.pos || '') === pos;
-        card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
-    });
-}
-
-// =====================================
-// ★ P-BUFF ページ生成機能 ★
-// =====================================
-function initPBuff() {
-    const container = document.getElementById('pbuff-grid-container');
-    if(!container) return; container.innerHTML = '';
-    const posFilter = document.getElementById('pbuffPosFilter').value;
-    for (const [posName, chars] of Object.entries(pBuffData)) {
-        if (posFilter !== 'All' && !posName.startsWith(posFilter)) continue;
-        const pCode = posName.split(' ')[0];
-        const title = document.createElement('h3'); 
-        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
-        title.innerText = posName;
-        container.appendChild(title);
-        
-        const grid = document.createElement('div'); 
-        grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
-        
-        chars.forEach(char => {
-            const card = document.createElement('div'); 
-            card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
-            const cName = char.en || char.name;
-            let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
-                <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
-                <div class="space-y-1.5">`;
-            
-            char.buffs.forEach(b => { 
-                const effect = getTranslatedText(b[0], currentLang);
-                bHtml += `<div class="pbuff-item flex justify-between border-b border-white/5 py-1 text-sm lg:text-base"><span class="pbuff-name">${effect}</span><span class="pbuff-val font-black text-[#ff4e00]">${b[1]}</span></div>`; 
-            }); 
-            
-            bHtml += `</div></div><img src="${charImages[char.en] || ''}" class="char-img" style="position: absolute; bottom: -10px; right: -15px; height: 210px; opacity: 0.45; pointer-events: none;">`;
-            card.innerHTML = bHtml; grid.appendChild(card);
-        });
-        container.appendChild(grid);
-    }
-}
-
-// =====================================
-// ★ MUSIC ページ生成機能 ★
-// =====================================
-const musicData = [
-    { id: "GXqLuwYKZmc", title: "re.bound" },
-    { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
-    { id: "SFbfs9j4Q3Y", title: "最高のコンビネーション" },
-    { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
-    { id: "pHBtBIqk9mg", title: "チェックメイト" },
-    { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
-    { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
-    { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
-];
-
-function initMusic() {
-    const grid = document.getElementById('music-grid');
-    if (!grid) return;
-
-    grid.innerHTML = '';
-
-    musicData.forEach(music => {
-        const thumbUrl = `https://i.ytimg.com/vi/${music.id}/maxresdefault.jpg`;
-        const fallbackThumbUrl = `https://i.ytimg.com/vi/${music.id}/hqdefault.jpg`;
-
-        const card = document.createElement('div');
-        card.className = `group relative bg-[#0f0f0f] border border-white/10 rounded-2xl p-4 shadow-xl cursor-pointer hover:border-orange-500 transition duration-300 flex flex-col gap-3`;
-        card.onclick = () => openYtModal(music.id);
-
-        card.innerHTML = `
-            <span class="absolute top-2 right-2 bg-orange-600 text-white text-[9px] font-black px-2 py-0.5 rounded shadow z-20">MUSIC</span>
-            <div class="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-transparent group-hover:border-orange-500 transition duration-300 z-10">
-                <img src="${thumbUrl}" onerror="this.src='${fallbackThumbUrl}'" class="w-full h-full object-cover bg-black/50">
-                <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                    <i class="fab fa-youtube text-4xl text-orange-500 drop-shadow-md"></i>
-                </div>
-            </div>
-            <div class="text-left z-10 mt-2">
-                <h4 class="font-black text-sm tracking-tighter text-gray-200 line-clamp-2">${music.title}</h4>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-// =====================================
-// ★ ページ起動時の全初期化処理 ★
-// =====================================
 window.onload = () => { 
-    injectNewCharacters(); // 新キャラ2人のステータス＆P-BUFF＆イラストリンクを自動挿入
-    autoFixKoreanData();   // ハングル自動浄化
-    switchLanguage('ja');  // 言語を日本語へ初期化
-    changeBackground();    // 背景画像のランダム切り替え処理
-    showPage('home');      // HOME画面をファーストビューに
-    initRanking();         // ランキングの事前生成
+    injectNewCharacters(); 
+    autoFixKoreanData();   
+    switchLanguage('ja');  
+    if(typeof changeBackground === 'function') changeBackground();    
+    showPage('home');      
+    initRanking();         
 };
