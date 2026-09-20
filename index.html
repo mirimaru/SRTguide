@@ -57,7 +57,7 @@
 </head>
 <body class="bg-black text-white">
 
-   <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
+    <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home'); changeBackground();">
             <h1 class="text-xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
@@ -241,6 +241,7 @@
                 </div>
             </div>
         </section>
+
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -358,17 +359,24 @@
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
         </section>
 
-        <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-    <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
-    <option value="PG" class="bg-gray-900 text-white">PG</option>
-    <option value="SG" class="bg-gray-900 text-white">SG</option>
-    <option value="SF" class="bg-gray-900 text-white">SF</option>
-    <option value="PF" class="bg-gray-900 text-white">PF</option>
-    <option value="C" class="bg-gray-900 text-white">C</option>
-</select>
+        <!-- P-BUFF セクション（修正済み） -->
+        <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
+                <div class="flex gap-4">
+                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+                        <option value="PG" class="bg-gray-900 text-white">PG</option>
+                        <option value="SG" class="bg-gray-900 text-white">SG</option>
+                        <option value="SF" class="bg-gray-900 text-white">SF</option>
+                        <option value="PF" class="bg-gray-900 text-white">PF</option>
+                        <option value="C" class="bg-gray-900 text-white">C</option>
+                    </select>
+                </div>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
+
     </div>
 
     <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
@@ -389,16 +397,8 @@
     <script src="script.js"></script>
     
     <script>
-       // 背景画像のランダム切り替え配列
-const bgImages = [
-    'image_5709c0.jpg',
-    'op_main.jpg',
-    'op_blair.jpg',
-    'op_camila.jpg',
-    'op_cow.jpg',
-    'burea.png',
-    'bsk.png'
-];
+        const bgImages = ['image_5709c0.jpg', 'op_main.jpg', 'op_blair.jpg', 'op_camila.jpg', 'op_cow.jpg'];
+
         function changeBackground() {
             const bgWrapper = document.getElementById('home-split-wrapper');
             if (!bgWrapper) return;
@@ -420,7 +420,6 @@ const bgImages = [
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // --- キャラクター紹介動画データ ---
         const characterVideos = [
             { name: "Lulu (ルル)", pos: "C", id: "b-01v1HsFDY", desc: "自由なダンクやボックスアウト、クイックポストアップ解説" },
             { name: "Murdock (マードック)", pos: "PF", id: "XGzjCnhXK3M", desc: "ディフェンス特化・シャドウブロックとスリップスクリーンの解説" },
@@ -459,7 +458,6 @@ const bgImages = [
             });
         }
 
-        // --- ★ご指定のMUSIC（BGM）リストとカード生成処理 ---
         const musicData = [
             { id: "GXqLuwYKZmc", title: "re.bound" },
             { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
@@ -515,7 +513,6 @@ const bgImages = [
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        // --- D3.js Ping Map Visualizer Logic ---
         const nodes = [
             { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
             { id: "Tohoku", label: "東北", x: 810, y: 220, type: "client" },
@@ -770,7 +767,6 @@ const bgImages = [
             renderMap('seoul');
         });
 
-        // 既存の showPage に連動させる処理（VIDEOSやMUSICページが開かれたときの自動初期化）
         const originalShowPage = window.showPage;
         window.showPage = function(pageId) {
             if (typeof originalShowPage === 'function') {
