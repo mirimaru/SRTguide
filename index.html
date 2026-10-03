@@ -24,6 +24,12 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* 裏で動いている画像を完全に無効化する強力な設定 */
+        #home-split-wrapper {
+            background-image: none !important;
+            background-color: #000 !important;
+        }
+        
         .glow-text {
             text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
@@ -79,11 +85,12 @@
         </div>
     </header>
 
-    <!-- ▼▼ background-image: none !important; を追加して裏の画像を強制ブロック ▼▼ -->
-    <div id="home-split-wrapper" class="relative overflow-hidden bg-black" style="height: calc(100vh - 64px); background-image: none !important;">
+    <div id="home-split-wrapper" class="relative overflow-hidden bg-black" style="height: calc(100vh - 64px);">
+        
+        <!-- ▼▼ 画像を完全にシャットアウトするための真っ黒な下敷き ▼▼ -->
+        <div class="absolute inset-0 bg-black z-0 pointer-events-none" style="background-image: none !important;"></div>
         
         <!-- ▼▼ 背景動画の設定（トップ絵の代わり） ▼▼ -->
-        <!-- ※ src="top_video.mp4" の部分は、実際の動画ファイル名に書き換えてください -->
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-60 z-0">
             <source src="top_video.mp4" type="video/mp4">
         </video>
@@ -385,6 +392,20 @@
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
 
+        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto hidden">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
+            <div class="space-y-8">
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4>
+                    <p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p>
+                </div>
+                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
+                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: 育成はP-Buffとカードどちらが先？</h4>
+                    <p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
@@ -405,6 +426,9 @@
     <script src="script.js"></script>
     
     <script>
+        // 念のため index.html 側で changeBackground を空関数にして完全に無力化
+        window.changeBackground = function() {};
+
         function openImageModal(src) {
             const modal = document.getElementById('image-modal');
             const img = document.getElementById('modal-image');
