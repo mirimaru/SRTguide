@@ -684,7 +684,7 @@ function closeYtModal() {
 // ▼ 背景（トップ絵）の動画専用処理 ▼
 // 実際に配置しているブレアの動画ファイル名（例: 'op_blair.mp4'）を正しく指定してください
 const bgMedia = [
-    'op_blair.mp4'  
+    'op_blair.mp4'  // ★ここが超重要です！
 ];
 
 function changeBackground() {
@@ -697,13 +697,18 @@ function changeBackground() {
     
     const randomMedia = bgMedia[Math.floor(Math.random() * bgMedia.length)];
     
-    // 画像背景を無効化
+    // 画像や背景色を完全に無効化して透明にする
     bgWrapper.style.backgroundImage = 'none'; 
+    bgWrapper.style.backgroundColor = 'transparent';
     
     // 動画要素を生成して背景として配置
     const video = document.createElement('video');
     video.src = randomMedia;
-    video.className = 'bg-video-element absolute inset-0 w-full h-full object-cover z-[0]'; 
+    video.className = 'bg-video-element'; 
+    
+    // 確実に画面の一番下（最背面）にフルスクリーンで表示させる強力な設定
+    video.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -10; pointer-events: none;';
+    
     video.autoplay = true;
     video.loop = true;
     video.muted = true;
@@ -711,7 +716,6 @@ function changeBackground() {
     
     bgWrapper.insertBefore(video, bgWrapper.firstChild);
 }
-
 
 // ▼ 画像拡大（モーダル）処理 ▼
 function openImageModal(src) {
