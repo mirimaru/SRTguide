@@ -19,135 +19,191 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- スポーティでかっこいい海外フォント「Teko」を追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 裏の画像切り替えを完全に無効化し、動画だけを見せる設定 */
-        #home-split-wrapper {
-            background-image: none !important;
-            background-color: #000 !important;
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-teko { font-family: 'Teko', sans-serif; }
+
+        /* すりガラス（グラスモーフィズム）エフェクト */
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .glow-text {
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        /* サイバー感のあるネオレンジのライン */
+        .neon-border-orange { 
+            border-left: 4px solid #ff4e00; 
+            box-shadow: -10px 0 25px rgba(255, 78, 0, 0.25); 
         }
-        .node-server {
-            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8));
+
+        /* サイドバーメニューのホバーアニメーション */
+        .sidebar-item { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border-left: 2px solid transparent;
         }
-        .node-client {
-            filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.5));
+        .sidebar-item:hover { 
+            background: linear-gradient(90deg, rgba(255,78,0,0.2) 0%, transparent 100%); 
+            border-left-color: #ff4e00;
+            transform: translateX(-4px);
         }
-        .packet {
-            pointer-events: none;
-            filter: drop-shadow(0 0 5px currentColor);
+
+        /* 背景の巨大アウトラインテキスト */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.04);
         }
-        .link-line {
-            transition: stroke 0.5s ease;
+
+        #home-split-wrapper {
+            background-image: none !important;
+            background-color: #050505 !important;
         }
-        .btn-toggle {
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-        .btn-toggle.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-            border-color: #38bdf8;
-        }
-        .btn-toggle:not(.active):hover {
-            background-color: #1e293b;
-        }
+        
+        .glow-text { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .node-server { filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8)); }
+        .node-client { filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.5)); }
+        .packet { pointer-events: none; filter: drop-shadow(0 0 5px currentColor); }
+        .link-line { transition: stroke 0.5s ease; }
+        .btn-toggle { transition: all 0.2s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .btn-toggle.active { background-color: #38bdf8; color: #0f172a; box-shadow: 0 0 15px rgba(56, 189, 248, 0.6); border-color: #38bdf8; }
+        .btn-toggle:not(.active):hover { background-color: #1e293b; }
     </style>
 </head>
-<body class="bg-black text-white">
+<body class="bg-[#050505] text-white">
 
-    <header class="sticky top-0 z-[100] bg-black border-b border-white/10 px-4 py-3 flex items-center shadow-2xl">
+    <!-- ヘッダー（シンプル＆スタイリッシュに統合） -->
+    <header class="sticky top-0 z-[100] bg-[#050505]/80 backdrop-blur-md border-b border-white/10 px-8 py-4 flex items-center shadow-2xl">
         <div class="flex items-center gap-4 cursor-pointer" onclick="showPage('home');">
-            <h1 class="text-xl font-black italic tracking-tighter leading-none">3on3<br><span class="text-[#ff4e00]">DIVINE</span></h1>
+            <h1 class="text-2xl font-teko font-bold italic tracking-wider leading-none text-white">3on3 <span class="text-[#ff4e00]">DIVINE</span></h1>
         </div>
-        <nav class="nav-container">
-            <span class="nav-link active" onclick="showPage('home');" data-i18n="nav-home">HOME</span>
-            <span class="nav-link" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
-            <span class="nav-link" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
-            <span class="nav-link" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
-            <span class="nav-link" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
-            <span class="nav-link" onclick="showPage('music')" data-i18n="nav-music">MUSIC</span>
-            <span class="nav-link" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
-            <span class="nav-link" onclick="showPage('survey')" data-i18n="nav-survey">SURVEY</span>
+        <nav class="hidden lg:flex items-center gap-8 ml-12 text-sm font-bold tracking-widest text-gray-400">
+            <span class="nav-link active text-white cursor-pointer hover:text-white transition" onclick="showPage('home');" data-i18n="nav-home">HOME</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('music')" data-i18n="nav-music">MUSIC</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('pbuff')" data-i18n="nav-pbuff">P-BUFF</span>
+            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('survey')" data-i18n="nav-survey">SURVEY</span>
         </nav>
-        <div class="flex gap-1 ml-auto">
-            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
-            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
-            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
-            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2 py-1.5 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
+        <div class="flex gap-1.5 ml-auto">
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn text-orange-500" onclick="switchLanguage('ja', this)">JP</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
+            <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
         </div>
     </header>
 
-    <div id="home-split-wrapper" class="relative overflow-hidden bg-black" style="height: calc(100vh - 64px);">
+    <!-- HOME画面（新スタイリッシュレイアウト） -->
+    <div id="home-split-wrapper" class="relative overflow-hidden bg-[#050505]" style="height: calc(100vh - 73px);">
         
-        <!-- 背景動画 (ループなし・元の明るさで表示) -->
-        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
+        <!-- 背景動画（ループなし・明るさそのまま） -->
+        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
             <source src="op_blair.mp4" type="video/mp4">
         </video>
-        
-        <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
-        
-        <div class="absolute top-12 right-6 z-[50] flex items-center gap-3 bg-[#0a0a0a] border border-orange-500/50 rounded-full px-4 py-1.5 shadow-[0_0_15px_rgba(255,78,0,0.6)]">
+
+        <!-- 四隅のビネット（中央のキャラクターを際立たせる陰影） -->
+        <div class="absolute inset-0 pointer-events-none z-1" style="background: radial-gradient(circle, transparent 40%, rgba(5,5,5,0.7) 100%);"></div>
+
+        <!-- アクセントの巨大透かし文字 -->
+        <div class="absolute -left-12 top-1/3 -rotate-95 font-teko text-[180px] font-bold text-outline pointer-events-none tracking-widest whitespace-nowrap z-0">SRT GUIDE</div>
+
+        <!-- アクセカウンター (右上) -->
+        <div class="absolute top-6 right-8 z-[50] flex items-center gap-3 bg-black/60 backdrop-blur-md border border-orange-500/40 rounded-full px-4 py-1.5 shadow-[0_0_15px_rgba(255,78,0,0.4)]">
             <i class="fas fa-users text-orange-500 text-sm"></i>
             <div id="counter_area" class="scale-75 origin-right">
                 <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
             </div>
         </div>
 
-        <div class="absolute top-24 right-10 md:right-16 lg:right-32 xl:right-48 z-[45] w-[50%] sm:w-[14rem] md:w-[16rem] lg:w-[20rem] aspect-video rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/20 hover:scale-105 transition-transform duration-300 bg-black">
-            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/FWWawqKFa8I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="home-left relative z-10">
-            <div class="mb-6">
-                <h2 class="text-4xl lg:text-5xl xl:text-6xl font-black italic tracking-tighter leading-none whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                    SRT <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">guide</span>
-                </h2>
-            </div>
-            <div class="about-me-status bg-gray-900/80 backdrop-blur-md border-l-4 border-orange-500 p-5 rounded-r-xl w-full shadow-[0_0_20px_rgba(255,78,0,0.3)] transition-all hover:shadow-[0_0_30px_rgba(255,78,0,0.6)] mb-8 mt-16 md:mt-24">
-                <h3 class="text-lg font-black italic text-orange-500 mb-2" data-i18n="about-title">ABOUT ME</h3>
-                <p class="text-sm text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
-                <p class="text-sm text-gray-200 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
-            </div>
-            <div class="bg-gray-900/80 backdrop-blur-md border border-cyan-500/30 rounded-2xl p-4 w-full shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:border-cyan-400/50">
-                <h3 class="text-xs font-black italic text-cyan-400 mb-2 flex items-center gap-2"><i class="fab fa-youtube text-lg"></i> <span data-i18n="home-recommended">RECOMMENDED</span></h3>
-                <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-
-        <div class="home-right relative z-10">
-            <div class="panel-grid mt-56 md:mt-64 lg:mt-72 pb-24">
-                <div class="panel-box" onclick="showPage('about')"><i class="fas fa-user-ninja text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-about">ABOUT ME</h3></div>
-                <div class="panel-box" onclick="showPage('guide')"><i class="fas fa-graduation-cap text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-guide">GUIDE</h3></div>
-                <div class="panel-box" onclick="showPage('db')"><i class="fas fa-database text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-db">DATABASE</h3></div>
-                <div class="panel-box" onclick="showPage('ping')"><i class="fas fa-network-wired text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-ping">PING MAP</h3></div>
-                <div class="panel-box" onclick="showPage('videos')"><i class="fas fa-video text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-videos">VIDEOS</h3></div>
-                <div class="panel-box" onclick="showPage('music')"><i class="fas fa-music text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-music">MUSIC</h3></div>
-                <div class="panel-box" onclick="showPage('pbuff')"><i class="fas fa-bolt text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-pbuff">P-BUFF</h3></div>
-                <div class="panel-box" onclick="showPage('survey')"><i class="fas fa-clipboard-list text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm" data-i18n="nav-survey">SURVEY</h3></div>
-                <a href="https://note.com/clean_squid9881" target="_blank" class="panel-box"><i class="fas fa-edit text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">NOTE</h3></a>
-                <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k&list=PLsh9Bg6dKAaUd7sIMY1zazXYmye1GVYYJ" target="_blank" class="panel-box"><i class="fab fa-youtube text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">YOUTUBE</h3></a>
-                <a href="https://3on3.fsgames.com/" target="_blank" class="panel-box"><i class="fas fa-globe text-3xl mb-2 text-[#ff4e00]"></i><h3 class="font-sporty text-sm">OFFICIAL</h3></a>
-            </div>
+        <!-- メインの3カラム構成レイアウト -->
+        <div class="relative z-10 w-full h-full flex justify-between items-center px-10 py-6">
             
-            <div class="absolute bottom-6 right-8 z-30">
-                <div class="bg-gray-900/90 backdrop-blur-md border border-orange-500/50 rounded-xl p-3 cursor-pointer transition-all shadow-[0_0_20px_rgba(255,78,0,0.4)] hover:shadow-[0_0_30px_rgba(255,78,0,0.8)] hover:border-orange-400 flex items-center gap-3" onclick="openImageModal('map_box.jpg')">
-                    <i class="fas fa-map-marked-alt text-xl text-orange-500"></i>
-                    <div class="text-left leading-tight"><div class="text-[9px] text-gray-400 font-bold tracking-widest uppercase">Village Map</div><div class="text-sm font-black text-white italic" data-i18n="home-map">プレゼントMAP</div></div>
+            <!-- ▼ 左側：情報・おすすめ動画エリア ▼ -->
+            <div class="w-[30%] flex flex-col justify-center gap-6">
+                <!-- ABOUT ME -->
+                <div class="glass-panel neon-border-orange p-6 rounded-r-3xl">
+                    <h3 class="font-teko text-3xl text-orange-500 mb-2 tracking-widest italic leading-none" data-i18n="about-title">ABOUT ME</h3>
+                    <p class="text-xs text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
+                    <p class="text-xs text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
+                </div>
+
+                <!-- RECOMMENDED VIDEO -->
+                <div class="glass-panel p-4 rounded-3xl border-t border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                    <h3 class="font-teko text-xl text-cyan-400 mb-2 tracking-widest italic flex items-center gap-2">
+                        <i class="fab fa-youtube"></i> <span data-i18n="home-recommended">RECOMMENDED</span>
+                    </h3>
+                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
+
+            <!-- ▼ 中央：キャラクターを堪能する空きスペース ▼ -->
+            <div class="w-[34%] flex items-center justify-center pointer-events-none">
+                <!-- キャラクターのポーズがダイナミックに映える空間 -->
+            </div>
+
+            <!-- ▼ 右側：スマート・サイドバーナビゲーション ▼ -->
+            <div class="w-[24%] flex justify-end">
+                <div class="glass-panel rounded-3xl p-3 flex flex-col gap-1 w-full max-w-[260px] shadow-2xl">
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('guide')">
+                        <i class="fas fa-graduation-cap text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-guide">GUIDE</span>
+                    </div>
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('db')">
+                        <i class="fas fa-database text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-db">DATABASE</span>
+                    </div>
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('ping')">
+                        <i class="fas fa-network-wired text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-ping">PING MAP</span>
+                    </div>
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('videos')">
+                        <i class="fas fa-video text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-videos">VIDEOS</span>
+                    </div>
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('music')">
+                        <i class="fas fa-music text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-music">MUSIC</span>
+                    </div>
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('pbuff')">
+                        <i class="fas fa-bolt text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-pbuff">P-BUFF</span>
+                    </div>
+
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('survey')">
+                        <i class="fas fa-clipboard-list text-xl text-orange-500 w-6 text-center"></i>
+                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-survey">SURVEY</span>
+                    </div>
+
+                    <!-- 外部リンク＆マップ用アイコン群 -->
+                    <div class="mt-2 pt-3 border-t border-white/10 flex justify-around items-center text-gray-400">
+                        <a href="https://note.com/clean_squid9881" target="_blank" title="NOTE" class="hover:text-white transition"><i class="fas fa-edit text-lg"></i></a>
+                        <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k" target="_blank" title="YOUTUBE" class="hover:text-white transition"><i class="fab fa-youtube text-lg"></i></a>
+                        <a href="https://3on3.fsgames.com/" target="_blank" title="OFFICIAL" class="hover:text-white transition"><i class="fas fa-globe text-lg"></i></a>
+                        <div onclick="openImageModal('map_box.jpg')" title="プレゼントMAP" class="cursor-pointer text-orange-500 hover:scale-110 transition"><i class="fas fa-map-marked-alt text-lg"></i></div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <!-- 各種詳細ページコンテンツ -->
     <div id="standard-content" class="hidden">
 
         <!-- Pingマップセクション -->
@@ -157,61 +213,27 @@
                     <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ping">PING MAP</h2>
                     <p class="text-slate-400 text-sm mt-2 pl-6">アジア・日本圏 サーバーPing可視化マップ</p>
                 </div>
-                
                 <div class="flex gap-3 bg-slate-900 p-1.5 rounded-xl border border-slate-700 shadow-xl">
-                    <button id="btn-tokyo" class="btn-toggle active px-6 py-2 rounded-lg font-bold text-sm border border-transparent">
-                        東京サーバー
-                    </button>
-                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300">
-                        韓国(ソウル)サーバー
-                    </button>
+                    <button id="btn-tokyo" class="btn-toggle active px-6 py-2 rounded-lg font-bold text-sm border border-transparent">東京サーバー</button>
+                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300">韓国(ソウル)サーバー</button>
                 </div>
             </div>
-
             <div class="flex flex-col lg:flex-row w-full gap-6">
                 <div class="w-full lg:w-3/4 bg-slate-900/60 rounded-3xl border border-slate-700 overflow-hidden relative shadow-2xl flex items-center justify-center min-h-[600px]">
                     <svg id="map-svg" class="w-full h-full" style="max-height: 800px;"></svg>
-                    
-                    <div class="absolute bottom-4 left-4 bg-slate-950/80 backdrop-blur-sm p-4 rounded-xl border border-slate-700 text-xs shadow-xl">
-                        <h3 class="font-bold mb-2 text-slate-300">Ping (応答速度) の目安</h3>
-                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span> 非常に快適 (< 30ms)</div>
-                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-sky-400 shadow-[0_0_8px_#38bdf8]"></span> 快適 (30-60ms)</div>
-                        <div class="flex items-center gap-2 mb-1"><span class="w-3 h-3 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></span> プレイ可能 (60-90ms)</div>
-                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]"></span> 遅延あり (> 90ms)</div>
-                    </div>
                 </div>
-
                 <div class="w-full lg:w-1/4 flex flex-col gap-4">
                     <div class="bg-slate-900/80 rounded-3xl border border-slate-700 p-6 shadow-xl">
-                        <h3 id="info-title" class="text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2">
-                            東京サーバー接続時
-                        </h3>
-                        <p id="info-desc" class="text-slate-300 text-sm leading-relaxed mb-4">
-                            日本国内からは一貫して低いPing（遅延）で接続可能です。<br><br>特に関東周辺からは1桁msの極めて快適な環境でプレイできます。
-                        </p>
+                        <h3 id="info-title" class="text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2">東京サーバー接続時</h3>
+                        <p id="info-desc" class="text-slate-300 text-sm leading-relaxed mb-4">日本国内からは一貫して低いPing（遅延）で接続可能です。</p>
                         <div class="bg-black/40 p-4 rounded-xl border border-slate-700 mb-3">
-                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">注目ポイント: 九州地方</span>
-                            <div class="flex justify-between items-end">
-                                <span class="text-slate-200">現在のPing:</span>
-                                <span id="kyushu-ping-text" class="text-2xl font-black text-emerald-400">22<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
-                            </div>
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">九州地方</span>
+                            <span id="kyushu-ping-text" class="text-2xl font-black text-emerald-400">22<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
                         </div>
                         <div class="bg-black/40 p-4 rounded-xl border border-slate-700">
-                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">注目ポイント: 台湾の経路</span>
-                            <div class="flex justify-between items-end">
-                                <span class="text-slate-200">現在のPing:</span>
-                                <span id="taiwan-ping-text" class="text-2xl font-black text-sky-400">35<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
-                            </div>
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">台湾の経路</span>
+                            <span id="taiwan-ping-text" class="text-2xl font-black text-sky-400">35<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
                         </div>
-                    </div>
-
-                    <div class="bg-orange-500/10 rounded-3xl border border-orange-500/30 p-5 shadow-xl">
-                        <h4 class="text-sm font-bold text-orange-400 mb-2 flex items-center gap-2">
-                            <i class="fas fa-info-circle"></i> パケットアニメーション
-                        </h4>
-                        <p class="text-slate-300 text-xs leading-relaxed">
-                            光の粒（パケット）がサーバーへ向かう速度はPing値に連動しています。Pingが低いほど高速で移動します。
-                        </p>
                     </div>
                 </div>
             </div>
@@ -221,16 +243,14 @@
         <section id="page-videos" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
-                <div class="flex gap-4">
-                    <select id="videoPosFilter" onchange="initVideos()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-                        <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
-                        <option value="PG" class="bg-gray-900 text-white">PG</option>
-                        <option value="SG" class="bg-gray-900 text-white">SG</option>
-                        <option value="SF" class="bg-gray-900 text-white">SF</option>
-                        <option value="PF" class="bg-gray-900 text-white">PF</option>
-                        <option value="C" class="bg-gray-900 text-white">C</option>
-                    </select>
-                </div>
+                <select id="videoPosFilter" onchange="initVideos()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                    <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+                    <option value="PG" class="bg-gray-900 text-white">PG</option>
+                    <option value="SG" class="bg-gray-900 text-white">SG</option>
+                    <option value="SF" class="bg-gray-900 text-white">SF</option>
+                    <option value="PF" class="bg-gray-900 text-white">PF</option>
+                    <option value="C" class="bg-gray-900 text-white">C</option>
+                </select>
             </div>
             <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターカードをクリックすると解説・紹介動画が再生されます！</p>
             <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
@@ -238,23 +258,15 @@
 
         <!-- ミュージックセクション -->
         <section id="page-music" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
-                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-music">MUSIC</h2>
-            </div>
-            <p class="text-gray-400 mb-8">楽曲カードをクリックすると、YouTubeのBGM動画が再生されます！</p>
+            <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6 mb-10" data-i18n="nav-music">MUSIC</h2>
             <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
 
         <!-- サーベイセクション -->
         <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY & PING LOG</h2>
-            <p class="text-gray-300 mb-8">あなたの地域と実際のPing値を投稿してください！</p>
-            
-            <div class="bg-white/5 p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl mb-12">
-                <h3 class="text-2xl font-black text-orange-500 mb-4 italic">Ping値 投稿フォーム</h3>
-                <div class="w-full rounded-2xl overflow-hidden bg-white shadow-2xl">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-                </div>
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
+            <div class="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-2xl">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0"></iframe>
             </div>
         </section>
 
@@ -265,8 +277,7 @@
                 <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
                 <div>
                     <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">ABOUT ME</h3>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
-                    <p class="text-lg text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開しています。</p>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。</p>
                 </div>
             </div>
         </section>
@@ -274,104 +285,21 @@
         <!-- ガイドセクション -->
         <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
-            <div class="space-y-20">
-                <div>
-                    <div class="step-badge">STEP 1</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s1-title">ポジションの特徴</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <img src="guide_step1_role.png" class="rounded-2xl w-full cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm" data-i18n="guide-s1-pg">パスと機動力。守備の要。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sg">最高得点能力。多彩なスキル。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sf">攻守に貢献する万能型。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-big">ゴール下の番人。リバウンド。</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="step-badge">STEP 2</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s2-title">おすすめキャラ</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <div>
-                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-free-t">無課金・初期のおすすめ</h4>
-                            <p class="text-gray-300 mb-6" data-i18n="guide-s2-free-d">Murdock (PF): ブロック力が高く、最高の選択肢です。</p>
-                            <div class="aspect-video rounded-xl overflow-hidden bg-black shadow-xl">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-best-t">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-3">
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="step-badge">STEP 3</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center items-start mb-12">
-                        <div>
-                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p1">強者のピラミッド。P5昇級が基盤です。</p>
-                        </div>
-                        <div>
-                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p2">P-BUFFはカードより圧倒的に効率が良いです。</p>
-                        </div>
-                        <div class="bg-[#0f0f0f] border-t-4 border-red-600 p-8 rounded-3xl text-center shadow-2xl">
-                            <img src="image_441842.jpg" class="rounded-2xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="step-badge">STEP 4</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
-                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-10 shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2</h4>
-                            <div class="grid grid-cols-2 gap-4 mb-4">
-                                <img src="guide_step4_space.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                                <img src="guide_step4_space2.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            </div>
-                        </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4</h4>
-                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- データベースセクション -->
         <section id="page-db" class="page-container px-6 lg:px-20 py-10">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+            <div class="flex justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
                 <div class="flex gap-4">
-                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-full lg:w-72">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-72">
                     <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-                        <option value="All" class="bg-gray-900 text-white">ALL</option>
-                        <option value="PG" class="bg-gray-900 text-white">PG</option>
-                        <option value="SG" class="bg-gray-900 text-white">SG</option>
-                        <option value="SF" class="bg-gray-900 text-white">SF</option>
-                        <option value="PF" class="bg-gray-900 text-white">PF</option>
-                        <option value="C" class="bg-gray-900 text-white">C</option>
+                        <option value="All">ALL</option>
+                        <option value="PG">PG</option>
+                        <option value="SG">SG</option>
+                        <option value="SF">SF</option>
+                        <option value="PF">PF</option>
+                        <option value="C">C</option>
                     </select>
                 </div>
             </div>
@@ -380,35 +308,8 @@
 
         <!-- P-BUFFセクション -->
         <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
-                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
-                <div class="flex gap-4">
-                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
-                        <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
-                        <option value="PG" class="bg-gray-900 text-white">PG</option>
-                        <option value="SG" class="bg-gray-900 text-white">SG</option>
-                        <option value="SF" class="bg-gray-900 text-white">SF</option>
-                        <option value="PF" class="bg-gray-900 text-white">PF</option>
-                        <option value="C" class="bg-gray-900 text-white">C</option>
-                    </select>
-                </div>
-            </div>
+            <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6 mb-10" data-i18n="nav-pbuff">P-BUFF</h2>
             <div id="pbuff-grid-container" class="space-y-16"></div>
-        </section>
-
-        <!-- Q&Aセクション -->
-        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
-            <div class="space-y-8">
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q1">Q: 数値の「▲」は何？</h4>
-                    <p class="text-xl text-gray-300" data-i18n="qa-a1">A: バフ値（強化分）です。</p>
-                </div>
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                    <h4 class="text-2xl font-black text-orange-500 mb-4" data-i18n="qa-q2">Q: 育成はP-Buffとカードどちらが先？</h4>
-                    <p class="text-xl text-gray-300" data-i18n="qa-a2">A: P-Buffが先です。</p>
-                </div>
-            </div>
         </section>
 
     </div>
@@ -416,16 +317,14 @@
     <!-- モーダル各種 -->
     <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
         <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl z-[201]"><i class="fas fa-times"></i></button>
-        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain" onclick="event.stopPropagation()">
-        <div class="absolute inset-0 z-190 cursor-pointer" onclick="closeImageModal()"></div>
+        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain">
     </div>
 
     <div id="yt-modal" class="hidden fixed inset-0 z-[300] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
         <button onclick="closeYtModal()" class="absolute top-6 right-6 text-white text-5xl z-[301] hover:text-orange-500 transition"><i class="fas fa-times"></i></button>
-        <div class="w-[95%] max-w-5xl aspect-video relative z-[300] bg-black rounded-xl overflow-hidden shadow-[0_0_30px_rgba(255,78,0,0.3)] border border-white/20">
-            <iframe id="yt-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="w-[95%] max-w-5xl aspect-video relative z-[300] bg-black rounded-xl overflow-hidden shadow-2xl border border-white/20">
+            <iframe id="yt-iframe" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="absolute inset-0 z-290 cursor-pointer" onclick="closeYtModal()"></div>
     </div>
 
     <script src="data.js"></script>
