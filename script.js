@@ -276,7 +276,7 @@ const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg
 function autoFixKoreanData() {
     const krFix = {
         "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
-        "헬레나": "ヘレナ", "페드로": "ペ드로", "크리스타": "クリ스타", "프로페서": "プロフェッサー",
+        "헬레나": "ヘレナ", "페드로": "ペ드로", "크리스타": "クリ스타", "프로페서": "프로フェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラー크", "룰루": "ルル", "빅독": "ビッグドッグ",
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
@@ -680,10 +680,11 @@ function closeYtModal() {
     }, 300);
 }
 
+
 // ▼ 背景（トップ絵）の動画専用処理 ▼
-// 流したい動画ファイル名（op_blair.mp4など）を指定してください
+// 実際に配置しているブレアの動画ファイル名（例: 'op_blair.mp4'）を正しく指定してください
 const bgMedia = [
-    'op_blair.mp4'  // ← 実際のファイル名と拡張子に必ず合わせてください
+    'op_blair.mp4'  
 ];
 
 function changeBackground() {
@@ -710,6 +711,25 @@ function changeBackground() {
     
     bgWrapper.insertBefore(video, bgWrapper.firstChild);
 }
+
+
+// ▼ 画像拡大（モーダル）処理 ▼
+function openImageModal(src) {
+    const modal = document.getElementById('image-modal');
+    const img = document.getElementById('modal-image');
+    if(!modal || !img) return;
+    img.src = src;
+    modal.classList.remove('hidden');
+    setTimeout(() => modal.classList.remove('opacity-0'), 10);
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    if(!modal) return;
+    modal.classList.add('opacity-0');
+    setTimeout(() => modal.classList.add('hidden'), 300);
+}
+
 // =====================================
 // ★ PING MAP ビジュアライザー (D3.js) ★
 // =====================================
