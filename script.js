@@ -239,7 +239,7 @@ window.termsDict = {
         'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
         '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
         '遠距離ダンク': '원거리 덩크', '近거리ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近거리 레이업': '근거리 레이업',
-        'Sダンク': 'S-덩크', 'Lダン크': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
+        'Sダンク': 'S-덩크', 'Lダン크': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイ업': 'L-레이업',
         'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
@@ -276,13 +276,13 @@ const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg
 function autoFixKoreanData() {
     const krFix = {
         "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
-        "헬레나": "ヘレナ", "페드로": "ペ드로", "크리스타": "クリ스타", "프로페서": "프로フェッサー",
+        "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリ스타", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
         "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラー크", "룰루": "ルル", "빅독": "ビッグドッグ",
         "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
         "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
         "나디아": "나디아", "잭": "ジャック", "디콘": "ディー콘", "노아": "ノ아", "클로이": "クロエ",
-        "아일라": "アイ라", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
+        "아일라": "アイラ", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
         "카지": "카지", "켄쇼": "켄쇼", "더블 D": "ダブルD", "지미": "지미", "프레드": "프레드",
         "바스키": "バスキー", "Basky": "Basky",
@@ -409,6 +409,8 @@ function showPage(id) {
 function initRanking() {
     const container = document.getElementById('ranking-container');
     if (!container) return;
+    
+    if (typeof rawData === 'undefined') return;
 
     const rankedData = rawData.map(char => {
         return {
@@ -462,6 +464,9 @@ function initRanking() {
 function initDb() {
     const grid = document.getElementById('grid');
     if (!grid || grid.children.length > 0) return;
+    
+    if (typeof rawData === 'undefined') return;
+    
     const maxStats = {}; 
     ["PG", "SG", "SF", "PF", "C"].forEach(p => { 
         maxStats[p] = Array(15).fill(0); 
@@ -519,6 +524,9 @@ function filterCards() {
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
     if(!container) return; container.innerHTML = '';
+    
+    if (typeof pBuffData === 'undefined') return;
+    
     const posFilter = document.getElementById('pbuffPosFilter').value;
     
     for (const [posName, chars] of Object.entries(pBuffData)) {
@@ -562,6 +570,8 @@ function initVideos() {
     const grid = document.getElementById('video-grid');
     const posFilter = document.getElementById('videoPosFilter');
     if (!grid || !posFilter) return;
+
+    if (typeof rawData === 'undefined') return;
 
     grid.innerHTML = '';
     const filterVal = posFilter.value;
@@ -616,7 +626,7 @@ function initVideos() {
 }
 
 // =====================================
-// ★ MUSIC ページ生成機能（しっかりと動作するよう実装） ★
+// ★ MUSIC ページ生成機能 ★
 // =====================================
 const musicData = [
     { id: "GXqLuwYKZmc", title: "re.bound" },
@@ -680,44 +690,21 @@ function closeYtModal() {
     }, 300);
 }
 
-
-// ▼ 背景（トップ絵）の動画専用処理 ▼
-// 実際に配置しているブレアの動画ファイル名（例: 'op_blair.mp4'）を正しく指定してください
-const bgMedia = [
-    'op_blair.mp4'  // ★ここが超重要です！
-];
-
+// =====================================
+// ★ 背景動画制御（インラインと重複させない） ★
+// =====================================
 function changeBackground() {
     const bgWrapper = document.getElementById('home-split-wrapper');
-    if (!bgWrapper) return;
-    
-    // 前の動画が残っていればリセット
-    const existingVideo = bgWrapper.querySelector('.bg-video-element');
-    if (existingVideo) existingVideo.remove();
-    
-    const randomMedia = bgMedia[Math.floor(Math.random() * bgMedia.length)];
-    
-    // 画像や背景色を完全に無効化して透明にする
-    bgWrapper.style.backgroundImage = 'none'; 
-    bgWrapper.style.backgroundColor = 'transparent';
-    
-    // 動画要素を生成して背景として配置
-    const video = document.createElement('video');
-    video.src = randomMedia;
-    video.className = 'bg-video-element'; 
-    
-    // 確実に画面の一番下（最背面）にフルスクリーンで表示させる強力な設定
-    video.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -10; pointer-events: none;';
-    
-    video.autoplay = true;
-    video.loop = true;
-    video.muted = true;
-    video.playsInline = true;
-    
-    bgWrapper.insertBefore(video, bgWrapper.firstChild);
+    if (bgWrapper) {
+        // HTML側に既に<video>が組み込まれているため、JSからの画像書き換えを強制無効化
+        bgWrapper.style.backgroundImage = 'none';
+        bgWrapper.style.backgroundColor = 'transparent';
+    }
 }
 
-// ▼ 画像拡大（モーダル）処理 ▼
+// =====================================
+// ★ 画像拡大（モーダル）処理 ★
+// =====================================
 function openImageModal(src) {
     const modal = document.getElementById('image-modal');
     const img = document.getElementById('modal-image');
@@ -1009,7 +996,7 @@ function updateInfoPanel(server) {
     } else {
         titleEl.textContent = "韓国(ソウル)サーバー接続時";
         titleEl.className = "text-xl font-bold text-emerald-400 mb-3 border-b border-slate-700 pb-2";
-        descEl.innerHTML = "韓国国内は数msの世界ですが、日本からも比較的快適にアクセスできます。<br><br><span class='text-amber-300 font-bold'>【注目: 九州】</span>九州地方은東京よりも釜山（韓国南端）を経由する海底ケーブルに近いため、<strong>東京サーバーへ繋ぐよりもPingが低くなる</strong>逆転現象が発生しています。";
+        descEl.innerHTML = "韓国国内は数msの世界ですが、日本からも比較的快適にアクセスできます。<br><br><span class='text-amber-300 font-bold'>【注目: 九州】</span>九州地方は東京よりも釜山（韓国南端）を経由する海底ケーブルに近いため、<strong>東京サーバーへ繋ぐよりもPingが低くなる</strong>逆転現象が発生しています。";
     }
 }
 
@@ -1020,7 +1007,7 @@ window.onload = () => {
     injectNewCharacters(); 
     autoFixKoreanData();   
     switchLanguage('ja');  
-    if(typeof changeBackground === 'function') changeBackground();    
+    changeBackground();    
     showPage('home');      
     initRanking();         
     if(typeof initMusic === 'function') initMusic();
