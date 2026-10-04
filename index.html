@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* 裏で動いている画像を完全に無効化する強力な設定 */
+        /* 裏の画像切り替えを完全に無効化し、動画だけを見せる設定 */
         #home-split-wrapper {
             background-image: none !important;
             background-color: #000 !important;
@@ -87,14 +87,13 @@
 
     <div id="home-split-wrapper" class="relative overflow-hidden bg-black" style="height: calc(100vh - 64px);">
         
-        <!-- ▼▼ 画像を完全にシャットアウトするための真っ黒な下敷き ▼▼ -->
+        <!-- 背景画像ブロック用下敷き -->
         <div class="absolute inset-0 bg-black z-0 pointer-events-none" style="background-image: none !important;"></div>
         
-        <!-- ▼▼ 背景動画の設定（トップ絵の代わり） ▼▼ -->
+        <!-- 背景動画 (スマホでも自動再生されるよう属性を完備) -->
         <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-60 z-0">
-            <source src="op_blair.mp4" type="op_blair.mp4">
+            <source src="op_blair.mp4" type="video/mp4">
         </video>
-        <!-- ▲▲ ここまで ▲▲ -->
         
         <div class="absolute top-0 inset-x-0 h-8 bg-black z-20"></div>
         
@@ -154,6 +153,7 @@
 
     <div id="standard-content" class="hidden">
 
+        <!-- Pingマップセクション -->
         <section id="page-ping" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
                 <div>
@@ -220,6 +220,7 @@
             </div>
         </section>
 
+        <!-- ビデオセクション -->
         <section id="page-videos" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
@@ -238,6 +239,7 @@
             <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
 
+        <!-- ミュージックセクション -->
         <section id="page-music" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-music">MUSIC</h2>
@@ -246,6 +248,7 @@
             <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
 
+        <!-- サーベイセクション -->
         <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY & PING LOG</h2>
             <p class="text-gray-300 mb-8">あなたの地域と実際のPing値を投稿してください！</p>
@@ -258,6 +261,7 @@
             </div>
         </section>
 
+        <!-- ABOUTセクション -->
         <section id="page-about" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
@@ -270,6 +274,7 @@
             </div>
         </section>
 
+        <!-- ガイドセクション -->
         <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
             <div class="space-y-20">
@@ -357,6 +362,7 @@
             </div>
         </section>
 
+        <!-- データベースセクション -->
         <section id="page-db" class="page-container px-6 lg:px-20 py-10">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
@@ -375,6 +381,7 @@
             <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
         </section>
 
+        <!-- P-BUFFセクション -->
         <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
@@ -392,7 +399,8 @@
             <div id="pbuff-grid-container" class="space-y-16"></div>
         </section>
 
-        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto hidden">
+        <!-- Q&Aセクション -->
+        <section id="page-qa" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-qa">Q&A</h2>
             <div class="space-y-8">
                 <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
@@ -408,6 +416,7 @@
 
     </div>
 
+    <!-- モーダル各種 -->
     <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
         <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl z-[201]"><i class="fas fa-times"></i></button>
         <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain" onclick="event.stopPropagation()">
@@ -425,41 +434,18 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
     
-   <script>
-        // 画像の配列は削除し、動画専用の配列に変更
-        const bgMedia = ['op_blair.mp4'];
-
-        function changeBackground() {
+    <script>
+        // -------------------------------------------------------------
+        // ▼ 背景の画像書き換えを強制無効化し、ページ遷移のロジックを統合 ▼
+        // -------------------------------------------------------------
+        window.changeBackground = function() {
             const bgWrapper = document.getElementById('home-split-wrapper');
-            if (!bgWrapper) return;
-            
-            // 前の動画が残っていればリセット
-            const existingVideo = bgWrapper.querySelector('.bg-video-element');
-            if (existingVideo) existingVideo.remove();
-            
-            const randomMedia = bgMedia[Math.floor(Math.random() * bgMedia.length)];
-            
-            // 画像や背景色を完全に無効化して透明にする
-            bgWrapper.style.backgroundImage = 'none'; 
-            bgWrapper.style.backgroundColor = 'transparent';
-            
-            // 動画要素を生成して背景として配置
-            const video = document.createElement('video');
-            video.src = randomMedia;
-            video.className = 'bg-video-element'; 
-            
-            // 確実に画面の一番下（最背面）にフルスクリーンで表示させる設定
-            video.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -10; pointer-events: none;';
-            
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
-            
-            bgWrapper.insertBefore(video, bgWrapper.firstChild);
-        }
+            if (bgWrapper) {
+                bgWrapper.style.backgroundImage = 'none';
+                bgWrapper.style.backgroundColor = 'transparent';
+            }
+        };
 
-        // --- 以下は元のコードをそのまま残します ---
         function openImageModal(src) {
             const modal = document.getElementById('image-modal');
             const img = document.getElementById('modal-image');
@@ -474,17 +460,39 @@
             setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
+        function openYtModal(url) {
+            const modal = document.getElementById('yt-modal');
+            const iframe = document.getElementById('yt-iframe');
+            iframe.src = url;
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+        }
+
+        function closeYtModal() {
+            const modal = document.getElementById('yt-modal');
+            const iframe = document.getElementById('yt-iframe');
+            modal.classList.add('opacity-0');
+            iframe.src = '';
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        // --- ビデオデータと初期化ロジック ---
         const characterVideos = [
             { name: "Lulu (ルル)", pos: "C", id: "b-01v1HsFDY", desc: "自由なダンクやボックスアウト、クイックポストアップ解説" },
             { name: "Murdock (マードック)", pos: "PF", id: "XGzjCnhXK3M", desc: "ディフェンス特化・シャドウブロックとスリップスクリーンの解説" },
             { name: "Clarke (クラーク)", pos: "PF", id: "qQHoLNlMKNE", desc: "マニュアルダンク・スカイフックの解説" },
-            { name: "LEE (リー)", pos: "C", id: "qNas3J33Bls", desc: "シュートタッチ、パワーリバウンド、シグネチャーシュートの解説" }
+            { name: "LEE (リー)", pos: "C", id: "qNas3J33Bls", desc: "シュートタッチ、パワーリバウンド、シグネチャーシュートの解説" },
+            { name: "William (ウィリアム)", pos: "SF", id: "OtulvdR3c6M", desc: "ウィリアムのスキル・立ち回り解説" },
+            { name: "Kim (キム)", pos: "SG", id: "f5kAJLVytuo", desc: "キムのスキル・立ち回り解説" },
+            { name: "Pedro (ペドロ)", pos: "PG", id: "-7gSy0DTjmI", desc: "ペドロのスキル・立ち回り解説" },
+            { name: "Cindy (シンディー)", pos: "PG", id: "bHWSbqJiGRA", desc: "シンディーのスキル・立ち回り解説" }
         ];
 
         function initVideos() {
             const grid = document.getElementById('video-grid');
-            const filter = document.getElementById('videoPosFilter').value;
             if (!grid) return;
+            const filterSelect = document.getElementById('videoPosFilter');
+            const filter = filterSelect ? filterSelect.value : 'All';
 
             grid.innerHTML = '';
             const filtered = filter === 'All' ? characterVideos : characterVideos.filter(v => v.pos === filter);
@@ -512,6 +520,7 @@
             });
         }
 
+        // --- ミュージックデータと初期化ロジック ---
         const musicData = [
             { id: "GXqLuwYKZmc", title: "re.bound" },
             { id: "GtwfPW4aFNg", title: "unstoppable（ポップ）" },
@@ -551,22 +560,7 @@
             });
         }
 
-        function openYtModal(url) {
-            const modal = document.getElementById('yt-modal');
-            const iframe = document.getElementById('yt-iframe');
-            iframe.src = url;
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.remove('opacity-0'), 10);
-        }
-
-        function closeYtModal() {
-            const modal = document.getElementById('yt-modal');
-            const iframe = document.getElementById('yt-iframe');
-            modal.classList.add('opacity-0');
-            iframe.src = '';
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
-
+        // --- Pingマップ D3.js 描画ロジック ---
         const nodes = [
             { id: "Hokkaido", label: "北海道", x: 850, y: 120, type: "client" },
             { id: "Tohoku", label: "東北", x: 810, y: 220, type: "client" },
@@ -620,7 +614,6 @@
 
                 isPingInitialized = true;
             }
-
             renderMap('tokyo');
         }
 
@@ -641,25 +634,16 @@
             svg.select(".packets").selectAll("*").remove();
 
             const linksData = nodes.filter(n => n.id.toLowerCase() !== targetServerId).map(n => {
-                return {
-                    source: n,
-                    target: targetNode,
-                    ping: pingData[n.id][targetServerId]
-                };
+                return { source: n, target: targetNode, ping: pingData[n.id][targetServerId] };
             });
 
             const serverNode = nodes.find(n => n.type === 'server' && n.id.toLowerCase() !== targetServerId);
             if(serverNode) {
-                 linksData.push({
-                    source: serverNode,
-                    target: targetNode,
-                    ping: pingData[serverNode.id][targetServerId]
-                 });
+                 linksData.push({ source: serverNode, target: targetNode, ping: pingData[serverNode.id][targetServerId] });
             }
 
             const linkLayer = svg.select(".links");
-            const links = linkLayer.selectAll("path")
-                .data(linksData, d => d.source.id);
+            const links = linkLayer.selectAll("path").data(linksData, d => d.source.id);
 
             links.enter()
                 .append("path")
@@ -680,8 +664,7 @@
             links.exit().remove();
 
             const nodeLayer = svg.select(".nodes");
-            const nodeElements = nodeLayer.selectAll("g.node")
-                .data(nodes, d => d.id);
+            const nodeElements = nodeLayer.selectAll("g.node").data(nodes, d => d.id);
             
             const nodeEnter = nodeElements.enter().append("g").attr("class", "node")
                 .attr("transform", d => `translate(${d.x},${d.y})`);
@@ -705,8 +688,7 @@
                 .attr("stroke", d => d.id.toLowerCase() === targetServerId ? "#34d399" : "#38bdf8");
 
             const labelLayer = svg.select(".labels");
-            const labels = labelLayer.selectAll("g.label-group")
-                .data(nodes, d => d.id);
+            const labels = labelLayer.selectAll("g.label-group").data(nodes, d => d.id);
                 
             const labelsEnter = labels.enter().append("g").attr("class", "label-group")
                 .attr("transform", d => `translate(${d.x},${d.y})`);
@@ -718,8 +700,7 @@
                 .attr("class", "text-sm font-bold glow-text")
                 .text(d => d.label);
 
-            const pingLabels = labelLayer.selectAll("text.ping-text")
-                .data(linksData, d => d.source.id);
+            const pingLabels = labelLayer.selectAll("text.ping-text").data(linksData, d => d.source.id);
                 
             pingLabels.enter().append("text")
                 .attr("class", "ping-text text-xs font-bold")
@@ -803,24 +784,26 @@
             }
         }
 
-        document.getElementById('btn-tokyo').addEventListener('click', function() {
-            this.classList.add('active');
-            this.classList.remove('text-slate-300');
-            const seoulBtn = document.getElementById('btn-seoul');
-            seoulBtn.classList.remove('active');
-            seoulBtn.classList.add('text-slate-300');
-            renderMap('tokyo');
-        });
+        const btnTokyo = document.getElementById('btn-tokyo');
+        const btnSeoul = document.getElementById('btn-seoul');
+        if (btnTokyo && btnSeoul) {
+            btnTokyo.addEventListener('click', function() {
+                this.classList.add('active');
+                this.classList.remove('text-slate-300');
+                btnSeoul.classList.remove('active');
+                btnSeoul.classList.add('text-slate-300');
+                renderMap('tokyo');
+            });
+            btnSeoul.addEventListener('click', function() {
+                this.classList.add('active');
+                this.classList.remove('text-slate-300');
+                btnTokyo.classList.remove('active');
+                btnTokyo.classList.add('text-slate-300');
+                renderMap('seoul');
+            });
+        }
 
-        document.getElementById('btn-seoul').addEventListener('click', function() {
-            this.classList.add('active');
-            this.classList.remove('text-slate-300');
-            const tokyoBtn = document.getElementById('btn-tokyo');
-            tokyoBtn.classList.remove('active');
-            tokyoBtn.classList.add('text-slate-300');
-            renderMap('seoul');
-        });
-
+        // --- ページ遷移ロジックの上書き ---
         const originalShowPage = window.showPage;
         window.showPage = function(pageId) {
             if (typeof originalShowPage === 'function') {
@@ -833,15 +816,9 @@
                 if (target) target.classList.remove('hidden');
             }
 
-            if (pageId === 'ping') {
-                setTimeout(initPingVisualizer, 50);
-            }
-            if (pageId === 'videos') {
-                initVideos();
-            }
-            if (pageId === 'music') {
-                initMusic();
-            }
+            if (pageId === 'ping') setTimeout(initPingVisualizer, 50);
+            if (pageId === 'videos') initVideos();
+            if (pageId === 'music') initMusic();
         };
 
         d3.timer((elapsed) => {
@@ -861,10 +838,11 @@
             }
         });
 
+        // ページロード時に確実に行う初期化
         document.addEventListener('DOMContentLoaded', () => {
-            changeBackground();
-            initVideos();
-            initMusic();
+            changeBackground(); // 古い背景画像の停止
+            initVideos();       // ビデオの初期化
+            initMusic();        // ミュージックの初期化
         });
     </script>
 </body>
