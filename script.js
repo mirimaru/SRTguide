@@ -680,29 +680,36 @@ function closeYtModal() {
     }, 300);
 }
 
-// ▼ 背景画像のランダム切り替え処理（完全に無効化） ▼
+// ▼ 背景（トップ絵）の動画専用処理 ▼
+// 流したい動画ファイル名（op_blair.mp4など）を指定してください
+const bgMedia = [
+    'op_blair.mp4'  // ← 実際のファイル名と拡張子に必ず合わせてください
+];
+
 function changeBackground() {
-    // 動画専用にするため、ここでは何も処理を行いません。
-    // 背景画像を挿入する処理を完全に削除しました。
+    const bgWrapper = document.getElementById('home-split-wrapper');
+    if (!bgWrapper) return;
+    
+    // 前の動画が残っていればリセット
+    const existingVideo = bgWrapper.querySelector('.bg-video-element');
+    if (existingVideo) existingVideo.remove();
+    
+    const randomMedia = bgMedia[Math.floor(Math.random() * bgMedia.length)];
+    
+    // 画像背景を無効化
+    bgWrapper.style.backgroundImage = 'none'; 
+    
+    // 動画要素を生成して背景として配置
+    const video = document.createElement('video');
+    video.src = randomMedia;
+    video.className = 'bg-video-element absolute inset-0 w-full h-full object-cover z-[0]'; 
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    
+    bgWrapper.insertBefore(video, bgWrapper.firstChild);
 }
-
-// ▼ 画像拡大（モーダル）処理 ▼
-function openImageModal(src) {
-    const modal = document.getElementById('image-modal');
-    const img = document.getElementById('modal-image');
-    if(!modal || !img) return;
-    img.src = src;
-    modal.classList.remove('hidden');
-    setTimeout(() => modal.classList.remove('opacity-0'), 10);
-}
-
-function closeImageModal() {
-    const modal = document.getElementById('image-modal');
-    if(!modal) return;
-    modal.classList.add('opacity-0');
-    setTimeout(() => modal.classList.add('hidden'), 300);
-}
-
 // =====================================
 // ★ PING MAP ビジュアライザー (D3.js) ★
 // =====================================
