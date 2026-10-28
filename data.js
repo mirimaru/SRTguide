@@ -84,7 +84,7 @@ const rawData = [
 ];
 
 // ==========================================
-// ★ P-BUFF データ (全5ポジション網羅) ★
+// ★ P-BUFF データ (全ポジション網羅) ★
 // ==========================================
 const pBuffData = {
     "PG (ポイントガード)": [
@@ -141,63 +141,9 @@ window.charImages = {
 };
 
 // ==========================================
-// ★ YouTube 動画ID管理リスト ★
+// ★ 背景動画 & おすすめトレーラー動画設定 ★
 // ==========================================
-const charVideoIds = {
-    "Giant G": "", 
-    "牛魔王": "C8Shm4jd028",
-    "Ox Queen": "C8Shm4jd028",
-    "ルーサー": "ZDOSlNUUNGQ",
-    "Luther": "ZDOSlNUUNGQ",
-    "ビッグドッグ": "6MoEgbtd32Q",
-    "Big Dog": "6MoEgbtd32Q",
-    "ネイサン": "t6RT7MBjJ2I",
-    "Nathan": "t6RT7MBjJ2I",
-    "ルル": "b-01v1HsFDY",
-    "Lulu": "b-01v1HsFDY",
-    "マードック": "XGzjCnhXK3M",
-    "Murdock": "XGzjCnhXK3M",
-    "クラーク": "qQHoLNlMKNE",
-    "Clarke": "qQHoLNlMKNE",
-    "リー": "qNas3J33Bls",
-    "Lee": "qNas3J33Bls",
-    "ウィリアム": "OtulvdR3c6M",
-    "William": "OtulvdR3c6M",
-    "キム": "f5kAJLVytuo",
-    "Kim": "f5kAJLVytuo",
-    "ペドロ": "-7gSy0DTjmI",
-    "Pedro": "-7gSy0DTjmI",
-    "シンディー": "bHWSbqJiGRA",
-    "Cindy": "bHWSbqJiGRA",
-    "カミラ": "-evPwHt46o4",
-    "Camila": "-evPwHt46o4",
-    "ヘレナ": "9xP5823jTWQ",
-    "Helena": "9xP5823jTWQ",
-    "ミカ": "uEhANr3fS6E",
-    "Mika": "uEhANr3fS6E",
-    "ウォーカー": "Sbj-9Ltwx2c",
-    "Walker": "Sbj-9Ltwx2c",
-    "サル": "FMmpcJ0-mHI",
-    "Saru": "FMmpcJ0-mHI",
-    "ジャック": "VS_E1f1IIm4",
-    "Jack": "VS_E1f1IIm4",
-    "リウ": "z79N8GXwWSk",
-    "Liu": "z79N8GXwWSk",
-    "ジンジャー": "FQ6P-tpPzx0",
-    "Ginger": "FQ6P-tpPzx0",
-    "ビッグジョー": "11NHcI7kenQ",
-    "Big Joe": "11NHcI7kenQ",
-    "ナディア": "dPs5Y_KYNws",
-    "Nadia": "dPs5Y_KYNws"
-};
-
-// ==========================================
-// ★ 背景動画設定（新動画差し替え対応） ★
-// ==========================================
-const bgMedia = [
-    'top_video.mp4'
-];
-
+const bgMedia = ['op_blair.mp4'];
 const mainTrailerVideo = "https://www.youtube.com/embed/z-Fux-nU-g4";
 
 // ==========================================
@@ -229,78 +175,4 @@ const petData = {
         "レベル上限が Max Lv.15 に拡張され、固有能力も引き継ぎ",
         "不要になった旧ペット用アイテム（Kennel等）は売却可能"
     ]
-};
-
-// ==========================================
-// ★ 多言語対応 (i18n) 辞書 ★
-// ==========================================
-window.i18n = {
-    'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 
-        'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-pet': 'PET', 'nav-qa': 'Q&A', 
-        'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
-        'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 
-        'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
-        'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
-        'pet-title': 'PET SYSTEM UPDATE', 'pet-subtitle': 'ペットシステムのアップデート情報とグレード仕様'
-    },
-    'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 
-        'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-pet': 'PET', 'nav-qa': 'Q&A', 
-        'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
-        'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 
-        'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
-        'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
-        'pet-title': 'PET SYSTEM UPDATE', 'pet-subtitle': 'Pet System Update & Grade Specifications'
-    },
-    'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 
-        'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-pet': '펫', 'nav-qa': '질문답변', 
-        'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
-        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 
-        'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
-        'home-recommended': '추천 영상', 'home-map': '마을 지도',
-        'pet-title': '펫 시스템 업데이트', 'pet-subtitle': '펫 시스템 업데이트 정보 및 등급 상세'
-    },
-    'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 
-        'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-pet': '宠物', 'nav-qa': '问答', 
-        'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
-        'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 
-        'about-p2': '分享攻略指南。让我们活跃社区！',
-        'home-recommended': '推荐视频', 'home-map': '村庄地图',
-        'pet-title': '宠物系统更新', 'pet-subtitle': '宠物系统更新内容与等级详解'
-    }
-};
-
-// ==========================================
-// ★ 専門用語 翻訳用辞書 ★
-// ==========================================
-window.termsDict = {
-    'en': {
-        'ノーマーク': 'Open', 'シュートタッチ': 'Shooting Touch',
-        '3点シュート': '3pt', 'ミドルシュート': 'Mid', 'ゴール下シュート': 'Post Shot', 'ジャンプシュート': 'Jump Shot',
-        '遠距離ダンク': 'Long Dunk', '近距離ダンク': 'Short Dunk', '遠距離レイアップ': 'Long Lay', '近距離レイアップ': 'Short Lay',
-        'Sダンク': 'S-Dunk', 'Lダンク': 'L-Dunk', 'Sレイアップ': 'S-Lay', 'Lレイアップ': 'L-Lay',
-        'ドライブイン': 'Drive-in', 'フェイスアップ': 'Face-up', 'アリウープ': 'Alley-oop',
-        'ブロック': 'Block', 'スティール': 'Steal', 'リバウンド': 'Rebound', 'パス': 'Pass',
-        '一般の移動速度': 'Normal Move Speed', '移動速度': 'Move Speed', '持久力': 'Stamina',
-        '回復量': 'Recovery', '最大値': 'Max', '最大': 'Max',
-        '成功率': 'Success', '発動確率': 'Rate', '守備抵抗': 'Def Resist', '抵抗': 'Resist',
-        'ポスト': 'Post', 'ミドル': 'Mid', '3点': '3pt', 'Dインシュート ブロック': 'Drive-in Blk', '当たり強さ': 'Toughness'
-    },
-    'ko': {
-        'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
-        '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
-        '遠距離ダンク': '원거리 덩크', '近距離ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
-        'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
-        '移動速度': '이동 속도', '持久力': '지구력', '当たり強さ': '몸싸움'
-    },
-    'zh': {
-        'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
-        '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距離ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
-        'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
-        '移動速度': '移动速度', '持久力': '体力', '当たり強さ': '对抗'
-    }
 };
