@@ -86,7 +86,6 @@
             <span class="nav-link active text-white cursor-pointer hover:text-white transition" onclick="showPage('home');" data-i18n="nav-home">HOME</span>
             <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('guide')" data-i18n="nav-guide">GUIDE</span>
             <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('db')" data-i18n="nav-db">DATABASE</span>
-            <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('pet')" data-i18n="nav-pet">PET</span>
             <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('ping')" data-i18n="nav-ping">PING MAP</span>
             <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('videos')" data-i18n="nav-videos">VIDEOS</span>
             <span class="nav-link cursor-pointer hover:text-white transition" onclick="showPage('music')" data-i18n="nav-music">MUSIC</span>
@@ -141,7 +140,7 @@
                         <i class="fab fa-youtube"></i> <span data-i18n="home-recommended">RECOMMENDED</span>
                     </h3>
                     <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/z-Fux-nU-g4" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -163,11 +162,6 @@
                     <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('db')">
                         <i class="fas fa-database text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-db">DATABASE</span>
-                    </div>
-
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('pet')">
-                        <i class="fas fa-paw text-xl text-orange-500 w-6 text-center"></i>
-                        <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-pet">PET</span>
                     </div>
                     
                     <div class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer" onclick="showPage('ping')">
@@ -212,170 +206,223 @@
     <!-- 各種詳細ページコンテンツ -->
     <div id="standard-content" class="hidden">
 
-        <!-- ペットシステムアップデート セクション (新設) -->
-        <section id="page-pet" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
-            <div class="mb-10">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="bg-orange-500 text-black font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">SYSTEM UPDATE</span>
-                    <span class="text-orange-400 font-bold text-xs">パッチノート要約</span>
+        <!-- Pingマップセクション -->
+        <section id="page-ping" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+                <div>
+                    <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-ping">PING MAP</h2>
+                    <p class="text-slate-400 text-sm mt-2 pl-6">アジア・日本圏 サーバーPing可視化マップ</p>
                 </div>
-                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6 text-white">PET SYSTEM UPDATE</h2>
-                <p class="text-gray-400 text-sm mt-2 pl-6">ペットシステム大型アップデート超わかりやすいガイド</p>
-            </div>
-
-            <!-- ポイントハイライト 3点 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-cyan-400 relative overflow-hidden">
-                    <div class="text-cyan-400 font-black text-xs tracking-widest mb-1">POINT 01</div>
-                    <h3 class="text-2xl font-black italic mb-2">最強ランク「プラチナ」登場!</h3>
-                    <p class="text-gray-300 text-xs leading-relaxed">上限Lv.15＆サブ枠3つの最高峰ペット。ペットの新たな高みへ！</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-orange-500 relative overflow-hidden">
-                    <div class="text-orange-500 font-black text-xs tracking-widest mb-1">POINT 02</div>
-                    <h3 class="text-2xl font-black italic mb-2">プラチナは「ゴールド合成」で作る!</h3>
-                    <p class="text-gray-300 text-xs leading-relaxed">ショップ直接入手は不可！ゴールドペットを素材にして一括合成！</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl border-l-4 border-emerald-400 relative overflow-hidden">
-                    <div class="text-emerald-400 font-black text-xs tracking-widest mb-1">POINT 03</div>
-                    <h3 class="text-2xl font-black italic mb-2">所持中のペットは全頭Lv.MAX化!</h3>
-                    <p class="text-gray-300 text-xs leading-relaxed">現在所有しているペット全員が無料＆自動で最高レベルへ引き上げ！</p>
+                <div class="flex gap-3 bg-slate-900 p-1.5 rounded-xl border border-slate-700 shadow-xl">
+                    <button id="btn-tokyo" class="btn-toggle active px-6 py-2 rounded-lg font-bold text-sm border border-transparent">東京サーバー</button>
+                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300">韓国(ソウル)サーバー</button>
                 </div>
             </div>
-
-            <!-- ペットのランク比較 (強さの違い) -->
-            <div class="mb-14 bg-white/5 p-8 rounded-3xl border border-white/10 shadow-2xl">
-                <h3 class="text-3xl font-black italic mb-6 text-orange-500 flex items-center gap-3">
-                    <i class="fas fa-award"></i> ペットのランク比較 (強さの違い)
-                </h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="border-b border-white/20 text-gray-400 text-sm">
-                                <th class="py-3 px-4 font-black">ランク</th>
-                                <th class="py-3 px-4 font-black">上限レベル</th>
-                                <th class="py-3 px-4 font-black">サブ枠数</th>
-                                <th class="py-3 px-4 font-black">入手方法</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="py-4 px-4 font-bold text-amber-700 flex items-center gap-2"><i class="fas fa-paw"></i> ブロンズ</td>
-                                <td class="py-4 px-4 font-black">Lv. 3</td>
-                                <td class="py-4 px-4 text-gray-400">なし</td>
-                                <td class="py-4 px-4 text-gray-300">ショップ購入</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="py-4 px-4 font-bold text-slate-300 flex items-center gap-2"><i class="fas fa-paw"></i> シルバー</td>
-                                <td class="py-4 px-4 font-black">Lv. 6</td>
-                                <td class="py-4 px-4 font-bold text-cyan-400">1つ</td>
-                                <td class="py-4 px-4 text-gray-300">ショップ購入</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition">
-                                <td class="py-4 px-4 font-bold text-yellow-400 flex items-center gap-2"><i class="fas fa-paw"></i> ゴールド</td>
-                                <td class="py-4 px-4 font-black">Lv. 12</td>
-                                <td class="py-4 px-4 font-bold text-cyan-400">2つ (強化1)</td>
-                                <td class="py-4 px-4 text-gray-300">ショップ購入</td>
-                            </tr>
-                            <tr class="bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 border-l-4 border-cyan-400">
-                                <td class="py-4 px-4 font-black text-cyan-300 text-lg flex items-center gap-2">
-                                    <i class="fas fa-crown text-yellow-400"></i> プラチナ★
-                                </td>
-                                <td class="py-4 px-4 font-black text-cyan-400 text-lg">Lv. 15 <span class="text-xs font-normal text-orange-400">(最高)</span></td>
-                                <td class="py-4 px-4 font-black text-cyan-400 text-lg">3つ <span class="text-xs font-normal text-gray-300">(強化2)</span></td>
-                                <td class="py-4 px-4 font-black text-orange-500 text-lg">合成限定!</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="flex flex-col lg:flex-row w-full gap-6">
+                <div class="w-full lg:w-3/4 bg-slate-900/60 rounded-3xl border border-slate-700 overflow-hidden relative shadow-2xl flex items-center justify-center min-h-[600px]">
+                    <svg id="map-svg" class="w-full h-full" style="max-height: 800px;"></svg>
+                </div>
+                <div class="w-full lg:w-1/4 flex flex-col gap-4">
+                    <div class="bg-slate-900/80 rounded-3xl border border-slate-700 p-6 shadow-xl">
+                        <h3 id="info-title" class="text-xl font-bold text-sky-400 mb-3 border-b border-slate-700 pb-2">東京サーバー接続時</h3>
+                        <p id="info-desc" class="text-slate-300 text-sm leading-relaxed mb-4">日本国内からは一貫して低いPing（遅延）で接続可能です。</p>
+                        <div class="bg-black/40 p-4 rounded-xl border border-slate-700 mb-3">
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">九州地方</span>
+                            <span id="kyushu-ping-text" class="text-2xl font-black text-emerald-400">22<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-xl border border-slate-700">
+                            <span class="text-xs text-slate-400 block mb-1 uppercase tracking-widest">台湾の経路</span>
+                            <span id="taiwan-ping-text" class="text-2xl font-black text-sky-400">35<span class="text-sm font-normal text-slate-400 ml-1">ms</span></span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- プラチナペットの作り方 (合成システム) -->
-            <div class="mb-14">
-                <h3 class="text-3xl font-black italic mb-6 text-white flex items-center gap-3">
-                    <i class="fas fa-random text-orange-500"></i> プラチナペットの作り方 (合成システム)
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- STEP 1 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/10 relative flex flex-col justify-between">
+        <!-- ビデオセクション -->
+        <section id="page-videos" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-videos">VIDEOS</h2>
+                <select id="videoPosFilter" onchange="initVideos()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                    <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+                    <option value="PG" class="bg-gray-900 text-white">PG</option>
+                    <option value="SG" class="bg-gray-900 text-white">SG</option>
+                    <option value="SF" class="bg-gray-900 text-white">SF</option>
+                    <option value="PF" class="bg-gray-900 text-white">PF</option>
+                    <option value="C" class="bg-gray-900 text-white">C</option>
+                </select>
+            </div>
+            <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターカードをクリックすると解説・紹介動画が再生されます！</p>
+            <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        </section>
+
+        <!-- ミュージックセクション -->
+        <section id="page-music" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6 mb-10" data-i18n="nav-music">MUSIC</h2>
+            <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        </section>
+
+        <!-- サーベイセクション -->
+        <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
+            <div class="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-2xl">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0"></iframe>
+            </div>
+        </section>
+
+        <!-- ABOUTセクション -->
+        <section id="page-about" class="page-container px-6 lg:px-20 py-10">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
+                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                <div>
+                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">ABOUT ME</h3>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ガイドセクション (完全に復元) -->
+        <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            <div class="space-y-20">
+                <div>
+                    <div class="text-orange-500 font-black text-xl mb-2">STEP 1</div>
+                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s1-title">ポジションの特徴</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
+                        <img src="guide_step1_role.png" class="rounded-2xl w-full cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm" data-i18n="guide-s1-pg">パスと機動力。守備の要。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sg">最高得点能力。多彩なスキル。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sf">攻守に貢献する万能型。</p></div>
+                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-big">ゴール下の番人。リバウンド。</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-orange-500 font-black text-xl mb-2">STEP 2</div>
+                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s2-title">おすすめキャラ</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white/5 p-8 rounded-3xl border border-white/10">
                         <div>
-                            <span class="bg-orange-600 text-white font-black text-xs px-2.5 py-1 rounded italic mb-3 inline-block">STEP 01</span>
-                            <h4 class="text-xl font-black italic mb-3">素材準備</h4>
-                            <p class="text-sm text-gray-300 mb-4">ゴールドペットを用意します。</p>
-                            <div class="bg-black/40 p-3 rounded-xl border border-white/5 text-xs text-gray-300 space-y-1">
-                                <div>• コイン購入: <span class="font-bold text-white">5匹</span></div>
-                                <div>• Pt購入: <span class="font-bold text-white">2匹</span></div>
+                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-free-t">無課金・初期のおすすめ</h4>
+                            <p class="text-gray-300 mb-6" data-i18n="guide-s2-free-d">Murdock (PF): ブロック力が高く、最高の選択肢です。</p>
+                            <div class="aspect-video rounded-xl overflow-hidden bg-black shadow-xl">
+                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="mt-6 text-right text-orange-500 text-2xl"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <!-- STEP 2 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-white/10 relative flex flex-col justify-between">
                         <div>
-                            <span class="bg-orange-600 text-white font-black text-xs px-2.5 py-1 rounded italic mb-3 inline-block">STEP 02</span>
-                            <h4 class="text-xl font-black italic mb-3">合成実行</h4>
-                            <p class="text-sm text-gray-300 mb-4">まとめて一括合成が可能です！</p>
-                            <div class="bg-black/40 p-3 rounded-xl border border-white/5 text-xs text-cyan-400 font-bold">
-                                💡 最大200匹までまとめて一括合成に対応！
-                            </div>
-                        </div>
-                        <div class="mt-6 text-right text-orange-500 text-2xl"><i class="fas fa-chevron-right"></i></div>
-                    </div>
-
-                    <!-- STEP 3 -->
-                    <div class="glass-panel p-6 rounded-2xl border border-cyan-500/40 relative flex flex-col justify-between bg-cyan-950/20">
-                        <div>
-                            <span class="bg-cyan-500 text-black font-black text-xs px-2.5 py-1 rounded italic mb-3 inline-block">STEP 03</span>
-                            <h4 class="text-xl font-black italic mb-3">判定！</h4>
-                            <div class="space-y-2 mt-4">
-                                <div class="bg-emerald-500/20 border border-emerald-500/50 p-3 rounded-xl">
-                                    <div class="font-black text-emerald-400 text-sm">確率 25% → プラチナGET!</div>
+                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-best-t">最強キャラ (Premium)</h4>
+                            <div class="grid grid-cols-5 gap-3">
+                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
                                 </div>
-                                <div class="bg-rose-500/20 border border-rose-500/50 p-3 rounded-xl">
-                                    <div class="font-bold text-rose-300 text-xs">失敗 (75%) → ゴールド再抽選</div>
+                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
+                                </div>
+                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
+                                </div>
+                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
+                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
+                                </div>
+                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
+                                    <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-6 text-right text-emerald-400 text-2xl"><i class="fas fa-check-circle"></i></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-orange-500 font-black text-xl mb-2">STEP 3</div>
+                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center items-start mb-12">
+                        <div>
+                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p1">強者のピラミッド。P5昇級が基盤です。</p>
+                        </div>
+                        <div>
+                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p2">P-BUFFはカードより圧倒的に効率が良いです。</p>
+                        </div>
+                        <div class="bg-[#0f0f0f] border-t-4 border-red-600 p-8 rounded-3xl text-center shadow-2xl">
+                            <img src="image_441842.jpg" class="rounded-2xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-orange-500 font-black text-xl mb-2">STEP 4</div>
+                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
+                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-10 shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2</h4>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <img src="guide_step4_space.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                                <img src="guide_step4_space2.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
+                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4</h4>
+                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- 既存プレイヤーへの影響 & 期間限定イベント -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- 既存プレイヤーへの影響 -->
-                <div class="bg-white/5 p-8 rounded-3xl border border-white/10">
-                    <h3 class="text-2xl font-black italic mb-6 text-orange-500 flex items-center gap-3">
-                        <i class="fas fa-user-shield"></i> 今持っているペットはどうなる?
-                    </h3>
-                    <ul class="space-y-4 text-sm text-gray-200">
-                        <li class="flex items-start gap-3 bg-black/40 p-3.5 rounded-xl border border-white/5">
-                            <i class="fas fa-check text-orange-500 mt-1"></i>
-                            <span>ランクや見た目はそのまま維持されます。</span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-black/40 p-3.5 rounded-xl border border-white/5">
-                            <i class="fas fa-check text-orange-500 mt-1"></i>
-                            <span>レベルが自動的に全員<strong class="text-cyan-400">「最高レベル」まで無料アップ！</strong></span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-black/40 p-3.5 rounded-xl border border-white/5">
-                            <i class="fas fa-check text-orange-500 mt-1"></i>
-                            <span>使えなくなった旧ケンネル類は売却してOKです。</span>
-                        </li>
-                    </ul>
+        <!-- データベースセクション -->
+        <section id="page-db" class="page-container px-6 lg:px-20 py-10">
+            <div class="flex justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
+                <div class="flex gap-4">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-72">
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All">ALL</option>
+                        <option value="PG">PG</option>
+                        <option value="SG">SG</option>
+                        <option value="SF">SF</option>
+                        <option value="PF">PF</option>
+                        <option value="C">C</option>
+                    </select>
                 </div>
+            </div>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
+        </section>
 
-                <!-- 期間限定イベント情報 -->
-                <div class="bg-gradient-to-br from-orange-950/30 to-black p-8 rounded-3xl border border-orange-500/40 shadow-xl">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-2xl font-black italic text-white flex items-center gap-3">
-                            <i class="fas fa-gift text-orange-500"></i> 期間限定イベント情報
-                        </h3>
-                        <span class="bg-orange-500 text-black font-black text-xs px-3 py-1 rounded-full">~11/10 23:59 PST</span>
-                    </div>
-                    <ul class="space-y-4 text-sm text-gray-200">
-                        <li class="flex items-start gap-3 bg-black/50 p-3.5 rounded-xl border border-white/10">
-                            <i class="fas fa-box-open text-cyan-400 mt-1"></i>
-                            <div>
-                                <div class="font-bold text-white">プラチナ確定ボックス</div>
-                                <div class="text-xs text-gray-400">全26種から出現 (最大15個まで購入可能)</div>
-                            </div>
+        <!-- P-BUFFセクション (フィルターを完全に復元) -->
+        <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
+                <div class="flex gap-4">
+                    <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                        <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
+                        <option value="PG" class="bg-gray-900 text-white">PG</option>
+                        <option value="SG" class="bg-gray-900 text-white">SG</option>
+                        <option value="SF" class="bg-gray-900 text-white">SF</option>
+                        <option value="PF" class="bg-gray-900 text-white">PF</option>
+                        <option value="C" class="bg-gray-900 text-white">C</option>
+                    </select>
+                </div>
+            </div>
+            <div id="pbuff-grid-container" class="space-y-16"></div>
+        </section>
+
+    </div>
+
+    <!-- モーダル各種 -->
+    <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl z-[201]"><i class="fas fa-times"></i></button>
+        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain">
+    </div>
+
+    <div id="yt-modal" class="hidden fixed inset-0 z-[300] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeYtModal()" class="absolute top-6 right-6 text-white text-5xl z-[301] hover:text-orange-500 transition"><i class="fas fa-times"></i></button>
+        <div class="w-[95%] max-w-5xl aspect-video relative z-[300] bg-black rounded-xl overflow-hidden shadow-2xl border border-white/20">
+            <iframe id="yt-iframe" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
