@@ -166,7 +166,7 @@ function injectNewCharacters() {
 // ==========================================
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
         'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。',
@@ -179,7 +179,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'videos-desc': 'Click a character icon to play their introduction video.',
@@ -192,26 +192,26 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
-        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀했습니다.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-pet': '펫', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀しました.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
         'guide-title': '하이 티어로 가는 길', 'guide-s1-title': '포지션 특징',
         'guide-s1-pg': '패스와 기동력. 수비의 핵심.', 'guide-s1-sg': '최고의 득점력. 다채로운 스킬.', 'guide-s1-sf': '공수 양면의 만능형.', 'guide-s1-big': '골밑의 수호자. 리바운드.',
-        'guide-s2-title': '추천 캐릭터', 'guide-s2-free-t': '무과금 / 초기 추천', 'guide-s2-free-d': 'Murdock (PF): 블록 능력이 뛰어나 최고의 선택입니다.', 'guide-s2-best-t': '최강 캐릭터 (Premium)',
+        'guide-s2-title': '추천 캐릭터', 'guide-s2-free-t': '무과금 / 초기 추천', 'guide-s2-free-d': 'Murdock (PF): 블록 능력이 뛰어난 최고의 선택입니다.', 'guide-s2-best-t': '최강 캐릭터 (Premium)',
         'guide-s3-title': '육성 순서', 'guide-s3-p1': '강자의 피라미드. P5 승급이 기본입니다.', 'guide-s3-p2': 'P-버프는 카드보다 압도적으로 효율이 좋습니다.',
         'guide-s4-title': '팀 플레이', 'guide-s4-l12-t': 'Level 1 & 2: 기초', 'guide-s4-l12-d': '아군의 공간을 방해하지 마세요. 스페이스 확보가 철칙입니다.',
         'guide-s4-l34-t': 'Level 3 & 4: 응용', 'guide-s4-l34-d': '실수를 비난하지 말고, 긍정적인 이모트로 팀을 격려하세요.',
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-pet': '宠物', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'videos-desc': '点击角色图标播放介绍视频。',
         'guide-title': '迈向高阶之路', 'guide-s1-title': '位置特点',
         'guide-s1-pg': '传球与机动性。防守的核心。', 'guide-s1-sg': '最强得分能力。多样化的技能。', 'guide-s1-sf': '攻守兼备的全能型。', 'guide-s1-big': '篮下守护者。篮板球。',
-        'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
+        'guide-s2-title': '推荐角色', 'guide-s2-free-t': '零氪 / 初始推荐', 'guide-s2-free-d': 'Murdock (PF): 盖帽能力极强，是不二之选。', 'guide-s2-best-t': '最强角色 (Premium)',
         'guide-s3-title': '养成步骤', 'guide-s3-p1': '强者金字塔。P5晋级是基础。', 'guide-s3-p2': 'P-BUFF的效果远高于卡片。',
         'guide-s4-title': '团队配合', 'guide-s4-l12-t': 'Level 1 & 2: 基础', 'guide-s4-l12-d': '不要阻碍队友。保持拉开空间。不堵塞突破路线。',
         'guide-s4-l34-t': 'Level 3 & 4: 应用', 'guide-s4-l34-d': '不要责怪失误。使用积极的表情鼓励团队。',
@@ -238,22 +238,22 @@ window.termsDict = {
     'ko': {
         'ノーマーク': '노마크', 'シュートタッチ': '슛 터치',
         '3点シュート': '3점슛', 'ミドルシュート': '미들슛', 'ゴール下シュート': '골밑슛', 'ジャンプシュート': '점프슛',
-        '遠距離ダンク': '원거리 덩크', '近거리ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近거리 레이업': '근거리 레이업',
-        'Sダンク': 'S-덩크', 'Lダン크': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイ업': 'L-레이업',
+        '遠距離ダンク': '원거리 덩크', '近距離ダンク': '근거리 덩크', '遠距離レイアップ': '원거리 레이업', '近距離レイアップ': '근거리 레이업',
+        'Sダンク': 'S-덩크', 'Lダンク': 'L-덩크', 'Sレイアップ': 'S-레이업', 'Lレイアップ': 'L-레이업',
         'ドライブイン': '드라이브 인', 'フェイスアップ': '페이스업', 'アリウープ': '앨리웁',
         'ブロック': '블록', 'スティール': '스틸', 'リバウンド': '리바운드', 'パス': '패스',
         '一般の移動速度': '일반 이동 속도', '移動速度': '이동 속도', '持久力': '지구력',
         '回復量': '회복량', '最大値': '최대치', '最大': '최대',
-        '成功率': '성공률', '발동 확률': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
-        '距離': '거리', '角度': '각도', '以降': '이후', '충돌': '충돌', '減少': '감소',
+        '成功率': '성공률', '発動確率': '발동 확률', '守備抵抗': '수비 저항', '抵抗': '저항',
+        '距離': '거리', '角度': '각도', '以降': '이후', '衝突': '충돌', '減少': '감소',
         'ポスト': '포스트', 'ミドル': '미들', '3点': '3점', 'Sレイ': 'S-레이', 'Lレイ': 'L-레이', 'Sダン': 'S-덩크', 'Lダン': 'L-덩크',
-        'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', '리바': '리바', '런': '런', '지구': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
+        'スティ': '스틸', 'Jプロ': 'J-블록', 'Dプロ': 'D-블록', '当たり': '몸싸움', 'リバ': '리바', 'ラン': '런', '持久': '지구', 'Jブロ': 'J-블록', 'Dブロ': 'D-블록',
         '最大持久力': '최대 지구력', 'ノーマーク3点シュート成功率': '노마크 3점슛 성공률'
     },
     'zh': {
         'ノーマーク': '空位', 'シュートタッチ': '投篮手感',
         '3点シュート': '三分球', 'ミドルシュート': '中投', 'ゴール下シュート': '篮下投篮', 'ジャンプシュート': '跳投',
-        '遠距離ダンク': '远距离扣篮', '近距离ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距离レイアップ': '近距离上篮',
+        '遠距離ダンク': '远距离扣篮', '近距離ダンク': '近距离扣篮', '遠距離レイアップ': '远距离上篮', '近距離レイアップ': '近距离上篮',
         'Sダンク': 'S扣篮', 'Lダンク': 'L扣篮', 'Sレイアップ': 'S上篮', 'Lレイアップ': 'L上篮',
         'ドライブイン': '突破', 'フェイスアップ': '面框', 'アリウープ': '空接',
         'ブロック': '盖帽', 'スティール': '抢断', 'リバウンド': '篮板', 'パス': '传球',
@@ -275,31 +275,31 @@ const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg
 // ==========================================
 function autoFixKoreanData() {
     const krFix = {
-        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シン디",
-        "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリ스타", "프로페서": "プロフェッサー",
+        "리": "リー", "윌리엄": "ウィリアム", "머독": "マードック", "조이": "ジョイ", "신디": "シンディー",
+        "헬레나": "ヘレナ", "페드로": "ペドロ", "크리스타": "クリスタ", "프로페서": "プロフェッサー",
         "아만다": "アマンダ", "킴": "キム", "카롤리나": "カロリーナ", "린": "リン", "카터": "カーター",
-        "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラー크", "룰루": "ルル", "빅독": "ビッグドッグ",
-        "레베카": "레베카", "사루": "猿", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
-        "리틀폭스": "리틀폭스", "미카": "미카", "워커": "ウォーカー", "카밀라": "カミラ",
-        "나디아": "나디아", "잭": "ジャック", "디콘": "ディー콘", "노아": "ノ아", "클로이": "クロエ",
-        "아일라": "アイラ", "로이드": "로이드", "하울": "하울", "리우": "リュウ", "옥스 퀸": "オックスクイーン",
+        "제이슨": "ジェイソン", "맥스": "マックス", "클라크": "クラーク", "룰루": "ルル", "빅독": "ビッグドッグ",
+        "레베카": "レベッカ", "사루": "サル", "진저": "ジンジャー", "페이": "フェイ", "폭스": "フォックス",
+        "리틀폭스": "リトルフォックス", "미카": "ミカ", "워커": "ウォーカー", "카밀라": "カミラ",
+        "나디아": "ナディア", "잭": "ジャック", "디콘": "ディーコン", "노아": "ノア", "클로이": "クロエ",
+        "아일라": "アイラ", "로이드": "ロイド", "하울": "ハウル", "리우": "リウ", "옥스 퀸": "牛魔王",
         "제시": "ジェシー", "자이언트 G": "ジャイアントG", "블레어": "ブレア", "제네사": "ジェネーザ",
-        "카지": "카지", "켄쇼": "켄쇼", "더블 D": "ダブルD", "지미": "지미", "프레드": "프레드",
+        "카지": "カジ", "켄쇼": "ケンショウ", "더블 D": "ダブルD", "지미": "ジミー", "프레드": "フレッド",
         "바스키": "バスキー", "Basky": "Basky",
         "노마크 3점슛 성공률": "ノーマーク3点シュート成功率", "일반 이동 속도": "一般の移動速度",
         "3점슛 성공률": "3点シュート 成功率", "3점 성공률": "3点シュート 成功率",
-        "S덩크 발동 확률": "Sダンク 発動確率", "S덩크 수비 저항": "Sダンク 守備抵抗", "S덩크 블록 저항": "Sダンク ブ록抵抗",
-        "L덩크 발동 확률": "Lダンク 発動確率", "L덩크 블록 저항": "Lダンク ブ록抵抗", "L덩크 성공률": "ロングダンク 成功率",
-        "S레이업 성공률": "Sレイアップ 成功率", "S레이업 수비 저항": "Sレイ 守備抵抗", "S레이업 블록 저항": "Sレイアップ ブ록抵抗",
-        "L레이업 블록 저항": "Lレイ ブ록抵抗", "미들슛 성공률": "ミドルシュート 成功率", "미들 성공률": "ミドルシュート 成功率",
+        "S덩크 발동 확률": "Sダンク 発動確率", "S덩크 수비 저항": "Sダンク 守備抵抗", "S덩크 블록 저항": "Sダンク ブロック抵抗",
+        "L덩크 발동 확률": "Lダンク 発動確率", "L덩크 블록 저항": "Lダンク ブロック抵抗", "L덩크 성공률": "ロングダンク 成功率",
+        "S레이업 성공률": "Sレイアップ 成功率", "S레이업 수비 저항": "Sレイ 守備抵抗", "S레이업 블록 저항": "Sレイアップ ブロック抵抗",
+        "L레이업 블록 저항": "Lレイ ブロック抵抗", "미들슛 성공률": "ミドルシュート 成功率", "미들 성공률": "ミドルシュート 成功率",
         "미들 수비 저항": "ミドル守備抵抗", "포스트샷 성공률": "ポストショット 成功率", "포스트 성공률": "ポストショット 成功率",
-        "공격 리바운드": "O리バウンド能力", "수비 리바운드": "D리バウンド能力", "스틸 성공률": "スティール成功率",
+        "공격 리바운드": "Oリバウンド能力", "수비 리바운드": "Dリバウンド能力", "스틸 성공률": "スティール成功率",
         "돌파 블록": "Dインシュート ブロック", "점프슛 블록": "Jシュート ブロック", "블록 저항 성공률": "ブロック抵抗成功率",
         "최대 지구력": "最大持久力", "지구력 회복량": "持久力の回復量", "레이업/덩크 거리": "レイアップ/ダンク距離",
         "S덩크 속도": "Sダンクの速度", "블록 저항": "ブロック抵抗", "슛 방해": "シュート妨害効果", "몸싸움": "当たり強さ",
-        "리바운드": "리바운드", "달리기": "ランニング", "지구력": "持久력", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
+        "리바운드": "リバウンド", "달리기": "ランニング", "지구력": "持久力", "스틸": "スティール", "패스": "パス", "블록": "ブロック",
         "3점슛": "3点シュート", "3점": "3点", "미ドル슛": "ミドルシュート", "미들": "ミドル",
-        "S덩크": "Sダンク", "L덩크": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "L레이アップ",
+        "S덩크": "Sダンク", "Lダンク": "Lダンク", "S레이업": "Sレイアップ", "L레이업": "Lレイアップ",
         "이동 속도": "移動速度", "노마크": "ノーマーク"
     };
 
@@ -385,7 +385,7 @@ function showPage(id) {
     const target = document.getElementById('page-' + id);
     if(target) target.classList.add('active-page');
     
-    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about', 'music': 'nav-music' };
+    const navMap = { 'guide': 'nav-guide', 'db': 'nav-db', 'pet': 'nav-pet', 'ranking': 'nav-ranking', 'videos': 'nav-videos', 'pbuff': 'nav-pbuff', 'survey': 'nav-survey', 'ping': 'nav-ping', 'qa': 'nav-qa', 'bbs': 'nav-bbs', 'about': 'nav-about', 'music': 'nav-music' };
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     
     if (id === 'home') {
@@ -635,7 +635,7 @@ const musicData = [
     { id: "O-SW_ID2Kuw", title: "ミラーフェイク" },
     { id: "pHBtBIqk9mg", title: "チェックメイト" },
     { id: "viz_d3NVNxU", title: "ミッドレンジマエストロ" },
-    { id: "Y_4E92eHyew", title: "체크메이트（チェックメイト 韓国ver）" },
+    { id: "Y_4E92eHyew", title: "체크메이트（チェックメ이트 韓国ver）" },
     { id: "zIiZ_qu2BcI", title: "re.bound（韓国ver）" }
 ];
 
@@ -691,12 +691,11 @@ function closeYtModal() {
 }
 
 // =====================================
-// ★ 背景動画制御（インラインと重複させない） ★
+// ★ 背景動画制御 ★
 // =====================================
 function changeBackground() {
     const bgWrapper = document.getElementById('home-split-wrapper');
     if (bgWrapper) {
-        // HTML側に既に<video>が組み込まれているため、JSからの画像書き換えを強制無効化
         bgWrapper.style.backgroundImage = 'none';
         bgWrapper.style.backgroundColor = 'transparent';
     }
