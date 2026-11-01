@@ -104,10 +104,29 @@
     <!-- HOME画面（新スタイリッシュレイアウト） -->
     <div id="home-split-wrapper" class="relative overflow-hidden bg-[#050505]" style="height: calc(100vh - 73px);">
         
-        <!-- 背景動画（ループなし・明るさ調整済み） -->
-        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
-            <source src="op_blair.mp4" type="video/mp4">
-        </video>
+      <!-- 背景動画（ランダム切替） -->
+<video id="bg-video" autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
+    <!-- JavaScriptでランダムにsrcを設定します -->
+</video>
+
+<script>
+    // ランダムで再生したい動画のファイル名を配列にリストアップします
+    const bgVideos = [
+        "op_blair.mp4",     // ブレアの動画
+        "new-flare.mp4"     // 新しく添付した動画のファイル名
+    ];
+
+    // 配列からランダムに1つ選ぶ
+    const randomVideo = bgVideos[Math.floor(Math.random() * bgVideos.length)];
+
+    // videoタグにソースを設定してロード＆再生
+    const videoElement = document.getElementById('bg-video');
+    const sourceElement = document.createElement('source');
+    sourceElement.src = randomVideo;
+    sourceElement.type = 'new-flare.mp4';
+    videoElement.appendChild(sourceElement);
+    videoElement.load();
+</script>
 
         <!-- 四隅のビネット（中央のキャラクターを際立たせる陰影） -->
         <div class="absolute inset-0 pointer-events-none z-1" style="background: radial-gradient(circle, transparent 40%, rgba(5,5,5,0.7) 100%);"></div>
