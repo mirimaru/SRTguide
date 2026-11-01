@@ -104,8 +104,8 @@
     <!-- HOME画面（新スタイリッシュレイアウト） -->
     <div id="home-split-wrapper" class="relative overflow-hidden bg-[#050505]" style="height: calc(100vh - 73px);">
         
-        <!-- 背景動画（自動ループ再生・ミュート） -->
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
+        <!-- 背景動画（ループなし・明るさ調整済み） -->
+        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
             <source src="op_blair.mp4" type="video/mp4">
         </video>
 
@@ -135,13 +135,13 @@
                     <p class="text-xs text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
                 </div>
 
-                <!-- RECOMMENDED VIDEO -->
+                <!-- RECOMMENDED VIDEO（ご指定の新しい動画 ID: aVtP07_I60g に差し替え済み） -->
                 <div class="glass-panel p-4 rounded-3xl border-t border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
                     <h3 class="font-teko text-xl text-cyan-400 mb-2 tracking-widest italic flex items-center gap-2">
                         <i class="fab fa-youtube"></i> <span data-i18n="home-recommended">RECOMMENDED</span>
                     </h3>
                     <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aVtP07_I60g" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -259,7 +259,7 @@
                 </select>
             </div>
             <p class="text-gray-400 mb-8" data-i18n="videos-desc">キャラクターカードをクリックすると解説・紹介動画が再生されます！</p>
-            <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            <div id="video-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6"></div>
         </section>
 
         <!-- ミュージックセクション -->
@@ -273,106 +273,6 @@
             <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
             <div class="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-2xl">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0"></iframe>
-            </div>
-        </section>
-
-        <!-- ABOUTセクション -->
-        <section id="page-about" class="page-container px-6 lg:px-20 py-10">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-about">ABOUT ME</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-white/5 p-10 rounded-[30px] border border-white/10">
-                <img src="image_956977.jpg" class="w-full rounded-2xl shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                <div>
-                    <h3 class="text-3xl font-black italic text-orange-500 mb-6" data-i18n="about-title">ABOUT ME</h3>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-4" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ガイドセクション (完全に復元) -->
-        <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
-            <div class="space-y-20">
-                <div>
-                    <div class="text-orange-500 font-black text-xl mb-2">STEP 1</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s1-title">ポジションの特徴</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <img src="guide_step1_role.png" class="rounded-2xl w-full cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        <div class="grid grid-cols-1 gap-4">
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PG</h4><p class="text-gray-300 text-sm" data-i18n="guide-s1-pg">パスと機動力。守備の要。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SG</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sg">最高得点能力。多彩なスキル。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">SF</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-sf">攻守に貢献する万能型。</p></div>
-                            <div class="bg-black/40 p-4 rounded-xl border-l-4 border-orange-500"><h4 class="text-orange-500 font-black">PF/C</h4><p class="text-gray-400 text-sm" data-i18n="guide-s1-big">ゴール下の番人。リバウンド。</p></div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="text-orange-500 font-black text-xl mb-2">STEP 2</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s2-title">おすすめキャラ</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white/5 p-8 rounded-3xl border border-white/10">
-                        <div>
-                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-free-t">無課金・初期のおすすめ</h4>
-                            <p class="text-gray-300 mb-6" data-i18n="guide-s2-free-d">Murdock (PF): ブロック力が高く、最高の選択肢です。</p>
-                            <div class="aspect-video rounded-xl overflow-hidden bg-black shadow-xl">
-                                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Yz7PVs2Hd1Y" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div>
-                            <h4 class="text-2xl font-black mb-4" data-i18n="guide-s2-best-t">最強キャラ (Premium)</h4>
-                            <div class="grid grid-cols-5 gap-3">
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/kaji/chr_b_kaji.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/gena/chr_b.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/skill/nathan/chr_b_nathan.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://common-cdn-api.joycityglobal.com/3on3/homepage/characters/chr_d/chr_b_giant_g.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                                <div class="overflow-hidden rounded-lg bg-black/40 border border-white/10 shadow-lg aspect-[2/3]">
-                                    <img src="https://d2mwnrhar4x85q.cloudfront.net/3on3/character/blair/chr_b_blair.png" class="w-full h-full object-cover object-top cursor-pointer hover:scale-110 transition-transform duration-300" onclick="openImageModal(this.src)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="text-orange-500 font-black text-xl mb-2">STEP 3</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s3-title">育成手順</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 text-center items-start mb-12">
-                        <div>
-                            <img src="upgrade_pyramid.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p1">強者のピラミッド。P5昇級が基盤です。</p>
-                        </div>
-                        <div>
-                            <img src="roi_comparison.png" class="rounded-2xl border border-white/10 w-full shadow-2xl mb-4 cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            <p class="text-sm text-gray-400" data-i18n="guide-s3-p2">P-BUFFはカードより圧倒的に効率が良いです。</p>
-                        </div>
-                        <div class="bg-[#0f0f0f] border-t-4 border-red-600 p-8 rounded-3xl text-center shadow-2xl">
-                            <img src="image_441842.jpg" class="rounded-2xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="text-orange-500 font-black text-xl mb-2">STEP 4</div>
-                    <h3 class="text-3xl font-black italic mb-6" data-i18n="guide-s4-title">チームプレイ</h3>
-                    <img src="guide_step4_steps.png" class="w-full max-w-4xl mx-auto rounded-3xl border border-white/10 mb-10 shadow-2xl cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l12-t">Level 1 & 2</h4>
-                            <div class="grid grid-cols-2 gap-4 mb-4">
-                                <img src="guide_step4_space.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                                <img src="guide_step4_space2.png" class="rounded-xl w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                            </div>
-                        </div>
-                        <div class="bg-white/5 p-8 rounded-3xl border border-white/10 text-center">
-                            <h4 class="text-xl font-black text-orange-500 mb-4 italic" data-i18n="guide-s4-l34-t">Level 3 & 4</h4>
-                            <img src="guide_step4_comm.png" class="rounded-xl mb-4 w-full border border-white/10 shadow-lg cursor-pointer hover:opacity-80 transition" onclick="openImageModal(this.src)">
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -411,6 +311,12 @@
                 </div>
             </div>
             <div id="pbuff-grid-container" class="space-y-16"></div>
+        </section>
+
+        <!-- ガイドセクション -->
+        <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            <!-- ガイドの中身 -->
         </section>
 
     </div>
