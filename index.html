@@ -104,8 +104,8 @@
     <!-- HOME画面（新スタイリッシュレイアウト） -->
     <div id="home-split-wrapper" class="relative overflow-hidden bg-[#050505]" style="height: calc(100vh - 73px);">
         
-        <!-- 背景動画（ループなし・明るさそのまま） -->
-        <video autoplay muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
+        <!-- 背景動画（自動ループ再生・ミュート） -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-80">
             <source src="op_blair.mp4" type="video/mp4">
         </video>
 
@@ -141,8 +141,7 @@
                         <i class="fab fa-youtube"></i> <span data-i18n="home-recommended">RECOMMENDED</span>
                     </h3>
                     <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black">
-                        <!-- ご要望通り動画IDを差し替え -->
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/MHJd8bYFzcg" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/Dg7phQbrfKg" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -154,67 +153,54 @@
 
             <!-- ▼ 右側：スマート・サイドバーナビゲーション ▼ -->
             <div class="w-[24%] flex justify-end">
-                <div class="glass-panel rounded-3xl p-3 flex flex-col gap-1 w-full max-w-[260px] shadow-2xl overflow-y-auto max-h-[85vh]">
+                <div class="glass-panel rounded-3xl p-3 flex flex-col gap-1 w-full max-w-[260px] shadow-2xl">
                     
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('guide')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('guide')">
                         <i class="fas fa-graduation-cap text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-guide">GUIDE</span>
                     </div>
                     
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('db')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('db')">
                         <i class="fas fa-database text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-db">DATABASE</span>
                     </div>
-                    
-                    <!-- ペットシステム追加 -->
+
                     <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="window.open('https://3on3-notice.github.io/pet/?lang=' + currentLang + '#where', '_blank')">
                         <i class="fas fa-paw text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-pet">PET</span>
                     </div>
-
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('ping')">
+                    
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('ping')">
                         <i class="fas fa-network-wired text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-ping">PING MAP</span>
                     </div>
                     
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('videos')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('videos')">
                         <i class="fas fa-video text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-videos">VIDEOS</span>
                     </div>
                     
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('music')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('music')">
                         <i class="fas fa-music text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-music">MUSIC</span>
                     </div>
                     
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('pbuff')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('pbuff')">
                         <i class="fas fa-bolt text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-pbuff">P-BUFF</span>
                     </div>
 
-                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer" onclick="showPage('survey')">
+                    <div class="sidebar-item flex items-center gap-4 px-4 py-2.5 rounded-2xl cursor-pointer text-white" onclick="showPage('survey')">
                         <i class="fas fa-clipboard-list text-xl text-orange-500 w-6 text-center"></i>
                         <span class="font-teko text-2xl tracking-widest italic pt-1" data-i18n="nav-survey">SURVEY</span>
                     </div>
 
-                    <!-- 外部リンク＆マップ用アイコン群 (他と同じ表記に統一) -->
-                    <div class="mt-2 pt-2 border-t border-white/10 flex flex-col gap-1">
-                        <a href="https://note.com/clean_squid9881" target="_blank" class="sidebar-item flex items-center gap-4 px-4 py-2 rounded-2xl cursor-pointer text-white no-underline">
-                            <i class="fas fa-edit text-lg text-orange-500 w-6 text-center"></i>
-                            <span class="font-teko text-xl tracking-widest italic pt-1">NOTE</span>
-                        </a>
-                        <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k" target="_blank" class="sidebar-item flex items-center gap-4 px-4 py-2 rounded-2xl cursor-pointer text-white no-underline">
-                            <i class="fab fa-youtube text-lg text-orange-500 w-6 text-center"></i>
-                            <span class="font-teko text-xl tracking-widest italic pt-1">YOUTUBE</span>
-                        </a>
-                        <a href="https://3on3.fsgames.com/" target="_blank" class="sidebar-item flex items-center gap-4 px-4 py-2 rounded-2xl cursor-pointer text-white no-underline">
-                            <i class="fas fa-globe text-lg text-orange-500 w-6 text-center"></i>
-                            <span class="font-teko text-xl tracking-widest italic pt-1">OFFICIAL</span>
-                        </a>
-                        <div onclick="openImageModal('map_box.jpg')" class="sidebar-item flex items-center gap-4 px-4 py-2 rounded-2xl cursor-pointer text-white">
-                            <i class="fas fa-map-marked-alt text-lg text-orange-500 w-6 text-center"></i>
-                            <span class="font-teko text-xl tracking-widest italic pt-1">VILLAGE MAP</span>
-                        </div>
+                    <!-- 外部リンク＆マップ用アイコン群 -->
+                    <div class="mt-2 pt-3 border-t border-white/10 flex justify-around items-center text-gray-400">
+                        <a href="https://note.com/clean_squid9881" target="_blank" title="NOTE" class="hover:text-white transition"><i class="fas fa-edit text-lg"></i></a>
+                        <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k" target="_blank" title="YOUTUBE" class="hover:text-white transition"><i class="fab fa-youtube text-lg"></i></a>
+                        <a href="https://3on3.fsgames.com/" target="_blank" title="OFFICIAL" class="hover:text-white transition"><i class="fas fa-globe text-lg"></i></a>
+                        <div onclick="openImageModal('map_box.jpg')" title="プレゼントMAP" class="cursor-pointer text-orange-500 hover:scale-110 transition"><i class="fas fa-map-marked-alt text-lg"></i></div>
                     </div>
 
                 </div>
@@ -302,7 +288,7 @@
             </div>
         </section>
 
-        <!-- ガイドセクション -->
+        <!-- ガイドセクション (完全に復元) -->
         <section id="page-guide" class="page-container px-6 lg:px-20 py-10">
             <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
             <div class="space-y-20">
