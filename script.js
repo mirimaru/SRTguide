@@ -1011,3 +1011,135 @@ window.onload = () => {
     initRanking();         
     if(typeof initMusic === 'function') initMusic();
 };
+
+// =====================================
+// ★ PING MAP 描画・制御機能 ★
+// =====================================
+function renderPingMap(serverType) {
+    const svg = d3.select("#map-svg");
+    if (svg.empty()) return;
+    
+    // 一度描画エリアをクリア
+    svg.selectAll("*").remove();
+    
+    // SVGのサイズを取得（取得できない場合はデフォルト値）
+    const width = svg.node().getBoundingClientRect().width || 800;
+    const height = svg.node().getBoundingClientRect().height || 500;
+
+    // サーバーごとのデータ（配置とPing値）
+    const data = {
+        tokyo: {
+            title: "東京サーバー接続時",
+            desc: "日本国内からは一貫して低いPing（遅延）で接続可能です。",
+            kyushu: "22",
+            taiwan: "35",
+            nodes: [
+                { id: "Server", label: "Tokyo Server", x: width * 0.7, y: height * 0.3, type: "server" },
+                { id: "Tokyo", label: "Tokyo", x: width * 0.6, y: height * 0.6, type: "client", ping: "8ms" },
+                { id: "Osaka", label: "Osaka", x: width * 0.45, y: height * 0.7, type: "client", ping: "15ms" },
+                { id: "Kyushu", label: "Kyushu", x: width * 0.3, y: height * 0.8, type: "client", ping: "22ms" },
+                { id: "Taiwan", label: "Taiwan", x: width * 0.15, y: height * 0.9, type: "client", ping: "35ms" }
+            ]
+        },
+        seoul: {
+            title: "韓国(ソウル)サーバー接続時",
+            desc: "九州からは物理的に近いため、東京を経由するよりPingが低くなる逆転現象が起きます。",
+            kyushu: "12",
+            taiwan: "45",
+            nodes: [
+                { id: "Server", label: "Seoul Server", x: width * 0.3, y: height * 0.2, type: "server" },
+                { id: "Tokyo", label: "Tokyo", x: width * 0.6, y: height * 0.6, type: "client", ping: "30ms" },
+                { id: "Osaka", label: "Osaka", x: width * 0.45, y: height * 0.7, type: "client", ping: "25ms" },
+                { id: "Kyushu", label: "Kyushu", x: width * 0.3, y: height * 0.8, type: "client", ping: "12ms" },
+                { id: "Taiwan", label: "Taiwan", x: width * 0.15, y: height * 0.9, type: "client", ping: "45ms" }
+            ]
+        }
+    };
+
+    const currentData = data[serverType];
+    const serverColor = serverType === 'tokyo' ? "#38bdf8" : "#a855f7"; // 水色 or 紫
+
+    // HTML側のテキスト情報を更新
+    document.getElementById("info-title").innerText = currentData.title;
+    document.getElementById("info-desc").innerText = currentData.desc;
+    document.getElementById("kyushu-ping-text").innerHTML = `${currentData.kyushu}<span class="text-sm font-normal text-slate-400 ml-1">ms</span>`;
+    document.getElementById("taiwan-ping-text").innerHTML = `${currentData.taiwan}<span class="text-sm font-normal text-slate-400 ml-1">ms</span>`;
+
+    // リンク（線）の描画
+    const serverNode = currentData.nodes.find(n => n.type === 'server');
+    currentData.nodes.filter(n => n.type === 'client').forEach(clientNode => {
+        svg.append("line")
+            .attr("x1", serverNode.x)
+            .attr("y1", serverNode.y)
+            .attr("x2", clientNode.x)
+            .attr("y2", clientNode.y)
+            .attr("stroke", serverColor)
+            .attr("stroke-width", 2)
+            .attr("stroke-opacity", 0.4);
+    });
+
+    // ノード（点）のグループ作成
+    const nodeGroups = svg.selectAll(".node")
+        .data(currentData.nodes)
+        .enter()
+        .append("g")
+        .attr("transform", d => `translate(${d.x}, ${d.y})`);
+
+    // サーバーノードの円
+    nodeGroups.filter(d => d.type === 'server')
+        .append("circle")
+        .attr("r", 25)
+        .attr("fill", serverColor)
+        .attr("class", "node-server");
+
+    // クライアントノードの円
+    nodeGroups.filter(d => d.type === 'client')
+        .append("circle")
+        .attr("r", 12)
+        .attr("fill", "#94a3b8")
+        .attr("class", "node-client");
+
+    // 都市名のテキスト
+    nodeGroups.append("text")
+        .text(d => d.label)
+        .attr("dy", d => d.type === 'server' ? -40 : 30)
+        .attr("text-anchor", "middle")
+        .attr("fill", "#e2e8f0")
+        .attr("font-size", "14px")
+        .attr("font-weight", "bold");
+
+    // Ping値のテキスト
+    nodeGroups.filter(d => d.type === 'client')
+        .append("text")
+        .text(d => d.ping)
+        .attr("dy", 48)
+        .attr("text-anchor", "middle")
+        .attr("fill", serverColor)
+        .attr("font-size", "13px")
+        .attr("font-weight", "bold");
+}
+
+// ボタンの切り替えイベントと初期化
+document.addEventListener("DOMContentLoaded", () => {
+    const btnTokyo = document.getElementById("btn-tokyo");
+    const btnSeoul = document.getElementById("btn-seoul");
+
+    if (btnTokyo && btnSeoul) {
+        btnTokyo.addEventListener("click", () => {
+            btnTokyo.classList.add("active");
+            btnSeoul.classList.remove("active");
+            btnSeoul.classList.add("text-slate-300");
+            renderPingMap('tokyo');
+        });
+
+        btnSeoul.addEventListener("click", () => {
+            btnSeoul.classList.add("active");
+            btnTokyo.classList.remove("active");
+            btnTokyo.classList.add("text-slate-300");
+            renderPingMap('seoul');
+        });
+
+        // ページ読み込み時に少し遅延させて初期描画（SVGサイズ取得のため）
+        setTimeout(() => renderPingMap('tokyo'), 200);
+    }
+});
