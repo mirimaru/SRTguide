@@ -152,49 +152,49 @@
                     <!-- ゲーム公式ロゴ（3ON3 FREESTYLE）＋非公式ファンサイト表記 -->
                     <div class="flex flex-wrap items-center gap-4 mb-4">
                         <img src="logo_3on3.png" alt="3on3 FreeStyle" class="h-[68px] lg:h-[84px] w-auto drop-shadow-[0_6px_20px_rgba(0,0,0,0.65)]" onerror="this.style.display='none'">
-                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-200 border border-white/25 bg-black/50 backdrop-blur rounded-full px-3 py-1">非公式ファンサイト</span>
+                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-200 border border-white/25 bg-black/50 backdrop-blur rounded-full px-3 py-1" data-i18n="lobby-fan-chip">非公式ファンサイト</span>
                     </div>
                     <div class="flex items-center gap-3 mb-3">
                         <span class="inline-block w-10 h-[3px] bg-[#ff4e00]"></span>
-                        <span class="text-[11px] lg:text-xs font-black tracking-[0.3em] text-orange-400">SRT GUIDE ― 初心者〜中級者向け</span>
+                        <span class="text-[11px] lg:text-xs font-black tracking-[0.3em] text-orange-400" data-i18n="lobby-tagline">SRT GUIDE ― 初心者〜中級者向け</span>
                     </div>
                     <h2 class="font-teko font-bold italic leading-[0.9] text-[60px] lg:text-[92px] drop-shadow-2xl">ENTER THE<br><span class="text-[#ff4e00]">COURT.</span></h2>
-                    <p class="text-sm lg:text-base text-gray-200 leading-relaxed max-w-xl mt-4">結論から学べるフリスタ攻略ロビー。ポジションの役割、おすすめキャラ、育成の黄金順、そして「最高のチームメイト」への進化までを4ステップで案内します。</p>
+                    <p class="text-sm lg:text-base text-gray-200 leading-relaxed max-w-xl mt-4" data-i18n="lobby-hero-desc">結論から学べるフリスタ攻略ロビー。ポジションの役割、おすすめキャラ、育成の黄金順、そして「最高のチームメイト」への進化までを4ステップで案内します。</p>
                     <div class="flex flex-wrap gap-3 mt-6">
-                        <button onclick="showPage('guide')" class="bg-[#ff4e00] hover:bg-[#ff6a2b] transition text-black font-black text-sm lg:text-base tracking-widest pl-8 pr-6 py-3.5 shadow-[0_0_25px_rgba(255,78,0,0.45)]" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);">
+                        <button onclick="showPage('guide')" class="bg-[#ff4e00] hover:bg-[#ff6a2b] transition text-black font-black text-sm lg:text-base tracking-widest pl-8 pr-6 py-3.5 shadow-[0_0_25px_rgba(255,78,0,0.45)]" style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);" data-i18n="lobby-btn-guide">
                             ガイドをはじめる <i class="fas fa-play text-xs ml-2"></i>
                         </button>
-                        <button onclick="location.href='characters.html'" class="bg-black/50 backdrop-blur border border-white/30 hover:border-white/60 transition text-white font-black text-sm lg:text-base tracking-widest px-7 py-3.5">
+                        <button onclick="location.href='characters.html'" class="bg-black/50 backdrop-blur border border-white/30 hover:border-white/60 transition text-white font-black text-sm lg:text-base tracking-widest px-7 py-3.5" data-i18n="lobby-btn-chars">
                             キャラ図鑑を見る
                         </button>
                     </div>
                     <!-- 対応機種 -->
                     <div class="flex flex-wrap items-center gap-2 mt-6">
-                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-300 mr-1"><i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>対応機種</span>
+                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-300 mr-1" data-i18n="lobby-platforms-label"><i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>対応機種</span>
                         <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold">PlayStation 4</span>
                         <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold">PlayStation 5</span>
                         <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold">Xbox One</span>
                         <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold">Xbox Series X|S</span>
-                        <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold">Steam（PC）</span>
-                        <span class="bg-black/70 backdrop-blur border border-[#ff4e00] rounded px-3 py-1.5 text-[11px] font-black text-[#ff7a33]">クロスプレイ対応</span>
+                        <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold" data-i18n="lobby-platform-steam">Steam（PC）</span>
+                        <span class="bg-black/70 backdrop-blur border border-[#ff4e00] rounded px-3 py-1.5 text-[11px] font-black text-[#ff7a33]" data-i18n="lobby-crossplay">クロスプレイ対応</span>
                     </div>
                     <!-- 件数ステータス -->
                     <div class="flex flex-wrap gap-x-10 gap-y-3 mt-8">
                         <div>
                             <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">61</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1">CHARACTERS</div>
+                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-characters">CHARACTERS</div>
                         </div>
                         <div>
                             <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">172</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1">SKILLS</div>
+                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-skills">SKILLS</div>
                         </div>
                         <div>
                             <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">19</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1">NOTE ARTICLES</div>
+                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-articles">NOTE ARTICLES</div>
                         </div>
                         <div>
-                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none"><span class="text-[#ff4e00]">4</span> STEPS</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1">GUIDE ROUTE</div>
+                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none" data-i18n="lobby-stat-steps-num"><span class="text-[#ff4e00]">4</span> STEPS</div>
+                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-route">GUIDE ROUTE</div>
                         </div>
                     </div>
                 </div>
@@ -204,7 +204,7 @@
                     <div class="glass-panel rounded-3xl p-4 h-full flex flex-col">
                         <div class="flex items-end justify-between mb-3">
                             <h3 class="font-teko text-3xl font-bold italic tracking-widest text-orange-500 leading-none">TODAY'S PICK</h3>
-                            <span class="text-[10px] font-black tracking-widest text-gray-400">おすすめキャラ</span>
+                            <span class="text-[10px] font-black tracking-widest text-gray-400" data-i18n="guide-s2-title">おすすめキャラ</span>
                         </div>
 
                         <!-- バスキー別枠（固定特別枠） -->
@@ -214,9 +214,9 @@
                                 <img src="assets/faces/basky.webp" alt="バスキー" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                             </div>
                             <div class="min-w-0">
-                                <div class="text-[10px] font-black tracking-[0.25em] text-[#ff4e00] mb-0.5">SPECIAL ― 別枠・現在の最強</div>
-                                <div class="font-black text-xl leading-tight">バスキー <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span></div>
-                                <p class="text-[11px] text-gray-300 leading-relaxed mt-1">単独で試合をなんとかできる別格の存在。どのポジションから始める人にも真っ先に挙げたい目標キャラです。</p>
+                                <div class="text-[10px] font-black tracking-[0.25em] text-[#ff4e00] mb-0.5" data-i18n="lobby-basky-label">SPECIAL ― 別枠・現在の最強</div>
+                                <div class="font-black text-xl leading-tight" data-i18n="lobby-basky-name">バスキー <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span></div>
+                                <p class="text-[11px] text-gray-300 leading-relaxed mt-1" data-i18n="lobby-basky-desc">単独で試合をなんとかできる別格の存在。どのポジションから始める人にも真っ先に挙げたい目標キャラです。</p>
                             </div>
                         </div>
 
@@ -244,7 +244,7 @@
                                     <img src="assets/faces/kaji.webp" alt="カジ" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                                     <span class="absolute bottom-0 left-0 bg-black/75 text-orange-400 font-teko italic font-bold text-[10px] leading-none px-1.5 py-1">PG</span>
                                 </span>
-                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap">カジ</span>
+                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap" data-i18n="lobby-tab-kaji">カジ</span>
                             </button>
                             <button type="button" onclick="lobbyShowPick(1)" class="lobby-pick-tab rounded-xl border border-white/10 bg-white/5 p-1.5 transition">
                                 <span class="relative block w-full aspect-square rounded-lg overflow-hidden bg-white/10">
@@ -252,7 +252,7 @@
                                     <img src="assets/faces/gena.webp" alt="ジェナ" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                                     <span class="absolute bottom-0 left-0 bg-black/75 text-orange-400 font-teko italic font-bold text-[10px] leading-none px-1.5 py-1">SG</span>
                                 </span>
-                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap">ジェナ</span>
+                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap" data-i18n="lobby-tab-gena">ジェナ</span>
                             </button>
                             <button type="button" onclick="lobbyShowPick(2)" class="lobby-pick-tab rounded-xl border border-white/10 bg-white/5 p-1.5 transition">
                                 <span class="relative block w-full aspect-square rounded-lg overflow-hidden bg-white/10">
@@ -260,7 +260,7 @@
                                     <img src="assets/faces/nathan.webp" alt="ネイサン" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                                     <span class="absolute bottom-0 left-0 bg-black/75 text-orange-400 font-teko italic font-bold text-[10px] leading-none px-1.5 py-1">SF</span>
                                 </span>
-                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap">ネイサン</span>
+                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap" data-i18n="lobby-tab-nathan">ネイサン</span>
                             </button>
                             <button type="button" onclick="lobbyShowPick(3)" class="lobby-pick-tab rounded-xl border border-white/10 bg-white/5 p-1.5 transition">
                                 <span class="relative block w-full aspect-square rounded-lg overflow-hidden bg-white/10">
@@ -268,7 +268,7 @@
                                     <img src="assets/faces/giantg.webp" alt="ジャイアントG" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                                     <span class="absolute bottom-0 left-0 bg-black/75 text-orange-400 font-teko italic font-bold text-[10px] leading-none px-1.5 py-1">PF</span>
                                 </span>
-                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap">ジャイアントG</span>
+                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap" data-i18n="lobby-tab-giantg">ジャイアントG</span>
                             </button>
                             <button type="button" onclick="lobbyShowPick(4)" class="lobby-pick-tab rounded-xl border border-white/10 bg-white/5 p-1.5 transition">
                                 <span class="relative block w-full aspect-square rounded-lg overflow-hidden bg-white/10">
@@ -276,13 +276,13 @@
                                     <img src="assets/faces/blair.webp" alt="ブレア" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                                     <span class="absolute bottom-0 left-0 bg-black/75 text-orange-400 font-teko italic font-bold text-[10px] leading-none px-1.5 py-1">C</span>
                                 </span>
-                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap">ブレア</span>
+                                <span class="block text-[9px] font-bold text-center mt-1.5 leading-none whitespace-nowrap" data-i18n="lobby-tab-blair">ブレア</span>
                             </button>
                         </div>
 
                         <!-- 全キャラへの導線 -->
                         <div class="mt-auto pt-3.5">
-                            <span onclick="location.href='characters.html'" class="inline-flex items-center gap-2 text-[#ff7a33] hover:text-[#ff9a5c] transition font-black text-xs tracking-wider cursor-pointer">キャラ相関ページで全61キャラを見る <i class="fas fa-arrow-right"></i></span>
+                            <span onclick="location.href='characters.html'" class="inline-flex items-center gap-2 text-[#ff7a33] hover:text-[#ff9a5c] transition font-black text-xs tracking-wider cursor-pointer" data-i18n="lobby-pick-all">キャラ相関ページで全61キャラを見る <i class="fas fa-arrow-right"></i></span>
                         </div>
                     </div>
                 </div>
@@ -340,7 +340,7 @@
             <div>
                 <div class="flex items-baseline gap-4 mb-3.5">
                     <span class="font-teko text-2xl lg:text-3xl font-bold italic tracking-[0.2em] leading-none">SELECT MODE</span>
-                    <span class="text-sm font-black text-gray-300">行き先を選ぶ</span>
+                    <span class="text-sm font-black text-gray-300" data-i18n="lobby-select-sub">行き先を選ぶ</span>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
                     <!-- MODE 01 GUIDE -->
@@ -348,12 +348,12 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 01</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-guide">GUIDE</div>
-                        <div class="text-[13px] font-black mt-1.5">初心者ガイド</div>
-                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-guide-sub">初心者ガイド</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-guide-desc">役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。</p>
                         <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">STEP 1-4</span>
-                                <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">まずここから</span>
+                                <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1" data-i18n="lobby-tile-guide-tag">まずここから</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
@@ -363,8 +363,8 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 02</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">CHARACTERS</div>
-                        <div class="text-[13px] font-black mt-1.5">キャラ図鑑・相関</div>
-                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-chars-sub">キャラ図鑑・相関</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-chars-desc">全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。</p>
                         <div class="flex items-center mt-3">
                             <img src="assets/faces/kaji.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10" onerror="this.style.display='none'">
                             <img src="assets/faces/gena.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10 -ml-2" onerror="this.style.display='none'">
@@ -382,8 +382,8 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 03</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">SKILLS</div>
-                        <div class="text-[13px] font-black mt-1.5">スキル一覧</div>
-                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-skills-sub">スキル一覧</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-skills-desc">共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。</p>
                         <div class="flex flex-col gap-1.5 mt-3">
                             <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-2 py-1.5">
                                 <img src="assets/skills/dunk-at-will.png" alt="Dunk At Will" class="w-8 h-8 object-cover rounded-sm shrink-0" onerror="this.style.display='none'">
@@ -404,8 +404,8 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 04</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">STATUS</div>
-                        <div class="text-[13px] font-black mt-1.5">ステータス</div>
-                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-status-sub">ステータス</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-status-desc">全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。</p>
                         <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">15 STATS</span>
@@ -419,11 +419,11 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-[#ff7a33]">MODE 05</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-pbuff">P-BUFF</div>
-                        <div class="text-[13px] font-black mt-1.5">Pバフ</div>
-                        <p class="text-[11px] text-gray-300 leading-relaxed mt-2">同ポジション全員に効く永続強化。育成の黄金順で、上級者の必須チェック項目。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-pbuff-sub">Pバフ</div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed mt-2" data-i18n="lobby-tile-pbuff-desc">同ポジション全員に効く永続強化。育成の黄金順で、上級者の必須チェック項目。</p>
                         <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
-                                <span class="text-[9px] font-black tracking-widest border border-[#ff4e00] bg-[#ff4e00]/15 text-[#ff7a33] px-2 py-1">上級者も必見</span>
+                                <span class="text-[9px] font-black tracking-widest border border-[#ff4e00] bg-[#ff4e00]/15 text-[#ff7a33] px-2 py-1" data-i18n="lobby-tile-pbuff-tag">上級者も必見</span>
                                 <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">P5 → P-BUFF</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
@@ -434,8 +434,8 @@
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 06</div>
                         <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">NOTE</div>
-                        <div class="text-[13px] font-black mt-1.5">攻略コラム（note）</div>
-                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。</p>
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-note-sub">攻略コラム（note）</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-note-desc">NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。</p>
                         <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">19 ARTICLES</span>
@@ -473,23 +473,23 @@
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
                     <div class="glass-panel rounded-3xl p-6 cursor-pointer hover:border-[#ff4e00]/60 hover:-translate-y-1 transition" onclick="showPage('guide')">
                         <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-3">STEP 1</div>
-                        <h4 class="font-black text-lg mb-2">ポジションの特徴</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">司令塔PG／スコアラーSG／バランサーSF／支柱BIG。それぞれの役割と立ち回りの基本を押さえます。</p>
+                        <h4 class="font-black text-lg mb-2" data-i18n="guide-s1-title">ポジションの特徴</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n="lobby-quest-s1-desc">司令塔PG／スコアラーSG／バランサーSF／支柱BIG。それぞれの役割と立ち回りの基本を押さえます。</p>
                     </div>
                     <div class="glass-panel rounded-3xl p-6 cursor-pointer hover:border-[#ff4e00]/60 hover:-translate-y-1 transition" onclick="showPage('guide')">
                         <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-3">STEP 2</div>
-                        <h4 class="font-black text-lg mb-2">おすすめキャラ</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">別枠のバスキーと、ポジション別の候補5人。極めるポジションと目標キャラを早めに決めます。</p>
+                        <h4 class="font-black text-lg mb-2" data-i18n="guide-s2-title">おすすめキャラ</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n="lobby-quest-s2-desc">別枠のバスキーと、ポジション別の候補5人。極めるポジションと目標キャラを早めに決めます。</p>
                     </div>
                     <div class="glass-panel rounded-3xl p-6 cursor-pointer hover:border-[#ff4e00]/60 hover:-translate-y-1 transition" onclick="showPage('guide')">
                         <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-3">STEP 3</div>
-                        <h4 class="font-black text-lg mb-2">育成手順</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">P5昇級で基盤を作り、Pバフをカードより先に完成させる。迷わない育成の黄金順と日課を紹介します。</p>
+                        <h4 class="font-black text-lg mb-2" data-i18n="guide-s3-title">育成手順</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n="lobby-quest-s3-desc">P5昇級で基盤を作り、Pバフをカードより先に完成させる。迷わない育成の黄金順と日課を紹介します。</p>
                     </div>
                     <div class="glass-panel rounded-3xl p-6 cursor-pointer hover:border-[#ff4e00]/60 hover:-translate-y-1 transition" onclick="showPage('guide')">
                         <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-3">STEP 4</div>
-                        <h4 class="font-black text-lg mb-2">「最高のチームメイト」への進化</h4>
-                        <p class="text-xs text-gray-300 leading-relaxed">役割を果たす→邪魔をしない→意図を読む→コミュニケーション。4つのレベルでチームプレイを磨きます。</p>
+                        <h4 class="font-black text-lg mb-2" data-i18n="lobby-quest-s4-title">「最高のチームメイト」への進化</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed" data-i18n="lobby-quest-s4-desc">役割を果たす→邪魔をしない→意図を読む→コミュニケーション。4つのレベルでチームプレイを磨きます。</p>
                     </div>
                 </div>
             </div>
@@ -513,7 +513,7 @@
                 </div>
                 <div class="glass-panel rounded-3xl p-6">
                     <div class="flex items-center justify-between gap-3 mb-4">
-                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-400">ACCESS COUNTER</span>
+                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-400" data-i18n="lobby-access-counter">ACCESS COUNTER</span>
                         <div class="flex items-center gap-2 bg-black/60 backdrop-blur-md border border-orange-500/40 rounded-full px-3 py-1 shadow-[0_0_15px_rgba(255,78,0,0.4)]">
                             <i class="fas fa-users text-orange-500 text-xs"></i>
                             <div id="counter_area" class="scale-75 origin-right">
@@ -527,8 +527,8 @@
                         <a href="https://3on3.fsgames.com/" target="_blank" title="OFFICIAL" class="hover:text-white transition"><i class="fas fa-globe text-lg"></i></a>
                         <div onclick="openImageModal('map_box.jpg')" title="プレゼントMAP" class="cursor-pointer text-orange-500 hover:scale-110 transition"><i class="fas fa-map-marked-alt text-lg"></i></div>
                     </div>
-                    <p class="text-[10px] text-gray-500 leading-relaxed mt-3">外部リンク：note（SRT）／YouTube／公式サイト／プレゼントMAP</p>
-                    <p class="text-[10px] text-gray-500 leading-relaxed mt-2">このサイトは「3on3 FreeStyle」の<span class="text-gray-300 font-bold">非公式ファンサイト</span>です。公式情報は<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">公式サイト</a>をご確認ください。</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed mt-3" data-i18n="lobby-ext-links">外部リンク：note（SRT）／YouTube／公式サイト／プレゼントMAP</p>
+                    <p class="text-[10px] text-gray-500 leading-relaxed mt-2" data-i18n="lobby-disclaimer">このサイトは「3on3 FreeStyle」の<span class="text-gray-300 font-bold">非公式ファンサイト</span>です。公式情報は<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">公式サイト</a>をご確認ください。</p>
                 </div>
             </div>
         </section>
@@ -875,5 +875,292 @@
 
     <script src="data.js"></script>
     <script src="script.js"></script>
+    <script>
+// ============================================================
+// ホーム（ロビー）多言語補完スクリプト
+// ・ロビー新規テキスト用の辞書キー（lobby-*）を window.i18n へマージ
+// ・TODAY'S PICK スポットライト（JS動的書込）の言語追随
+// ============================================================
+(function () {
+    var LOBBY_I18N = {
+        ja: {
+            'lobby-fan-chip': '非公式ファンサイト',
+            'lobby-tagline': 'SRT GUIDE ― 初心者〜中級者向け',
+            'lobby-hero-desc': '結論から学べるフリスタ攻略ロビー。ポジションの役割、おすすめキャラ、育成の黄金順、そして「最高のチームメイト」への進化までを4ステップで案内します。',
+            'lobby-btn-guide': 'ガイドをはじめる <i class="fas fa-play text-xs ml-2"></i>',
+            'lobby-btn-chars': 'キャラ図鑑を見る',
+            'lobby-platforms-label': '<i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>対応機種',
+            'lobby-platform-steam': 'Steam（PC）',
+            'lobby-crossplay': 'クロスプレイ対応',
+            'lobby-stat-characters': 'CHARACTERS',
+            'lobby-stat-skills': 'SKILLS',
+            'lobby-stat-articles': 'NOTE ARTICLES',
+            'lobby-stat-steps-num': '<span class="text-[#ff4e00]">4</span> STEPS',
+            'lobby-stat-route': 'GUIDE ROUTE',
+            'lobby-basky-label': 'SPECIAL ― 別枠・現在の最強',
+            'lobby-basky-name': 'バスキー <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span>',
+            'lobby-basky-desc': '単独で試合をなんとかできる別格の存在。どのポジションから始める人にも真っ先に挙げたい目標キャラです。',
+            'lobby-tab-kaji': 'カジ',
+            'lobby-tab-gena': 'ジェナ',
+            'lobby-tab-nathan': 'ネイサン',
+            'lobby-tab-giantg': 'ジャイアントG',
+            'lobby-tab-blair': 'ブレア',
+            'lobby-pick-all': 'キャラ相関ページで全61キャラを見る <i class="fas fa-arrow-right"></i>',
+            'lobby-select-sub': '行き先を選ぶ',
+            'lobby-tile-guide-sub': '初心者ガイド',
+            'lobby-tile-guide-desc': '役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。',
+            'lobby-tile-guide-tag': 'まずここから',
+            'lobby-tile-chars-sub': 'キャラ図鑑・相関',
+            'lobby-tile-chars-desc': '全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。',
+            'lobby-tile-skills-sub': 'スキル一覧',
+            'lobby-tile-skills-desc': '共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。',
+            'lobby-tile-status-sub': 'ステータス',
+            'lobby-tile-status-desc': '全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。',
+            'lobby-tile-pbuff-sub': 'Pバフ',
+            'lobby-tile-pbuff-desc': '同ポジション全員に効く永続強化。育成の黄金順で、上級者の必須チェック項目。',
+            'lobby-tile-pbuff-tag': '上級者も必見',
+            'lobby-tile-note-sub': '攻略コラム（note）',
+            'lobby-tile-note-desc': 'NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。',
+            'lobby-quest-s4-title': '「最高のチームメイト」への進化',
+            'lobby-quest-s1-desc': '司令塔PG／スコアラーSG／バランサーSF／支柱BIG。それぞれの役割と立ち回りの基本を押さえます。',
+            'lobby-quest-s2-desc': '別枠のバスキーと、ポジション別の候補5人。極めるポジションと目標キャラを早めに決めます。',
+            'lobby-quest-s3-desc': 'P5昇級で基盤を作り、Pバフをカードより先に完成させる。迷わない育成の黄金順と日課を紹介します。',
+            'lobby-quest-s4-desc': '役割を果たす→邪魔をしない→意図を読む→コミュニケーション。4つのレベルでチームプレイを磨きます。',
+            'lobby-access-counter': 'ACCESS COUNTER',
+            'lobby-ext-links': '外部リンク：note（SRT）／YouTube／公式サイト／プレゼントMAP',
+            'lobby-disclaimer': 'このサイトは「3on3 FreeStyle」の<span class="text-gray-300 font-bold">非公式ファンサイト</span>です。公式情報は<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">公式サイト</a>をご確認ください。'
+        },
+        en: {
+            'lobby-fan-chip': 'UNOFFICIAL FAN SITE',
+            'lobby-tagline': 'SRT GUIDE — FOR BEGINNERS & INTERMEDIATE PLAYERS',
+            'lobby-hero-desc': 'A 3on3 FreeStyle strategy lobby that starts with the bottom line: position roles, recommended characters, the golden upgrade order, and the path to becoming the "best teammate" — all in 4 steps.',
+            'lobby-btn-guide': 'START THE GUIDE <i class="fas fa-play text-xs ml-2"></i>',
+            'lobby-btn-chars': 'VIEW CHARACTERS',
+            'lobby-platforms-label': '<i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>PLATFORMS',
+            'lobby-platform-steam': 'Steam (PC)',
+            'lobby-crossplay': 'CROSS-PLAY SUPPORTED',
+            'lobby-stat-characters': 'CHARACTERS',
+            'lobby-stat-skills': 'SKILLS',
+            'lobby-stat-articles': 'NOTE ARTICLES',
+            'lobby-stat-steps-num': '<span class="text-[#ff4e00]">4</span> STEPS',
+            'lobby-stat-route': 'GUIDE ROUTE',
+            'lobby-basky-label': 'SPECIAL — IN A LEAGUE OF HIS OWN · CURRENT NO.1',
+            'lobby-basky-name': 'Basky <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span>',
+            'lobby-basky-desc': 'In a class of his own — a character who can carry a match single-handedly. The first goal pick we recommend for players starting at any position.',
+            'lobby-tab-kaji': 'Kaji',
+            'lobby-tab-gena': 'Gena',
+            'lobby-tab-nathan': 'Nathan',
+            'lobby-tab-giantg': 'Giant G',
+            'lobby-tab-blair': 'Blair',
+            'lobby-pick-all': 'See all 61 characters on the Characters page <i class="fas fa-arrow-right"></i>',
+            'lobby-select-sub': 'CHOOSE YOUR MODE',
+            'lobby-tile-guide-sub': 'BEGINNER\'S GUIDE',
+            'lobby-tile-guide-desc': 'Roles → Picks → Upgrades → Team Play. When in doubt, follow this order — a 4-step route to getting good.',
+            'lobby-tile-guide-tag': 'START HERE',
+            'lobby-tile-chars-sub': 'ROSTER & RELATIONS',
+            'lobby-tile-chars-desc': 'Profiles and relationships for all 61 characters. Decide who to build — and who to team up with — right here.',
+            'lobby-tile-skills-sub': 'SKILL LIST',
+            'lobby-tile-skills-desc': '172 skills in total — 66 shared / 106 signature. Search and filter by effect description and by who has them.',
+            'lobby-tile-status-sub': 'STATS',
+            'lobby-tile-status-desc': 'A database to browse and compare every character\'s stats. Essential for picking your build target.',
+            'lobby-tile-pbuff-sub': 'P-BUFF',
+            'lobby-tile-pbuff-desc': 'Permanent buffs that apply to every character at the same position. A must-check item in the golden upgrade order, even for veterans.',
+            'lobby-tile-pbuff-tag': 'A MUST FOR VETERANS',
+            'lobby-tile-note-sub': 'STRATEGY COLUMN (note)',
+            'lobby-tile-note-desc': 'From fixing NG plays to solo-queue tactics and P-BUFF deep dives — the guide continues in all 19 articles here.',
+            'lobby-quest-s4-title': 'Evolving into the "Best Teammate"',
+            'lobby-quest-s1-desc': 'Playmaker PG / Scorer SG / All-Rounder SF / Anchor BIG. Learn each position\'s role and the basics of how to play it.',
+            'lobby-quest-s2-desc': 'Basky in a tier of his own, plus 5 position-by-position candidates. Lock in the position you will master and your goal character early.',
+            'lobby-quest-s3-desc': 'Build your base with P5 promotion, and finish P-BUFFs before cards. The golden upgrade order with no wrong turns, plus a daily routine.',
+            'lobby-quest-s4-desc': 'Do your job → Stay out of the way → Read their intent → Communicate. Polish your team play across 4 levels.',
+            'lobby-access-counter': 'ACCESS COUNTER',
+            'lobby-ext-links': 'Links: note (SRT) / YouTube / Official Site / Gift Map',
+            'lobby-disclaimer': 'This is an <span class="text-gray-300 font-bold">unofficial fan site</span> for "3on3 FreeStyle". For official information, please visit the <a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">official site</a>.'
+        },
+        ko: {
+            'lobby-fan-chip': '비공식 팬 사이트',
+            'lobby-tagline': 'SRT GUIDE ― 초보~중급자 가이드',
+            'lobby-hero-desc': '결론부터 배우는 프리스타 공략 로비. 포지션의 역할, 추천 캐릭터, 육성의 황금 순서, 그리고 \'최고의 팀메이트\'로 성장하는 길까지 4단계로 안내합니다.',
+            'lobby-btn-guide': '가이드 시작하기 <i class="fas fa-play text-xs ml-2"></i>',
+            'lobby-btn-chars': '캐릭터 도감 보기',
+            'lobby-platforms-label': '<i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>지원 기종',
+            'lobby-platform-steam': 'Steam (PC)',
+            'lobby-crossplay': '크로스플레이 지원',
+            'lobby-stat-characters': '캐릭터',
+            'lobby-stat-skills': '스킬',
+            'lobby-stat-articles': '노트 기사',
+            'lobby-stat-steps-num': '<span class="text-[#ff4e00]">4</span> 스텝',
+            'lobby-stat-route': '가이드 루트',
+            'lobby-basky-label': 'SPECIAL ― 별격 · 현재 최강',
+            'lobby-basky-name': 'Basky <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span>',
+            'lobby-basky-desc': '혼자서 경기를 뒤집을 수 있는 별격의 존재. 어떤 포지션으로 시작하든 가장 먼저 꼽고 싶은 목표 캐릭터입니다.',
+            'lobby-tab-kaji': 'Kaji',
+            'lobby-tab-gena': 'Gena',
+            'lobby-tab-nathan': 'Nathan',
+            'lobby-tab-giantg': 'Giant G',
+            'lobby-tab-blair': 'Blair',
+            'lobby-pick-all': '캐릭터 페이지에서 전체 61명 보기 <i class="fas fa-arrow-right"></i>',
+            'lobby-select-sub': '목적지를 선택',
+            'lobby-tile-guide-sub': '초보자 가이드',
+            'lobby-tile-guide-desc': '역할 → 추천 캐릭터 → 육성 → 팀 플레이. 고민되면 이 순서대로 진행하면 OK, 4단계 공략 루트.',
+            'lobby-tile-guide-tag': '여기서 시작',
+            'lobby-tile-chars-sub': '캐릭터 도감 · 관계',
+            'lobby-tile-chars-desc': '전 61캐릭터의 소개와 관계성. 누구를 키울지, 누구와 팀을 짤지는 여기서 결정.',
+            'lobby-tile-skills-sub': '스킬 목록',
+            'lobby-tile-skills-desc': '공통 66 / 고유 106, 총 172종. 효과 설명과 보유 캐릭터로 검색 · 필터링 가능.',
+            'lobby-tile-status-sub': '스탯',
+            'lobby-tile-status-desc': '전 캐릭터의 능력치를 한눈에 비교할 수 있는 데이터베이스. 육성 대상을 정할 때 필수.',
+            'lobby-tile-pbuff-sub': 'P버프',
+            'lobby-tile-pbuff-desc': '같은 포지션 전원에게 적용되는 영구 강화. 육성 황금 순서의 핵심이자 상급자도 반드시 확인하는 항목.',
+            'lobby-tile-pbuff-tag': '상급자도 필독',
+            'lobby-tile-note-sub': '공략 칼럼 (note)',
+            'lobby-tile-note-desc': 'NG 플레이 개선, 솔로 랭크 전술, P버프 해설까지. 가이드의 \'다음 이야기\'는 전 19개 기사 여기서.',
+            'lobby-quest-s4-title': '\'최고의 팀메이트\'로의 진화',
+            'lobby-quest-s1-desc': '사령탑 PG / 스코어러 SG / 밸런서 SF / 기둥 BIG. 각자의 역할과 움직임의 기본을 익힙니다.',
+            'lobby-quest-s2-desc': '별격의 Basky와 포지션별 후보 5명. 마스터할 포지션과 목표 캐릭터를 일찍 정해 둡니다.',
+            'lobby-quest-s3-desc': 'P5 승급으로 기반을 만들고, P버프를 카드보다 먼저 완성. 헤매지 않는 육성 황금 순서와 일일 루틴을 소개합니다.',
+            'lobby-quest-s4-desc': '역할 수행 → 방해하지 않기 → 의도 읽기 → 커뮤니케이션. 4단계 레벨로 팀 플레이를 다듬습니다.',
+            'lobby-access-counter': '방문자 수',
+            'lobby-ext-links': '외부 링크: note(SRT) / YouTube / 공식 사이트 / 선물 MAP',
+            'lobby-disclaimer': '이 사이트는 \'3on3 FreeStyle\'의 <span class="text-gray-300 font-bold">비공식 팬 사이트</span>입니다. 공식 정보는 <a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">공식 사이트</a>에서 확인하세요.'
+        },
+        zh: {
+            'lobby-fan-chip': '非官方粉丝网站',
+            'lobby-tagline': 'SRT GUIDE ― 新手〜中级玩家向',
+            'lobby-hero-desc': '从结论学起的FreeStyle攻略大厅。位置职责、推荐角色、养成的黄金顺序，以及成长为"最佳队友"的路径——4步全解。',
+            'lobby-btn-guide': '开始看攻略 <i class="fas fa-play text-xs ml-2"></i>',
+            'lobby-btn-chars': '查看角色图鉴',
+            'lobby-platforms-label': '<i class="fas fa-gamepad text-[#ff4e00] mr-1.5"></i>支持平台',
+            'lobby-platform-steam': 'Steam (PC)',
+            'lobby-crossplay': '支持跨平台联机',
+            'lobby-stat-characters': '角色',
+            'lobby-stat-skills': '技能',
+            'lobby-stat-articles': 'note 专栏',
+            'lobby-stat-steps-num': '<span class="text-[#ff4e00]">4</span> 步',
+            'lobby-stat-route': '攻略路线',
+            'lobby-basky-label': 'SPECIAL ― 特殊梯队 · 当前最强',
+            'lobby-basky-name': 'Basky <span class="font-teko italic font-bold text-orange-400 text-base tracking-wider">ALL POSITIONS</span>',
+            'lobby-basky-desc': '能够凭一己之力扭转比赛的超规格存在。无论从哪个位置起步，都是最值得优先定为目标的角色。',
+            'lobby-tab-kaji': 'Kaji',
+            'lobby-tab-gena': 'Gena',
+            'lobby-tab-nathan': 'Nathan',
+            'lobby-tab-giantg': 'Giant G',
+            'lobby-tab-blair': 'Blair',
+            'lobby-pick-all': '在角色页面查看全部61名角色 <i class="fas fa-arrow-right"></i>',
+            'lobby-select-sub': '选择目的地',
+            'lobby-tile-guide-sub': '新手指南',
+            'lobby-tile-guide-desc': '职责→推荐角色→养成→团队配合。拿不定主意就按这个顺序走，4步攻略路线。',
+            'lobby-tile-guide-tag': '从这里开始',
+            'lobby-tile-chars-sub': '角色图鉴 · 关系',
+            'lobby-tile-chars-desc': '全部61名角色的介绍与关系。培养谁、和谁组队，在这里决定。',
+            'lobby-tile-skills-sub': '技能一览',
+            'lobby-tile-skills-desc': '通用66／固有106，共172个。附效果说明与持有者，可搜索筛选。',
+            'lobby-tile-status-sub': '属性',
+            'lobby-tile-status-desc': '可一览、对比全部角色能力值的数据库。用来判断养成对象。',
+            'lobby-tile-pbuff-sub': 'P-BUFF',
+            'lobby-tile-pbuff-desc': '作用于同位置全部角色的永久强化。是养成黄金顺序的关键，连高手也必查。',
+            'lobby-tile-pbuff-tag': '高手也必看',
+            'lobby-tile-note-sub': '攻略专栏（note）',
+            'lobby-tile-note-desc': '从NG打法改善、单排战术到P增益解析。攻略的"后续"全19篇都在这里。',
+            'lobby-quest-s4-title': '进化为"最佳队友"',
+            'lobby-quest-s1-desc': '指挥官PG／得分手SG／全能型SF／支柱BIG。掌握每个位置的职责与打法基础。',
+            'lobby-quest-s2-desc': '特殊梯队的Basky，以及各位置的5名候选。尽早定下要专精的位置和目标角色。',
+            'lobby-quest-s3-desc': '用P5晋级打好基础，先于卡片完成P增益。介绍不走弯路的养成黄金顺序与日常任务。',
+            'lobby-quest-s4-desc': '履行职责→不添乱→读懂意图→沟通交流。用4个等级打磨团队配合。',
+            'lobby-access-counter': '访问计数',
+            'lobby-ext-links': '外部链接：note（SRT）／YouTube／官方网站／礼物地图',
+            'lobby-disclaimer': '本站是"3on3 FreeStyle"的<span class="text-gray-300 font-bold">非官方粉丝网站</span>。官方信息请查阅<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">官方网站</a>。'
+        }
+    };
+
+    // 辞書へマージ（既存キーは上書きしない範囲で lobby-* を追加）
+    if (window.i18n) {
+        Object.keys(LOBBY_I18N).forEach(function (lang) {
+            window.i18n[lang] = window.i18n[lang] || {};
+            Object.keys(LOBBY_I18N[lang]).forEach(function (key) {
+                window.i18n[lang][key] = LOBBY_I18N[lang][key];
+            });
+        });
+    }
+
+    // ===== TODAY'S PICK スポットライトの多言語データ =====
+    var LOBBY_PICKS = {
+        ja: {
+            kaji:   { name: 'カジ',        role: '司令塔',   desc: '守備の要。堅い守備とルーズボール回収で試合の流れを作るPGです。' },
+            gena:   { name: 'ジェナ',      role: 'スコアラー', desc: '最強クラスのスコアラー。フェイクと読み合いで得点を量産します。' },
+            nathan: { name: 'ネイサン',    role: 'バランサー', desc: '接戦に強いエース。1人で局面を打開できる打開力が持ち味です。' },
+            giantg: { name: 'ジャイアントG', role: '支柱',     desc: '圧倒的な身体能力でゴール下を支配するパワーフォワードです。' },
+            blair:  { name: 'ブレア',      role: '支柱',     desc: '広いシュートレンジとゴール下プレイを両立する万能型センターです。' }
+        },
+        en: {
+            kaji:   { name: 'Kaji',    role: 'Playmaker',   desc: 'The defensive anchor. Rock-solid defense and loose-ball recovery let him control the flow of the game at PG.' },
+            gena:   { name: 'Gena',    role: 'Scorer',      desc: 'A top-class scorer who racks up points with fakes and mind games.' },
+            nathan: { name: 'Nathan',  role: 'All-Rounder', desc: 'An ace who thrives in close games, with the power to break a stalemate all by himself.' },
+            giantg: { name: 'Giant G', role: 'Anchor',      desc: 'A power forward who dominates the paint with overwhelming physicality.' },
+            blair:  { name: 'Blair',   role: 'Anchor',      desc: 'A versatile center who pairs a wide shooting range with strong play under the basket.' }
+        },
+        ko: {
+            kaji:   { name: 'Kaji',    role: '사령탑',   desc: '수비의 핵심. 탄탄한 수비와 루즈볼 회수 능력으로 경기 흐름을 만드는 PG입니다.' },
+            gena:   { name: 'Gena',    role: '스코어러', desc: '최강 클래스의 스코어러. 페이크와 심리전으로 득점을 양산합니다.' },
+            nathan: { name: 'Nathan',  role: '밸런서',   desc: '접전에 강한 에이스. 혼자서 국면을 돌파하는 힘이 강점입니다.' },
+            giantg: { name: 'Giant G', role: '기둥',     desc: '압도적인 신체 능력으로 골 밑을 지배하는 파워 포워드입니다.' },
+            blair:  { name: 'Blair',   role: '기둥',     desc: '넓은 슛 레인지와 골 밑 플레이를 겸비한 만능형 센터입니다.' }
+        },
+        zh: {
+            kaji:   { name: 'Kaji',    role: '指挥官',   desc: '防守核心。凭借稳固的防守和拼抢地板球，主导比赛节奏的PG。' },
+            gena:   { name: 'Gena',    role: '得分手',   desc: '顶级得分手。靠假动作和心理博弈大量取分。' },
+            nathan: { name: 'Nathan',  role: '全能型',   desc: '擅长打硬仗的王牌。强项是凭一己之力打破僵局。' },
+            giantg: { name: 'Giant G', role: '内线支柱', desc: '凭借压倒性的身体素质统治篮下的大前锋。' },
+            blair:  { name: 'Blair',   role: '内线支柱', desc: '兼具宽广投篮射程与篮下打法的全能型中锋。' }
+        }
+    };
+
+    var lobbyLang = 'ja';
+
+    // 表示中キャラの id を顔画像の src から特定し、現在言語で書き直す
+    function lobbyApplySpotlight() {
+        var img = document.getElementById('lobby-pick-img');
+        if (!img) return;
+        var src = img.getAttribute('src') || '';
+        var m = /assets\/faces\/([a-z0-9]+)\.webp/i.exec(src);
+        if (!m) return;
+        var table = LOBBY_PICKS[lobbyLang] || LOBBY_PICKS.ja;
+        var p = table[m[1]];
+        if (!p) return;
+        var nameEl = document.getElementById('lobby-pick-name');
+        var roleEl = document.getElementById('lobby-pick-role');
+        var descEl = document.getElementById('lobby-pick-desc');
+        if (nameEl && nameEl.textContent !== p.name) nameEl.textContent = p.name;
+        if (roleEl && roleEl.textContent !== p.role) roleEl.textContent = p.role;
+        if (descEl && descEl.textContent !== p.desc) descEl.textContent = p.desc;
+    }
+
+    // switchLanguage をラップ：本体の切替処理の直後にスポットライトを再描画
+    if (typeof window.switchLanguage === 'function') {
+        var lobbyOrigSwitchLanguage = window.switchLanguage;
+        window.switchLanguage = function (lang, btnElement) {
+            lobbyOrigSwitchLanguage(lang, btnElement);
+            lobbyLang = lang;
+            lobbyApplySpotlight();
+        };
+    }
+
+    // タブクリック時も現在言語で描き直す
+    if (typeof window.lobbyShowPick === 'function') {
+        var lobbyOrigShowPick = window.lobbyShowPick;
+        window.lobbyShowPick = function (i) {
+            lobbyOrigShowPick(i);
+            lobbyApplySpotlight();
+        };
+    }
+
+    // 自動ローテーション（6秒間隔）は内部 render() が顔画像 src を差し替えるので、それを監視して追随する
+    var lobbyPickImg = document.getElementById('lobby-pick-img');
+    if (lobbyPickImg && window.MutationObserver) {
+        new MutationObserver(function () { lobbyApplySpotlight(); })
+            .observe(lobbyPickImg, { attributes: true, attributeFilter: ['src'] });
+    }
+})();
+    </script>
 </body>
 </html>
