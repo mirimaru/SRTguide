@@ -17,6 +17,12 @@
   --field:rgba(255,255,255,0.1); --field-line:rgba(255,255,255,0.2);
   --common:#6fc7bc; --common-bg:rgba(45,120,110,0.22); --unique:#d9a84e; --unique-bg:rgba(150,105,30,0.22);
   --chip:rgba(255,255,255,0.07); --shadow:0 18px 44px rgba(0,0,0,0.55);
+  --neon-shoot:#ff2ea6; --neon-shoot-glow:rgba(255,46,166,0.42);
+  --neon-drive:#ffe600; --neon-drive-glow:rgba(255,230,0,0.38);
+  --neon-pass:#00e5ff; --neon-pass-glow:rgba(0,229,255,0.42);
+  --neon-defense:#2bff88; --neon-defense-glow:rgba(43,255,136,0.40);
+  --neon-rebound:#ff8a00; --neon-rebound-glow:rgba(255,138,0,0.44);
+  --neon-buff:#c05cff; --neon-buff-glow:rgba(192,92,255,0.44);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -69,11 +75,30 @@ select option{background:#141414;color:#fff}
 .count{font-size:.85rem;color:var(--muted);font-weight:700;margin:14px 0 10px}
 .count b{color:#fff;font-family:"Teko",sans-serif;font-size:1.3rem}
 
+/* ---------- category legend ---------- */
+.legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--line);padding:10px 14px;margin:2px 0 2px}
+.legend-title{font-size:.76rem;font-weight:900;letter-spacing:.07em;color:var(--muted);white-space:nowrap}
+.legend-item{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;font-weight:700;line-height:1.2;white-space:nowrap}
+.legend-swatch{width:26px;height:16px;flex:none;border:2px solid var(--c,#fff);border-radius:4px;background:rgba(0,0,0,0.45);box-shadow:0 0 10px var(--g,transparent),inset 0 0 6px var(--g,transparent)}
+.leg-shoot{--c:var(--neon-shoot);--g:var(--neon-shoot-glow)}
+.leg-drive{--c:var(--neon-drive);--g:var(--neon-drive-glow)}
+.leg-pass{--c:var(--neon-pass);--g:var(--neon-pass-glow)}
+.leg-defense{--c:var(--neon-defense);--g:var(--neon-defense-glow)}
+.leg-rebound{--c:var(--neon-rebound);--g:var(--neon-rebound-glow)}
+.leg-buff{--c:var(--neon-buff);--g:var(--neon-buff-glow)}
+
 /* ---------- skill grid ---------- */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
 @media (max-width:560px){.grid{grid-template-columns:1fr}}
-.skillcard{background:var(--glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line);border-left:3px solid rgba(255,78,0,0.55);box-shadow:var(--shadow);padding:16px 16px 13px;display:flex;flex-direction:column;gap:8px}
-.skillcard:hover{background:linear-gradient(90deg,rgba(255,78,0,0.2),rgba(10,10,10,0.5) 55%);border-left:3px solid var(--accent);box-shadow:var(--shadow),0 0 22px rgba(255,78,0,0.18)}
+.skillcard{--cat-color:rgba(255,255,255,0.25);--cat-glow:rgba(255,255,255,0.12);background:var(--glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1.5px solid var(--cat-color);border-left:4px solid var(--cat-color);box-shadow:var(--shadow),0 0 16px var(--cat-glow),inset 0 0 18px rgba(0,0,0,0.18);padding:16px 16px 13px;display:flex;flex-direction:column;gap:8px}
+.skillcard.cat-shoot{--cat-color:var(--neon-shoot);--cat-glow:var(--neon-shoot-glow)}
+.skillcard.cat-drive{--cat-color:var(--neon-drive);--cat-glow:var(--neon-drive-glow)}
+.skillcard.cat-pass{--cat-color:var(--neon-pass);--cat-glow:var(--neon-pass-glow)}
+.skillcard.cat-defense{--cat-color:var(--neon-defense);--cat-glow:var(--neon-defense-glow)}
+.skillcard.cat-rebound{--cat-color:var(--neon-rebound);--cat-glow:var(--neon-rebound-glow)}
+.skillcard.cat-buff{--cat-color:var(--neon-buff);--cat-glow:var(--neon-buff-glow)}
+.skillcard:hover{box-shadow:var(--shadow),0 0 26px var(--cat-glow),0 0 6px var(--cat-glow)}
+.skillcard .skill-icon,.dskill .skill-icon{border-color:var(--cat-color);box-shadow:0 0 8px var(--cat-glow)}
 .shead{display:flex;gap:12px;align-items:flex-start}
 .shead-main{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
 .shead h3{font-family:"Teko",sans-serif;font-style:italic;text-transform:uppercase;letter-spacing:.04em;font-size:1.6rem;font-weight:700;margin:0;line-height:1.15}
@@ -85,7 +110,7 @@ select option{background:#141414;color:#fff}
 .badge{font-size:.7rem;font-weight:900;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
 .b-common{background:var(--common-bg);color:var(--common)}
 .b-unique{background:var(--unique-bg);color:var(--unique)}
-.b-cat{background:var(--chip);color:var(--muted)}
+.b-cat{background:rgba(0,0,0,0.35);color:var(--cat-color,var(--muted));border:1px solid var(--cat-color,var(--line));box-shadow:0 0 8px var(--cat-glow,transparent)}
 .seffect{margin:0;font-size:.9rem;color:var(--ink)}
 .seffect.unverified{color:var(--muted)}
 .unv-note{font-size:.75rem;font-weight:700;color:var(--unique)}
@@ -129,7 +154,13 @@ footer{margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16
 .drawer-body{overflow-y:auto;padding:14px 18px 30px}
 .drawer-body h3{font-size:.85rem;font-weight:900;letter-spacing:.05em;color:var(--muted);margin:18px 0 8px}
 .drawer-body h3:first-child{margin-top:2px}
-.dskill{border:1px solid var(--line);border-left:3px solid rgba(255,78,0,0.55);padding:10px 12px;margin-bottom:8px;background:rgba(255,255,255,0.04);display:flex;gap:12px;align-items:flex-start}
+.dskill{--cat-color:rgba(255,255,255,0.25);--cat-glow:rgba(255,255,255,0.12);border:1.5px solid var(--cat-color);border-left:4px solid var(--cat-color);box-shadow:0 0 14px var(--cat-glow);padding:10px 12px;margin-bottom:8px;background:rgba(255,255,255,0.04);display:flex;gap:12px;align-items:flex-start}
+.dskill.cat-shoot{--cat-color:var(--neon-shoot);--cat-glow:var(--neon-shoot-glow)}
+.dskill.cat-drive{--cat-color:var(--neon-drive);--cat-glow:var(--neon-drive-glow)}
+.dskill.cat-pass{--cat-color:var(--neon-pass);--cat-glow:var(--neon-pass-glow)}
+.dskill.cat-defense{--cat-color:var(--neon-defense);--cat-glow:var(--neon-defense-glow)}
+.dskill.cat-rebound{--cat-color:var(--neon-rebound);--cat-glow:var(--neon-rebound-glow)}
+.dskill.cat-buff{--cat-color:var(--neon-buff);--cat-glow:var(--neon-buff-glow)}
 .dskill-main{flex:1;min-width:0}
 .dskill .t{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
 .dskill .en{font-family:"Teko",sans-serif;font-style:italic;text-transform:uppercase;letter-spacing:.03em;font-weight:700;font-size:1.3rem}
@@ -181,6 +212,16 @@ footer{margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16
       </select>
     </div>
     <div class="cats" id="cats" role="group" aria-label="カテゴリで絞り込み"></div>
+  </div>
+
+  <div class="legend" role="note" aria-label="枠の色とカテゴリの対応">
+    <span class="legend-title">枠の色 ＝ カテゴリ</span>
+    <span class="legend-item leg-shoot"><span class="legend-swatch" aria-hidden="true"></span>シュート</span>
+    <span class="legend-item leg-drive"><span class="legend-swatch" aria-hidden="true"></span>ドリブル・突破</span>
+    <span class="legend-item leg-pass"><span class="legend-swatch" aria-hidden="true"></span>パス</span>
+    <span class="legend-item leg-defense"><span class="legend-swatch" aria-hidden="true"></span>ディフェンス</span>
+    <span class="legend-item leg-rebound"><span class="legend-swatch" aria-hidden="true"></span>リバウンド</span>
+    <span class="legend-item leg-buff"><span class="legend-swatch" aria-hidden="true"></span>パッシブ・その他</span>
   </div>
 
   <p class="count" id="count" aria-live="polite"></p>
@@ -465,7 +506,7 @@ function render(){
       var c = byId[o]; if(!c) return "";
       return '<button type="button" class="ownchip" data-owner="'+c.id+'">'+faceHTML(c)+esc(c.en)+' <span class="pos">'+esc(c.pos)+'</span></button>';
     }).join("");
-    return '<article class="skillcard">'+
+    return '<article class="skillcard cat-'+s.cat+'" data-cat="'+s.cat+'">'+
       '<div class="shead">'+skillIconHTML(s)+'<div class="shead-main"><h3>'+esc(s.en)+'</h3><span class="sjp">'+esc(s.jp)+'</span>'+
       '<span class="badges"><span class="badge b-cat">'+CATS[s.cat]+'</span><span class="badge '+(s.type==="c"?"b-common":"b-unique")+'">'+(s.type==="c"?"共通スキル":"固有スキル")+'</span></span></div></div>'+
       '<p class="seffect'+(unv?" unverified":"")+'">'+esc(s.effect)+'</p>'+
@@ -493,7 +534,7 @@ var drawer = document.getElementById("drawer"), scrim = document.getElementById(
 var drawerHead = document.getElementById("drawerHead"), drawerBody = document.getElementById("drawerBody");
 function dskillHTML(s){
   var unv = isUnverified(s);
-  return '<div class="dskill">'+skillIconHTML(s, true)+'<div class="dskill-main"><div class="t"><span class="en">'+esc(s.en)+'</span><span class="jp">'+esc(s.jp)+'</span><span class="badge '+(s.type==="c"?"b-common":"b-unique")+'">'+(s.type==="c"?"共通":"固有")+'</span><span class="badge b-cat">'+CATS[s.cat]+'</span></div><p'+(unv?' class="unverified"':'')+'>'+esc(s.effect)+(unv?'（効果詳細は未確認）':'')+'</p></div></div>';
+  return '<div class="dskill cat-'+s.cat+'" data-cat="'+s.cat+'">'+skillIconHTML(s, true)+'<div class="dskill-main"><div class="t"><span class="en">'+esc(s.en)+'</span><span class="jp">'+esc(s.jp)+'</span><span class="badge '+(s.type==="c"?"b-common":"b-unique")+'">'+(s.type==="c"?"共通":"固有")+'</span><span class="badge b-cat">'+CATS[s.cat]+'</span></div><p'+(unv?' class="unverified"':'')+'>'+esc(s.effect)+(unv?'（効果詳細は未確認）':'')+'</p></div></div>';
 }
 function openDrawer(id){
   var c = byId[id]; if(!c) return;
