@@ -99,6 +99,7 @@
             <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('en', this)">EN</button>
             <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('ko', this)">KO</button>
             <button class="bg-white/10 hover:bg-white/20 text-[10px] font-black px-2.5 py-1.5 rounded transition lang-btn" onclick="switchLanguage('zh', this)">ZH</button>
+            <button id="mp-open-btn" class="bg-[#ff4e00]/15 hover:bg-[#ff4e00]/35 border border-[#ff4e00]/60 text-[#ff4e00] text-[10px] font-black px-2.5 py-1.5 rounded transition ml-2"><i class="fas fa-mobile-screen-button mr-1"></i><span data-i18n="mp-btn">スマホ表示</span></button>
         </div>
     </header>
 
@@ -1619,6 +1620,82 @@
             });
         });
     }
+})();
+    </script>
+
+    <!-- スマホ表示プレビュー（オーバーレイ＋スマホ型フレーム） -->
+    <div id="mp-overlay" class="fixed inset-0 z-[9999] hidden items-center justify-center" style="background: rgba(0,0,0,0.9);">
+        <button id="mp-close-btn" class="absolute top-5 right-6 z-[10000] bg-[#ff4e00] hover:bg-[#ff6a2b] text-white text-xs font-black px-4 py-2.5 rounded-full shadow-2xl transition"><i class="fas fa-times mr-1.5"></i><span data-i18n="mp-close">閉じる</span></button>
+        <div id="mp-frame-wrap" style="width: 390px; height: 844px; flex: none; transform-origin: center center;">
+            <div style="width: 390px; height: 844px; border-radius: 44px; border: 3px solid #3a3a3a; box-shadow: 0 0 0 6px #111111, 0 40px 90px rgba(0,0,0,0.9), 0 0 70px rgba(255,78,0,0.28); overflow: hidden; background: #000000; position: relative;">
+                <iframe id="mp-iframe" title="Mobile Preview" style="width: 390px; height: 844px; border: 0; display: block; background: #050505;" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// ============================================================
+// スマホ表示プレビュー補完スクリプト
+// ・ヘッダーの「スマホ表示」ボタンで全画面オーバーレイを開き、
+//   390×844 のスマホ型フレーム内に自ページを iframe 表示する
+//   （iframe 内の幅は 390px 固定なのでメディアクリエリが反応する）
+// ・iframe の src には再帰防止フラグ ?mp=1 を付け、フラグがある
+//   場合はボタン／オーバーレイを無効化する
+// ・ボタン／閉じるラベル用の辞書キー（mp-*）を window.i18n へマージ
+// ============================================================
+(function () {
+    var MP_I18N = {
+        ja: { 'mp-btn': 'スマホ表示', 'mp-close': '閉じる' },
+        en: { 'mp-btn': 'Mobile View', 'mp-close': 'Close' },
+        ko: { 'mp-btn': '모바일 보기', 'mp-close': '닫기' },
+        zh: { 'mp-btn': '手机视图', 'mp-close': '关闭' }
+    };
+    if (window.i18n) {
+        Object.keys(MP_I18N).forEach(function (lang) {
+            window.i18n[lang] = window.i18n[lang] || {};
+            Object.keys(MP_I18N[lang]).forEach(function (key) {
+                window.i18n[lang][key] = MP_I18N[lang][key];
+            });
+        });
+    }
+
+    var btn = document.getElementById('mp-open-btn');
+    var overlay = document.getElementById('mp-overlay');
+    var frameWrap = document.getElementById('mp-frame-wrap');
+    var iframe = document.getElementById('mp-iframe');
+    var closeBtn = document.getElementById('mp-close-btn');
+    if (!btn || !overlay || !iframe) return;
+
+    // 再帰防止：プレビュー内（?mp=1）ではボタンもオーバーレイも出さない
+    if (/[?&]mp=1(&|$)/.test(location.search)) {
+        btn.style.display = 'none';
+        overlay.style.display = 'none';
+        return;
+    }
+
+    function fitFrame() {
+        var scale = Math.min(1, (window.innerWidth * 0.94) / 390, (window.innerHeight * 0.92) / 844);
+        frameWrap.style.transform = 'scale(' + scale + ')';
+    }
+    function openPreview() {
+        if (!iframe.getAttribute('src') || iframe.getAttribute('src') === 'about:blank') {
+            iframe.src = location.protocol + '//' + location.host + location.pathname + '?mp=1' + location.hash;
+        }
+        fitFrame();
+        overlay.classList.remove('hidden');
+        overlay.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+    function closePreview() {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+    btn.addEventListener('click', openPreview);
+    if (closeBtn) closeBtn.addEventListener('click', closePreview);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closePreview(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !overlay.classList.contains('hidden')) closePreview(); });
+    window.addEventListener('resize', function () { if (!overlay.classList.contains('hidden')) fitFrame(); });
 })();
     </script>
 </body>
