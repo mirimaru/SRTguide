@@ -115,7 +115,7 @@
     // ランダムで再生したい動画のファイル名を配列にリストアップします
     const bgVideos = [
         "op_blair.mp4",     // ブレアの動画
-        "new-flare.mp4"     // 新しく添付した動画のファイル名
+        "new_flare.mp4"     // 新しく添付した動画のファイル名
     ];
 
     // 配列からランダムに1つ選ぶ
@@ -125,7 +125,7 @@
     const videoElement = document.getElementById('bg-video');
     const sourceElement = document.createElement('source');
     sourceElement.src = randomVideo;
-    sourceElement.type = 'new-flare.mp4';
+    sourceElement.type = 'video/mp4';
     videoElement.appendChild(sourceElement);
     videoElement.load();
 </script>
