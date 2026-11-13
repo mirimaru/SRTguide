@@ -91,6 +91,22 @@
   .poschip{font-size:.72rem;font-weight:800;color:#fff;padding:1px 8px;border-radius:999px}
   .relcount{font-size:.72rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted)}
   .empty{padding:32px 0;color:var(--muted)}
+  /* ポジション別ネオン枠（キャラカード／詳細ドロワー／凡例で共用） */
+  .posframe-PG{--frame:#00e5ff;--frameglow:rgba(0,229,255,.45)}
+  .posframe-SG{--frame:#ff4fd8;--frameglow:rgba(255,79,216,.45)}
+  .posframe-SF{--frame:#3dff7a;--frameglow:rgba(61,255,122,.4)}
+  .posframe-PF{--frame:#ffe93d;--frameglow:rgba(255,233,61,.4)}
+  .posframe-C{--frame:#a678ff;--frameglow:rgba(166,120,255,.5)}
+  .posframe-ALLPOS{--frame:#ff4e00;--frameglow:rgba(255,78,0,.75)}
+  .card[class*="posframe-"]{border-color:var(--frame);box-shadow:var(--shadow),0 0 16px var(--frameglow)}
+  .card[class*="posframe-"]:hover{box-shadow:inset 4px 0 0 var(--frame),var(--shadow),0 0 24px var(--frameglow)}
+  .card.posframe-ALLPOS{border:2px solid #ff4e00;box-shadow:var(--shadow),0 0 26px rgba(255,78,0,.65),0 0 56px rgba(255,78,0,.3)}
+  .card.posframe-ALLPOS:hover{box-shadow:inset 4px 0 0 #ff4e00,var(--shadow),0 0 34px rgba(255,78,0,.8),0 0 64px rgba(255,78,0,.35)}
+  .drawer.posframe-ALLPOS{box-shadow:var(--shadow),0 0 34px rgba(255,78,0,.55),0 0 70px rgba(255,78,0,.25)}
+  .poslegend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 2px}
+  .poslegend .plabel{font-size:.85rem;font-weight:800;color:#fff}
+  .plchip{display:inline-flex;align-items:center;font-size:.78rem;font-weight:800;color:#fff;padding:2px 10px;border-radius:8px;border:2px solid var(--frame);background:rgba(255,255,255,.04);box-shadow:0 0 10px var(--frameglow);white-space:nowrap}
+  .plchip small{font-weight:700;color:var(--muted);margin-left:5px}
   /* map view */
   .mapview{margin-top:16px;display:none;flex-direction:column;gap:16px}
   .cluster{background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-brd);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
@@ -107,9 +123,9 @@
   /* drawer */
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:60;display:none}
   .scrim.open{display:block}
-  .drawer{position:fixed;z-index:70;inset:auto 0 0 0;max-height:88dvh;overflow:auto;background:rgba(10,10,10,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px 20px 0 0;border-top:3px solid var(--accent);box-shadow:var(--shadow);padding:20px 18px 36px;display:none}
+  .drawer{position:fixed;z-index:70;inset:auto 0 0 0;max-height:88dvh;overflow:auto;background:rgba(10,10,10,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:20px 20px 0 0;border-top:3px solid var(--frame,var(--accent));box-shadow:var(--shadow),0 0 26px var(--frameglow,transparent);padding:20px 18px 36px;display:none}
   .drawer.open{display:block}
-  @media(min-width:760px){ .drawer{inset:0 0 0 auto;width:520px;max-height:none;border-radius:0;border-top:none;border-left:3px solid var(--accent)} }
+  @media(min-width:760px){ .drawer{inset:0 0 0 auto;width:520px;max-height:none;border-radius:0;border-top:none;border-left:3px solid var(--frame,var(--accent))} }
   .drawer .head{display:flex;gap:14px;align-items:flex-start}
   .drawer .avatar{width:84px;height:84px;font-size:1.3rem;flex:none}
   /* skills view */
@@ -193,6 +209,15 @@
       <span class="badge b-official">公式に明記</span><span style="font-size:.85rem">紹介文・公式発表に直接書かれている関係</span>
       <span class="badge b-video">動画で確認</span><span style="font-size:.85rem">公式ティーザー／スポットライト動画の物語から分かる関係</span>
       <span class="badge b-guess">共通点からの推測</span><span style="font-size:.85rem">出身・所属・境遇の共通点でつないだ、断定しない読み</span>
+    </div>
+    <div class="poslegend" aria-label="カード枠の色の凡例（ポジション別）">
+      <span class="plabel">枠の色＝ポジション：</span>
+      <span class="plchip posframe-PG">PG</span>
+      <span class="plchip posframe-SG">SG</span>
+      <span class="plchip posframe-SF">SF</span>
+      <span class="plchip posframe-PF">PF</span>
+      <span class="plchip posframe-C">C</span>
+      <span class="plchip posframe-ALLPOS">バスキー<small>全ポジション／特別枠</small></span>
     </div>
     <div class="howto">つかい方：上の検索・ポジション絞り込みで探す → カードをタップ → 詳細の「関係するキャラ」から相手のページへそのまま移動できます。「相関マップ」表示では、物語の核になるグループごとに線の意味も読めます。スキルはこのページには混ぜていません（別ページ）。<br><button class="xlink" type="button" data-goto-skills style="margin-top:10px">スキル一覧ページへ →</button></div>
   </header>
@@ -421,7 +446,7 @@ function render(){
     if(!posMatches(ch,curPos)) return;
     if(q){ var hay=(ch.en+" "+ch.ja+" "+ch.nick+" "+ch.story+" "+ch.play+" "+(GROUPS[ch.group]?GROUPS[ch.group].name:"")).toLowerCase(); if(hay.indexOf(q)===-1) return; }
     shown++;
-    var b=document.createElement("button"); b.className="card"; b.setAttribute("aria-label",ch.en+" の詳細を開く");
+    var b=document.createElement("button"); b.className="card posframe-"+ch.pos; b.setAttribute("aria-label",ch.en+" の詳細を開く");
     b.innerHTML=faceHTML(ch)+'<span class="en">'+ch.en+'</span><span class="ja">'+ch.ja+"｜"+ch.nick+'</span><span class="role">'+ch.play+'</span><span class="meta"><span class="poschip pos-'+ch.pos+'">'+posLabel(ch.pos)+'</span><span class="relcount">関係 '+rels(ch.id).length+' 件</span></span>';
     b.addEventListener("click",function(){ openDetail(ch.id); });
     grid.appendChild(b);
@@ -697,7 +722,7 @@ function openDetail(id){
   if(r.length===0){ h+='<p>紹介文・公式動画の範囲では、他のプレイアブルキャラとの直接の関係は確認できませんでした。単独で物語が完結するタイプです。</p>'; }
   else{ h+='<ul class="rellist">'; r.forEach(function(x){ var o=byId[x.to]; h+='<li><div class="rhead"><button class="linklike" data-to="'+x.to+'">'+o.en+'（'+posLabel(o.pos)+'）</button><span>'+x.label+'</span>'+levelBadge(x.level)+'</div><p>'+x.note+'</p></li>'; }); h+='</ul>'; }
   h+='<div class="actions"><button class="primary" id="dRelOnly">関係者だけを一覧で見る</button><a href="https://3on3.fsgames.com/character/characters" target="_blank" rel="noopener">公式キャラページで原文を見る</a><a href="https://www.youtube.com/@3on3FreeStyle" target="_blank" rel="noopener">公式YouTubeで動画を探す</a></div>';
-  drawer.innerHTML=h; drawer.hidden=false; drawer.classList.add("open"); scrim.classList.add("open"); document.body.style.overflow="hidden";
+  drawer.innerHTML=h; drawer.classList.remove("posframe-PG","posframe-SG","posframe-SF","posframe-PF","posframe-C","posframe-ALLPOS"); drawer.classList.add("posframe-"+ch.pos); drawer.hidden=false; drawer.classList.add("open"); scrim.classList.add("open"); document.body.style.overflow="hidden";
   document.getElementById("dClose").addEventListener("click",closeDetail);
   drawer.querySelectorAll("[data-to]").forEach(function(b){ b.addEventListener("click",function(){ openDetail(b.dataset.to); drawer.scrollTop=0; }); });
   drawer.querySelectorAll("[data-skill]").forEach(function(b){ b.addEventListener("click",function(){ goSkill(b.dataset.skill); }); });
@@ -705,7 +730,7 @@ function openDetail(id){
     closeDetail(); setPage("chars",{noScroll:true}); setView("grid"); curPos="ALL"; document.querySelectorAll("#posSeg button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.pos==="ALL"?"true":"false");});
     var ids=[id].concat(r.map(function(x){return x.to;}));
     grid.innerHTML=""; var shown=0;
-    ids.forEach(function(rid){ var c2=byId[rid]; shown++; var b=document.createElement("button"); b.className="card"; b.innerHTML=faceHTML(c2)+'<span class="en">'+c2.en+'</span><span class="ja">'+c2.ja+"｜"+c2.nick+'</span><span class="role">'+c2.play+'</span><span class="meta"><span class="poschip pos-'+c2.pos+'">'+posLabel(c2.pos)+'</span></span>'; b.addEventListener("click",function(){openDetail(rid);}); grid.appendChild(b); });
+    ids.forEach(function(rid){ var c2=byId[rid]; shown++; var b=document.createElement("button"); b.className="card posframe-"+c2.pos; b.innerHTML=faceHTML(c2)+'<span class="en">'+c2.en+'</span><span class="ja">'+c2.ja+"｜"+c2.nick+'</span><span class="role">'+c2.play+'</span><span class="meta"><span class="poschip pos-'+c2.pos+'">'+posLabel(c2.pos)+'</span></span>'; b.addEventListener("click",function(){openDetail(rid);}); grid.appendChild(b); });
     countEl.textContent=ch.en+" の関係者 "+shown+" 人を表示中（検索欄を触ると全件表示に戻ります）";
     window.scrollTo({top:0,behavior:"smooth"});
   });
