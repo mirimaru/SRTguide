@@ -62,7 +62,7 @@
   .avatar{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.05rem;color:#fff;letter-spacing:.02em;position:relative;overflow:hidden;flex:none;border:3px solid var(--surface);box-shadow:0 0 0 2px var(--ink)}
   .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .avatar.noimg img{display:none}
-  .pos-C{background:var(--c)} .pos-PF{background:var(--pf)} .pos-SF{background:var(--sf)} .pos-SG{background:var(--sg)} .pos-PG{background:var(--pg)}
+  .pos-C{background:var(--c)} .pos-PF{background:var(--pf)} .pos-SF{background:var(--sf)} .pos-SG{background:var(--sg)} .pos-PG{background:var(--pg)} .pos-ALLPOS{background:#3f3f46}
   .card .en{font-weight:900;font-size:1.02rem;line-height:1.25}
   .card .ja{font-size:.8rem;color:var(--muted)}
   .card .role{font-size:.8rem;line-height:1.45}
@@ -251,8 +251,8 @@ var CHARS = [
  ["christa","Christa","クリスタ","C","Wall Star／Fox Court の警備員","ドイツ・ミュンヘン","fox","ドイツ軍の教官だったバスケ好き。退役後に渡米し、真っ先に FOX Court へ。ちょうど暴力事件多発で警備員の募集があり、そのままストリートボーラー兼警備員になった。","ブロック特化の守備型センター。コートの治安も守る。"],
  ["fei","Fei","フェイ","PF","Miss Stylish／Agent A 会長の孫娘","Hong Kong","nomed","Agent A 会長の孫娘。父（現社長）の机で Fox Court に関する秘密文書を見つけ、父の企みを探るため正体を隠して Fox Court に潜入。美貌と華麗なプレーで迎え入れられたが、真実を隠し続ける立場に苦悩する。","ダンクと突破力の攻撃型フォワード。"],
  ["walker","Walker","ウォーカー","SG","Octopus／Fei の守護ロボット","Hong Kong","nomed","Agent A の孫娘 Fei を見守る巨漢の守護者。その正体は Fei の安全のためにプログラムされたロボット。Fei が Agent A の意思に背くと真っ先に諭す役目も担う。","フェイクとミドルシュートで得点するスコアラー。"],
- ["genesa","Genesa","ジェネサ","SG","Nomed の高性能アンドロイド","—（Nomed 研究施設）","nomed","もともとは Fei を守り、友達になるために作られたアンドロイド。Fei の死後は Nomed 社で多目的の高性能アンドロイドとして再誕し、研究施設の警備などを担当。その中核システムは Nomed 会長しか触れられない最高機密とされる。","Fei と Nomed をつなぐ謎の多いアンドロイド。"],
- ["giantg","Giant G","ジャイアントG","C","話すゴリラの大学生","—（Nomed 実験施設出身）","nomed","Nomed 社の実験動物プロジェクトの被験体だったゴリラ。実験で人間を超える知能を得て、動物虐待を訴えて自由を獲得。今は大学生として自由を謳歌する。実験ケージの小さなTVで見たバスケが、ストリートボーラーになるきっかけ。バナナで何とかなると信じている。","巨大な体躯を活かすセンター。Yuna のゲーム内ライバル『G Giant』でもある。"],
+ ["genesa","Genesa","ジェネサ","PG","Nomed の高性能アンドロイド","—（Nomed 研究施設）","nomed","もともとは Fei を守り、友達になるために作られたアンドロイド。Fei の死後は Nomed 社で多目的の高性能アンドロイドとして再誕し、研究施設の警備などを担当。その中核システムは Nomed 会長しか触れられない最高機密とされる。","Fei と Nomed をつなぐ謎の多いアンドロイド。"],
+ ["giantg","Giant G","ジャイアントG","PF","話すゴリラの大学生","—（Nomed 実験施設出身）","nomed","Nomed 社の実験動物プロジェクトの被験体だったゴリラ。実験で人間を超える知能を得て、動物虐待を訴えて自由を獲得。今は大学生として自由を謳歌する。実験ケージの小さなTVで見たバスケが、ストリートボーラーになるきっかけ。バナナで何とかなると信じている。","巨大な体躯を活かすセンター。Yuna のゲーム内ライバル『G Giant』でもある。"],
  ["djbagman","DJ Bagman","DJ バグマン","SF","紙袋の謎の男","不明","nomed","頭の紙袋も正体も謎だらけの男。有名スター説、大物説など噂は多いが証明されたものはない。『夢に招いた者に特別な体験を与える』という噂だけは共通している。旧友 Saru と Day Dreamer のコートを再建するため Big Flow に来た。","正体不明のままコートをかき回すトリックスター。"],
  ["saru","Saru","サル","SF","Naughty Dog／Big Flow の実力者","不明","bigflow","Big Flow の有名ストリートボーラー。人付き合いを避けてきたが、Ginger と Big Joe とチームになった。そのトレードマークは感情がないような皮肉な表情。Ginger と Big Joe は彼の正体をいまだに探っている。","突破とシュートの超攻撃型フォワード。"],
  ["ginger","Ginger","ジンジャー","PG","Flying Squirrel","Paris, France","bigflow","フランスの大学生。大学1年でストリートボールに恋し、Big Flow で Saru・Big Joe とチームを組む。Saru の正体への疑問を抱え続け、Big Joe と一緒に謎解きを続けている。Liu のリハビリを支えた人物でもある。","ドリブルとパスの好機を逃さないガード。"],
@@ -260,19 +260,19 @@ var CHARS = [
  ["liu","Liu","リュウ","SF","元マネージャー／Ginger の親友","中国","bigflow","プロを目指したが終わらない競争に疲れ、情熱を置いてマネージャーになった。怪我のリハビリ中だった Ginger と出会い、その前向きさに影響されて再びコートへ。親友 Ginger と Big Flow を最高のチームにするのが新しい夢。","ロックダウンディフェンスなど守備スキル豊富なフォワード。"],
  ["clara","Clara","クララ","PG","Q-BEE／コートでは炎","—（留学先から帰国）","bigflow","留学でバスケと友達から離れていた。内気な大学生でありながらコートでは炎のように変わる『Q-BEE』時代を懐かしみ、学業のために我慢してきた。Nomad 主催大会の放送で旧友 Big Joe と Jack を見つけ、衝動を抑えきれず帰国の飛行機を予約した。","ルーズボールに『蜂のように刺す』ダッシュスティールが象徴のガード。SRT の PG 攻略でも主役級。"],
  ["jack","Jack","ジャック","SF","The Fixer／凄腕タトゥーイスト","アメリカ","fixer","有名タトゥーイストであり、裏では『The Fixer』として揉め事を解決する仕事人。数年前、忠義の欠如で友を失った挫折から、『忠義』のためなら家族と友達を守るため何でもする。MC.CC のパートナーで、Lyoid ともフィクサー仲間。","ステップを使ったジャンプシュートと強烈なブロック。"],
- ["lyoid","Lyoid","リオイド","PF","繊細なグラフィティアーティスト","—","fixer","大柄で強面だが、グラフィティを愛する繊細なストリートアーティスト。見た目で誤解されがち。Jack と MC.CC とフィクサーとして潜入系の仕事もこなす。傷つきやすいが、褒められるとすぐ明るくなる単純な性格。","フィジカルと繊細さのギャップが持ち味のフォワード。"],
+ ["lyoid","Lyoid","リオイド","C","繊細なグラフィティアーティスト","—","fixer","大柄で強面だが、グラフィティを愛する繊細なストリートアーティスト。見た目で誤解されがち。Jack と MC.CC とフィクサーとして潜入系の仕事もこなす。傷つきやすいが、褒められるとすぐ明るくなる単純な性格。","フィジカルと繊細さのギャップが持ち味のフォワード。"],
  ["mccc","MC.CC","MC.CC","SG","Mr. FreeStyle／MC 兼 DJ","—","fixer","MC・DJ としてライブを盛り上げる才能人で、予測不能な動きの優れたプレイヤーでもある。フィクサー Jack（JACK THE PINK）のパートナーで、実況の腕前でも知られる。アイドル志望 ANPAN のダンス動画を偶然撮り、NOMED 大会の祝賀ステージ歌手に推薦したのも彼。","実況席とコートを行き来するムードメーカー。"],
  ["jessie","Jessie","ジェシー","SF","Problem Solver／Rebecca の姉","—","fixer","Rebecca の姉で、Fei の親友だった美しいアスリート。明るく魅力的な性格の裏に深い悲しみを隠す。事故で親友 Fei を救えなかった後悔から、『Problem Solver』として仲間と人助けをするようになった。それが Fei への贖罪だと信じて。","姉として、親友を失った者として、物語の感情の核になる一人。"],
  ["rebecca","Rebecca","レベッカ","SF","Miss Fabulous／元モデル","Los Angeles, California","fixer","元モデル。3on3 をしていた最愛の妹を失ったことが、ストリートバスケを始めるきっかけ。妹の思い出のために始めたが、自身の才能に気づき、試合を引っ張るディーバへと成長した。姉は Problem Solver の Jessie。","突破とジャンパーで攻める攻撃型フォワード。"],
  ["nathan","Nathan","ネイサン","SF","Re:Union の発起人","—（孤児院出身）","reunion","孤児院で育ち、幼なじみたちとチームを作って大会を総なめにした。プロを目指したが届かず、仲間も現実のためにバスケを離れた。それでも諦めずストリートへ。古い写真をきっかけに、最高のチームをもう一度作るため仲間を探す旅『Re:Union』を始める。大学時代のライバル Vandell に故意に怪我をさせられ、プロの夢を壊された過去も持つ。","SRTguide でも最強クラスに挙がるフォワード。再集結の物語の中心。"],
- ["kaji","Kaji","カジ","PF","Sky Jumper","—（孤児院出身）","reunion","Nathan たちと同じ孤児院で育った。家族を失い沈んでいた頃、幼なじみとのバスケに生きる意味を見つけた。だが仲間が一人ずつ孤児院を去り、残された Kaji はバスケへの興味を失い、高層ビルを跳ぶ『Sky Jumper』の動画クリエイターに。屋上や壁に旧チームの名を書き、旧ユニフォームを着て跳ぶ——先に連絡しない『静かな反乱』を続けている。","空を跳ぶ身体能力そのままのダイナミックなフォワード。"],
+ ["kaji","Kaji","カジ","PG","Sky Jumper","—（孤児院出身）","reunion","Nathan たちと同じ孤児院で育った。家族を失い沈んでいた頃、幼なじみとのバスケに生きる意味を見つけた。だが仲間が一人ずつ孤児院を去り、残された Kaji はバスケへの興味を失い、高層ビルを跳ぶ『Sky Jumper』の動画クリエイターに。屋上や壁に旧チームの名を書き、旧ユニフォームを着て跳ぶ——先に連絡しない『静かな反乱』を続けている。","空を跳ぶ身体能力そのままのダイナミックなフォワード。"],
  ["siana","Siana","シアナ","C","元・世界的ファッションモデル","—（孤児院出身）","reunion","Nathan と孤児院で育った幼なじみ。手作りのヘッドバンドやリボンを友達と飾り合う、分け合う喜びを知る子だった。孤児院を出て世界的ファッションモデルとして頂点を極めたが、ある日予告なく引退し世界と縁を切った。数年後、静かな市場のカートを押す彼女らしい姿が目撃されている。","華やかな経歴とは裏腹の落ち着きを持つセンター。"],
- ["marisol","Marisol","マリソル","PG","Nathan を支えると誓った幼なじみ","—（孤児院出身）","reunion","Nathan と同じ孤児院で育った。誰にもからかわれず本当に理解してくれたのは Nathan だけで、彼とだけは素の自分でいられた。友達以上の想いを何度も伝えようとしたが、Nathan は親友としか見ておらず、失恋を抱えている。彼が苦しむ時は支えると誓っている。","想いと献身が物語を動かすガード。ゲーム内表記名は Mari とされることもある。"],
- ["vandell","Vandell","ヴァンデル","SF","コートの悪魔／Nathan の宿敵","—","reunion","大学リーグで Nathan の強大なライバルだった男で、今はプロ3部チームのエース。Nathan への憎しみから大勢の観客の前で故意に怪我をさせ、彼のプロの夢を壊した張本人。その後は行く手を阻むものを壊すことだけが喜びだったが、Nomad バスケリーグのゲスト解説に招かれ、運命が再び Nathan と引き合わせる。","残酷な性格で知られるエース。Nathan との再戦が最大の因縁。"],
- ["ravieta","Ravieta","ラヴィエタ","PG","黒ウサギのプリンセス","白ウサギの惑星","cosmic","黒ウサギのプリンセス。婚約者の白ウサギ王子 Jefferson を愛していたが、自分の小さな体と性格が彼に釣り合わないと悩んでいた。Jefferson が惑星から消えた後、自分を責め、彼の隣に立つため姿と性格を変えて『Luna』として新しい人生を選んだ。","Luna と同一人物。ペアで成立する Mirror Fake が象徴。"],
- ["luna","Luna","ルナ","SG","Ravieta の新しい姿","白ウサギの惑星","cosmic","黒ウサギのプリンセス Ravieta が、消えた婚約者 Jefferson の隣に立つために姿と性格を変えて生まれた新しい名前と人生。その愛を勝ち取るため、人間界のプリンセスとして降りてきたとも語られる。","Ravieta と対で語られる存在。特別スキルもペア前提の設計。"],
- ["basky","Basky","バスキー","SF","家庭用アンドロイドのご近所さん","—","solo","もともと家庭用アンドロイド。若主人がバスケを始めた日からコートに足を踏み入れた。少年が『できない』と倒れるたび、練習映像から成功した瞬間だけを選び毎晩見せ続けた。『一緒にやろう』と言われた日から体は少しずつバスケ用に改造され、名前は basket と飼い犬の名の合成に。近所の買い物や子供のシュート練習を手伝う人気者だが、毎週届く家族写真に自分だけ写っていないことは誰にも言っていない。","献身と少しの寂しさが魅力の万能型。最新キャラの一人。"],
- ["anpan","ANPAN","アンパン","PF","アイドル志望のダンサー","—","solo","アイドルを夢見る少女。バスケを使った創作ダンスを踊っていたところを MC.CC に偶然撮影された。その映像が NOMED 大会の祝賀ステージ歌手探しに刺さり、推薦されて 3on3 大会で念願のデビューステージを掴んだ。","ダンス仕込みのステップが武器のフォワード。"],
+ ["marisol","Marisol","マリソル","PF","Nathan を支えると誓った幼なじみ","—（孤児院出身）","reunion","Nathan と同じ孤児院で育った。誰にもからかわれず本当に理解してくれたのは Nathan だけで、彼とだけは素の自分でいられた。友達以上の想いを何度も伝えようとしたが、Nathan は親友としか見ておらず、失恋を抱えている。彼が苦しむ時は支えると誓っている。","想いと献身が物語を動かすガード。ゲーム内表記名は Mari とされることもある。"],
+ ["vandell","Vandell","ヴァンデル","PF","コートの悪魔／Nathan の宿敵","—","reunion","大学リーグで Nathan の強大なライバルだった男で、今はプロ3部チームのエース。Nathan への憎しみから大勢の観客の前で故意に怪我をさせ、彼のプロの夢を壊した張本人。その後は行く手を阻むものを壊すことだけが喜びだったが、Nomad バスケリーグのゲスト解説に招かれ、運命が再び Nathan と引き合わせる。","残酷な性格で知られるエース。Nathan との再戦が最大の因縁。"],
+ ["ravieta","Ravieta","ラヴィエタ","SG","黒ウサギのプリンセス","白ウサギの惑星","cosmic","黒ウサギのプリンセス。婚約者の白ウサギ王子 Jefferson を愛していたが、自分の小さな体と性格が彼に釣り合わないと悩んでいた。Jefferson が惑星から消えた後、自分を責め、彼の隣に立つため姿と性格を変えて『Luna』として新しい人生を選んだ。","Luna と同一人物。ペアで成立する Mirror Fake が象徴。"],
+ ["luna","Luna","ルナ","SF","Ravieta の新しい姿","白ウサギの惑星","cosmic","黒ウサギのプリンセス Ravieta が、消えた婚約者 Jefferson の隣に立つために姿と性格を変えて生まれた新しい名前と人生。その愛を勝ち取るため、人間界のプリンセスとして降りてきたとも語られる。","Ravieta と対で語られる存在。特別スキルもペア前提の設計。"],
+ ["basky","Basky","バスキー","ALLPOS","家庭用アンドロイドのご近所さん","—","solo","もともと家庭用アンドロイド。若主人がバスケを始めた日からコートに足を踏み入れた。少年が『できない』と倒れるたび、練習映像から成功した瞬間だけを選び毎晩見せ続けた。『一緒にやろう』と言われた日から体は少しずつバスケ用に改造され、名前は basket と飼い犬の名の合成に。近所の買い物や子供のシュート練習を手伝う人気者だが、毎週届く家族写真に自分だけ写っていないことは誰にも言っていない。","献身と少しの寂しさが魅力の万能型。最新キャラの一人。"],
+ ["anpan","ANPAN","アンパン","PG","アイドル志望のダンサー","—","solo","アイドルを夢見る少女。バスケを使った創作ダンスを踊っていたところを MC.CC に偶然撮影された。その映像が NOMED 大会の祝賀ステージ歌手探しに刺さり、推薦されて 3on3 大会で念願のデビューステージを掴んだ。","ダンス仕込みのステップが武器のフォワード。"],
  ["gena","Gena","ジーナ","SG","若き天才医師／双子の姉妹","—","solo","Vanessa と双子の姉妹として生まれ、お互いなしでは息もできないほどだった。事故で両親を失い、体の弱い Vanessa は孤児院へ、Gena は別の家に養子へ。曖昧な姉妹の記憶を抱えたまま、卓越した才能で若くして医師になった。その理由は、弱い妹 Vanessa のためかもしれない。","妹を想う動機が核にあるシューター。Vanessa 本人はプレイアブルではない。"],
  ["yuna","Yuna","ユナ","SG","天才ゲーマーの引きこもり","—","solo","極度の人見知りで部屋にこもるが、生まれつきのゲームの天才で常にランキング上位。現実の困難をゲームのミッションと考えて乗り越えてきた。謎のユーザー『G Giant』をライバル視していたが、彼が突然消えて落ち込み、戻ってきた時に『友達だった』と気づいた。DMを送ると Fox Court への招待が届き、真の友達になるため人知れずバスケの練習を始める。","G Giant＝Giant G との関係が物語の入口。"],
  ["blair","Blair","ブレア","C","大企業のご令嬢","—","solo","大企業のお嬢様。大切に育てられ世間知らずだが、とても優しい。時にラグビーボールのように跳ねて予測不能。『センターはリーダーだから』とセンターにこだわる少し変わった子で、悪気なく毒舌を放つこともあるが、生まれつきの無邪気さで誰にも嫌われない。気品あるスポーツを一通り習ってきたバスケ初心者で、勝ちたい情熱が時にラッキースコアを呼ぶ。","SRTguide の最強クラスにも名が挙がるセンター。"],
@@ -377,6 +377,8 @@ var GROUPS = {
  solo:{name:"ソロで輝く個性派", desc:"ストリーマー Ox Queen、天才ゲーマー Yuna、令嬢 Blair、医師から転身した Camila など、一人でも物語が完結するタイプ。関係は各キャラ詳細から辿れます。"}
 };
 var byId = {}; CHARS.forEach(function(c){ byId[c[0]]={id:c[0],en:c[1],ja:c[2],pos:c[3],nick:c[4],home:c[5],group:c[6],story:c[7],play:c[8]}; });
+function posLabel(p){ return p==="ALLPOS" ? "全ポジション" : p; }
+function posMatches(ch,filter){ return filter==="ALL"||ch.pos===filter||ch.pos==="ALLPOS"; }
 function rels(id){ var out=[]; EDGES.forEach(function(e){ if(e[0]===id) out.push({to:e[1],label:e[2],level:e[3],note:e[4]}); else if(e[1]===id) out.push({to:e[0],label:e[2],level:e[3],note:e[4]}); }); return out; }
 function initials(en){ var p=en.replace(/[^A-Za-z ]/g,"").split(" ").filter(Boolean); if(p.length>=2) return (p[0][0]+p[1][0]).toUpperCase(); return en.slice(0,2).toUpperCase(); }
 function faceHTML(ch){ return '<span class="avatar pos-'+ch.pos+'"><span aria-hidden="true">'+initials(ch.en)+'</span><img src="assets/faces/'+ch.id+'.webp" alt="'+ch.en+' の顔（公式アート）" loading="lazy" onerror="this.parentNode.classList.add(\'noimg\');this.remove();"></span>'; }
@@ -389,11 +391,11 @@ var curPos="ALL", curQ="";
 function render(){
   var q=curQ.trim().toLowerCase(); var shown=0; grid.innerHTML="";
   CHARS.forEach(function(c){ var ch=byId[c[0]];
-    if(curPos!=="ALL"&&ch.pos!==curPos) return;
+    if(!posMatches(ch,curPos)) return;
     if(q){ var hay=(ch.en+" "+ch.ja+" "+ch.nick+" "+ch.story+" "+ch.play+" "+(GROUPS[ch.group]?GROUPS[ch.group].name:"")).toLowerCase(); if(hay.indexOf(q)===-1) return; }
     shown++;
     var b=document.createElement("button"); b.className="card"; b.setAttribute("aria-label",ch.en+" の詳細を開く");
-    b.innerHTML=faceHTML(ch)+'<span class="en">'+ch.en+'</span><span class="ja">'+ch.ja+"｜"+ch.nick+'</span><span class="role">'+ch.play+'</span><span class="meta"><span class="poschip pos-'+ch.pos+'">'+ch.pos+'</span><span class="relcount">関係 '+rels(ch.id).length+' 件</span></span>';
+    b.innerHTML=faceHTML(ch)+'<span class="en">'+ch.en+'</span><span class="ja">'+ch.ja+"｜"+ch.nick+'</span><span class="role">'+ch.play+'</span><span class="meta"><span class="poschip pos-'+ch.pos+'">'+posLabel(ch.pos)+'</span><span class="relcount">関係 '+rels(ch.id).length+' 件</span></span>';
     b.addEventListener("click",function(){ openDetail(ch.id); });
     grid.appendChild(b);
   });
@@ -411,7 +413,7 @@ function renderMap(){
     var g=GROUPS[gk]; var members=CHARS.map(function(c){return byId[c[0]];}).filter(function(ch){return ch.group===gk;});
     var sec=document.createElement("section"); sec.className="cluster";
     var h='<h3>'+g.name+'</h3><p>'+g.desc+'</p><div class="nodes">';
-    members.forEach(function(ch){ h+='<button class="node" data-id="'+ch.id+'">'+faceImg(ch)+ch.en+' <small>'+ch.pos+'</small></button>'; });
+    members.forEach(function(ch){ h+='<button class="node" data-id="'+ch.id+'">'+faceImg(ch)+ch.en+' <small>'+posLabel(ch.pos)+'</small></button>'; });
     h+='</div><ul class="edges">';
     EDGES.forEach(function(e){ var a=byId[e[0]],bb=byId[e[1]]; if(a&&bb&&((a.group===gk&&members.indexOf(bb)>-1)||(bb.group===gk&&members.indexOf(a)>-1))){ h+='<li><span><strong>'+a.en+'</strong> <span class="arrow">—</span> <strong>'+bb.en+'</strong>：'+e[2]+'</span>'+levelBadge(e[3])+'</li>'; } });
     h+='</ul>'; sec.innerHTML=h; mapView.appendChild(sec);
@@ -637,7 +639,7 @@ function renderSkills(){
     var unverified = s.effect.indexOf("確認できなかった")>-1;
     h+='<p class="seffect'+(unverified?" unverified":"")+'">'+s.effect+'</p>';
     h+='<div class="owners" aria-label="所持キャラ">';
-    s.owners.forEach(function(o){ var oc=byId[o]; if(oc) h+='<button class="ownchip" data-owner="'+o+'"><img src="assets/faces/'+o+'.webp" alt="" loading="lazy" onerror="this.remove();">'+oc.en+' <span style="color:var(--muted);font-weight:600">'+oc.pos+'</span></button>'; });
+    s.owners.forEach(function(o){ var oc=byId[o]; if(oc) h+='<button class="ownchip" data-owner="'+o+'"><img src="assets/faces/'+o+'.webp" alt="" loading="lazy" onerror="this.remove();">'+oc.en+' <span style="color:var(--muted);font-weight:600">'+posLabel(oc.pos)+'</span></button>'; });
     h+='</div>';
     card.innerHTML=h; skillList.appendChild(card);
   });
@@ -657,7 +659,7 @@ function openDetail(id){
   var ch=byId[id]; if(!ch) return; lastFocus=document.activeElement;
   var r=rels(id);
   var h='<div class="head">'+faceHTML(ch)+'<div><h2 id="dName">'+ch.en+'</h2><div class="sub">'+ch.ja+"｜"+ch.nick+'</div></div><button class="close" id="dClose" aria-label="閉じる">×</button></div>';
-  h+='<div class="facts"><div class="fact"><b>ポジション</b>'+ch.pos+'</div><div class="fact"><b>出身</b>'+ch.home+'</div><div class="fact"><b>物語のグループ</b>'+(GROUPS[ch.group]?GROUPS[ch.group].name:ch.group)+'</div></div>';
+  h+='<div class="facts"><div class="fact"><b>ポジション</b>'+posLabel(ch.pos)+'</div><div class="fact"><b>出身</b>'+ch.home+'</div><div class="fact"><b>物語のグループ</b>'+(GROUPS[ch.group]?GROUPS[ch.group].name:ch.group)+'</div></div>';
   h+='<h3>紹介</h3><p>'+ch.story+'</p>';
   h+='<h3>プレイの特徴（SRTguide 目線）</h3><p>'+ch.play+'</p>';
   var sk=skillsOf(id);
@@ -666,7 +668,7 @@ function openDetail(id){
   else{ h+='<div class="dskills">'; sk.forEach(function(s){ h+='<button class="dskill" data-skill="'+s.en+'">'+s.en+' <small>'+(s.type==="c"?"共通":"固有")+'</small></button>'; }); h+='</div><p style="font-size:.85rem;color:var(--muted);margin-top:8px">スキル名をタップすると、別ページのスキル一覧へ移動して効果と所持キャラが見られます。</p>'; }
   h+='<h3>関係性（'+r.length+'件）</h3>';
   if(r.length===0){ h+='<p>紹介文・公式動画の範囲では、他のプレイアブルキャラとの直接の関係は確認できませんでした。単独で物語が完結するタイプです。</p>'; }
-  else{ h+='<ul class="rellist">'; r.forEach(function(x){ var o=byId[x.to]; h+='<li><div class="rhead"><button class="linklike" data-to="'+x.to+'">'+o.en+'（'+o.pos+'）</button><span>'+x.label+'</span>'+levelBadge(x.level)+'</div><p>'+x.note+'</p></li>'; }); h+='</ul>'; }
+  else{ h+='<ul class="rellist">'; r.forEach(function(x){ var o=byId[x.to]; h+='<li><div class="rhead"><button class="linklike" data-to="'+x.to+'">'+o.en+'（'+posLabel(o.pos)+'）</button><span>'+x.label+'</span>'+levelBadge(x.level)+'</div><p>'+x.note+'</p></li>'; }); h+='</ul>'; }
   h+='<div class="actions"><button class="primary" id="dRelOnly">関係者だけを一覧で見る</button><a href="https://3on3.fsgames.com/character/characters" target="_blank" rel="noopener">公式キャラページで原文を見る</a><a href="https://www.youtube.com/@3on3FreeStyle" target="_blank" rel="noopener">公式YouTubeで動画を探す</a></div>';
   drawer.innerHTML=h; drawer.hidden=false; drawer.classList.add("open"); scrim.classList.add("open"); document.body.style.overflow="hidden";
   document.getElementById("dClose").addEventListener("click",closeDetail);
@@ -676,7 +678,7 @@ function openDetail(id){
     closeDetail(); setPage("chars",{noScroll:true}); setView("grid"); curPos="ALL"; document.querySelectorAll("#posSeg button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.pos==="ALL"?"true":"false");});
     var ids=[id].concat(r.map(function(x){return x.to;}));
     grid.innerHTML=""; var shown=0;
-    ids.forEach(function(rid){ var c2=byId[rid]; shown++; var b=document.createElement("button"); b.className="card"; b.innerHTML=faceHTML(c2)+'<span class="en">'+c2.en+'</span><span class="ja">'+c2.ja+"｜"+c2.nick+'</span><span class="role">'+c2.play+'</span><span class="meta"><span class="poschip pos-'+c2.pos+'">'+c2.pos+'</span></span>'; b.addEventListener("click",function(){openDetail(rid);}); grid.appendChild(b); });
+    ids.forEach(function(rid){ var c2=byId[rid]; shown++; var b=document.createElement("button"); b.className="card"; b.innerHTML=faceHTML(c2)+'<span class="en">'+c2.en+'</span><span class="ja">'+c2.ja+"｜"+c2.nick+'</span><span class="role">'+c2.play+'</span><span class="meta"><span class="poschip pos-'+c2.pos+'">'+posLabel(c2.pos)+'</span></span>'; b.addEventListener("click",function(){openDetail(rid);}); grid.appendChild(b); });
     countEl.textContent=ch.en+" の関係者 "+shown+" 人を表示中（検索欄を触ると全件表示に戻ります）";
     window.scrollTo({top:0,behavior:"smooth"});
   });
