@@ -52,6 +52,20 @@
     .logo{font-size:1.35rem}
     .topbar a.back{min-height:40px;font-size:.82rem;padding:4px 10px}
   }
+  /* スマホ表示プレビュー */
+  .topbar .mpbtn{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:6px 14px;border:1px solid var(--accent);border-radius:12px;background:rgba(255,78,0,0.14);color:#fff;font-weight:700;font-size:.9rem}
+  .topbar .mpbtn:hover{background:var(--accent);box-shadow:0 0 16px rgba(255,78,0,0.45)}
+  .topbar .mpbtn svg{flex:none}
+  @media (max-width:680px){ .topbar .mpbtn{min-height:40px;font-size:.82rem;padding:4px 10px} }
+  .mpoverlay{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,0.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:18px 12px}
+  .mpoverlay.open{display:flex}
+  .mpbar{display:flex;align-items:center;gap:14px;color:#fff}
+  .mpbar .mptitle{font-family:var(--font-d);font-style:italic;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:1.15rem}
+  .mpbar .mptitle span{color:var(--accent)}
+  .mpclose{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:12px;padding:6px 18px;font-weight:800;font-size:.92rem;min-height:44px}
+  .mpclose:hover{background:#e04400;box-shadow:0 0 16px rgba(255,78,0,0.5)}
+  .mpframe{width:390px;max-width:calc(100vw - 24px);height:844px;max-height:calc(100dvh - 130px);background:#000;border:3px solid #3f3f46;border-radius:44px;box-shadow:0 0 0 2px #18181b,0 30px 80px rgba(0,0,0,0.9),0 0 44px rgba(255,78,0,0.22);padding:10px;flex:none}
+  .mpframe iframe{width:100%;height:100%;border:0;border-radius:34px;background:#050505;display:block}
   header.hero{padding:26px 0 14px;border-bottom:1px solid var(--line)}
   .kicker{font-family:var(--font-d);font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:.95rem;color:var(--accent);margin:0}
   h1{font-family:var(--font-d);font-style:italic;text-transform:uppercase;letter-spacing:.05em;font-size:clamp(2.1rem,6vw,3.2rem);line-height:1.05;margin:.15em 0 .35em;font-weight:700;border-left:12px solid var(--accent);padding-left:16px}
@@ -155,6 +169,7 @@
   <nav class="topbar" aria-label="サイト内リンク">
     <span class="logo" aria-hidden="true">3on3 <span class="logo-accent">DIVINE</span></span>
     <a class="back" href="index.html">← SRTguide トップへ</a>
+    <button class="mpbtn" id="mpOpen" type="button" aria-haspopup="dialog"><svg width="15" height="22" viewBox="0 0 15 22" fill="none" aria-hidden="true"><rect x="1" y="1" width="13" height="20" rx="3" stroke="currentColor" stroke-width="1.8"/><line x1="5.5" y1="18" x2="9.5" y2="18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>スマホ表示</button>
     <div class="ext">
       <a href="https://mirimaru.github.io/SRTguide/" target="_blank" rel="noopener">SRTguide 本体</a>
       <a href="https://note.com/clean_squid9881" target="_blank" rel="noopener">SRT の note</a>
@@ -220,6 +235,14 @@
       <li>本ページはファンガイドです。ポジションはゲーム内表記・公式発表に基づきます。新キャラの追加・設定変更があった場合は公式発表が優先です。</li>
     </ul>
   </footer>
+</div>
+
+<div class="mpoverlay" id="mpOverlay" role="dialog" aria-modal="true" aria-label="スマホ表示プレビュー" hidden>
+  <div class="mpbar">
+    <span class="mptitle">Mobile <span>Preview</span> — 390 × 844</span>
+    <button class="mpclose" id="mpClose" type="button">閉じる</button>
+  </div>
+  <div class="mpframe"><iframe id="mpFrame" title="スマホ表示プレビュー（このページ）" loading="lazy"></iframe></div>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -448,6 +471,41 @@ function closeDetail(){ drawer.classList.remove("open"); drawer.hidden=true; scr
 scrim.addEventListener("click",closeDetail);
 document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&drawer.classList.contains("open")) closeDetail(); });
 render();
+
+/* ---- スマホ表示プレビュー（?mp=1 のときは再帰防止で無効化） ---- */
+(function(){
+  var inPreview = /[?&]mp=1(?:&|$)/.test(window.location.search);
+  var btn=document.getElementById("mpOpen"), overlay=document.getElementById("mpOverlay");
+  if(inPreview){
+    if(btn) btn.remove();
+    if(overlay) overlay.remove();
+    return;
+  }
+  if(!btn||!overlay) return;
+  var frame=document.getElementById("mpFrame"), loaded=false;
+  function openPreview(){
+    if(!loaded){
+      var u=new URL(window.location.href);
+      u.searchParams.set("mp","1");
+      frame.src=u.toString();
+      loaded=true;
+    }
+    overlay.hidden=false;
+    overlay.classList.add("open");
+    document.body.style.overflow="hidden";
+    document.getElementById("mpClose").focus();
+  }
+  function closePreview(){
+    overlay.classList.remove("open");
+    overlay.hidden=true;
+    document.body.style.overflow="";
+    btn.focus();
+  }
+  btn.addEventListener("click",openPreview);
+  document.getElementById("mpClose").addEventListener("click",closePreview);
+  overlay.addEventListener("click",function(e){ if(e.target===overlay) closePreview(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&overlay.classList.contains("open")) closePreview(); });
+})();
 </script>
 </body>
 </html>
