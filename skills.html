@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>スキル一覧 | 3on3 FreeStyle 攻略 - SRTguide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f2ec; --surface:#fffdf8; --surface2:#ece8dc; --ink:#1d1a14; --muted:#6f6a5c;
+  --line:#ddd6c6; --accent:#e05206; --accent-ink:#fff;
+  --common:#0f766e; --common-bg:#e0f2ef; --unique:#b45309; --unique-bg:#fdf0dc;
+  --chip:#f0ebdd; --shadow:0 10px 30px rgba(29,26,20,.14);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#131109; --surface:#1e1b13; --surface2:#28241a; --ink:#f2ecdd; --muted:#a89f8a;
+    --line:#3a3527; --accent:#ff7a29; --accent-ink:#1d1206;
+    --common:#5eead4; --common-bg:#123330; --unique:#fbbf24; --unique-bg:#3a2a10;
+    --chip:#2a2619; --shadow:0 10px 30px rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif;line-height:1.65}
+button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+button{font:inherit;cursor:pointer}
+img{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 64px}
+
+/* ---------- header ---------- */
+header.hero{border-bottom:3px solid var(--ink);background:
+  repeating-linear-gradient(-45deg,transparent 0 14px,rgba(127,116,90,.07) 14px 15px),var(--surface)}
+.hero-in{max-width:1180px;margin:0 auto;padding:28px 16px 22px}
+.backlink{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:700;padding:6px 2px;min-height:36px}
+.backlink:hover{color:var(--accent)}
+h1{font-size:clamp(1.9rem,5.5vw,3rem);font-weight:900;margin:2px 0 4px;letter-spacing:.01em}
+h1 .en{font-family:"Barlow Condensed",sans-serif;font-weight:700;letter-spacing:.04em;color:var(--accent);font-size:.62em;display:block}
+.lead{max-width:46em;color:var(--muted);margin:6px 0 0;font-size:.95rem}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.stat{background:var(--surface2);border:1px solid var(--line);padding:8px 14px;min-width:104px}
+.stat b{font-family:"Barlow Condensed",sans-serif;font-size:1.55rem;font-weight:700;display:block;line-height:1.1}
+.stat span{font-size:.78rem;color:var(--muted);font-weight:700}
+.scope{margin-top:14px;font-size:.82rem;color:var(--muted);border-left:3px solid var(--accent);padding:2px 0 2px 10px;max-width:52em}
+
+/* ---------- controls ---------- */
+.controls{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0 10px;margin-bottom:18px}
+.controls .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search{flex:1 1 220px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--line);padding:0 12px}
+.search:focus-within{border-color:var(--accent)}
+.search svg{flex:none;color:var(--muted)}
+.search input{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;font-size:1rem;padding:9px 0;outline:none;min-width:0}
+.seg{display:flex;border:1.5px solid var(--ink);background:var(--surface)}
+.seg button{border:0;background:transparent;color:var(--ink);font-weight:700;padding:8px 14px;font-size:.9rem}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+select{background:var(--surface);color:var(--ink);border:1.5px solid var(--line);font:inherit;font-weight:700;font-size:.9rem;padding:8px 10px}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.catchip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 13px;font-size:.85rem;font-weight:700;min-height:36px}
+.catchip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.count{font-size:.85rem;color:var(--muted);font-weight:700;margin:14px 0 10px}
+.count b{color:var(--ink);font-family:"Barlow Condensed",sans-serif;font-size:1.15rem}
+
+/* ---------- skill grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+.skillcard{background:var(--surface);border:1px solid var(--line);padding:16px 16px 13px;display:flex;flex-direction:column;gap:8px}
+.skillcard:hover{border-color:var(--accent)}
+.shead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.shead h3{font-family:"Barlow Condensed",sans-serif;font-size:1.42rem;font-weight:700;letter-spacing:.02em;margin:0;line-height:1.15}
+.sjp{font-weight:900;font-size:.98rem}
+.badges{margin-left:auto;display:flex;gap:5px;flex:none}
+.badge{font-size:.7rem;font-weight:900;padding:2px 8px;border-radius:999px;letter-spacing:.03em}
+.b-common{background:var(--common-bg);color:var(--common)}
+.b-unique{background:var(--unique-bg);color:var(--unique)}
+.b-cat{background:var(--chip);color:var(--muted)}
+.seffect{margin:0;font-size:.9rem;color:var(--ink)}
+.seffect.unverified{color:var(--muted)}
+.unv-note{font-size:.75rem;font-weight:700;color:var(--unique)}
+.owners{border-top:1px dashed var(--line);padding-top:10px;margin-top:auto}
+.owners-label{font-size:.72rem;font-weight:900;color:var(--muted);letter-spacing:.06em;margin-bottom:6px}
+.ownerchips{display:flex;flex-wrap:wrap;gap:6px}
+.ownchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:3px 11px 3px 3px;font-size:.83rem;font-weight:700;min-height:36px}
+.ownchip:hover{border-color:var(--accent)}
+.face{position:relative;width:28px;height:28px;border-radius:50%;overflow:hidden;background:var(--accent);color:#fff;flex:none;display:inline-flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:.95rem}
+.face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.ownchip .pos{color:var(--muted);font-size:.75rem;font-weight:900}
+.empty{display:none;text-align:center;color:var(--muted);padding:44px 16px;border:1px dashed var(--line);background:var(--surface)}
+.empty.show{display:block}
+
+/* ---------- char index ---------- */
+section.chars{margin-top:44px}
+section.chars h2,section.about h2{font-size:1.3rem;font-weight:900;margin:0 0 4px}
+section.chars p.sub,section.about p{color:var(--muted);font-size:.9rem;margin:0 0 14px;max-width:52em}
+.chargrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.charbtn{background:var(--surface);border:1px solid var(--line);color:var(--ink);padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:.74rem;font-weight:700;line-height:1.25;min-height:44px}
+.charbtn:hover{border-color:var(--accent)}
+.charbtn .face{width:44px;height:44px;font-size:1.3rem}
+.charbtn .cpos{color:var(--accent);font-weight:900;font-size:.68rem}
+.charbtn .noskill{color:var(--muted);font-size:.64rem;font-weight:700}
+section.about{margin-top:44px;border-top:1px solid var(--line);padding-top:26px}
+section.about ul{margin:0;padding-left:1.2em;color:var(--muted);font-size:.88rem}
+section.about a{color:var(--accent)}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:.8rem}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(10,8,4,.5);opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(430px,94vw);background:var(--surface);z-index:60;transform:translateX(102%);transition:transform .24s ease;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer-head{padding:18px 18px 12px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}
+.drawer-head .face{width:64px;height:64px;font-size:2rem}
+.drawer-head h2{margin:0;font-size:1.25rem;font-weight:900;line-height:1.3}
+.drawer-head .meta{color:var(--muted);font-size:.83rem;font-weight:700}
+.closebtn{margin-left:auto;flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);color:var(--ink);font-size:1.1rem;line-height:1}
+.drawer-body{overflow-y:auto;padding:14px 18px 30px}
+.drawer-body h3{font-size:.85rem;font-weight:900;letter-spacing:.05em;color:var(--muted);margin:18px 0 8px}
+.drawer-body h3:first-child{margin-top:2px}
+.dskill{border:1px solid var(--line);padding:10px 12px;margin-bottom:8px;background:var(--bg)}
+.dskill .t{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.dskill .en{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:1.12rem}
+.dskill .jp{font-weight:900;font-size:.88rem}
+.dskill p{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
+.none-note{border:1px dashed var(--line);padding:14px;color:var(--muted);font-size:.88rem;background:var(--bg)}
+@media (prefers-reduced-motion: reduce){.drawer,.scrim{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-in">
+    <a class="backlink" href="index.html">← SRTguide トップへ</a>
+    <h1><span class="en">3on3 FreeStyle — SKILLS</span>スキル一覧</h1>
+    <p class="lead">「3on3 FreeStyle」に登場するスキルを、公開資料で確認できた範囲で共通スキルと固有スキルに分けて洗い出した一覧です。各スキルの効果と、そのスキルを持つキャラが分かります。キャラ同士の関係性は、別ページのキャラ相関図で扱っています。</p>
+    <div class="stats" id="stats"></div>
+    <p class="scope">掲載範囲について：スキル名・効果・所持キャラは、公式サイト／公式パッチノートと公開資料（Namu Wiki、Fandom Wiki）で確認できたものを載せています。固有スキルを確認できたのは61キャラ中51キャラで、残り10キャラ（Little Fox、Christa、Fei、Gena、Howl、Camila、Pedro、Professor、Carolina、Jimmy）は公開資料で所持スキルを確認できなかったため未掲載です。効果の詳細が確認できなかったスキルには、その旨を表示しています。</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="controls" role="region" aria-label="スキルの絞り込み">
+    <div class="row">
+      <label class="search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+        <input id="q" type="search" placeholder="スキル名・効果・キャラ名で検索" aria-label="スキルを検索">
+      </label>
+      <div class="seg" role="group" aria-label="スキルの種類">
+        <button type="button" data-type="ALL" aria-pressed="true">すべて</button>
+        <button type="button" data-type="c" aria-pressed="false">共通</button>
+        <button type="button" data-type="u" aria-pressed="false">固有</button>
+      </div>
+      <select id="posFilter" aria-label="所持キャラのポジションで絞り込み">
+        <option value="">ポジション：すべて</option>
+        <option value="C">C のキャラが持つ</option>
+        <option value="PF">PF のキャラが持つ</option>
+        <option value="SF">SF のキャラが持つ</option>
+        <option value="SG">SG のキャラが持つ</option>
+        <option value="PG">PG のキャラが持つ</option>
+      </select>
+      <select id="sort" aria-label="並び替え">
+        <option value="name">名前順</option>
+        <option value="owners">所持キャラが多い順</option>
+      </select>
+    </div>
+    <div class="cats" id="cats" role="group" aria-label="カテゴリで絞り込み"></div>
+  </div>
+
+  <p class="count" id="count" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty">条件に合うスキルが見つかりませんでした。検索語や絞り込みを変えてみてください。</div>
+
+  <section class="chars" aria-labelledby="charsH">
+    <h2 id="charsH">キャラから探す</h2>
+    <p class="sub">キャラを選ぶと、そのキャラが持つスキル（共通／固有）の一覧が開きます。「未確認」とあるキャラは、公開資料で所持スキルを確認できなかったキャラです。</p>
+    <div class="chargrid" id="chargrid"></div>
+  </section>
+
+  <section class="about" aria-labelledby="aboutH">
+    <h2 id="aboutH">この一覧について</h2>
+    <ul>
+      <li>共通スキルは複数のキャラが持つスキル、固有スキルは特定のキャラ専用のスキルです。各キャラは原則として共通7種＋固有2種を持ちますが、近年のキャラは構成が異なる場合があります。</li>
+      <li>カテゴリ（シュート／ドリブル・突破／パス／ディフェンス／リバウンド／パッシブ・その他）は、効果の内容からSRTguide側で分類した目安です。</li>
+      <li>出典：<a href="https://3on3.fsgames.com/" target="_blank" rel="noopener">公式サイト・公式パッチノート</a>、<a href="https://en.namu.wiki/w/3on3%20%ED%94%84%EB%A6%AC%EC%8A%A4%ED%83%80%EC%9D%BC" target="_blank" rel="noopener">Namu Wiki</a>、<a href="https://3on3-freestyle.fandom.com/wiki/3on3_Freestyle_Wiki" target="_blank" rel="noopener">3on3 Freestyle Wiki（Fandom）</a>。ゲーム内の最新表記と異なる場合はゲーム内表記が優先です。</li>
+    </ul>
+  </section>
+
+  <footer>SRTguide — 3on3 FreeStyle 攻略ページ群 ／ キャラ紹介・相関図は別ページ「キャラ相関図」で掲載しています。</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="キャラの所持スキル">
+  <div class="drawer-head" id="drawerHead"></div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+
+<script>
+var CHARS = [{"id": "fox", "en": "Fox", "ja": "フォックス", "pos": "PF", "role": "Fox Court の創設者／生ける伝説"}, {"id": "littlefox", "en": "Little Fox", "ja": "リトルフォックス", "pos": "PG", "role": "Super Sonic／Fox の孫"}, {"id": "carter", "en": "Carter", "ja": "カーター", "pos": "SF", "role": "The Spider／Fox の一番弟子"}, {"id": "doubled", "en": "Double D", "ja": "ダブルD", "pos": "PF", "role": "Nomed の最高傑作"}, {"id": "christa", "en": "Christa", "ja": "クリスタ", "pos": "C", "role": "Wall Star／Fox Court の警備員"}, {"id": "fei", "en": "Fei", "ja": "フェイ", "pos": "PF", "role": "Miss Stylish／Agent A 会長の孫娘"}, {"id": "walker", "en": "Walker", "ja": "ウォーカー", "pos": "SG", "role": "Octopus／Fei の守護ロボット"}, {"id": "genesa", "en": "Genesa", "ja": "ジェネサ", "pos": "SG", "role": "Nomed の高性能アンドロイド"}, {"id": "giantg", "en": "Giant G", "ja": "ジャイアントG", "pos": "C", "role": "話すゴリラの大学生"}, {"id": "djbagman", "en": "DJ Bagman", "ja": "DJ バグマン", "pos": "SF", "role": "紙袋の謎の男"}, {"id": "saru", "en": "Saru", "ja": "サル", "pos": "SF", "role": "Naughty Dog／Big Flow の実力者"}, {"id": "ginger", "en": "Ginger", "ja": "ジンジャー", "pos": "PG", "role": "Flying Squirrel"}, {"id": "bigjoe", "en": "Big Joe", "ja": "ビッグジョー", "pos": "C", "role": "Big Hand／DJ センター"}, {"id": "liu", "en": "Liu", "ja": "リュウ", "pos": "SF", "role": "元マネージャー／Ginger の親友"}, {"id": "clara", "en": "Clara", "ja": "クララ", "pos": "PG", "role": "Q-BEE／コートでは炎"}, {"id": "jack", "en": "Jack", "ja": "ジャック", "pos": "SF", "role": "The Fixer／凄腕タトゥーイスト"}, {"id": "lyoid", "en": "Lyoid", "ja": "リオイド", "pos": "PF", "role": "繊細なグラフィティアーティスト"}, {"id": "mccc", "en": "MC.CC", "ja": "MC.CC", "pos": "SG", "role": "Mr. FreeStyle／MC 兼 DJ"}, {"id": "jessie", "en": "Jessie", "ja": "ジェシー", "pos": "SF", "role": "Problem Solver／Rebecca の姉"}, {"id": "rebecca", "en": "Rebecca", "ja": "レベッカ", "pos": "SF", "role": "Miss Fabulous／元モデル"}, {"id": "nathan", "en": "Nathan", "ja": "ネイサン", "pos": "SF", "role": "Re:Union の発起人"}, {"id": "kaji", "en": "Kaji", "ja": "カジ", "pos": "PF", "role": "Sky Jumper"}, {"id": "siana", "en": "Siana", "ja": "シアナ", "pos": "C", "role": "元・世界的ファッションモデル"}, {"id": "marisol", "en": "Marisol", "ja": "マリソル", "pos": "PG", "role": "Nathan を支えると誓った幼なじみ"}, {"id": "vandell", "en": "Vandell", "ja": "ヴァンデル", "pos": "SF", "role": "コートの悪魔／Nathan の宿敵"}, {"id": "ravieta", "en": "Ravieta", "ja": "ラヴィエタ", "pos": "PG", "role": "黒ウサギのプリンセス"}, {"id": "luna", "en": "Luna", "ja": "ルナ", "pos": "SG", "role": "Ravieta の新しい姿"}, {"id": "basky", "en": "Basky", "ja": "バスキー", "pos": "SF", "role": "家庭用アンドロイドのご近所さん"}, {"id": "anpan", "en": "ANPAN", "ja": "アンパン", "pos": "PF", "role": "アイドル志望のダンサー"}, {"id": "gena", "en": "Gena", "ja": "ジーナ", "pos": "SG", "role": "若き天才医師／双子の姉妹"}, {"id": "yuna", "en": "Yuna", "ja": "ユナ", "pos": "SG", "role": "天才ゲーマーの引きこもり"}, {"id": "blair", "en": "Blair", "ja": "ブレア", "pos": "C", "role": "大企業のご令嬢"}, {"id": "howl", "en": "Howl", "ja": "ハウル", "pos": "C", "role": "自称・無敗のスーパースター"}, {"id": "oxqueen", "en": "Ox Queen", "ja": "オックスクイーン", "pos": "SG", "role": "彗星のストリーマー"}, {"id": "chloe", "en": "Chloe", "ja": "クロエ", "pos": "PG", "role": "Max 一途な恋人"}, {"id": "max", "en": "Max", "ja": "マックス", "pos": "PF", "role": "Barnacle／生粋のバスケオタク"}, {"id": "ayla", "en": "Ayla", "ja": "アイラ", "pos": "PG", "role": "Commander／Nadia の妹"}, {"id": "nadia", "en": "Nadia", "ja": "ナディア", "pos": "SG", "role": "Perfectionist／検事出身の弁護士"}, {"id": "mika", "en": "Mika", "ja": "ミカ", "pos": "PG", "role": "Choco Ships のリーダー"}, {"id": "camila", "en": "Camila", "ja": "カミラ", "pos": "C", "role": "IASO／元医師"}, {"id": "rin", "en": "Rin", "ja": "リン", "pos": "SG", "role": "Swift Attacker／横浜の令嬢"}, {"id": "noah", "en": "Noah", "ja": "ノア", "pos": "SG", "role": "Persona／義足のスコアラー"}, {"id": "luther", "en": "Luther", "ja": "ルーサー", "pos": "C", "role": "The Tank"}, {"id": "bigdog", "en": "Big Dog", "ja": "ビッグドッグ", "pos": "C", "role": "心優しき巨人"}, {"id": "lee", "en": "Lee", "ja": "リー", "pos": "C", "role": "Dr. Big Shot／博士課程の巨人"}, {"id": "clarke", "en": "Clarke", "ja": "クラーク", "pos": "PF", "role": "Flying Dunkman"}, {"id": "murdock", "en": "Murdock", "ja": "マードック", "pos": "PF", "role": "Rim Guardian"}, {"id": "lulu", "en": "Lulu", "ja": "ルル", "pos": "PF", "role": "The BreakThrough"}, {"id": "amanda", "en": "Amanda", "ja": "アマンダ", "pos": "SF", "role": "Point Maker／プロダンサー"}, {"id": "joey", "en": "Joey", "ja": "ジョーイ", "pos": "SF", "role": "Air Joey／サーファー"}, {"id": "william", "en": "William", "ja": "ウィリアム", "pos": "SF", "role": "Mr. Fade Away／敏腕セールスマン"}, {"id": "helena", "en": "Helena", "ja": "ヘレナ", "pos": "PG", "role": "Basketball Mozart"}, {"id": "cindy", "en": "Cindy", "ja": "シンディ", "pos": "PG", "role": "Two Face Guard"}, {"id": "pedro", "en": "Pedro", "ja": "ペドロ", "pos": "PG", "role": "Diving Thief"}, {"id": "professor", "en": "Professor", "ja": "プロフェッサー", "pos": "PG", "role": "Legendary Handles"}, {"id": "kim", "en": "Kim", "ja": "キム", "pos": "SG", "role": "Miss Sniper"}, {"id": "carolina", "en": "Carolina", "ja": "カロリーナ", "pos": "SG", "role": "Faithful Baller"}, {"id": "fred", "en": "Fred", "ja": "フレッド", "pos": "SG", "role": "Fake Master／Fast Fred"}, {"id": "jimmy", "en": "Jimmy", "ja": "ジミー", "pos": "C", "role": "Selfish Attacker／元ドラマー"}, {"id": "deacon", "en": "Deacon", "ja": "ディーコン", "pos": "PF", "role": "Out of Control／元格闘家"}, {"id": "jason", "en": "Jason", "ja": "ジェイソン", "pos": "SG", "role": "Flying J／スカウター"}];
+var SKILLS = [{"en": "Double Clutch", "jp": "ダブルクラッチ", "type": "c", "effect": "レイアップ中に空中で一度フェイクを入れてからシュートする。フェイク部分はブロックされず、本命のシュートのみブロック可能。ビッグマンとの読み合いに使える。", "owners": ["joey", "fred", "nadia", "jason"], "cat": "shoot"}, {"en": "Post Up During Breakthrough", "jp": "突破中ポストアップ", "type": "c", "effect": "ドリブル突破の途中でキャンセルし、即ポストアップへ移行できる。突破が終わるまで待たずに背負った姿勢へ切り替えられる。", "owners": ["rebecca", "william", "joey", "jason"], "cat": "drive"}, {"en": "Cut During Breakthrough", "jp": "突破中カット", "type": "c", "effect": "突破ドリブル中に入力を止めてキャンセルし、その場に戻れる。", "owners": ["joey"], "cat": "drive"}, {"en": "Deny Intercept", "jp": "ディナイ・インターセプト", "type": "c", "effect": "パスの通り道でポストアップするだけでパスをカットできる。ただしアリウープパス、キルパス、ブロックパスは止められない。", "owners": ["murdock", "max", "carter"], "cat": "defense"}, {"en": "Running Pluto", "jp": "ランニング・プルート", "type": "c", "effect": "ボールを高く放つフローター気味のレイアップ。通常のレイアップよりブロックされる範囲が狭い。", "owners": ["rebecca"], "cat": "shoot"}, {"en": "Leg Through Back Dribble", "jp": "レッグスルー・バックドリブル", "type": "c", "effect": "レッグスルーから後ろへ下がり、そのまま突破へつなげるドリブル。下がり切らずに突破方向を入力するのがコツ。", "owners": ["rin"], "cat": "drive"}, {"en": "Dunk At Will", "jp": "マニュアルダンク", "type": "c", "effect": "任意のタイミングでダンクだけを狙えるようになり、レイアップとダンクを使い分けられる。", "owners": ["luther", "lulu", "murdock", "clarke", "jason"], "cat": "shoot"}, {"en": "Manual Layup", "jp": "マニュアルレイアップ", "type": "c", "effect": "ゴール斜め方向へスティックを倒して放つ回避レイアップ。マニュアルブロックでないと止めにくい。", "owners": ["lulu", "clarke", "rebecca", "william", "joey", "carter", "jason"], "cat": "shoot"}, {"en": "Manual Block", "jp": "マニュアルブロック", "type": "c", "effect": "ブロックしたい方向を指定して跳ぶ。指定した方向により遠くまでブロック判定が届く。", "owners": ["lee", "murdock"], "cat": "defense"}, {"en": "Box Out", "jp": "ボックスアウト", "type": "c", "effect": "シュート局面で相手を押さえて動けなくし、リバウンドの位置取りを有利にする。リバウンドの必須スキル。", "owners": ["lee", "bigdog", "luther", "lulu", "max", "murdock", "clarke", "william"], "cat": "rebound"}, {"en": "Backward Spin", "jp": "バックワードスピン", "type": "c", "effect": "ポストアップ突破中に後方へスピンして下がる。ゴールに近い時はレイアップへの連携が定番。ゴール下では発動しない。", "owners": ["william"], "cat": "drive"}, {"en": "Block & Catch", "jp": "ブロック＆キャッチ", "type": "c", "effect": "ブロックと同時にボールを自分のものに確定させる。ティップインには使用できない。", "owners": ["luther", "murdock"], "cat": "defense"}, {"en": "Block Pass", "jp": "ブロックパス", "type": "c", "effect": "ブロック成功時、一定の角度・距離内に味方がいればボールがその味方へ飛ぶ。インターセプトされない。", "owners": ["bigdog"], "cat": "defense"}, {"en": "Side Step Back", "jp": "サイドステップバック", "type": "c", "effect": "前後だけでなく左右の距離も変えるステップバック。", "owners": ["rebecca", "jason"], "cat": "drive"}, {"en": "Side Turn Fade Away", "jp": "サイドターン・フェイダウェイ", "type": "c", "effect": "ポストアップ中に横を向いて後ろへ跳びながらシュートする。ゴール下では発動しない。", "owners": ["rebecca"], "cat": "shoot"}, {"en": "Side Hop Step", "jp": "サイドホップステップ", "type": "c", "effect": "突破をキャンセルして横へジャンプする。両手でボールを掴むため、使用後は移動できない。", "owners": ["joey"], "cat": "drive"}, {"en": "Shooting Touch", "jp": "シューティングタッチ", "type": "c", "effect": "持っていると画面下にゲージが表示される。黄色に合わせると成功率が少し、緑に合わせると大きく上がる。", "owners": ["lee", "amanda", "rin", "kim"], "cat": "shoot"}, {"en": "Pass While Shooting", "jp": "シュート中パス", "type": "c", "effect": "レイアップに行くふりをしてパスを出す。ブロックを釣れるが、レイアップにならない場合はシュートフェイク扱いになりスティールされる危険もある。", "owners": ["bigdog", "rebecca", "carter"], "cat": "pass"}, {"en": "Shot Fake Drive", "jp": "シュートフェイク・ドライブ", "type": "c", "effect": "シュートフェイク直後に突破する。ドリブルを一度でもつくと発動できない。", "owners": ["carter"], "cat": "shoot"}, {"en": "Shot Fake Step", "jp": "シュートフェイク・ステップ", "type": "c", "effect": "シュートフェイク直後にサイドステップで突破する。前進は少なめで横移動が大きい。ドリブル後は発動できない。", "owners": ["amanda"], "cat": "shoot"}, {"en": "Shot Fake Pass", "jp": "シュートフェイク・パス", "type": "c", "effect": "シュートフェイク直後に素早くパスを出す。", "owners": ["rin"], "cat": "pass"}, {"en": "Sky Hook Shot", "jp": "スカイフックシュート", "type": "c", "effect": "横へ移動しながら手を高く伸ばして放つフックシュート。前後のブロック範囲が狭く、方向を読まれないとブロックされにくい。", "owners": ["clarke"], "cat": "shoot"}, {"en": "Screen Body Check", "jp": "スクリーン・ボディチェック", "type": "c", "effect": "スクリーンを維持したまま左右へ動いて体を傾け、相手ディフェンスの進路を塞ぐ。", "owners": ["murdock"], "cat": "drive"}, {"en": "Spin Move", "jp": "スピンムーブ（共通）", "type": "c", "effect": "突破ドリブル中に回転して方向転換する。方向転換は1回まで。※Fox の固有スキルにも同名スキルがある（別枠に掲載）。", "owners": ["lulu"], "cat": "drive"}, {"en": "Alley-Oop Pass", "jp": "アリウープパス", "type": "c", "effect": "2点エリアでボール保持中に使う。味方がタイミングを合わせると空中で受けてダンクする。フリースローラインより遠いと通常パスになる。", "owners": ["bigdog", "mika"], "cat": "pass"}, {"en": "Upper Steal", "jp": "アッパースティール", "type": "c", "effect": "レイアップ範囲で使うスティール。ボールが上に浮き、通常スティールより奪える確率が高いが、ティップインで失点するリスクもある。一部キャラではインテンシブスキルとして登場する。", "owners": ["max", "vandell", "basky"], "cat": "defense"}, {"en": "Off-Ball Cut", "jp": "オフボールカット", "type": "c", "effect": "ボールを持っていない時に、スプリントより速く移動できる。", "owners": ["amanda", "rin"], "cat": "drive"}, {"en": "Illegal Screen", "jp": "イリーガルスクリーン", "type": "c", "effect": "スクリーン中も移動できる、名前の通り反則級のスクリーン。", "owners": ["max"], "cat": "drive"}, {"en": "Jab Step", "jp": "ジャブステップ", "type": "c", "effect": "短く入力するとピボット、長く入力するとその方向へ突破する。ドリブルを一度つくと突破はできなくなる。", "owners": ["amanda", "kim"], "cat": "drive"}, {"en": "Chip Out", "jp": "チップアウト", "type": "c", "effect": "リバウンド局面でボールを上へ弾き出す。一度でもバウンドしたボールは弾けない。", "owners": ["lulu", "max", "william"], "cat": "rebound"}, {"en": "Chip Out Pass", "jp": "チップアウトパス", "type": "c", "effect": "リバウンド局面でボールを弾いて味方へパスする。成功するとリバウンド1回として認められる。", "owners": ["bigdog"], "cat": "rebound"}, {"en": "Cut In", "jp": "カットイン", "type": "c", "effect": "ボールを持っていない状態で使う、ボールなし版の突破のような動き。", "owners": ["amanda", "jason", "mika"], "cat": "drive"}, {"en": "Quick Drive", "jp": "クイックドライブ", "type": "c", "effect": "パスを受ける直前に入力しておくと、受けた瞬間に突破を試みる。", "owners": ["rin"], "cat": "drive"}, {"en": "Quick Step", "jp": "クイックステップ", "type": "c", "effect": "フェイスアップ中に素早く追いついて攻撃者を塞ぐ。方向転換はないためクロスオーバーには弱い。", "owners": ["carter"], "cat": "drive"}, {"en": "Quick Jumper", "jp": "クイックジャンパー", "type": "c", "effect": "パスを受けた瞬間にそのままシュートへつなげる。必ずナイスパスになるキルパスとの相性が良い。", "owners": ["amanda", "kim"], "cat": "shoot"}, {"en": "Quick Post Up Turn", "jp": "クイック・ポストアップターン", "type": "c", "effect": "ゴールを背にしてパスを受ける瞬間にポストアップ突破を試みる。ゴール下では不可。", "owners": ["lulu"], "cat": "drive"}, {"en": "Crossover", "jp": "クロスオーバー", "type": "c", "effect": "突破ドリブル中に方向転換できる。強化の度合いにより最大3回まで転換可能。", "owners": ["joey", "jason", "nadia"], "cat": "drive"}, {"en": "Kill Pass", "jp": "キルパス", "type": "c", "effect": "パス経路に相手がいても、その全員が自分に寄っている時に出せる速いパス。インターセプト不可能。", "owners": ["bigdog", "carter", "noah"], "cat": "pass"}, {"en": "Turning Shot", "jp": "ターニングシュート", "type": "c", "effect": "ゴールを背負った状態から素早くシュートできる。スティールされる確率を下げる効果があり、範囲はゴール下。", "owners": ["luther"], "cat": "shoot"}, {"en": "Touch Pass", "jp": "タッチパス", "type": "c", "effect": "パスを受けた瞬間にすぐ繋ぎのパスを出す。インターセプトの危険があるため闇雲な使用は禁物。", "owners": ["bigdog", "carter", "mika"], "cat": "pass"}, {"en": "Turn Fade Away", "jp": "ターン・フェイダウェイ", "type": "c", "effect": "横ではなく真後ろへ下がりながらシュートするフェイダウェイ。", "owners": ["lee", "william"], "cat": "shoot"}, {"en": "Tip In Shot", "jp": "ティップインショット", "type": "c", "effect": "味方のシュート時にゴールを見て使う。タップダンク／プットバックダンクと一体の技術で、ブロック不可能なシュートになることがある。", "owners": ["luther", "max", "clarke"], "cat": "rebound"}, {"en": "Power Rebound", "jp": "パワーリバウンド", "type": "c", "effect": "ボックスアウト属性付きのリバウンド。相手を無視してリバウンドを掴める。", "owners": ["lee", "max", "clarke"], "cat": "rebound"}, {"en": "Power Block", "jp": "パワーブロック", "type": "c", "effect": "ブロック成功時にボールを叩き落とし、ダンクブロック時はシューターを長くダウンさせる。ボールの所有権は確定しない。", "owners": ["murdock", "kaji", "giantg"], "cat": "defense"}, {"en": "Fade Away", "jp": "フェイダウェイ", "type": "c", "effect": "後ろへジャンプしながらシュートする。ゴール下では発動しない。", "owners": ["amanda", "rin", "kim"], "cat": "shoot"}, {"en": "Post Up Fake", "jp": "ポストアップフェイク", "type": "c", "effect": "ポストアップ突破中に反対方向へ体を返すフェイク。使用後は両手でボールを掴むため、それ以上の移動はできない。", "owners": ["lee", "clarke"], "cat": "drive"}, {"en": "Pull Up Jumper", "jp": "プルアップジャンパー", "type": "c", "effect": "突破ドリブル中にそのままジャンプシュートする。モーションキャンセルが特徴で、ゴール下では使えない。", "owners": ["rebecca", "joey", "rin", "saru"], "cat": "shoot"}, {"en": "Pick And Move", "jp": "ピック＆ムーブ", "type": "c", "effect": "スクリーンを終えた直後にそのまま突破できる。", "owners": ["lee", "lulu"], "cat": "drive"}, {"en": "Hop Step", "jp": "ホップステップ", "type": "c", "effect": "ドリブル中に遠くへ跳ぶステップ。突破と混ぜられるが、使用直後は移動が封印される。", "owners": ["william"], "cat": "drive"}, {"en": "Hook Shot", "jp": "フックシュート", "type": "c", "effect": "ボールを頭のはるか上で放つため、ブロック可能範囲が狭い。ゴール下では不可。", "owners": ["luther"], "cat": "shoot"}, {"en": "Diving Catch", "jp": "ダイビングキャッチ", "type": "c", "effect": "ルーズボールに相手より先に飛び込んで奪いに行く。一部キャラではインテンシブスキルとしても登場する。", "owners": ["cindy", "mika", "walker", "marisol", "basky"], "cat": "defense"}, {"en": "Stop Drive", "jp": "ストップドライブ", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。守備側のスキルとして複数キャラのスキルリストに登場する。", "owners": ["saru", "mika", "anpan"], "cat": "defense"}, {"en": "Side Face Up", "jp": "サイドフェイスアップ", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。守備のフェイスアップ系スキルとして複数キャラに登場する。", "owners": ["ginger", "nadia"], "cat": "defense"}, {"en": "Layup Pass", "jp": "レイアップパス", "type": "c", "effect": "レイアップ／ダンクのフェイクの後にパスを出す。インテンシブスキルとして選ばれることも多い。", "owners": ["cindy", "ginger", "yuna", "genesa", "lyoid", "ravieta", "luna"], "cat": "pass"}, {"en": "Quick Change", "jp": "クイックチェンジ", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。複数キャラのスキルリストに登場する。", "owners": ["kim", "rin"], "cat": "drive"}, {"en": "Pass During Drive-In", "jp": "ドライブ中パス", "type": "c", "effect": "ドライブしながら素早く味方へパスする。", "owners": ["ayla", "luna", "djbagman"], "cat": "pass"}, {"en": "Drift Pass", "jp": "ドリフトパス", "type": "c", "effect": "横へジャンプしながら味方へパスする。ピボット状態でも使用可能。", "owners": ["jessie", "ravieta"], "cat": "pass"}, {"en": "Intercept", "jp": "インターセプト", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。ディナイ・インターセプトとは別スキルで、インテンシブスキルとして登場する。", "owners": ["clara", "blair"], "cat": "defense"}, {"en": "Shadow Steal", "jp": "シャドースティール", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。インテンシブスキルとして複数キャラに登場する。", "owners": ["genesa", "anpan", "mika"], "cat": "defense"}, {"en": "Slip Screen", "jp": "スリップスクリーン", "type": "c", "effect": "スクリーンのふりをして素早く動く。Fox では固有スキル扱い、Basky ではインテンシブスキルとして登場する。", "owners": ["fox", "basky"], "cat": "drive"}, {"en": "Clutch Maker", "jp": "クラッチメーカー", "type": "c", "effect": "ロングダンク時に相手が範囲内で正面からブロックしてきた場合、確率でブロックを回避してシュートする（Nathan の場合は50%）。Nathan の固有版は「Hot Hand」を参照。", "owners": ["nathan", "basky"], "cat": "shoot"}, {"en": "Shammgod", "jp": "シャムゴッド", "type": "c", "effect": "シャムゴッドモーションでドライブし、クロスオーバー時に相手へアンクルブレイク効果を与える。資料により Shammgod Crossover／Shammgod Dribble とも表記される。", "owners": ["ayla", "chloe", "fred"], "cat": "drive"}, {"en": "Direct Pass", "jp": "ダイレクトパス", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。", "owners": ["saru", "helena"], "cat": "pass"}, {"en": "Back Dribble", "jp": "バックドリブル", "type": "c", "effect": "効果の公式説明は公開資料で確認できなかった。", "owners": ["noah", "clara"], "cat": "drive"}, {"en": "Hero", "jp": "ヒーロー", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Saru の固有スキルとして記載）。", "owners": ["saru"], "cat": "buff"}, {"en": "Free To Drive", "jp": "フリー・トゥ・ドライブ", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Saru の固有スキルとして記載）。", "owners": ["saru"], "cat": "drive"}, {"en": "Unbelievable", "jp": "アンビリーバブル", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Ginger の固有スキルとして記載）。", "owners": ["ginger"], "cat": "buff"}, {"en": "Chance Maker", "jp": "チャンスメーカー", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Ginger の固有スキルとして記載）。", "owners": ["ginger"], "cat": "buff"}, {"en": "Fight!", "jp": "ファイト！", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Big Joe の固有スキルとして記載）。", "owners": ["bigjoe"], "cat": "buff"}, {"en": "Air Hand", "jp": "エアハンド", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Big Joe の固有スキルとして記載）。", "owners": ["bigjoe"], "cat": "buff"}, {"en": "Rage", "jp": "レイジ", "type": "u", "effect": "Deacon の能力が上昇し、スキルの効果が強化される（公式リリース要約より）。", "owners": ["deacon"], "cat": "buff"}, {"en": "Fling Down", "jp": "フリングダウン", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Deacon の固有スキルとして記載）。", "owners": ["deacon"], "cat": "buff"}, {"en": "Fan Service", "jp": "ファンサービス", "type": "u", "effect": "パスを2回成功させると次のパスが強化され、受けた味方は次のシュートの守備抵抗が上がる（公式 Steam ニュースより）。", "owners": ["mika"], "cat": "buff"}, {"en": "Running Pass", "jp": "ランニングパス", "type": "u", "effect": "走りながら止まらずに素早く味方へパスする（公式 Steam ニュースより）。", "owners": ["mika"], "cat": "pass"}, {"en": "Alley-Oop Pass Double Clutch", "jp": "アリウープパス・ダブルクラッチ", "type": "u", "effect": "アリウープパスを出し、受けた味方にダブルクラッチをさせる（公式 Steam ニュースより）。", "owners": ["mika"], "cat": "pass"}, {"en": "Encore", "jp": "アンコール", "type": "u", "effect": "味方がアリウープパスで得点すると、味方全員（Mika 本人を除く）の次のシュート成功率が上がる（公式 Steam ニュースより）。", "owners": ["mika"], "cat": "buff"}, {"en": "Objection", "jp": "オブジェクション", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Nadia の固有スキルとして記載）。", "owners": ["nadia"], "cat": "defense"}, {"en": "Screen Parrying", "jp": "スクリーン・パリィング", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のスキルリストで Nadia の固有スキルとして記載）。", "owners": ["nadia"], "cat": "defense"}, {"en": "Face Guard", "jp": "フェイスガード", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のプレステージリストで Nadia のみに確認）。", "owners": ["nadia"], "cat": "defense"}, {"en": "Shoulder Borrow Dunk", "jp": "ショルダーボロー・ダンク", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（Fandom のプレステージリストで Nadia のみに確認）。", "owners": ["nadia"], "cat": "shoot"}, {"en": "Line Bonus", "jp": "ラインボーナス", "type": "u", "effect": "3ポイントラインに近い位置で撃つほど、3ポイントシュートの成功率が上がる（Fandom の Kim ページより）。", "owners": ["kim"], "cat": "buff"}, {"en": "Long Range Ability", "jp": "ロングレンジ・アビリティ", "type": "u", "effect": "3ポイントラインのはるか後方から撃っても、シュート成功率が下がらない（Fandom の Kim ページより）。", "owners": ["kim"], "cat": "shoot"}, {"en": "A Show Off", "jp": "ア・ショーオフ", "type": "u", "effect": "同じポジションの相手とマッチアップしている時、シュート成功率が上がる（Fandom の Cindy ページより）。", "owners": ["cindy"], "cat": "buff"}, {"en": "Burning Desire to Win", "jp": "バーニング・デザイア・トゥ・ウィン", "type": "u", "effect": "負けている時、シュート成功率が上がる（Fandom の Cindy ページより）。", "owners": ["cindy"], "cat": "buff"}, {"en": "True Workhorse", "jp": "トゥルー・ワークホース", "type": "u", "effect": "シュートを外した後に自動で発動する。詳細な効果は公開資料で確認できなかった（Fandom の Lee ページより）。", "owners": ["lee"], "cat": "buff"}, {"en": "Signature Shot", "jp": "シグネチャーショット", "type": "u", "effect": "ノーマークのシュート時に自動で発動する。詳細な効果は公開資料で確認できなかった（Fandom の Lee ページより）。", "owners": ["lee"], "cat": "shoot"}, {"en": "Spin Move (Fox)", "jp": "スピンムーブ（Fox固有）", "type": "u", "effect": "ドライブ中にスピンしてディフェンダーを回避する。ダンク、レイアップ、フェイダウェイへ連携できる（公式パッチノートより）。共通スキルのスピンムーブとは別枠。", "owners": ["fox"], "cat": "drive"}, {"en": "Hard Screen", "jp": "ハードスクリーン", "type": "u", "effect": "スクリーンしながら相手を押し、直接ぶつかると確率で相手が転倒する。確率は Fox のバランス値に影響される（公式パッチノートより）。", "owners": ["fox"], "cat": "drive"}, {"en": "Blue Worker", "jp": "ブルーワーカー", "type": "u", "effect": "Fox のスクリーンが相手にぶつかると、味方の移動速度がしばらく上がる（公式パッチノートより）。", "owners": ["fox"], "cat": "buff"}, {"en": "Veteran's Dignity", "jp": "ベテランズ・ディグニティ", "type": "u", "effect": "相手チームに PF がいる時、Fox のバランスとリバウンドの能力値が大きく上がる（公式パッチノートより）。", "owners": ["fox"], "cat": "buff"}, {"en": "Illegal Box Out", "jp": "イリーガル・ボックスアウト", "type": "u", "effect": "相手を押しながらリバウンドの有利な位置を保つ。後ろから近づいた相手は、バランス差に応じた確率で押し出される（公式パッチノートより）。", "owners": ["vandell"], "cat": "rebound"}, {"en": "Power Defense", "jp": "パワーディフェンス", "type": "u", "effect": "ボール保持者に突進して威嚇し、ぶつかると相手をピボット状態にする。相手はドリブルで後退して回避できる（公式パッチノートより）。", "owners": ["vandell"], "cat": "defense"}, {"en": "Chip Out Counter", "jp": "チップアウト・カウンター", "type": "u", "effect": "リバウンド局面で相手がチップアウトを使った時に発動。次のチップアウトの後に素早く跳んでボールをキャッチする（公式パッチノートより）。", "owners": ["vandell"], "cat": "rebound"}, {"en": "Tenacity (Vandell)", "jp": "テナシティ（Vandell）", "type": "u", "effect": "ダッシュ時の移動速度が大幅に上がる（公式パッチノートより）。Chloe の同名スキルとは効果が別。", "owners": ["vandell"], "cat": "buff"}, {"en": "Target Hunting", "jp": "ターゲットハンティング", "type": "u", "effect": "相手をマークし、マーク範囲内でその相手がシュートすると成功率を15%下げる（最大2回、クールダウン20秒）。Power Defense でぶつかると相手の移動速度も下がる（公式パッチノートより）。", "owners": ["vandell"], "cat": "buff"}, {"en": "Floater Fake", "jp": "フローターフェイク", "type": "u", "effect": "突破中にフローターを使い、フェイクのフローターで相手を騙してからレイアップへつなげる（公式パッチノートより）。", "owners": ["anpan"], "cat": "shoot"}, {"en": "Hand Shaking Time Later!", "jp": "ハンドシェイキング・タイム・レイター！", "type": "u", "effect": "ドリブル中に相手がスティールを試みるとドリブルで回避し、相手は前へ倒れる。全シュート成功率+5%（クールダウン50秒、公式パッチノートより）。", "owners": ["anpan"], "cat": "buff"}, {"en": "I'm Debuting!", "jp": "アイム・デビューイング！", "type": "u", "effect": "時間経過で Debut ゲージが溜まり、100%でアイドルとしてデビュー。全シュート成功率+5%、フローターフェイクの発動距離+100cm（公式パッチノートより）。", "owners": ["anpan"], "cat": "buff"}, {"en": "Illusion", "jp": "イリュージョン", "type": "u", "effect": "突破ドリブルを行うと5秒間、P4シュートスキルの成功率が5%上がり、ドリブルに特殊なイリュージョン効果が付く（公式パッチノートより）。", "owners": ["djbagman"], "cat": "buff"}, {"en": "Perfect Sense Of Rhythm", "jp": "パーフェクト・センス・オブ・リズム", "type": "u", "effect": "突破速度が大幅に上がり、衝突しても転倒しなくなる（公式パッチノートより）。", "owners": ["djbagman"], "cat": "buff"}, {"en": "Spin Double Clutch Layup", "jp": "スピン・ダブルクラッチ・レイアップ", "type": "u", "effect": "ロングレイアップ中に空中で体を回転させて動きを変え、ブロックをフェイクでかわす（公式パッチノートより）。", "owners": ["yuna"], "cat": "shoot"}, {"en": "Fake Shot", "jp": "フェイクショット", "type": "u", "effect": "シュートフェイクの後に横へステップしながらシュートできる（公式パッチノートより）。", "owners": ["yuna"], "cat": "shoot"}, {"en": "Lucky Chance", "jp": "ラッキーチャンス", "type": "u", "effect": "Yuna か味方が得点するたびに抽選で特殊バフ（ロングレイアップ、移動速度、3ポイント能力の上昇）が得られる（公式パッチノートより）。", "owners": ["yuna"], "cat": "buff"}, {"en": "Collector", "jp": "コレクター", "type": "u", "effect": "Lucky Chance のバフ効果をすべて発動させると、3ポイントシュート距離+50cm、3ポイント成功率+20%のバフを得る（公式パッチノートより）。", "owners": ["yuna"], "cat": "buff"}, {"en": "Rolling Size Up", "jp": "ローリング・サイズアップ", "type": "u", "effect": "サイズアップドリブルから相手の意表を突くフェイクへ移行し、ガード突破のきっかけを作る（公式リリースより）。", "owners": ["mccc"], "cat": "drive"}, {"en": "Drive Pull-Up", "jp": "ドライブ・プルアップ", "type": "u", "effect": "ドライブしながらプルアップジャンパーを打てる（公式リリースより）。", "owners": ["mccc"], "cat": "drive"}, {"en": "Limit Break", "jp": "リミットブレイク", "type": "u", "effect": "3ポイントシュートを決めるとロングレイアップ／ダンクの距離が伸びる。最大3回まで重なる（公式リリースより）。", "owners": ["mccc"], "cat": "buff"}, {"en": "Tension Up", "jp": "テンションアップ", "type": "u", "effect": "ダンクを決めるとドライブ速度が強化される（公式リリースより）。", "owners": ["mccc"], "cat": "buff"}, {"en": "A-pass", "jp": "Aパス", "type": "u", "effect": "電光石火の速さで味方へパスを出す（公式リリースより）。", "owners": ["ayla"], "cat": "pass"}, {"en": "Rhythm Shooter", "jp": "リズムシューター", "type": "u", "effect": "シューティングタッチの完璧な区間に合わせると、シュート成功率が強化される（公式リリースより）。", "owners": ["oxqueen"], "cat": "shoot"}, {"en": "Highlight Clip Maker", "jp": "ハイライト・クリップメーカー", "type": "u", "effect": "点差に応じて3ポイントシュートの距離が伸びる（公式リリースより）。", "owners": ["oxqueen"], "cat": "buff"}, {"en": "Lockdown Defender", "jp": "ロックダウン・ディフェンダー", "type": "u", "effect": "守備時、ボールを持った相手の移動速度を下げる（公式リリースより）。", "owners": ["liu"], "cat": "defense"}, {"en": "All-Round Defender", "jp": "オールラウンド・ディフェンダー", "type": "u", "effect": "選んだ4つ星スキルに応じて、リバウンド、スティール、シュート抵抗の能力が上がる（公式リリースより）。", "owners": ["liu"], "cat": "defense"}, {"en": "Hot Hand", "jp": "ホットハンド", "type": "u", "effect": "接戦のクラッチ局面（残り30秒・3点差以内）では、ロングダンクへの正面ブロック回避が100%になり、全ジャンプシュートの守備抵抗が下がる（公式 Steam ニュースより）。基礎形は共通スキルの Clutch Maker。", "owners": ["nathan"], "cat": "shoot"}, {"en": "Shot Fake Dash", "jp": "シュートフェイク・ダッシュ", "type": "u", "effect": "シュートフェイクの後、相手をすり抜けるように突破して安全な位置へダッシュする（公式パッチノートより）。", "owners": ["marisol"], "cat": "shoot"}, {"en": "Blind Face-Up", "jp": "ブラインド・フェイスアップ", "type": "u", "effect": "フェイスアップの動きで相手のシュート成功率を下げ、相手がフェイクやシュートを試みた時に確率でボールをスティールできる（公式パッチノートより）。", "owners": ["marisol"], "cat": "defense"}, {"en": "Look At Me!", "jp": "ルック・アット・ミー！", "type": "u", "effect": "左右サイドのエリアから撃つと3ポイント成功率が上がる。Nathan からパスを受けて撃つとさらに+4%（公式パッチノートより）。", "owners": ["marisol"], "cat": "buff"}, {"en": "Leave It To Me!", "jp": "リーブ・イット・トゥ・ミー！", "type": "u", "effect": "好きな方向へ瞬時にダッシュする。ゲージは試合中に自動で溜まり、負けている時は速く溜まる（公式パッチノートより）。", "owners": ["marisol"], "cat": "buff"}, {"en": "Rolling Diving Catch", "jp": "ローリング・ダイビングキャッチ", "type": "u", "effect": "転がりながらルーズボールをキャッチし、素早く起き上がれる（公式パッチノートより）。", "owners": ["clara"], "cat": "defense"}, {"en": "Reverse Double Clutch", "jp": "リバース・ダブルクラッチ", "type": "u", "effect": "ダブルクラッチをしながらゴールの反対側へ回り込む（公式パッチノートより）。", "owners": ["clara"], "cat": "shoot"}, {"en": "Baseball Pass", "jp": "ベースボールパス", "type": "u", "effect": "大きなモーションで遠くの味方へロングパスを出す（公式パッチノートより）。", "owners": ["clara"], "cat": "pass"}, {"en": "Dash Steal", "jp": "ダッシュスティール", "type": "u", "effect": "離れた位置からダッシュしてボールを叩き落としてスティールする。ボールを奪うかルーズボールにできる（公式パッチノートより）。", "owners": ["clara"], "cat": "defense"}, {"en": "Quickness", "jp": "クイックネス", "type": "u", "effect": "ルーズボールが発生すると、Clara の走行速度と通常移動速度が3秒間大幅に上がる（公式パッチノートより）。", "owners": ["clara"], "cat": "drive"}, {"en": "Acceleration", "jp": "アクセラレーション", "type": "u", "effect": "ルーズボールを得るたびに能力値が上がる（最大2回：突破速度+8.75cm/s、パス+15、通常移動速度+9cm/s、公式パッチノートより）。", "owners": ["clara"], "cat": "drive"}, {"en": "Back Step Dash", "jp": "バックステップ・ダッシュ", "type": "u", "effect": "ボールを持っていない時に後退して左右へダッシュできる。後退時に相手が止まるとアンクルブレイクを与える（公式パッチノートより）。", "owners": ["chloe"], "cat": "drive"}, {"en": "Tenacity (Chloe)", "jp": "テナシティ（Chloe）", "type": "u", "effect": "攻撃時、ボールを持っていない間はダッシュのスタミナ消費が半分になる（公式パッチノートより）。Vandell の同名スキルとは効果が別。", "owners": ["chloe"], "cat": "buff"}, {"en": "Off-Ball Leading", "jp": "オフボール・リーディング", "type": "u", "effect": "攻撃時、ボールを持っていない間、味方のオンボール移動速度とパス能力に+30のバフを与える（公式パッチノートより）。", "owners": ["chloe"], "cat": "drive"}, {"en": "Back Spin Turn", "jp": "バックスピンターン", "type": "u", "effect": "ドライブドリブル中に素早く後ろへロールしてディフェンダーを回避する（公式パッチノートより）。", "owners": ["ravieta"], "cat": "drive"}, {"en": "Bunny Step", "jp": "バニーステップ", "type": "u", "effect": "ゴールへ斜めに瞬時にドライブし、そのままゴールへ跳ぶか、その場でステップバックする（公式パッチノートより）。", "owners": ["ravieta"], "cat": "drive"}, {"en": "Catch Me If You Can~!", "jp": "キャッチ・ミー・イフ・ユー・キャン", "type": "u", "effect": "素早いジャンプで守備の干渉距離を縮め、シュート妨害の影響を受けにくくする（公式パッチノートより）。", "owners": ["ravieta"], "cat": "shoot"}, {"en": "Side Roll Step", "jp": "サイドロールステップ", "type": "u", "effect": "突破中の素早いサイドステップでディフェンダーとの距離を作る（公式パッチノートより）。", "owners": ["luna"], "cat": "drive"}, {"en": "Pull Up Fadeaway", "jp": "プルアップ・フェイダウェイ", "type": "u", "effect": "ドライブドリブル中に素早くフェイダウェイを撃つ（公式パッチノートより）。", "owners": ["luna"], "cat": "shoot"}, {"en": "High Jumper", "jp": "ハイジャンパー", "type": "u", "effect": "素早いジャンプで守備の干渉角度を縮め、シュート妨害の影響を受けにくくする（公式パッチノートより）。", "owners": ["luna"], "cat": "shoot"}, {"en": "Mirror Fake", "jp": "ミラーフェイク", "type": "u", "effect": "ドライブドリブル中に分身のホログラムを送り出して相手を惑わす。Ravieta と Luna のシグネチャースキル（公式パッチノートより）。", "owners": ["ravieta", "luna"], "cat": "drive"}, {"en": "Spin Shot", "jp": "スピンショット", "type": "u", "effect": "フェイクの後に横へステップしながらシュートする（公式スポットライトより）。", "owners": ["basky"], "cat": "shoot"}, {"en": "Overdrive", "jp": "オーバードライブ", "type": "u", "effect": "3秒ごとに10%の確率で3段階のうち1つが発動し、速度とシュート成功率にブーストがかかる（公式スポットライトより）。", "owners": ["basky"], "cat": "drive"}, {"en": "Upgrade", "jp": "アップグレード", "type": "u", "effect": "装備している P1〜P5 のカスタマイズスキルに応じて能力値が上がる（公式スポットライトより）。", "owners": ["basky"], "cat": "buff"}, {"en": "Euro Step Dunk", "jp": "ユーロステップ・ダンク", "type": "u", "effect": "ユーロステップを使いながらダンクまたはダブルクラッチを行う（公式パッチノートより）。", "owners": ["doubled"], "cat": "shoot"}, {"en": "Bully Ball", "jp": "ブーリーボール", "type": "u", "effect": "Double D 専用のドライブモーション。ドリブル中やユーロステップダンク中の衝突でボールを失わず、バランス値に応じて衝突時に相手を押しやすくなる（公式パッチノートより）。", "owners": ["doubled"], "cat": "drive"}, {"en": "In Your Face", "jp": "イン・ユア・フェイス", "type": "u", "effect": "バランス値に応じて In Your Face ダンクの発動確率が上がり、相手のロングダンクブロック失敗率も上がる。ブロックに失敗した相手はスタミナが減る（公式パッチノートより）。", "owners": ["doubled"], "cat": "buff"}, {"en": "Dash Intercept", "jp": "ダッシュ・インターセプト", "type": "u", "effect": "一瞬ダッシュしてパスをインターセプトする（公式パッチノートより）。", "owners": ["genesa"], "cat": "defense"}, {"en": "Reverse Dunk", "jp": "リバースダンク", "type": "u", "effect": "ゴールの反対側へ回ってダンクする（公式パッチノートより）。", "owners": ["genesa"], "cat": "shoot"}, {"en": "Mode Control", "jp": "モードコントロール", "type": "u", "effect": "開始時はフラッシュモード（スティール+40）。ダイナミックモード（フィールドブロック+40、スティール−40）へ切り替え可能で、1試合に最大6回まで（公式パッチノートより）。", "owners": ["genesa"], "cat": "buff"}, {"en": "Mode Reinforce", "jp": "モード・リーインフォース", "type": "u", "effect": "フラッシュモードでは3ポイントと移動速度+40、ダイナミックモードではミドルシュートとロングダンク+40（公式パッチノートより）。", "owners": ["genesa"], "cat": "buff"}, {"en": "Backdoor Cut", "jp": "バックドアカット", "type": "u", "effect": "ゴールへ向けてより遠くまでダッシュできる（公式パッチノートより）。", "owners": ["blair"], "cat": "drive"}, {"en": "Dream Shake", "jp": "ドリームシェイク", "type": "u", "effect": "ポストアップ姿勢で多彩な動きを行い、各種フェイクスキルが使え、レイアップやフェイダウェイで得点できる（公式パッチノートより）。", "owners": ["blair"], "cat": "drive"}, {"en": "Quick Chip Out", "jp": "クイック・チップアウト", "type": "u", "effect": "チップアウトの後に素早く着地できる（公式パッチノートより）。", "owners": ["blair"], "cat": "rebound"}, {"en": "Femme Fatale", "jp": "ファム・ファタール", "type": "u", "effect": "相手チームに男性キャラがいる場合、その人数×10だけ全能力値が上がる。自動発動（公式パッチノートより）。", "owners": ["blair"], "cat": "buff"}, {"en": "Quick Turning Shot", "jp": "クイック・ターニングショット", "type": "u", "effect": "ポストアップ状態でゴール下を素早く回転してシュートを試みる、Lyoid の代名詞的スキル（公式パッチノートより）。", "owners": ["lyoid"], "cat": "shoot"}, {"en": "Hand Off", "jp": "ハンドオフ", "type": "u", "effect": "片手でボールを軽く持ち上げてパスする（公式パッチノートより）。", "owners": ["lyoid"], "cat": "pass"}, {"en": "High Floater", "jp": "ハイフローター", "type": "u", "effect": "ボールを高く持ち上げ、高い軌道のフローターを放つ（公式パッチノートより）。", "owners": ["lyoid"], "cat": "shoot"}, {"en": "Control Tower", "jp": "コントロールタワー", "type": "u", "effect": "Lyoid がボールを持つと味方全員の移動速度が4秒間上がる。味方がパスを受けると、その味方は3秒間移動速度が上がる（公式パッチノートより）。", "owners": ["lyoid"], "cat": "pass"}, {"en": "Mismatch Hunter", "jp": "ミスマッチハンター", "type": "u", "effect": "マッチアップ相手との身長差が10cm以上ある場合、その相手のポストブロック能力を大幅に下げる（公式パッチノートより）。", "owners": ["lyoid"], "cat": "drive"}, {"en": "Behind Back Two-Step", "jp": "ビハインドバック・ツーステップ", "type": "u", "effect": "ゴール方向または斜めへジャンプして素早く着地する（公式パッチノートより）。", "owners": ["jessie"], "cat": "drive"}, {"en": "Mid-Range Maestro", "jp": "ミッドレンジ・マエストロ", "type": "u", "effect": "ミドルシュートを撃つ時、ミドルシュートの守備抵抗が上がる（公式パッチノートより）。", "owners": ["jessie"], "cat": "shoot"}, {"en": "Interference Support", "jp": "インターフェアランス・サポート", "type": "u", "effect": "Jessie がミドルシュートを成功させると、10秒間、相手の3ポイント成功率が下がる（公式パッチノートより）。", "owners": ["jessie"], "cat": "defense"}, {"en": "Screen Spin Move", "jp": "スクリーン・スピンムーブ", "type": "u", "effect": "ドリブル中、好きな方向を指定して味方のスクリーンの背後へスピンムーブで回り込める（公式パッチノートより）。", "owners": ["jack"], "cat": "drive"}, {"en": "Pump Fake Spin Shot", "jp": "ポンプフェイク・スピンショット", "type": "u", "effect": "ピボットでフェイクを入れ、好きな方向へ回転して、守備に背を向けたままジャンプシュートする（公式パッチノートより）。", "owners": ["jack"], "cat": "shoot"}, {"en": "Fingertip Block", "jp": "フィンガーティップ・ブロック", "type": "u", "effect": "相手のジャンプシュートを指先で触れて落とし、リバウンドに持ち込める。短い遅延のある設計で、2回目のブロックチャンスも得られる（公式パッチノートより）。", "owners": ["jack"], "cat": "defense"}, {"en": "Change The Flow", "jp": "チェンジ・ザ・フロー", "type": "u", "effect": "3点差以上負けている場面で Jack がシュートを決めると、味方全員のジャンプシュートブロック能力が一定時間上がる（公式パッチノートより）。", "owners": ["jack"], "cat": "pass"}, {"en": "Butterfly Effect", "jp": "バタフライ・エフェクト", "type": "u", "effect": "逆転につながるシュートを Jack が決めた後、味方全員の通常移動速度が上がる（公式パッチノートより）。", "owners": ["jack"], "cat": "buff"}, {"en": "Smile in Love", "jp": "スマイル・イン・ラブ", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（公式パッチテキストで Helena のスキルバフとして言及）。", "owners": ["helena"], "cat": "buff"}, {"en": "Hop Pass", "jp": "ホップパス", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（公式パッチテキストで Fred のスキルとして言及）。", "owners": ["fred"], "cat": "pass"}, {"en": "Between the Leg Crossover", "jp": "ビトウィーン・ザ・レッグ・クロスオーバー", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（公式ストアの Noah 紹介文で彼のドリブルスキルとして記載）。", "owners": ["noah"], "cat": "drive"}, {"en": "Nutmeg", "jp": "ナツメグ", "type": "u", "effect": "効果の公式説明は公開資料で確認できなかった（公式ストアの Noah 紹介文に記載）。", "owners": ["noah"], "cat": "drive"}, {"en": "Super Model", "jp": "スーパーモデル", "type": "u", "effect": "公式のバランス調整で名前のみ確認できたスキル。効果の詳細は公開資料で確認できなかった。", "owners": ["siana"], "cat": "buff"}, {"en": "Put Your Hands Up", "jp": "プット・ユア・ハンズ・アップ", "type": "u", "effect": "ブロックかリバウンド成功の直後にパスすると、受けた味方のシュート成功率が上がる。公式資料では Always Hands Up とも呼ばれる（Namu Wiki より）。", "owners": ["bigdog"], "cat": "pass"}, {"en": "What A Pass", "jp": "ワット・ア・パス", "type": "u", "effect": "ノーマークの味方へパスすると、その味方のシュート成功率が上がる（Namu Wiki より）。", "owners": ["bigdog"], "cat": "pass"}, {"en": "Free Breakthrough", "jp": "フリー・ブレイクスルー", "type": "u", "effect": "ポストアップ突破中に通常突破へ連携できる（Namu Wiki より）。", "owners": ["joey"], "cat": "drive"}, {"en": "Star Qualities", "jp": "スター・クオリティーズ", "type": "u", "effect": "得点に絡む場面でシュート成功率が上がるとされるが、公式の明確な効果説明は確認できなかった（Namu Wiki より）。", "owners": ["joey"], "cat": "shoot"}];
+var CATS = {shoot:"シュート", drive:"ドリブル・突破", pass:"パス", defense:"ディフェンス", rebound:"リバウンド", buff:"パッシブ・その他"};
+var byId = {}; CHARS.forEach(function(c){ byId[c.id]=c; });
+function skillsOf(id){ return SKILLS.filter(function(s){ return s.owners.indexOf(id)>-1; }); }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(m){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]; }); }
+function isUnverified(s){ return s.effect.indexOf("確認できなかった")>-1 || s.effect.indexOf("確認できていない")>-1; }
+function faceHTML(c, cls){
+  return '<span class="face" aria-hidden="true">'+esc(c.en.charAt(0))+'<img src="assets/faces/'+c.id+'.webp" alt="" loading="lazy" onerror="this.remove()"></span>';
+}
+
+/* stats */
+(function(){
+  var common = SKILLS.filter(function(s){return s.type==="c";}).length;
+  var unique = SKILLS.filter(function(s){return s.type==="u";}).length;
+  var withSkills = CHARS.filter(function(c){ return skillsOf(c.id).length>0; }).length;
+  document.getElementById("stats").innerHTML =
+    '<div class="stat"><b>'+SKILLS.length+'</b><span>掲載スキル総数</span></div>'+
+    '<div class="stat"><b>'+common+'</b><span>共通スキル</span></div>'+
+    '<div class="stat"><b>'+unique+'</b><span>固有スキル</span></div>'+
+    '<div class="stat"><b>'+withSkills+' / '+CHARS.length+'</b><span>スキル掲載キャラ</span></div>';
+})();
+
+/* category chips */
+var curCat = "ALL";
+var catsEl = document.getElementById("cats");
+(function(){
+  var html = '<button type="button" class="catchip" data-cat="ALL" aria-pressed="true">すべて</button>';
+  Object.keys(CATS).forEach(function(k){
+    var n = SKILLS.filter(function(s){return s.cat===k;}).length;
+    html += '<button type="button" class="catchip" data-cat="'+k+'" aria-pressed="false">'+CATS[k]+'（'+n+'）</button>';
+  });
+  catsEl.innerHTML = html;
+  catsEl.addEventListener("click", function(e){
+    var b = e.target.closest("[data-cat]"); if(!b) return;
+    curCat = b.getAttribute("data-cat");
+    catsEl.querySelectorAll("[data-cat]").forEach(function(x){ x.setAttribute("aria-pressed", x===b ? "true":"false"); });
+    render();
+  });
+})();
+
+/* filters state */
+var curType = "ALL", curQ = "", curPos = "", curSort = "name";
+document.querySelectorAll(".seg [data-type]").forEach(function(b){
+  b.addEventListener("click", function(){
+    curType = b.getAttribute("data-type");
+    document.querySelectorAll(".seg [data-type]").forEach(function(x){ x.setAttribute("aria-pressed", x===b ? "true":"false"); });
+    render();
+  });
+});
+document.getElementById("q").addEventListener("input", function(e){ curQ = e.target.value; render(); });
+document.getElementById("posFilter").addEventListener("change", function(e){ curPos = e.target.value; render(); });
+document.getElementById("sort").addEventListener("change", function(e){ curSort = e.target.value; render(); });
+
+var grid = document.getElementById("grid"), countEl = document.getElementById("count"), emptyEl = document.getElementById("empty");
+function render(){
+  var q = curQ.trim().toLowerCase();
+  var list = SKILLS.filter(function(s){
+    if(curType!=="ALL" && s.type!==curType) return false;
+    if(curCat!=="ALL" && s.cat!==curCat) return false;
+    if(curPos && !s.owners.some(function(o){ return byId[o] && byId[o].pos===curPos; })) return false;
+    if(q){
+      var hay = (s.en+" "+s.jp+" "+s.effect+" "+s.owners.map(function(o){ return byId[o] ? byId[o].en+" "+byId[o].ja : ""; }).join(" ")).toLowerCase();
+      if(hay.indexOf(q)===-1) return false;
+    }
+    return true;
+  });
+  list = list.slice();
+  if(curSort==="owners") list.sort(function(a,b){ return b.owners.length-a.owners.length || a.en.localeCompare(b.en); });
+  else list.sort(function(a,b){ return a.en.localeCompare(b.en); });
+
+  countEl.innerHTML = "<b>"+list.length+"</b> 件のスキルを表示中（全"+SKILLS.length+"件）";
+  emptyEl.classList.toggle("show", list.length===0);
+  grid.innerHTML = list.map(function(s){
+    var unv = isUnverified(s);
+    var owners = s.owners.map(function(o){
+      var c = byId[o]; if(!c) return "";
+      return '<button type="button" class="ownchip" data-owner="'+c.id+'">'+faceHTML(c)+esc(c.en)+' <span class="pos">'+esc(c.pos)+'</span></button>';
+    }).join("");
+    return '<article class="skillcard">'+
+      '<div class="shead"><h3>'+esc(s.en)+'</h3><span class="sjp">'+esc(s.jp)+'</span>'+
+      '<span class="badges"><span class="badge b-cat">'+CATS[s.cat]+'</span><span class="badge '+(s.type==="c"?"b-common":"b-unique")+'">'+(s.type==="c"?"共通スキル":"固有スキル")+'</span></span></div>'+
+      '<p class="seffect'+(unv?" unverified":"")+'">'+esc(s.effect)+'</p>'+
+      (unv ? '<span class="unv-note">※ 効果の詳細は公開資料で未確認</span>' : '')+
+      '<div class="owners"><div class="owners-label">所持キャラ（'+s.owners.length+'）</div><div class="ownerchips">'+owners+'</div></div>'+
+    '</article>';
+  }).join("");
+}
+
+/* char index */
+var chargrid = document.getElementById("chargrid");
+chargrid.innerHTML = CHARS.map(function(c){
+  var n = skillsOf(c.id).length;
+  return '<button type="button" class="charbtn" data-char="'+c.id+'">'+faceHTML(c)+'<span>'+esc(c.en)+'</span><span class="cpos">'+esc(c.pos || "—")+'</span>'+(n? '<span class="noskill">'+n+'スキル</span>' : '<span class="noskill">スキル未確認</span>')+'</button>';
+}).join("");
+chargrid.addEventListener("click", function(e){
+  var b = e.target.closest("[data-char]"); if(b) openDrawer(b.getAttribute("data-char"));
+});
+grid.addEventListener("click", function(e){
+  var b = e.target.closest("[data-owner]"); if(b) openDrawer(b.getAttribute("data-owner"));
+});
+
+/* drawer */
+var drawer = document.getElementById("drawer"), scrim = document.getElementById("scrim");
+var drawerHead = document.getElementById("drawerHead"), drawerBody = document.getElementById("drawerBody");
+function dskillHTML(s){
+  var unv = isUnverified(s);
+  return '<div class="dskill"><div class="t"><span class="en">'+esc(s.en)+'</span><span class="jp">'+esc(s.jp)+'</span><span class="badge '+(s.type==="c"?"b-common":"b-unique")+'">'+(s.type==="c"?"共通":"固有")+'</span><span class="badge b-cat">'+CATS[s.cat]+'</span></div><p'+(unv?' class="unverified"':'')+'>'+esc(s.effect)+(unv?'（効果詳細は未確認）':'')+'</p></div>';
+}
+function openDrawer(id){
+  var c = byId[id]; if(!c) return;
+  var mine = skillsOf(id);
+  var commons = mine.filter(function(s){return s.type==="c";});
+  var uniques = mine.filter(function(s){return s.type==="u";});
+  drawerHead.innerHTML = faceHTML(c)+'<div><h2>'+esc(c.en)+' <span style="font-size:.85em">'+esc(c.ja)+'</span></h2><div class="meta">'+esc(c.pos||"ポジション未確認")+' ／ '+esc(c.role)+'</div></div><button type="button" class="closebtn" id="drawerClose" aria-label="閉じる">✕</button>';
+  var h = "";
+  if(mine.length===0){
+    h = '<div class="none-note">このキャラの所持スキルは、公式サイト／公式パッチノート等の公開資料で確認できませんでした。確認が取れ次第、追記します。</div>';
+  } else {
+    if(uniques.length) h += "<h3>固有スキル（"+uniques.length+"）</h3>" + uniques.map(dskillHTML).join("");
+    if(commons.length) h += "<h3>共通スキル（"+commons.length+"）</h3>" + commons.map(dskillHTML).join("");
+  }
+  drawerBody.innerHTML = h;
+  drawer.classList.add("open"); scrim.classList.add("open");
+  drawer.setAttribute("aria-hidden","false");
+  document.getElementById("drawerClose").addEventListener("click", closeDrawer);
+  document.getElementById("drawerClose").focus();
+}
+function closeDrawer(){
+  drawer.classList.remove("open"); scrim.classList.remove("open");
+  drawer.setAttribute("aria-hidden","true");
+}
+scrim.addEventListener("click", closeDrawer);
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeDrawer(); });
+
+render();
+</script>
+</body>
+</html>
