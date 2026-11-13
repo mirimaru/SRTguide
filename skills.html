@@ -168,13 +168,45 @@ footer{margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16
 .dskill p{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
 .none-note{border:1px dashed rgba(255,255,255,0.18);padding:14px;color:var(--muted);font-size:.88rem;background:rgba(255,255,255,0.03)}
 @media (prefers-reduced-motion: reduce){.drawer,.scrim{transition:none}html{scroll-behavior:auto}}
+
+/* ---------- mobile preview ---------- */
+.mp-actions{margin-left:auto;display:flex;align-items:center;gap:12px}
+.mp-actions .backlink{margin-left:0}
+.mp-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,78,0,0.12);border:1px solid var(--accent);color:#fff;border-radius:12px;font-weight:900;font-size:.85rem;padding:7px 14px;min-height:38px;white-space:nowrap;box-shadow:0 0 14px rgba(255,78,0,0.25)}
+.mp-btn:hover{background:var(--accent);color:var(--accent-ink)}
+.mp-btn svg{flex:none}
+.mp-overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none;flex-direction:column;align-items:center;padding:18px 16px 22px;overflow:auto}
+.mp-overlay.open{display:flex}
+.mp-overlay-bar{width:min(390px,calc(100vw - 32px));display:flex;align-items:center;gap:10px;margin-bottom:14px;flex:none}
+.mp-overlay-title{font-family:"Teko","Noto Sans JP",sans-serif;font-style:italic;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:1.25rem;line-height:1.1;color:#fff}
+.mp-overlay-title span{color:var(--accent)}
+.mp-overlay-size{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap}
+.mp-close{margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:6px;background:var(--accent);border:1px solid var(--accent);color:#fff;border-radius:12px;font-weight:900;font-size:.88rem;padding:8px 16px;min-height:38px}
+.mp-close:hover{background:#d63e00;border-color:#d63e00}
+.mp-frame{position:relative;flex:none;width:min(390px,calc(100vw - 32px));height:844px;min-height:320px;background:#101010;border:3px solid #3a3a3a;border-radius:46px;padding:11px;box-shadow:0 30px 80px rgba(0,0,0,0.85),0 0 0 1px rgba(255,255,255,0.06),0 0 44px rgba(255,78,0,0.14)}
+.mp-frame::before{content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#101010;border-radius:0 0 14px 14px;z-index:2;pointer-events:none}
+.mp-frame iframe{width:100%;height:100%;border:0;border-radius:35px;background:#050505;display:block}
+.mp-embedded .mp-btn,.mp-embedded .mp-overlay{display:none !important}
+@media (max-width:560px){.mp-btn{font-size:.8rem;padding:7px 10px}.mp-overlay{padding:12px 8px 14px}.mp-overlay-bar{width:calc(100vw - 16px)}}
+@media (prefers-reduced-motion: reduce){.mp-overlay{-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
+<script>
+if (new URLSearchParams(window.location.search).get("mp") === "1") {
+  document.documentElement.classList.add("mp-embedded");
+}
+</script>
 </head>
 <body>
 <div class="topbar">
   <div class="topbar-in">
     <a class="logo" href="index.html">3on3 <span>DIVINE</span></a>
-    <a class="backlink" href="index.html">← SRTguide トップへ</a>
+    <div class="mp-actions">
+      <button type="button" class="mp-btn" id="mpOpen" aria-haspopup="dialog" aria-controls="mpOverlay">
+        <svg width="15" height="22" viewBox="0 0 15 22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="1" width="13" height="20" rx="2.5"/><path d="M6 18.4h3"/></svg>
+        スマホ表示
+      </button>
+      <a class="backlink" href="index.html">← SRTguide トップへ</a>
+    </div>
   </div>
 </div>
 <header class="hero">
@@ -251,6 +283,17 @@ footer{margin-top:40px;border-top:1px solid rgba(255,255,255,0.1);padding-top:16
   <div class="drawer-head" id="drawerHead"></div>
   <div class="drawer-body" id="drawerBody"></div>
 </aside>
+
+<div class="mp-overlay" id="mpOverlay" role="dialog" aria-modal="true" aria-label="スマホ表示プレビュー" aria-hidden="true">
+  <div class="mp-overlay-bar">
+    <span class="mp-overlay-title">Mobile <span>Preview</span></span>
+    <span class="mp-overlay-size">390 × 844</span>
+    <button type="button" class="mp-close" id="mpClose">✕ 閉じる</button>
+  </div>
+  <div class="mp-frame">
+    <iframe id="mpFrame" title="スマホ表示プレビュー（スキル一覧）"></iframe>
+  </div>
+</div>
 
 <script>
 var CHARS = [{"id": "fox", "en": "Fox", "ja": "フォックス", "pos": "PF", "role": "Fox Court の創設者／生ける伝説"}, {"id": "littlefox", "en": "Little Fox", "ja": "リトルフォックス", "pos": "PG", "role": "Super Sonic／Fox の孫"}, {"id": "carter", "en": "Carter", "ja": "カーター", "pos": "SF", "role": "The Spider／Fox の一番弟子"}, {"id": "doubled", "en": "Double D", "ja": "ダブルD", "pos": "PF", "role": "Nomed の最高傑作"}, {"id": "christa", "en": "Christa", "ja": "クリスタ", "pos": "C", "role": "Wall Star／Fox Court の警備員"}, {"id": "fei", "en": "Fei", "ja": "フェイ", "pos": "PF", "role": "Miss Stylish／Agent A 会長の孫娘"}, {"id": "walker", "en": "Walker", "ja": "ウォーカー", "pos": "SG", "role": "Octopus／Fei の守護ロボット"}, {"id": "genesa", "en": "Genesa", "ja": "ジェネサ", "pos": "PG", "role": "Nomed の高性能アンドロイド"}, {"id": "giantg", "en": "Giant G", "ja": "ジャイアントG", "pos": "PF", "role": "話すゴリラの大学生"}, {"id": "djbagman", "en": "DJ Bagman", "ja": "DJ バグマン", "pos": "SF", "role": "紙袋の謎の男"}, {"id": "saru", "en": "Saru", "ja": "サル", "pos": "SF", "role": "Naughty Dog／Big Flow の実力者"}, {"id": "ginger", "en": "Ginger", "ja": "ジンジャー", "pos": "PG", "role": "Flying Squirrel"}, {"id": "bigjoe", "en": "Big Joe", "ja": "ビッグジョー", "pos": "C", "role": "Big Hand／DJ センター"}, {"id": "liu", "en": "Liu", "ja": "リュウ", "pos": "SF", "role": "元マネージャー／Ginger の親友"}, {"id": "clara", "en": "Clara", "ja": "クララ", "pos": "PG", "role": "Q-BEE／コートでは炎"}, {"id": "jack", "en": "Jack", "ja": "ジャック", "pos": "SF", "role": "The Fixer／凄腕タトゥーイスト"}, {"id": "lyoid", "en": "Lyoid", "ja": "リオイド", "pos": "C", "role": "繊細なグラフィティアーティスト"}, {"id": "mccc", "en": "MC.CC", "ja": "MC.CC", "pos": "SG", "role": "Mr. FreeStyle／MC 兼 DJ"}, {"id": "jessie", "en": "Jessie", "ja": "ジェシー", "pos": "SF", "role": "Problem Solver／Rebecca の姉"}, {"id": "rebecca", "en": "Rebecca", "ja": "レベッカ", "pos": "SF", "role": "Miss Fabulous／元モデル"}, {"id": "nathan", "en": "Nathan", "ja": "ネイサン", "pos": "SF", "role": "Re:Union の発起人"}, {"id": "kaji", "en": "Kaji", "ja": "カジ", "pos": "PG", "role": "Sky Jumper"}, {"id": "siana", "en": "Siana", "ja": "シアナ", "pos": "C", "role": "元・世界的ファッションモデル"}, {"id": "marisol", "en": "Marisol", "ja": "マリソル", "pos": "PF", "role": "Nathan を支えると誓った幼なじみ"}, {"id": "vandell", "en": "Vandell", "ja": "ヴァンデル", "pos": "PF", "role": "コートの悪魔／Nathan の宿敵"}, {"id": "ravieta", "en": "Ravieta", "ja": "ラヴィエタ", "pos": "SG", "role": "黒ウサギのプリンセス"}, {"id": "luna", "en": "Luna", "ja": "ルナ", "pos": "SF", "role": "Ravieta の新しい姿"}, {"id": "basky", "en": "Basky", "ja": "バスキー", "pos": "全ポジション", "role": "家庭用アンドロイドのご近所さん"}, {"id": "anpan", "en": "ANPAN", "ja": "アンパン", "pos": "PG", "role": "アイドル志望のダンサー"}, {"id": "gena", "en": "Gena", "ja": "ジーナ", "pos": "SG", "role": "若き天才医師／双子の姉妹"}, {"id": "yuna", "en": "Yuna", "ja": "ユナ", "pos": "SG", "role": "天才ゲーマーの引きこもり"}, {"id": "blair", "en": "Blair", "ja": "ブレア", "pos": "C", "role": "大企業のご令嬢"}, {"id": "howl", "en": "Howl", "ja": "ハウル", "pos": "C", "role": "自称・無敗のスーパースター"}, {"id": "oxqueen", "en": "Ox Queen", "ja": "オックスクイーン", "pos": "SG", "role": "彗星のストリーマー"}, {"id": "chloe", "en": "Chloe", "ja": "クロエ", "pos": "PG", "role": "Max 一途な恋人"}, {"id": "max", "en": "Max", "ja": "マックス", "pos": "PF", "role": "Barnacle／生粋のバスケオタク"}, {"id": "ayla", "en": "Ayla", "ja": "アイラ", "pos": "PG", "role": "Commander／Nadia の妹"}, {"id": "nadia", "en": "Nadia", "ja": "ナディア", "pos": "SG", "role": "Perfectionist／検事出身の弁護士"}, {"id": "mika", "en": "Mika", "ja": "ミカ", "pos": "PG", "role": "Choco Ships のリーダー"}, {"id": "camila", "en": "Camila", "ja": "カミラ", "pos": "C", "role": "IASO／元医師"}, {"id": "rin", "en": "Rin", "ja": "リン", "pos": "SG", "role": "Swift Attacker／横浜の令嬢"}, {"id": "noah", "en": "Noah", "ja": "ノア", "pos": "SG", "role": "Persona／義足のスコアラー"}, {"id": "luther", "en": "Luther", "ja": "ルーサー", "pos": "C", "role": "The Tank"}, {"id": "bigdog", "en": "Big Dog", "ja": "ビッグドッグ", "pos": "C", "role": "心優しき巨人"}, {"id": "lee", "en": "Lee", "ja": "リー", "pos": "C", "role": "Dr. Big Shot／博士課程の巨人"}, {"id": "clarke", "en": "Clarke", "ja": "クラーク", "pos": "PF", "role": "Flying Dunkman"}, {"id": "murdock", "en": "Murdock", "ja": "マードック", "pos": "PF", "role": "Rim Guardian"}, {"id": "lulu", "en": "Lulu", "ja": "ルル", "pos": "PF", "role": "The BreakThrough"}, {"id": "amanda", "en": "Amanda", "ja": "アマンダ", "pos": "SF", "role": "Point Maker／プロダンサー"}, {"id": "joey", "en": "Joey", "ja": "ジョーイ", "pos": "SF", "role": "Air Joey／サーファー"}, {"id": "william", "en": "William", "ja": "ウィリアム", "pos": "SF", "role": "Mr. Fade Away／敏腕セールスマン"}, {"id": "helena", "en": "Helena", "ja": "ヘレナ", "pos": "PG", "role": "Basketball Mozart"}, {"id": "cindy", "en": "Cindy", "ja": "シンディ", "pos": "PG", "role": "Two Face Guard"}, {"id": "pedro", "en": "Pedro", "ja": "ペドロ", "pos": "PG", "role": "Diving Thief"}, {"id": "professor", "en": "Professor", "ja": "プロフェッサー", "pos": "PG", "role": "Legendary Handles"}, {"id": "kim", "en": "Kim", "ja": "キム", "pos": "SG", "role": "Miss Sniper"}, {"id": "carolina", "en": "Carolina", "ja": "カロリーナ", "pos": "SG", "role": "Faithful Baller"}, {"id": "fred", "en": "Fred", "ja": "フレッド", "pos": "SG", "role": "Fake Master／Fast Fred"}, {"id": "jimmy", "en": "Jimmy", "ja": "ジミー", "pos": "C", "role": "Selfish Attacker／元ドラマー"}, {"id": "deacon", "en": "Deacon", "ja": "ディーコン", "pos": "PF", "role": "Out of Control／元格闘家"}, {"id": "jason", "en": "Jason", "ja": "ジェイソン", "pos": "SG", "role": "Flying J／スカウター"}];
@@ -563,6 +606,52 @@ scrim.addEventListener("click", closeDrawer);
 document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeDrawer(); });
 
 render();
+</script>
+<script>
+(function(){
+  var isEmbedded = new URLSearchParams(window.location.search).get("mp") === "1";
+  var openBtn = document.getElementById("mpOpen");
+  var overlay = document.getElementById("mpOverlay");
+  var closeBtn = document.getElementById("mpClose");
+  var frame = document.getElementById("mpFrame");
+  if (isEmbedded) {
+    document.documentElement.classList.add("mp-embedded");
+    if (overlay) overlay.remove();
+    return;
+  }
+  if (!openBtn || !overlay || !closeBtn || !frame) return;
+  var lastFocus = null;
+  function previewURL(){
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.set("mp", "1");
+      return url.toString();
+    } catch (e) {
+      var base = window.location.href.split("#")[0];
+      return base + (base.indexOf("?") === -1 ? "?" : "&") + "mp=1";
+    }
+  }
+  function openPreview(){
+    lastFocus = document.activeElement;
+    if (!frame.getAttribute("src")) frame.setAttribute("src", previewURL());
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+  function closePreview(){
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  openBtn.addEventListener("click", openPreview);
+  closeBtn.addEventListener("click", closePreview);
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) closePreview(); });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && overlay.classList.contains("open")) closePreview();
+  });
+})();
 </script>
 </body>
 </html>
