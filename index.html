@@ -1638,9 +1638,16 @@
 // スマホ表示プレビュー補完スクリプト
 // ・ヘッダーの「スマホ表示」ボタンで全画面オーバーレイを開き、
 //   390×844 のスマホ型フレーム内に自ページを iframe 表示する
-//   （iframe 内の幅は 390px 固定なのでメディアクリエリが反応する）
-// ・iframe の src には再帰防止フラグ ?mp=1 を付け、フラグがある
-//   場合はボタン／オーバーレイを無効化する
+//   （iframe 内の幅は 390px 固定なのでメディアクエリが反応する）
+// ・iframe の src には再帰防止フラグ ?mp=1 に加えて、ボタンを
+//   押した時点で表示中のセクション ?page=<id> を付ける。
+//   本体は SPA（showPage 切替・URL に状態なし）なので、これが
+//   無いとプレビューは必ず TOP（home）から開いてしまう
+// ・プレビュー内（mp=1）ではボタン／オーバーレイを無効化し、
+//   読み込み完了後に page パラメータのセクションを showPage で
+//   開き直す（script.js の初期化後に実行されるよう load＋遅延）
+// ・現在セクションは showPage のフックで保持し、判定の主軸は
+//   DOM 状態（#standard-content の hidden と .active-page）
 // ・ボタン／閉じるラベル用の辞書キー（mp-*）を window.i18n へマージ
 // ============================================================
 (function () {
@@ -1666,11 +1673,78 @@
     var closeBtn = document.getElementById('mp-close-btn');
     if (!btn || !overlay || !iframe) return;
 
+    // showPage の引数になり得るセクション id（本体の実装に合わせる）
+    var MP_PAGES = ['home', 'guide', 'db', 'pbuff', 'ping', 'videos', 'music', 'survey'];
+
+    // DOM 状態から現在表示中のセクションを判定する
+    // showPage は home のとき #standard-content に hidden を付け、
+    // それ以外では対象セクションに .active-page を付ける
+    function detectPageFromDom() {
+        var standard = document.getElementById('standard-content');
+        if (standard && !standard.classList.contains('hidden')) {
+            var active = document.querySelector('.page-container.active-page');
+            if (active && active.id) {
+                var id = active.id.replace(/^page-/, '');
+                if (MP_PAGES.indexOf(id) !== -1) return id;
+            }
+        }
+        return 'home';
+    }
+
     // 再帰防止：プレビュー内（?mp=1）ではボタンもオーバーレイも出さない
     if (/[?&]mp=1(&|$)/.test(location.search)) {
         btn.style.display = 'none';
         overlay.style.display = 'none';
+
+        // ?page=<id> が付いていれば、そのセクションを開いた状態にする
+        var mpMatch = /[?&]page=([a-z]+)/.exec(location.search);
+        var mpTarget = mpMatch ? mpMatch[1] : null;
+        if (mpTarget && mpTarget !== 'home' && MP_PAGES.indexOf(mpTarget) !== -1) {
+            var tryOpenSection = function () {
+                if (typeof window.showPage === 'function' && document.getElementById('page-' + mpTarget)) {
+                    window.showPage(mpTarget);
+                    return true;
+                }
+                return false;
+            };
+            var openOnReady = function () {
+                // 本体初期化の直後にもう一度呼んでも showPage は冪等なので、
+                // タイミング取りこぼし防止に少し遅れてもう一回実行する
+                if (!tryOpenSection()) {
+                    setTimeout(tryOpenSection, 350);
+                } else {
+                    setTimeout(tryOpenSection, 400);
+                }
+            };
+            if (document.readyState === 'complete') {
+                setTimeout(openOnReady, 50);
+            } else {
+                window.addEventListener('load', function () { setTimeout(openOnReady, 50); });
+            }
+        }
         return;
+    }
+
+    // 現在表示中セクションの保持（showPage フック）
+    // 本体の showPage の挙動は変えず、引数だけを記録する
+    var currentPage = detectPageFromDom();
+    if (typeof window.showPage === 'function') {
+        var origShowPage = window.showPage;
+        window.showPage = function (id) {
+            var result = origShowPage.apply(this, arguments);
+            if (id && MP_PAGES.indexOf(id) !== -1) currentPage = id;
+            return result;
+        };
+    }
+
+    function getCurrentPage() {
+        var fromDom = detectPageFromDom();
+        if (fromDom !== 'home') return fromDom;
+        // DOM 上 home でも、フック側に別セクションの記録が残っていて
+        // #standard-content が表示状態ならそちらを優先する（保険）
+        var standard = document.getElementById('standard-content');
+        if (standard && !standard.classList.contains('hidden') && currentPage !== 'home') return currentPage;
+        return 'home';
     }
 
     function fitFrame() {
@@ -1678,9 +1752,8 @@
         frameWrap.style.transform = 'scale(' + scale + ')';
     }
     function openPreview() {
-        if (!iframe.getAttribute('src') || iframe.getAttribute('src') === 'about:blank') {
-            iframe.src = location.protocol + '//' + location.host + location.pathname + '?mp=1' + location.hash;
-        }
+        var page = getCurrentPage();
+        iframe.src = location.protocol + '//' + location.host + location.pathname + '?mp=1&page=' + encodeURIComponent(page) + location.hash;
         fitFrame();
         overlay.classList.remove('hidden');
         overlay.classList.add('flex');
