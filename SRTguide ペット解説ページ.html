@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="data:," />
+    <title>ペットシステム解説（2026-10-28 刷新版）｜SRTguide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root{
+        --bg:#050505;
+        --bg2:#0b0b0d;
+        --panel:rgba(255,255,255,.045);
+        --panel2:rgba(255,255,255,.07);
+        --line:rgba(255,255,255,.12);
+        --text:#f2f2f2;
+        --muted:#b9bcc4;
+        --accent:#ff4e00;
+        --accent-soft:rgba(255,78,0,.14);
+        --bronze:#d08a4e;
+        --silver:#d7dde6;
+        --gold:#ffd23f;
+        --platinum:#22e6ff;
+        --radius:10px;
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{
+        margin:0;background:var(--bg);color:var(--text);
+        font-family:"Noto Sans JP",system-ui,sans-serif;
+        font-size:15.5px;line-height:1.75;
+        -webkit-text-size-adjust:100%;
+      }
+      button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+      a{color:#ffb59a}
+      a:hover{color:#ffd2bf}
+      .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+
+      /* ---------- Header ---------- */
+      header.site{
+        position:sticky;top:0;z-index:50;
+        background:rgba(5,5,5,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--line);
+      }
+      .header-in{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+      .logo{font-family:"Teko",sans-serif;font-size:30px;font-weight:700;letter-spacing:.06em;line-height:1;color:#fff;text-decoration:none;white-space:nowrap}
+      .logo em{font-style:normal;color:var(--accent)}
+      .logo small{display:block;font-family:"Noto Sans JP",sans-serif;font-size:10px;font-weight:500;letter-spacing:.28em;color:var(--muted)}
+      .header-nav{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+      .header-nav a{
+        color:var(--text);text-decoration:none;font-size:13px;font-weight:700;
+        border:1px solid var(--line);border-radius:999px;padding:8px 14px;display:inline-flex;align-items:center;min-height:36px;
+        background:var(--panel);
+      }
+      .header-nav a:hover{border-color:var(--accent);color:#fff}
+      .header-nav a.home{border-color:var(--accent);color:#ffb59a}
+
+      /* ---------- Hero ---------- */
+      .hero{padding:52px 0 34px;border-bottom:1px solid var(--line);
+        background:
+          radial-gradient(700px 320px at 85% -60px, rgba(255,78,0,.20), transparent 60%),
+          radial-gradient(500px 260px at 8% 0, rgba(34,230,255,.07), transparent 60%),
+          var(--bg);
+      }
+      .hero .patch{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+      .hero .patch b{color:#fff;background:var(--accent);border-radius:4px;padding:2px 9px;letter-spacing:.05em}
+      h1{
+        font-family:"Teko","Noto Sans JP",sans-serif;font-weight:700;
+        font-size:clamp(38px,7vw,64px);line-height:1.08;letter-spacing:.02em;
+        margin:14px 0 6px;color:#fff;
+      }
+      h1 .accent{color:var(--accent)}
+      .hero .sub{font-size:16px;color:var(--muted);max-width:760px;margin:0}
+      .hero-key{
+        margin-top:22px;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--accent);
+        border-radius:var(--radius);padding:16px 20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+        max-width:820px;
+      }
+      .hero-key .k-title{font-weight:900;font-size:17px;color:#fff}
+      .hero-key p{margin:6px 0 0;color:var(--muted)}
+      .hero-key p b{color:#fff}
+      .hero-meta{margin-top:16px;font-size:12.5px;color:var(--muted)}
+
+      /* ---------- Section nav ---------- */
+      nav.toc{padding:18px 0 2px}
+      nav.toc ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+      nav.toc a{
+        display:inline-flex;align-items:center;min-height:36px;padding:6px 14px;
+        border:1px solid var(--line);border-radius:999px;background:var(--panel);
+        color:var(--text);text-decoration:none;font-size:13px;font-weight:700;
+      }
+      nav.toc a:hover{border-color:var(--accent)}
+
+      /* ---------- Sections ---------- */
+      section{padding:38px 0 6px}
+      h2{
+        font-family:"Teko","Noto Sans JP",sans-serif;font-weight:600;
+        font-size:clamp(28px,4.6vw,38px);letter-spacing:.03em;line-height:1.15;
+        color:#fff;margin:0 0 6px;padding-left:14px;border-left:5px solid var(--accent);
+      }
+      h2 .en{color:var(--accent);font-size:.62em;letter-spacing:.12em;margin-left:10px;vertical-align:.18em}
+      .lead{color:var(--muted);margin:0 0 18px;max-width:820px}
+      h3{font-size:17px;font-weight:900;color:#fff;margin:26px 0 10px}
+      h3:first-of-type{margin-top:8px}
+
+      .card{
+        background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+        padding:18px 20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+      }
+      .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+      .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+      @media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+      ul.tight{margin:6px 0;padding-left:1.25em}
+      ul.tight li{margin:4px 0}
+      .note{font-size:13px;color:var(--muted)}
+      .warn{
+        border:1px solid rgba(255,210,63,.45);background:rgba(255,210,63,.07);
+        border-radius:var(--radius);padding:14px 18px;
+      }
+      .warn .w-title{font-weight:900;color:var(--gold)}
+      .strike{color:var(--muted)}
+      .tag{display:inline-block;font-size:11.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 9px;color:var(--muted);vertical-align:.1em}
+
+      /* ---------- Tables ---------- */
+      .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+      table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+      caption{text-align:left;font-weight:900;color:#fff;padding:12px 16px 4px;font-size:15px}
+      th,td{padding:10px 14px;text-align:left;border-top:1px solid var(--line);vertical-align:top}
+      thead th{border-top:none;background:rgba(255,255,255,.06);color:#fff;font-size:12.5px;letter-spacing:.04em;white-space:nowrap}
+      tbody th{color:#fff;font-weight:700;white-space:nowrap}
+      td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+      .plain-table{min-width:0}
+      @media (max-width:640px){
+        table{min-width:0}
+        .resp thead{display:none}
+        .resp tr{display:block;padding:8px 0;border-top:1px solid var(--line)}
+        .resp tr:first-child{border-top:none}
+        .resp td,.resp tbody th{display:flex;justify-content:space-between;gap:14px;border-top:none;padding:5px 14px;white-space:normal;text-align:right}
+        .resp td::before,.resp tbody th::before{content:attr(data-label);color:var(--muted);font-size:12px;font-weight:700;text-align:left;flex:none}
+        .resp td.num,.resp th.num{text-align:right}
+        .resp tbody th{color:#fff}
+      }
+
+      /* ---------- Rate bar ---------- */
+      .ratebar{display:flex;height:52px;border-radius:8px;overflow:hidden;border:1px solid var(--line);margin:14px 0 6px}
+      .ratebar div{display:flex;align-items:center;justify-content:center;font-weight:900;color:#0a0a0a;font-size:15px;min-width:0;text-align:center;padding:0 4px}
+      .ratebar .rb-bronze{background:linear-gradient(180deg,#e0a061,#b5713a);width:70%}
+      .ratebar .rb-silver{background:linear-gradient(180deg,#eef2f7,#b9c2cf);width:25%}
+      .ratebar .rb-gold{background:linear-gradient(180deg,#ffe066,#f0b90b);width:5%;font-size:12px}
+      .rate-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);margin-bottom:8px}
+      .rate-legend span b{color:#fff}
+      .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+      /* ---------- Grade chips / filters ---------- */
+      .g-bronze{color:var(--bronze)} .g-silver{color:var(--silver)} .g-gold{color:var(--gold)} .g-platinum{color:var(--platinum)}
+      .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 6px}
+      .fbtn{
+        font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;
+        color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;
+        padding:8px 16px;min-height:38px;
+      }
+      .fbtn:hover{border-color:#fff}
+      .fbtn.active{border-color:var(--accent);background:var(--accent-soft);color:#fff}
+      .fbtn[data-grade="bronze"].active{border-color:var(--bronze);background:rgba(208,138,78,.15)}
+      .fbtn[data-grade="silver"].active{border-color:var(--silver);background:rgba(215,221,230,.13)}
+      .fbtn[data-grade="gold"].active{border-color:var(--gold);background:rgba(255,210,63,.13)}
+      .fbtn[data-grade="platinum"].active{border-color:var(--platinum);background:rgba(34,230,255,.12)}
+      .searchbox{flex:1 1 220px;min-width:180px}
+      .searchbox input{
+        width:100%;font-family:inherit;font-size:15px;color:var(--text);
+        background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:9px 16px;min-height:40px;
+      }
+      .searchbox input::placeholder{color:#8b8f98}
+      .count-line{font-size:13px;color:var(--muted);margin:8px 0 14px}
+
+      /* ---------- Pet cards ---------- */
+      .pet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px}
+      .pet{
+        border-radius:var(--radius);padding:15px 16px 13px;
+        background:var(--panel);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+        border:1.5px solid var(--line);
+      }
+      .pet.bronze{border-color:var(--bronze);box-shadow:0 0 14px rgba(208,138,78,.22)}
+      .pet.silver{border-color:var(--silver);box-shadow:0 0 14px rgba(215,221,230,.20)}
+      .pet.gold{border-color:var(--gold);box-shadow:0 0 14px rgba(255,210,63,.22)}
+      .pet.platinum{border-color:var(--platinum);box-shadow:0 0 16px rgba(34,230,255,.28)}
+      .pet .p-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+      .pet .grade{
+        font-family:"Teko",sans-serif;font-size:14px;font-weight:600;letter-spacing:.14em;
+        padding:1px 9px;border-radius:4px;border:1px solid currentColor;line-height:1.5;
+      }
+      .pet.bronze .grade{color:var(--bronze)} .pet.silver .grade{color:var(--silver)}
+      .pet.gold .grade{color:var(--gold)} .pet.platinum .grade{color:var(--platinum)}
+      .pet .maxlv{margin-left:auto;font-size:11.5px;color:var(--muted);white-space:nowrap}
+      .pet h4{margin:0;font-size:17.5px;font-weight:900;color:#fff;line-height:1.35}
+      .pet .kor{font-size:12px;color:var(--muted);margin:1px 0 10px}
+      .pet .ability{font-size:13.5px;font-weight:700;color:#ffd9c9;border-top:1px dashed var(--line);padding-top:9px;line-height:1.5}
+      .pet .ability .a-label{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
+      .pet .vals{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-variant-numeric:tabular-nums}
+      .pet .vals .v1{font-size:14px;color:var(--muted)}
+      .pet .vals .arrow{color:var(--accent);font-weight:900}
+      .pet .vals .vmax{font-size:21px;font-weight:900;color:#fff}
+      .pet .vals .v-label{font-size:10.5px;color:var(--muted);letter-spacing:.06em}
+      .empty{border:1px dashed var(--line);border-radius:var(--radius);padding:26px;text-align:center;color:var(--muted)}
+
+      /* ---------- Sub ability tables ---------- */
+      .sub-group{margin-bottom:22px}
+      .sub-group h3 .cnt{color:var(--muted);font-size:13px;font-weight:700}
+      td .init{font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+
+      /* ---------- Sources / footer ---------- */
+      .sources{list-style:none;margin:10px 0;padding:0}
+      .sources li{padding:9px 0;border-top:1px solid var(--line);font-size:14px}
+      .sources li:first-child{border-top:none}
+      .sources .s-label{font-weight:900;color:#fff;margin-right:8px}
+      .sources a{word-break:break-all}
+      footer{margin-top:48px;border-top:1px solid var(--line);padding:26px 0 44px;color:var(--muted);font-size:13px}
+      footer .fan{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:14px 18px;margin-bottom:16px}
+      footer .fan b{color:#fff}
+      .to-top{display:inline-flex;align-items:center;min-height:36px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-weight:700;font-size:13px;background:var(--panel)}
+      .to-top:hover{border-color:var(--accent)}
+
+      /* ---------- スマホ表示プレビュー ---------- */
+      .mp-btn{
+        font-family:inherit;color:var(--text);cursor:pointer;
+        font-size:13px;font-weight:700;
+        border:1px solid var(--accent);border-radius:999px;padding:8px 14px;
+        display:inline-flex;align-items:center;gap:7px;min-height:36px;
+        background:var(--accent-soft);
+      }
+      .mp-btn:hover{background:rgba(255,78,0,.28);color:#fff}
+      .mp-btn svg{flex:none}
+      html.mp-mode .mp-btn, html.mp-mode .mp-overlay{display:none !important}
+      .mp-overlay{
+        position:fixed;inset:0;z-index:200;
+        background:rgba(0,0,0,.9);
+        backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+        display:flex;flex-direction:column;
+      }
+      .mp-overlay[hidden]{display:none}
+      .mp-bar{
+        display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+        padding:12px 18px;border-bottom:1px solid var(--line);
+      }
+      .mp-bar .mp-title{font-weight:900;color:#fff;font-size:15px}
+      .mp-bar .mp-title small{color:var(--muted);font-weight:500;font-size:12px;margin-left:8px;letter-spacing:.06em}
+      .mp-close{
+        margin-left:auto;font-family:inherit;cursor:pointer;
+        font-size:13.5px;font-weight:700;color:#fff;
+        background:var(--accent);border:1px solid var(--accent);border-radius:999px;
+        padding:8px 18px;min-height:38px;display:inline-flex;align-items:center;gap:7px;
+      }
+      .mp-close:hover{background:#ff6a26}
+      .mp-stage{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px}
+      .mp-frame{
+        position:relative;flex:none;
+        width:412px;height:866px;
+        border:11px solid #1d1d21;border-radius:52px;
+        background:#000;overflow:hidden;
+        box-shadow:0 30px 80px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,.14), 0 0 44px rgba(255,78,0,.16);
+      }
+      .mp-notch{
+        position:absolute;top:9px;left:50%;transform:translateX(-50%);
+        width:110px;height:24px;border-radius:999px;background:#000;
+        border:1px solid rgba(255,255,255,.08);z-index:2;pointer-events:none;
+      }
+      .mp-frame iframe{display:block;width:390px;height:844px;border:0;background:#050505}
+    </style>
+    <script>
+      // スマホ表示プレビュー内（?mp=1）では、ボタンとオーバーレイを最初から出さない
+      if (new URLSearchParams(window.location.search).get("mp") === "1") {
+        document.documentElement.classList.add("mp-mode");
+      }
+    </script>
+  </head>
+  <body id="top">
+
+    <header class="site">
+      <div class="wrap header-in">
+        <a class="logo" href="https://mirimaru.github.io/SRTguide/">3on3 <em>DIVINE</em><small>SRTGUIDE</small></a>
+        <nav class="header-nav" aria-label="サイト内リンク">
+          <button type="button" class="mp-btn" id="mpOpenBtn" aria-haspopup="dialog">
+            <svg width="13" height="20" viewBox="0 0 13 20" fill="none" aria-hidden="true"><rect x="0.75" y="0.75" width="11.5" height="18.5" rx="2.6" stroke="#ff4e00" stroke-width="1.5"/><line x1="4.8" y1="16.6" x2="8.2" y2="16.6" stroke="#ff4e00" stroke-width="1.5" stroke-linecap="round"/></svg>
+            スマホ表示
+          </button>
+          <a href="#pets">ペット一覧</a>
+          <a href="#sub">サブ能力</a>
+          <a class="home" href="https://mirimaru.github.io/SRTguide/">← SRTguide トップへ戻る</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <div class="hero">
+      <div class="wrap">
+        <span class="patch"><b>PATCH NOTE</b> ver. 1.1.216.1（October 28, 2026）「Pet System Change」</span>
+        <h1>ペットシステム解説<br /><span class="accent">2026-10-28 刷新版</span></h1>
+        <p class="sub">2026年10月28日のアップデートで、3on3 FreeStyle のペットシステムは全面刷新（completely revamped）された。入手（入養）・能力・成長・合成の仕組みと、全51種のペット／全56種のサブ能力を、公式パッチノートと公式の確率・詳細表をもとに整理する。</p>
+        <div class="hero-key">
+          <div class="k-title">刷新の要点：発動条件は撤廃、装備するだけで自動発動</div>
+          <p>旧仕様では「条件を満たすと発動する」方式だったペットスキルが、<b>装備すると自動発動</b>する方式に変更された。全てのスキル発動条件（Condition）は撤廃され、この変更は <b>10/28 以前に所持していたペットにも適用</b>される。各キャラクターに装備できるペットは従来どおり1体まで。</p>
+        </div>
+        <p class="hero-meta">グレードは Bronze / Silver / Gold / Platinum の4段階。出典は公式パッチノート ver. 1.1.216.1 と公式「Pet System Rates &amp; Information」（詳細はページ末尾の出典一覧）。</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <nav class="toc" aria-label="目次">
+        <ul>
+          <li><a href="#changes">刷新のポイント</a></li>
+          <li><a href="#adoption">入手（入養）</a></li>
+          <li><a href="#ability">グレードと能力</a></li>
+          <li><a href="#combine">合成</a></li>
+          <li><a href="#growth">成長</a></li>
+          <li><a href="#pets">ペット一覧（51種）</a></li>
+          <li><a href="#sub">サブ能力一覧（56種）</a></li>
+          <li><a href="#caution">注意点</a></li>
+          <li><a href="#sources">出典</a></li>
+        </ul>
+      </nav>
+
+      <!-- ============ 刷新のポイント ============ -->
+      <section id="changes">
+        <h2>刷新のポイント<span class="en">WHAT CHANGED</span></h2>
+        <p class="lead">パッチノートに明記された変更・廃止事項と、刷新前から所持していたペットの扱い。</p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>変更点</h3>
+            <ul class="tight">
+              <li><b>発動条件の撤廃</b>：ペットスキルは「条件達成で発動」→「装備で自動発動」に変更（既存ペットにも適用）。</li>
+              <li><b>入手口の一本化</b>：Kennel（犬小屋）商品は撤去され、単一の <b>Pet Adoption バナー</b> に統合。アクセスは <b>[Characters] – [Pet]</b>。</li>
+              <li><b>成長方式の変更</b>：旧仕様の Prestige（プレステージ）制から、他のペットを餌にして EXP を得るレベル制へ。</li>
+              <li><b>グレード上げの変更</b>：Pet Grade Up Items は廃止され、上位グレードは <b>合成（Combination）</b> で狙う方式に。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>廃止された機能・アイテム</h3>
+            <ul class="tight">
+              <li><b>機能の削除</b>：Pet Skill Change（スキル変更）／ Appearance Change（見た目変更）／ Name Change（名前変更）の3機能。</li>
+              <li><b>販売・使用が終了したアイテム</b>：Pet Skill Change Ticket / Appearance Change Ticket / Name Change Ticket / <b>Pet Coins</b> / Pet Grade Up Items / Silver Pet Adoption Tickets。</li>
+              <li><b>例外</b>：Gold Pet Adoption Ticket は刷新後も新しい入養バナーで引き続き使用可能。</li>
+              <li>10/28 以前に未使用だった対象アイテムは、インベントリから一定額のコインで売却可能。</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>既存ペットの扱い（移行措置）</h3>
+        <div class="card">
+          <ul class="tight">
+            <li>10/28 以前に所持していたペットは <b>そのまま使用可能</b>。</li>
+            <li>発動条件は削除され、スキルは削除直前の <b>最後の設定に固定</b> される（見た目・名前も最後の設定がそのまま保持される）。</li>
+            <li>既存ペットには <b>Sub Stats（サブ能力）は付与されない</b>。元のペットスキルのみ保持する。</li>
+            <li>既存ペットは合成・強化の素材として使用可能。新しいペットは合成を通じて入手できる。</li>
+          </ul>
+        </div>
+
+        <h3>旧仕様（2020年2月導入時）との対比</h3>
+        <div class="table-scroll">
+          <table class="resp">
+            <thead><tr><th>項目</th><th>旧仕様</th><th>新仕様（2026-10-28〜）</th></tr></thead>
+            <tbody>
+              <tr><th data-label="項目">入手</th><td data-label="旧仕様">Shop の Pet メニューで Kennel（レア度別パック）を購入</td><td data-label="新仕様">[Characters] – [Pet] の Pet Adoption バナー（Coins / Points / Gold Ticket）</td></tr>
+              <tr><th data-label="項目">能力発動</th><td data-label="旧仕様">発動条件（Condition）あり。例：「[Enemy Team] Shot Success 5 Times」</td><td data-label="新仕様">条件撤廃、装備で自動発動</td></tr>
+              <tr><th data-label="項目">成長要素</th><td data-label="旧仕様">Prestige を上げると発動条件が緩和される。上限はレア度依存</td><td data-label="新仕様">レベル制（餌やり EXP）。サブ能力スロット解禁・強化が軸</td></tr>
+              <tr><th data-label="項目">スキル変更</th><td data-label="旧仕様">Skill Change Ticket で引き直し可能</td><td data-label="新仕様">機能自体が削除</td></tr>
+              <tr><th data-label="項目">見た目変更</th><td data-label="旧仕様">所持（解禁）済みのペットの見た目に変更可能</td><td data-label="新仕様">機能自体が削除</td></tr>
+              <tr><th data-label="項目">絆・装備</th><td data-label="旧仕様">Management &gt; Pet でキャラに紐付け（絆を解くのに Points が必要）。名前付け可能</td><td data-label="新仕様">各キャラに1体装備（方式は従来どおり）</td></tr>
+              <tr><th data-label="項目">専用通貨</th><td data-label="旧仕様">Friendship（試合で上昇）→ Pet Coin を獲得（満タンで最大6枚）。放逐（dismiss）でも Pet Coin が戻る（Platinum 10 / Gold 4 / Silver 2 / Bronze 1）</td><td data-label="新仕様">Pet Coins は販売・使用終了（アイテム自体が廃止）</td></tr>
+              <tr><th data-label="項目">グレード上げ</th><td data-label="旧仕様">Pet Grade Up Items が存在</td><td data-label="新仕様">合成（Combination）で上位グレードを狙う方式に</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ 入手（入養） ============ -->
+      <section id="adoption">
+        <h2>入手（入養）<span class="en">PET ADOPTION</span></h2>
+        <p class="lead">入養は [Characters] – [Pet] の Pet Adoption バナーから。通貨は Coins または Points で、通貨の種類による排出率の差はなく、消費量のみが異なる。同グレード内のペットは全て均等確率。</p>
+
+        <h3>グレード別排出率</h3>
+        <div class="ratebar" role="img" aria-label="排出率：Bronze 70%、Silver 25%、Gold 5%">
+          <div class="rb-bronze">Bronze 70%</div>
+          <div class="rb-silver">Silver 25%</div>
+          <div class="rb-gold">5%</div>
+        </div>
+        <div class="rate-legend">
+          <span><i class="dot" style="background:#c97b3f"></i><b>Bronze</b> 70%（6種・1種あたり 11.667%）</span>
+          <span><i class="dot" style="background:#cfd6dd"></i><b>Silver</b> 25%（4種・1種あたり 6.250%）</span>
+          <span><i class="dot" style="background:#ffd23f"></i><b>Gold</b> 5%（15種・1種あたり 0.333%）</span>
+          <span><i class="dot" style="background:#22e6ff"></i><b>Platinum</b> 入養不可（26種・合成専用）</span>
+        </div>
+        <div class="warn">
+          <span class="w-title">Platinum は入養では出ない。</span> 入養で出るのは Bronze / Silver / Gold のみで、<b>Platinum（26種）は合成でのみ入手可能</b>。
+        </div>
+
+        <h3>入養コスト</h3>
+        <div class="table-scroll">
+          <table class="resp">
+            <thead><tr><th>入養方法</th><th>コスト</th></tr></thead>
+            <tbody>
+              <tr><th data-label="入養方法">コイン 1回入養</th><td data-label="コスト">2,000 Coins</td></tr>
+              <tr><th data-label="入養方法">コイン 10回入養</th><td data-label="コスト">20,000 Coins</td></tr>
+              <tr><th data-label="入養方法">ポイント 10回入養</th><td data-label="コスト">10 Points</td></tr>
+              <tr><th data-label="入養方法">Gold Pet Adoption Ticket</th><td data-label="コスト">1回につき1枚／10回で10枚</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">※ Points の「1回入養」は公式の詳細表に記載がなく、未確認（<a href="#caution">注意点</a>参照）。Gold Pet Adoption Ticket は刷新後も新しい入養バナーで使用可能。</p>
+      </section>
+
+      <!-- ============ グレードと能力 ============ -->
+      <section id="ability">
+        <h2>グレードと能力の仕組み<span class="en">ABILITY &amp; GRADE</span></h2>
+        <p class="lead">ペットの能力は、ペットごとに固定の「固有能力（Unique Ability）」と、グレードに応じて付く「サブ能力（Sub Ability）」の2層構造。</p>
+
+        <div class="grid2">
+          <div class="card">
+            <h3>Unique Ability（固有能力）</h3>
+            <ul class="tight">
+              <li>ペット1体につき1つ。ペットごとに内容が決まっている。</li>
+              <li><b>全グレードで所持</b>し、<b>レベルが上がるたびに数値が上昇</b>する。</li>
+              <li>各ペットの Lv.1 値と最大値は<a href="#pets">ペット一覧</a>に掲載。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Sub Ability（サブ能力）</h3>
+            <ul class="tight">
+              <li>獲得した時点で内容が決定しており、スロットが解禁されるたびに公開される。</li>
+              <li>グレードごとに登場しうるサブ能力のリストが決まっており、リスト内は均等確率。すでに前のスロットで出たサブ能力は重複して出ない（例：20種なら1スロット目は各5%、2スロット目は残り19種が各約5.26%）。</li>
+              <li><b>強化</b>：Gold は Lv.9 で1回、Platinum は Lv.12・Lv.15 で2回、解禁済みサブ能力の中からランダムで1つが強化される。Platinum では同じサブ能力が2回強化されることもある。</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>グレード別の能力構成と成長上限</h3>
+        <div class="table-scroll">
+          <table class="resp">
+            <thead>
+              <tr><th>Grade</th><th>Unique Ability</th><th class="num">Sub スロット数</th><th class="num">最大レベル</th><th class="num">最大Lvまでの必要EXP</th><th>スロット解禁レベル</th><th>サブ能力強化レベル</th></tr>
+            </thead>
+            <tbody>
+              <tr><th data-label="Grade"><span class="g-bronze">Bronze</span></th><td data-label="Unique Ability">○</td><td class="num" data-label="Sub スロット数">0</td><td class="num" data-label="最大レベル">Lv.3</td><td class="num" data-label="必要EXP">30</td><td data-label="解禁レベル">—</td><td data-label="強化レベル">—</td></tr>
+              <tr><th data-label="Grade"><span class="g-silver">Silver</span></th><td data-label="Unique Ability">○</td><td class="num" data-label="Sub スロット数">1</td><td class="num" data-label="最大レベル">Lv.6</td><td class="num" data-label="必要EXP">150</td><td data-label="解禁レベル">Lv.3</td><td data-label="強化レベル">—</td></tr>
+              <tr><th data-label="Grade"><span class="g-gold">Gold</span></th><td data-label="Unique Ability">○</td><td class="num" data-label="Sub スロット数">2</td><td class="num" data-label="最大レベル">Lv.12</td><td class="num" data-label="必要EXP">500</td><td data-label="解禁レベル">Lv.3・Lv.6</td><td data-label="強化レベル">Lv.9</td></tr>
+              <tr><th data-label="Grade"><span class="g-platinum">Platinum</span></th><td data-label="Unique Ability">○</td><td class="num" data-label="Sub スロット数">3</td><td class="num" data-label="最大レベル">Lv.15</td><td class="num" data-label="必要EXP">1000</td><td data-label="解禁レベル">Lv.3・Lv.6・Lv.9</td><td data-label="強化レベル">Lv.12・Lv.15</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">※ サブ能力スロットは「3強化レベルごとに順次解禁」される（パッチノート表現）。</p>
+      </section>
+
+      <!-- ============ 合成 ============ -->
+      <section id="combine">
+        <h2>合成<span class="en">PET COMBINATION</span></h2>
+        <p class="lead">同じグレード同士のペットを合成すると、同グレードまたは1つ上のグレードのペットがランダムで1体手に入る。Platinum を手に入れる唯一の方法がこの合成。</p>
+        <div class="card">
+          <ul class="tight">
+            <li>素材ペットは全て消滅し、新しいペットは <b>Lv.1</b> で獲得。種類はランダム。</li>
+            <li>Platinum 同士の合成ではランダムな Platinum ペット1体が得られる（それ以上のグレードは存在しない）。</li>
+            <li><b>装備中・ロック中のペットは素材に使えない。</b></li>
+            <li>通貨による合成確率の差はない。異なるのは必要素材数（コイン＝5体／ポイント＝2体）。</li>
+            <li><b>一括合成（Bulk Combination）</b>：低いグレードから順に、1回で最大200体まで使用可能（コイン合成は最大40回分、ポイント合成は最大100回分）。</li>
+          </ul>
+        </div>
+        <h3>合成コストと上位化率</h3>
+        <div class="table-scroll">
+          <table class="resp">
+            <thead>
+              <tr><th>材料グレード</th><th class="num">上位グレード獲得確率</th><th>成功時</th><th>失敗時</th><th>コイン合成</th><th>ポイント合成</th></tr>
+            </thead>
+            <tbody>
+              <tr><th data-label="材料グレード"><span class="g-bronze">Bronze</span></th><td class="num" data-label="上位化率">60.00%</td><td data-label="成功時">ランダムな Silver</td><td data-label="失敗時">ランダムな Bronze</td><td data-label="コイン合成">5体 + 2,500 Coins</td><td data-label="ポイント合成">2体 + 2 Points</td></tr>
+              <tr><th data-label="材料グレード"><span class="g-silver">Silver</span></th><td class="num" data-label="上位化率">40.00%</td><td data-label="成功時">ランダムな Gold</td><td data-label="失敗時">ランダムな Silver</td><td data-label="コイン合成">5体 + 4,000 Coins</td><td data-label="ポイント合成">2体 + 4 Points</td></tr>
+              <tr><th data-label="材料グレード"><span class="g-gold">Gold</span></th><td class="num" data-label="上位化率">25.00%</td><td data-label="成功時">ランダムな Platinum</td><td data-label="失敗時">ランダムな Gold</td><td data-label="コイン合成">5体 + 10,000 Coins</td><td data-label="ポイント合成">2体 + 10 Points</td></tr>
+              <tr><th data-label="材料グレード"><span class="g-platinum">Platinum</span></th><td class="num" data-label="上位化率">—</td><td data-label="成功時">ランダムな Platinum</td><td data-label="失敗時">—</td><td data-label="コイン合成">5体 + 10,000 Coins</td><td data-label="ポイント合成">2体 + 10 Points</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ 成長 ============ -->
+      <section id="growth">
+        <h2>成長<span class="en">ENHANCEMENT / GROWTH</span></h2>
+        <p class="lead">ペットの強化（Pet Enhancement）は、他のペットを餌（Feed）にして EXP を得る方式。あわせてコインを消費する。</p>
+        <div class="grid2">
+          <div class="card">
+            <h3>餌やりの基本</h3>
+            <ul class="tight">
+              <li>餌にするコストは <b>1体につき 100 Coins</b>。</li>
+              <li><b>装備中・ロック中のペットは餌にできない。</b></li>
+              <li>育成したペットを餌にすると、そのペットに投資した EXP の <b>3%</b> が基本 EXP に上乗せされる。</li>
+              <li>最大レベルを超える EXP は切り捨て（持ち越しなし）。</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>餌 EXP（餌ペットのグレード別）</h3>
+            <div class="table-scroll" style="border:none;background:transparent">
+              <table class="plain-table resp">
+                <tbody>
+                  <tr><th data-label="Grade"><span class="g-bronze">Bronze</span></th><td class="num" data-label="EXP">10 EXP</td></tr>
+                  <tr><th data-label="Grade"><span class="g-silver">Silver</span></th><td class="num" data-label="EXP">20 EXP</td></tr>
+                  <tr><th data-label="Grade"><span class="g-gold">Gold</span></th><td class="num" data-label="EXP">50 EXP</td></tr>
+                  <tr><th data-label="Grade"><span class="g-platinum">Platinum</span></th><td class="num" data-label="EXP">200 EXP</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="note">最大レベルまでの必要 EXP は Bronze 30 / Silver 150 / Gold 500 / Platinum 1000（<a href="#ability">グレード表</a>参照）。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ペット一覧 ============ -->
+      <section id="pets">
+        <h2>ペット一覧<span class="en">ALL PETS — 51</span></h2>
+        <p class="lead">全51種（Platinum 26 / Gold 15 / Silver 4 / Bronze 6）。各ペットの固有能力（Unique Ability）と、Lv.1 値 → 最大レベル時の値を掲載。数値は公式の確率・詳細表の表記どおり。枠の色はグレード色（Bronze＝銅 / Silver＝銀 / Gold＝金 / Platinum＝蛍光シアン）。</p>
+        <div class="filters" role="group" aria-label="グレードで絞り込み">
+          <button type="button" class="fbtn active" data-grade="all">すべて（51）</button>
+          <button type="button" class="fbtn" data-grade="platinum">Platinum（26）</button>
+          <button type="button" class="fbtn" data-grade="gold">Gold（15）</button>
+          <button type="button" class="fbtn" data-grade="silver">Silver（4）</button>
+          <button type="button" class="fbtn" data-grade="bronze">Bronze（6）</button>
+          <label class="searchbox">
+            <span class="tag" style="display:none">検索</span>
+            <input type="search" id="petSearch" placeholder="ペット名・能力名で検索（例：Drone / Steal）" aria-label="ペット名・能力名で検索" />
+          </label>
+        </div>
+        <p class="count-line" id="petCount" aria-live="polite"></p>
+        <div class="pet-grid" id="petGrid"></div>
+        <div class="empty" id="petEmpty" hidden>条件に合うペットがありません。検索語やグレードを変えてみてください。</div>
+      </section>
+
+      <!-- ============ サブ能力一覧 ============ -->
+      <section id="sub">
+        <h2>サブ能力一覧<span class="en">SUB ABILITIES — 56</span></h2>
+        <p class="lead">全56種と初期値（Initial Value）、登場するグレード。Silver は全56種、Gold は39種、Platinum は22種が登場する。</p>
+        <div id="subGroups"></div>
+        <p class="note">※ サブ能力を「強化」した際に数値がどれだけ上がるかは、公式ページに明記がない（未確認）。</p>
+      </section>
+
+      <!-- ============ 注意点 ============ -->
+      <section id="caution">
+        <h2>注意点<span class="en">NOTES &amp; UNCONFIRMED</span></h2>
+        <p class="lead">期間限定要素と、公式情報だけでは確定できなかった事項を正直に注記する。</p>
+
+        <h3>Platinum Pet Surprise Box（期間限定販売）</h3>
+        <div class="card">
+          <ul class="tight">
+            <li>Platinum ペット26種のうち1体が確定で手に入るボックス。</li>
+            <li><b>販売期間は公式ソース間で食い違いがある</b>：公式イベントページは「Oct 28 - Nov 3, 23:59 PST」、公式YouTube概要欄と公式Facebook動画は「Oct 28 – Nov 10, 23:59 PST」。延長された可能性があり、<b>正確な終了日は未確定</b>。</li>
+            <li><b>ボックス自体の価格は公式ページに明記なし</b>（未確認）。</li>
+          </ul>
+          <h3 style="margin-top:16px">累計購入特典（公式イベントページ）</h3>
+          <div class="table-scroll" style="border:none;background:transparent">
+            <table class="plain-table resp">
+              <thead><tr><th>購入回数</th><th>報酬</th></tr></thead>
+              <tbody>
+                <tr><th data-label="購入回数">2</th><td data-label="報酬">Gold Pet Adoption Ticket ×10</td></tr>
+                <tr><th data-label="購入回数">4</th><td data-label="報酬">Gold Pet Adoption Ticket ×40</td></tr>
+                <tr><th data-label="購入回数">6</th><td data-label="報酬">Guaranteed Platinum Pet Kennel ×1</td></tr>
+                <tr><th data-label="購入回数">8</th><td data-label="報酬">Guaranteed Platinum Pet Kennel ×1</td></tr>
+                <tr><th data-label="購入回数">10</th><td data-label="報酬">Guaranteed Platinum Pet Kennel ×1</td></tr>
+                <tr><th data-label="購入回数">12</th><td data-label="報酬">Top Platinum Pet Selectable Box ×1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3>Shopping Spree! Event</h3>
+        <div class="card">
+          <ul class="tight">
+            <li>期間：Oct 28 - Nov 3, 23:59 PST。</li>
+            <li>期間中に Platinum Pet Surprise Box・Pet Adoption・Pet Combination へ <b>700P 以上</b> 使うと <b>Guaranteed Platinum Pet Kennel</b> を獲得（報酬は11月4日のメンテナンス時に配布）。</li>
+          </ul>
+        </div>
+
+        <h3>Best Seller Fan Box の報酬変更</h3>
+        <div class="card">
+          <p style="margin-top:0">ペットシステム刷新に伴い、Best Seller Fan Box 内のペット報酬が差し替えられた（抽選率は不変、参加中のプレイヤーにも適用）。</p>
+          <ul class="tight">
+            <li>[PLATINUM] Rabbit Alien UFO → Fei's Nine-tailed Fox Hair ／ Candy Pinata → Nine-tailed Fox Outfit ／ White Robot Cleaner → Nine-tailed Fox Tail</li>
+            <li>[GOLD] Gold Pet Adoption Ticket → 10000 Coins ／ Pet Skill Change Ticket → Selectable Ability Card Silver Box Ticket x5</li>
+          </ul>
+        </div>
+
+        <h3>未確認事項（公式情報に明記なし）</h3>
+        <div class="warn">
+          <ul class="tight" style="margin:0">
+            <li>Points での「1回入養」の有無と価格（詳細表には10回入養＝10 Points のみ記載）。</li>
+            <li>Platinum Pet Surprise Box の販売価格（公式ページに価格表記なし）。</li>
+            <li>サブ能力を強化した際の具体的な数値上昇幅（「強化される」旨のみで幅は未公開）。</li>
+            <li>固有能力のレベルごとの上昇カーブ（Lv.1 値と最大レベルの値のみ公開）。</li>
+            <li>Platinum Pet Surprise Box の正確な販売終了日（イベントページ：11月3日／YouTube・Facebook：11月10日で不一致）。</li>
+            <li>公式Facebook動画の要約では「既存ペットはグレードと見た目を保持し、自動で最大レベルになる」と説明されているが、パッチノート本文にはレベルの自動引き上げの明記がなく「Sub Stats は付与されない」とあるため、この点は動画側の表現として要確認（このページではパッチノート本文を正とした）。</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ 出典 ============ -->
+      <section id="sources">
+        <h2>出典<span class="en">SOURCES</span></h2>
+        <p class="lead">このページの数値・固有名詞は、すべて下記の公式ソースの記載に基づく（調査日：2026-11-14）。</p>
+        <ul class="sources">
+          <li><span class="s-label">A</span>Patch Note ver. 1.1.216.1 (October 28th)（公式サイト）<br /><a href="https://3on3.fsgames.com/newNews/devnote/6946/view" target="_blank" rel="noopener">https://3on3.fsgames.com/newNews/devnote/6946/view</a></li>
+          <li><span class="s-label">B</span>Pet System Rates &amp; Information（確率・詳細表、公式サイト）<br /><a href="https://3on3.fsgames.com/newNews/drawRate/6942/view" target="_blank" rel="noopener">https://3on3.fsgames.com/newNews/drawRate/6942/view</a></li>
+          <li><span class="s-label">C</span>10/28 Update: In-Game Event（公式サイト）<br /><a href="https://3on3.fsgames.com/newNews/event/6941/view" target="_blank" rel="noopener">https://3on3.fsgames.com/newNews/event/6941/view</a></li>
+          <li><span class="s-label">D</span>Best Seller Fan Box Item Change（公式サイト告知）<br /><a href="http://3on3.fsgames.com/newNews/announcement/6945/view" target="_blank" rel="noopener">http://3on3.fsgames.com/newNews/announcement/6945/view</a></li>
+          <li><span class="s-label">E</span>公式YouTube「3on3 FreeStyle Patch Notes | Pet System Update (Oct 28)」<br /><a href="https://www.youtube.com/watch?v=z-Fux-nU-g4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=z-Fux-nU-g4</a></li>
+          <li><span class="s-label">F</span>旧ペットシステム導入時のパッチノート（Pet System Update、2020年2月・PS4版）<br /><a href="https://3on3.fsgames.com/en/news/devnote/ps4/1740" target="_blank" rel="noopener">https://3on3.fsgames.com/en/news/devnote/ps4/1740</a></li>
+          <li><span class="s-label">G</span>公式Facebook クイックガイド動画（Pet Quick Guide）<br /><a href="https://www.facebook.com/reel/1662062025310353/" target="_blank" rel="noopener">https://www.facebook.com/reel/1662062025310353/</a></li>
+        </ul>
+      </section>
+
+      <footer>
+        <div class="fan">
+          <b>SRTguide は非公式ファンサイトです。</b> このページは 3on3 FreeStyle の公式サイトではありません。ゲームに関する正確な情報は、上記の公式サイト・公式チャンネルでご確認ください。
+        </div>
+        <p>SRTguide ペットシステム解説（2026-10-28 刷新版）／ 調査日：2026-11-14</p>
+        <p><a class="to-top" href="#top">↑ ページ先頭へ</a>　<a class="to-top" href="https://mirimaru.github.io/SRTguide/">SRTguide トップへ戻る</a></p>
+      </footer>
+    </div>
+
+    <!-- ============ スマホ表示プレビュー ============ -->
+    <div class="mp-overlay" id="mpOverlay" hidden role="dialog" aria-modal="true" aria-label="スマホ表示プレビュー">
+      <div class="mp-bar">
+        <span class="mp-title">スマホ表示プレビュー<small>390 × 844</small></span>
+        <button type="button" class="mp-close" id="mpCloseBtn">✕ 閉じる</button>
+      </div>
+      <div class="mp-stage" id="mpStage">
+        <div class="mp-frame" id="mpFrame">
+          <div class="mp-notch" aria-hidden="true"></div>
+          <iframe id="mpFrameView" title="スマホ表示プレビュー（このページのスマホ幅表示）"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ===== ペットデータ（出典B：公式「Pet System Rates & Information」） =====
+      // [名前ENG, 名前KOR, 固有能力ENG, Lv.1値, 最大値]
+      var PETS = {
+        platinum: { label: "Platinum", maxLv: 15, list: [
+          ["Black Cyber Drone","블랙 사이버 드론","Floater Success Rate","0.8%","12%"],
+          ["Red Cyber Drone","레드 사이버 드론","3 Point Fade Away Success Rate","0.6%","8%"],
+          ["White Cleaner Bot","화이트 로봇청소기","Diving Catch Distance","2.4CM","36CM"],
+          ["Red Cleaner Bot","레드 로봇청소기","Diving Catch Success Rate","1%","15%"],
+          ["Space Dog Laika","우주 개 라이카","Pull Up Jumper Success Rate","0.3%","4%"],
+          ["Rabbit Alien UFO","토끼 우주인 UFO","Jump Shot Block","2","25"],
+          ["Astro Gold UFO","아스트로 골드 UFO","Shadow Block Success Rate","0.6%","8%"],
+          ["Astro Silver UFO","아스트로 실버 UFO","Drive In Shot Block","2","25"],
+          ["Cheeky Ghost","메롱 유령","Double Clutch Success Rate","1%","15%"],
+          ["Halloween Ghost","흰천 유령","Shadow Steal Chance","1%","15%"],
+          ["RC Monster Truck","RC 몬스터 트럭","Increased success rate of dash intercepts","1.6%","24%"],
+          ["Candy Pinata","캔디 피냐타","Diving Catch Height","1CM","15CM"],
+          ["Brindled Mini Pig","얼룩 미니피그","Sky Hook Shot Success Rate","0.6%","8%"],
+          ["Baboon","개코 원숭이","Rebound & Shot Success Rate","0.6%","8%"],
+          ["Brown Kappa","브라운 헤어 캇파","Fade Away Success Rate","0.6%","8%"],
+          ["Mini Holstein","미니 얼룩소","Box Out Speed","0.5CM/S","7.5CM/S"],
+          ["Red Messenger","레드 메신저봇","Off Ball Quick Move Speed","0.6%","9%"],
+          ["Blue Messenger","블루 메신저봇","V-Cut Speed","0.6%","9%"],
+          ["Pink Messenger","핑크 메신저봇","Side Hop Step Speed","0.6%","9%"],
+          ["Khaki Messenger","카키 메신저봇","Behind the Back Speed","0.7%","10.5%"],
+          ["Magpie with gat","갓을 쓴 까치","Upper Steal Success rate","0.8%","12%"],
+          ["Hellhound","헬하운드","Deny Intercept Success Rate","0.4%","6%"],
+          ["CarroBot","캐로봇","Quick Jumper Success Rate","0.1%","2%"],
+          ["Big Man Monocle","빅맨 코치 모노클","Power Rebound Distance","1.5CM","20CM"],
+          ["Defense Monocle","수비 코치 모노클","Manual Block Distance","1.5CM","20CM"],
+          ["Shooting Monocle","슈팅 코치 모노클","Shooting Touch Success Rate","0.1%","2%"]
+        ]},
+        gold: { label: "Gold", maxLv: 12, list: [
+          ["Peach Lovebird","고사쿠라 모란 앵무","Kill Pass Speed","12CM/S","144CM/S"],
+          ["Cobalt Lovebird","코발트 모란 앵무","Layup Pass Speed","2CM/S","24CM/S"],
+          ["Pelican","펠리컨","Intercept Range","2CM","24CM"],
+          ["Dandy Pelican","신사 펠리컨","Intercept Success Rate","1.6%","19.2%"],
+          ["Green Frog","청개구리","Manual Layup Distance","1.1CM","13.2CM"],
+          ["Star Frog","별개구리","Manual Layup Angle","1.1°","13.2°"],
+          ["Owl white","올빼미 화이트","Layup Pass Distance","16CM","192CM"],
+          ["Pink Mini Pig","분홍 미니피그","Box Out Strength","1","12"],
+          ["Dachshund black","닥스훈트 블랙","Deny Intercept Distance","1CM","12CM"],
+          ["Halloween Bat","할로윈 박쥐","Double Clutch Defense Resist","0.12%","1.44%"],
+          ["Dachshund brown","닥스훈트 브라운","Post Up Fake Layup Success Rate","1%","12%"],
+          ["Owl brown","올빼미 브라운","Touch Pass Speed","7.5CM/S","80CM/S"],
+          ["Macaque","마카그 원숭이","Tip In Shot Success Rate","1.5%","16%"],
+          ["Green Kappa","그린 헤어 캇파","Over Pass Intercept Success Rate","1.6%","19.2%"],
+          ["Mini Bull","미니 황소","Put Back Dunk Success Rate","1.5%","16%"]
+        ]},
+        silver: { label: "Silver", maxLv: 6, list: [
+          ["Brown Welsh Corgi","브라운 웰시코기","Screen Range","0.5CM","3CM"],
+          ["Black Welsh Corgi","블랙 웰시코기","Screen Angle","1°","6°"],
+          ["German Shepherd","저먼 셰퍼드","Fade Away Defense Resist","0.12%","0.72%"],
+          ["Black Basenji","블랙 바센지","Floater Defense Resist","0.12%","0.72%"]
+        ]},
+        bronze: { label: "Bronze", maxLv: 3, list: [
+          ["Brown Dobermann","브라운 도베르만","3 Point Fade Away Defense Resist","0.12%","0.36%"],
+          ["Black Dobermann","블랙 도베르만","Rebound & Shot Defense Resistance","0.12%","0.36%"],
+          ["Cheese Tabby Cat","치즈태비 고양이","Increase A pass speed","12CM/S","36CM/S"],
+          ["Black Cat","검은 고양이","Kick Out Pass Speed","5CM/S","15CM/S"],
+          ["Siamese Cat","샴 고양이","Jump Shot Pass Distance","16CM","48CM"],
+          ["Calico Cat","삼색 고양이","Running Pass Speed Increase","7.5CM/S","20CM/S"]
+        ]}
+      };
+
+      var GRADE_ORDER = ["platinum","gold","silver","bronze"];
+      var grid = document.getElementById("petGrid");
+      var countLine = document.getElementById("petCount");
+      var emptyBox = document.getElementById("petEmpty");
+      var currentGrade = "all";
+      var query = "";
+
+      function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+      function renderPets(){
+        var html = "";
+        var shown = 0, total = 0;
+        GRADE_ORDER.forEach(function(g){
+          var info = PETS[g];
+          info.list.forEach(function(p){
+            total++;
+            if (currentGrade !== "all" && currentGrade !== g) return;
+            var hay = (p[0] + " " + p[1] + " " + p[2]).toLowerCase();
+            if (query && hay.indexOf(query) === -1) return;
+            shown++;
+            html += '<article class="pet ' + g + '">'
+              + '<div class="p-top"><span class="grade">' + info.label.toUpperCase() + '</span>'
+              + '<span class="maxlv">最大 Lv.' + info.maxLv + '</span></div>'
+              + '<h4>' + esc(p[0]) + '</h4>'
+              + '<p class="kor">' + esc(p[1]) + '</p>'
+              + '<div class="ability"><span class="a-label">UNIQUE ABILITY</span>' + esc(p[2]) + '</div>'
+              + '<div class="vals"><span class="v-label">Lv.1</span><span class="v1">' + esc(p[3]) + '</span>'
+              + '<span class="arrow">→</span><span class="v-label">MAX</span><span class="vmax">' + esc(p[4]) + '</span></div>'
+              + '</article>';
+          });
+        });
+        grid.innerHTML = html;
+        emptyBox.hidden = shown !== 0;
+        countLine.textContent = "表示中：" + shown + " 種 / 全 " + total + " 種";
+      }
+
+      var fbtns = document.querySelectorAll(".fbtn");
+      fbtns.forEach(function(btn){
+        btn.addEventListener("click", function(){
+          fbtns.forEach(function(b){ b.classList.remove("active"); });
+          btn.classList.add("active");
+          currentGrade = btn.getAttribute("data-grade");
+          renderPets();
+        });
+      });
+      document.getElementById("petSearch").addEventListener("input", function(e){
+        query = e.target.value.trim().toLowerCase();
+        renderPets();
+      });
+      renderPets();
+
+      // ===== サブ能力データ（出典B） =====
+      // [名前ENG, KOR, 初期値]
+      var SUB_GROUPS = [
+        { title: "全グレード共通（Silver / Gold / Platinum）", grades: "Silver・Gold・Platinum", list: [
+          ["3 Point Shot","3점 슛","4"],
+          ["3 Point Shot Success Rate","3점 슛 성공률","2%"],
+          ["Open 3 Point Shot Success Rate","노마크 3점 슛 성공률","0.80%"],
+          ["3 Point Shot Defense Resist","3점 슛 수비 저항","0.12%"],
+          ["3 Point Shot Release Speed","3점 슛 모션 빠르기","1%"],
+          ["3 Point Shot Blocking Resist","3점 슛 블록 저항","1.25%"],
+          ["Mid Range Shot Success Rate","중거리 슛 성공률","2.50%"],
+          ["Mid Range Shot Defense Resist","중거리 슛 수비 저항","0.24%"],
+          ["Mid Range Shot Release Speed","중거리 슛 모션 빠르기","1.20%"],
+          ["Mid Range Shot Block Resist","중거리 슛 블록 저항","1.25%"],
+          ["Short Distance Dunk Defense Resist","골밑 덩크 수비 저항","0.45%"],
+          ["Long Distance Dunk Defense Resist","원거리 덩크 수비 저항","0.45%"],
+          ["Long Distance Dunk Speed","원거리 덩크 모션 빠르기","0.60%"],
+          ["Long Distance Dunk Block Resist","원거리 덩크 블록 저항","1.25%"],
+          ["Long Distance Layup Range","원거리 레이업 가능 거리","5Cm"],
+          ["Speed","달리기","4"],
+          ["Rebound","리바운드","4"],
+          ["Steal Success Rate","스틸 성공률","3.50%"],
+          ["Steal Speed","스틸 모션 빠르기","1.75%"],
+          ["Normal Moving Speed","일반 이동 속도","3cm/s"],
+          ["Drive Speed","돌파 모션 빠르기","0.70%"],
+          ["Block Resist Shot Success Rate","블록 저항 슛 성공률","1.20%"]
+        ]},
+        { title: "Silver / Gold のみ", grades: "Silver・Gold", list: [
+          ["Mid Range Shot","중거리 슛","4"],
+          ["Close Range Shot Success Rate","골밑 슛 성공률","1%"],
+          ["Close Range Shot Defense Resist","골밑 슛 수비 저항","0.45%"],
+          ["Short Distance Dunk Chance","골밑 덩크 발동 확률","2.50%"],
+          ["Short Distance Dunk Speed","골밑 덩크 모션 빠르기","0.60%"],
+          ["Short Distance Dunk Block Resist","골밑 덩크 블록 저항","1.25%"],
+          ["Long Distance Dunk Chance","원거리 덩크 발동 확률","2.50%"],
+          ["Short Distance Layup Success Rate","골밑 레이업 성공률","1.50%"],
+          ["Short Distance Layup Defense Resist","골밑 레이업 수비 저항","0.45%"],
+          ["Short Distance Layup Block Resist","골밑 레이업 블록 저항","1.25%"],
+          ["Long Distance Layup Success Rate","원거리 레이업 성공률","1%"],
+          ["Long Distance Layup Defense Resist","원거리 레이업 수비 저항","0.45%"],
+          ["Long Distance Layup Block Resist","원거리 레이업 블록 저항","1.25%"],
+          ["Balance","몸싸움","4"],
+          ["Steal","스틸","4"],
+          ["Max Stamina","지구력 최대량","2.5"],
+          ["Stamina Recovery","지구력 회복량","1.5"]
+        ]},
+        { title: "Silver のみ", grades: "Silver", list: [
+          ["Close Range Shot","골밑 슛","4"],
+          ["Short Distance Dunk","골밑 덩크","4"],
+          ["Short Distance Dunk Success Rate","골밑 덩크 성공률","0.40%"],
+          ["Long Distance Dunk","원거리 덩크","4"],
+          ["Long Distance Dunk Success Rate","원거리 덩크 성공률","0.40%"],
+          ["Short Distance Layup","골밑 레이업","4"],
+          ["Long Distance Layup","원거리 레이업","4"],
+          ["Pass","패스","4"],
+          ["Stamina","지구력","4"],
+          ["Collision Angle","일반 이동 충돌 각도","1.25°"],
+          ["Collision Resist","일반 이동 충돌 저항","3.50%"],
+          ["Dribble Steal Resist","드리블 중 스틸 저항력","1%"],
+          ["Intercept Resist","인터셉트 저항력","1%"],
+          ["Reduce Shot Success Rate Decrease after Fake","페이크 후 슛 성공률 감소량 하락","0.30%"],
+          ["Shot Impediment Invalidity","슛 방해 효과 무시","0.20%"],
+          ["Mid-Range Shot Impediment Invalidity","미들 슛 방해 효과 무시","0.50%"],
+          ["3 Point Shot Impediment Invalidity","3점슛 방해 효과 무시","0.50%"]
+        ]}
+      ];
+
+      var subWrap = document.getElementById("subGroups");
+      var subHtml = "";
+      SUB_GROUPS.forEach(function(group){
+        subHtml += '<div class="sub-group"><h3>' + esc(group.title) + ' <span class="cnt">（' + group.list.length + '種）</span></h3>'
+          + '<div class="table-scroll"><table class="resp">'
+          + '<thead><tr><th>Sub Ability</th><th>KOR</th><th class="num">初期値</th><th>登場グレード</th></tr></thead><tbody>';
+        group.list.forEach(function(s){
+          subHtml += '<tr><th data-label="Sub Ability">' + esc(s[0]) + '</th>'
+            + '<td data-label="KOR">' + esc(s[1]) + '</td>'
+            + '<td class="num" data-label="初期値"><span class="init">' + esc(s[2]) + '</span></td>'
+            + '<td data-label="登場グレード">' + esc(group.grades) + '</td></tr>';
+        });
+        subHtml += '</tbody></table></div></div>';
+      });
+      subWrap.innerHTML = subHtml;
+
+      // ===== スマホ表示プレビュー =====
+      (function(){
+        var openBtn = document.getElementById("mpOpenBtn");
+        var overlay = document.getElementById("mpOverlay");
+        var closeBtn = document.getElementById("mpCloseBtn");
+        var frame = document.getElementById("mpFrame");
+        var frameView = document.getElementById("mpFrameView");
+        // プレビュー内（?mp=1）ではボタンもオーバーレイも使わない（再帰防止）
+        if (document.documentElement.classList.contains("mp-mode")) {
+          if (openBtn) openBtn.style.display = "none";
+          if (overlay) overlay.style.display = "none";
+          return;
+        }
+        if (!openBtn || !overlay || !closeBtn || !frame || !frameView) return;
+
+        var loaded = false;
+        function fitFrame(){
+          var availW = window.innerWidth - 20;
+          var availH = window.innerHeight - 84; // 上部バー分を差し引く
+          var s = Math.min(1, availW / 412, availH / 866);
+          if (!(s > 0)) s = 1;
+          frame.style.transform = "scale(" + s + ")";
+        }
+        function openPreview(){
+          if (!loaded) {
+            var url = new URL(window.location.href);
+            url.searchParams.set("mp", "1");
+            frameView.src = url.toString();
+            loaded = true;
+          }
+          overlay.hidden = false;
+          document.body.style.overflow = "hidden";
+          fitFrame();
+          closeBtn.focus();
+        }
+        function closePreview(){
+          overlay.hidden = true;
+          document.body.style.overflow = "";
+          openBtn.focus();
+        }
+        openBtn.addEventListener("click", openPreview);
+        closeBtn.addEventListener("click", closePreview);
+        overlay.addEventListener("click", function(e){
+          if (e.target === overlay || e.target.id === "mpStage") closePreview();
+        });
+        document.addEventListener("keydown", function(e){
+          if (e.key === "Escape" && !overlay.hidden) closePreview();
+        });
+        window.addEventListener("resize", function(){
+          if (!overlay.hidden) fitFrame();
+        });
+      })();
+    </script>
+  </body>
+</html>
