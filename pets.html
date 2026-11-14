@@ -205,7 +205,12 @@
       .pet .vals .arrow{color:var(--accent);font-weight:900}
       .pet .vals .vmax{font-size:21px;font-weight:900;color:#fff}
       .pet .vals .v-label{font-size:10.5px;color:var(--muted);letter-spacing:.06em}
+      .pet .p-img{display:block;width:100%;height:150px;object-fit:contain;padding:8px;margin:0 0 10px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px}
       .empty{border:1px dashed var(--line);border-radius:var(--radius);padding:26px;text-align:center;color:var(--muted)}
+
+      /* ---------- 公式ガイド画像 ---------- */
+      figure.shot{margin:18px 0 8px}
+      figure.shot img{display:block;width:100%;max-width:760px;height:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
 
       /* ---------- Sub ability tables ---------- */
       .sub-group{margin-bottom:22px}
@@ -381,6 +386,7 @@
       <section id="adoption">
         <h2>入手（入養）<span class="en">PET ADOPTION</span></h2>
         <p class="lead">入養は [Characters] – [Pet] の Pet Adoption バナーから。通貨は Coins または Points で、通貨の種類による排出率の差はなく、消費量のみが異なる。同グレード内のペットは全て均等確率。</p>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/adopt.jpg" alt="公式ガイドのスクリーンショット：ペット養子縁組の画面" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
 
         <h3>グレード別排出率</h3>
         <div class="ratebar" role="img" aria-label="排出率：Bronze 70%、Silver 25%、Gold 5%">
@@ -417,6 +423,7 @@
       <section id="ability">
         <h2>グレードと能力の仕組み<span class="en">ABILITY &amp; GRADE</span></h2>
         <p class="lead">ペットの能力は、ペットごとに固定の「固有能力（Unique Ability）」と、グレードに応じて付く「サブ能力（Sub Ability）」の2層構造。</p>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/subs.jpg" alt="公式ガイドのスクリーンショット：登場サブ能力の一覧画面" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
 
         <div class="grid2">
           <div class="card">
@@ -458,6 +465,7 @@
       <section id="combine">
         <h2>合成<span class="en">PET COMBINATION</span></h2>
         <p class="lead">同じグレード同士のペットを合成すると、同グレードまたは1つ上のグレードのペットがランダムで1体手に入る。Platinum を手に入れる唯一の方法がこの合成。</p>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/combination.jpg" alt="公式ガイドのスクリーンショット：ペット合成の画面" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
         <div class="card">
           <ul class="tight">
             <li>素材ペットは全て消滅し、新しいペットは <b>Lv.1</b> で獲得。種類はランダム。</li>
@@ -487,6 +495,7 @@
       <section id="growth">
         <h2>成長<span class="en">ENHANCEMENT / GROWTH</span></h2>
         <p class="lead">ペットの強化（Pet Enhancement）は、他のペットを餌（Feed）にして EXP を得る方式。あわせてコインを消費する。</p>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/pet_detail.jpg" alt="公式ガイドのスクリーンショット：ペットのトレーニング（育成）画面" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
         <div class="grid2">
           <div class="card">
             <h3>餌やりの基本</h3>
@@ -518,6 +527,7 @@
       <section id="pets">
         <h2>ペット一覧<span class="en">ALL PETS — 51</span></h2>
         <p class="lead">全51種（Platinum 26 / Gold 15 / Silver 4 / Bronze 6）。各ペットの固有能力（Unique Ability）と、Lv.1 値 → 最大レベル時の値を掲載。数値は公式の確率・詳細表の表記どおり。枠の色はグレード色（Bronze＝銅 / Silver＝銀 / Gold＝金 / Platinum＝蛍光シアン）。</p>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/house.jpg" alt="公式ガイドのスクリーンショット：ペットハウス（所持ペット一覧）の画面" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
         <div class="filters" role="group" aria-label="グレードで絞り込み">
           <button type="button" class="fbtn active" data-grade="all">すべて（51）</button>
           <button type="button" class="fbtn" data-grade="platinum">Platinum（26）</button>
@@ -548,6 +558,7 @@
         <p class="lead">期間限定要素と、公式情報だけでは確定できなかった事項を正直に注記する。</p>
 
         <h3>Platinum Pet Surprise Box（期間限定販売）</h3>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/events/pet_box_jp.jpg" alt="公式イベントバナー：Platinum Pet Surprise Box" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
         <div class="card">
           <ul class="tight">
             <li>Platinum ペット26種のうち1体が確定で手に入るボックス。</li>
@@ -571,6 +582,7 @@
         </div>
 
         <h3>Shopping Spree! Event</h3>
+        <figure class="shot"><img src="https://3on3-notice.github.io/pet/img/events/shopping_spree_jp.jpg" alt="公式イベントバナー：Shopping Spree! Event" loading="lazy" onerror="this.parentNode.style.display='none'" /></figure>
         <div class="card">
           <ul class="tight">
             <li>期間：Oct 28 - Nov 3, 23:59 PST。</li>
@@ -703,6 +715,61 @@
         ]}
       };
 
+      // ===== ペット画像（公式ペットガイドの画像を直リンク） =====
+      var PET_IMG = {
+        "Black Cyber Drone": "https://3on3-notice.github.io/pet/img/pets/40050101.png",
+        "Red Cyber Drone": "https://3on3-notice.github.io/pet/img/pets/40050102.png",
+        "White Cleaner Bot": "https://3on3-notice.github.io/pet/img/pets/40060102.png",
+        "Red Cleaner Bot": "https://3on3-notice.github.io/pet/img/pets/40060101.png",
+        "Space Dog Laika": "https://3on3-notice.github.io/pet/img/pets/40010201.png",
+        "Rabbit Alien UFO": "https://3on3-notice.github.io/pet/img/pets/40050201.png",
+        "Astro Gold UFO": "https://3on3-notice.github.io/pet/img/pets/40050301.png",
+        "Astro Silver UFO": "https://3on3-notice.github.io/pet/img/pets/40050302.png",
+        "Cheeky Ghost": "https://3on3-notice.github.io/pet/img/pets/40100201.png",
+        "Halloween Ghost": "https://3on3-notice.github.io/pet/img/pets/40100301.png",
+        "RC Monster Truck": "https://3on3-notice.github.io/pet/img/pets/40110101.png",
+        "Candy Pinata": "https://3on3-notice.github.io/pet/img/pets/40110201.png",
+        "Brindled Mini Pig": "https://3on3-notice.github.io/pet/img/pets/40090102.png",
+        "Baboon": "https://3on3-notice.github.io/pet/img/pets/40110302.png",
+        "Brown Kappa": "https://3on3-notice.github.io/pet/img/pets/40110402.png",
+        "Mini Holstein": "https://3on3-notice.github.io/pet/img/pets/40110501.png",
+        "Red Messenger": "https://3on3-notice.github.io/pet/img/pets/40100401.png",
+        "Blue Messenger": "https://3on3-notice.github.io/pet/img/pets/40100402.png",
+        "Pink Messenger": "https://3on3-notice.github.io/pet/img/pets/40100403.png",
+        "Khaki Messenger": "https://3on3-notice.github.io/pet/img/pets/40100404.png",
+        "Magpie with gat": "https://3on3-notice.github.io/pet/img/pets/40040301.png",
+        "Hellhound": "https://3on3-notice.github.io/pet/img/pets/40010301.png",
+        "CarroBot": "https://3on3-notice.github.io/pet/img/pets/40100501.png",
+        "Big Man Monocle": "https://3on3-notice.github.io/pet/img/pets/40100601.png",
+        "Defense Monocle": "https://3on3-notice.github.io/pet/img/pets/40100602.png",
+        "Shooting Monocle": "https://3on3-notice.github.io/pet/img/pets/40100603.png",
+        "Peach Lovebird": "https://3on3-notice.github.io/pet/img/pets/40040101.png",
+        "Cobalt Lovebird": "https://3on3-notice.github.io/pet/img/pets/40040102.png",
+        "Pelican": "https://3on3-notice.github.io/pet/img/pets/40080101.png",
+        "Dandy Pelican": "https://3on3-notice.github.io/pet/img/pets/40080102.png",
+        "Green Frog": "https://3on3-notice.github.io/pet/img/pets/40070101.png",
+        "Star Frog": "https://3on3-notice.github.io/pet/img/pets/40070102.png",
+        "Owl white": "https://3on3-notice.github.io/pet/img/pets/40040201.png",
+        "Pink Mini Pig": "https://3on3-notice.github.io/pet/img/pets/40090101.png",
+        "Dachshund black": "https://3on3-notice.github.io/pet/img/pets/40020201.png",
+        "Halloween Bat": "https://3on3-notice.github.io/pet/img/pets/40100101.png",
+        "Dachshund brown": "https://3on3-notice.github.io/pet/img/pets/40020202.png",
+        "Owl brown": "https://3on3-notice.github.io/pet/img/pets/40040202.png",
+        "Macaque": "https://3on3-notice.github.io/pet/img/pets/40110301.png",
+        "Green Kappa": "https://3on3-notice.github.io/pet/img/pets/40110401.png",
+        "Mini Bull": "https://3on3-notice.github.io/pet/img/pets/40110502.png",
+        "Brown Welsh Corgi": "https://3on3-notice.github.io/pet/img/pets/40020101.png",
+        "Black Welsh Corgi": "https://3on3-notice.github.io/pet/img/pets/40020102.png",
+        "German Shepherd": "https://3on3-notice.github.io/pet/img/pets/40010103.png",
+        "Black Basenji": "https://3on3-notice.github.io/pet/img/pets/40010104.png",
+        "Brown Dobermann": "https://3on3-notice.github.io/pet/img/pets/40010101.png",
+        "Black Dobermann": "https://3on3-notice.github.io/pet/img/pets/40010102.png",
+        "Cheese Tabby Cat": "https://3on3-notice.github.io/pet/img/pets/40030101.png",
+        "Black Cat": "https://3on3-notice.github.io/pet/img/pets/40030102.png",
+        "Siamese Cat": "https://3on3-notice.github.io/pet/img/pets/40030103.png",
+        "Calico Cat": "https://3on3-notice.github.io/pet/img/pets/40030104.png"
+      };
+
       var GRADE_ORDER = ["platinum","gold","silver","bronze"];
       var grid = document.getElementById("petGrid");
       var countLine = document.getElementById("petCount");
@@ -723,7 +790,9 @@
             var hay = (p[0] + " " + p[1] + " " + p[2]).toLowerCase();
             if (query && hay.indexOf(query) === -1) return;
             shown++;
+            var imgUrl = PET_IMG[p[0]];
             html += '<article class="pet ' + g + '">'
+              + (imgUrl ? '<img class="p-img" src="' + imgUrl + '" alt="' + esc(p[0]) + '" loading="lazy" onerror="this.remove()">' : '')
               + '<div class="p-top"><span class="grade">' + info.label.toUpperCase() + '</span>'
               + '<span class="maxlv">最大 Lv.' + info.maxLv + '</span></div>'
               + '<h4>' + esc(p[0]) + '</h4>'
