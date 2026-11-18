@@ -548,18 +548,36 @@
                     </div></div>
                 </div>
                 <!-- 小タイル -->
-                <div class="grid grid-cols-3 gap-3 mt-3 max-w-2xl">
-                    <div class="bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer flex items-center gap-2.5 hover:border-white/30 transition min-w-0" onclick="showPage('ping')">
-                        <i class="fas fa-network-wired text-[#ff4e00] text-sm shrink-0"></i>
-                        <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-ping">PING MAP</span>
+                <div class="grid grid-cols-3 gap-3 mt-3 max-w-2xl items-start">
+                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('ping')">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fas fa-network-wired text-[#ff4e00] text-sm shrink-0"></i>
+                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-ping">PING MAP</span>
+                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
+                        </div>
+                        <div class="tile-more">
+                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">サーバーPingの可視化マップ。現在は東京サーバーのみ対応。</p>
+                        </div>
                     </div>
-                    <div class="bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer flex items-center gap-2.5 hover:border-white/30 transition min-w-0" onclick="showPage('videos')">
-                        <i class="fas fa-video text-[#ff4e00] text-sm shrink-0"></i>
-                        <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-videos">VIDEOS</span>
+                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('videos')">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fas fa-video text-[#ff4e00] text-sm shrink-0"></i>
+                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-videos">VIDEOS</span>
+                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
+                        </div>
+                        <div class="tile-more">
+                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">キャラ別の紹介・解説動画へのリンク集。</p>
+                        </div>
                     </div>
-                    <div class="bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer flex items-center gap-2.5 hover:border-white/30 transition min-w-0" onclick="showPage('music')">
-                        <i class="fas fa-music text-[#ff4e00] text-sm shrink-0"></i>
-                        <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-music">MUSIC</span>
+                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('music')">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fas fa-music text-[#ff4e00] text-sm shrink-0"></i>
+                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-music">MUSIC</span>
+                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
+                        </div>
+                        <div class="tile-more">
+                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">公式の音楽シリーズや関連動画のまとめ。</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -650,7 +668,8 @@
                 </div>
                 <div class="flex gap-3 bg-slate-900 p-1.5 rounded-xl border border-slate-700 shadow-xl">
                     <button id="btn-tokyo" class="btn-toggle active px-6 py-2 rounded-lg font-bold text-sm border border-transparent" data-i18n="sec-ping-btn-tokyo">東京サーバー</button>
-                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300" data-i18n="sec-ping-btn-seoul">韓国(ソウル)サーバー</button>
+                    <button id="btn-seoul" class="btn-toggle px-6 py-2 rounded-lg font-bold text-sm border border-transparent text-slate-300" data-i18n="sec-ping-btn-seoul" style="display:none">韓国(ソウル)サーバー</button>
+                    <span class="text-[11px] text-slate-400 self-center px-1">※現在は東京サーバーのみ対応</span>
                 </div>
             </div>
             <div class="flex flex-col lg:flex-row w-full gap-6">
@@ -2101,7 +2120,7 @@
 })();
     </script>
 <script>
-(function(){if(!window.matchMedia('(hover: none)').matches)return;var tiles=document.querySelectorAll('.mode-tile');if(!tiles.length)return;var grid=tiles[0].parentElement;grid.addEventListener('click',function(e){var t=e.target.closest('.mode-tile');if(!t)return;if(!t.classList.contains('open')){e.preventDefault();e.stopPropagation();tiles.forEach(function(x){x.classList.remove('open')});t.classList.add('open');}},true);})();
+(function(){if(!window.matchMedia('(hover: none)').matches)return;var tiles=document.querySelectorAll('.mode-tile');if(!tiles.length)return;document.addEventListener('click',function(e){var t=e.target.closest('.mode-tile');if(!t)return;if(!t.classList.contains('open')){e.preventDefault();e.stopPropagation();document.querySelectorAll('.mode-tile.open').forEach(function(x){x.classList.remove('open')});t.classList.add('open');}},true);})();
 </script>
 </body>
 </html>
