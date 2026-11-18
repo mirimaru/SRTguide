@@ -411,9 +411,8 @@
 </script>
 
             <style>
-.mode-tile .tile-more{opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease,visibility .35s}
-.mode-tile:hover .tile-more,.mode-tile:focus-within .tile-more{opacity:1;visibility:visible;transform:none}
-@media (hover:none){.mode-tile .tile-more{opacity:1;visibility:visible;transform:none}}
+.mode-tile .tile-more{display:flex;flex-direction:column;flex:1 1 auto;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease}
+.mode-tile:hover .tile-more,.mode-tile.open .tile-more{max-height:460px;opacity:1}
 </style>
             <!-- ▼ SELECT MODE：行き先ドック ▼ -->
             <div>
@@ -423,47 +422,47 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                     <!-- MODE 01 GUIDE -->
-                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="showPage('guide')">
+                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="showPage('guide')">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 01</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-guide">GUIDE</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-guide-sub">初心者ガイド</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-guide-desc">役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-guide">GUIDE</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-guide-sub">初心者ガイド</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-guide-desc">役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">STEP 1-4</span>
                                 <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1" data-i18n="lobby-tile-guide-tag">まずここから</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 02 CHARACTERS -->
-                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="location.href='characters.html'">
+                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="location.href='characters.html'">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 02</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">CHARACTERS</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-chars-sub">キャラ図鑑・相関</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-chars-desc">全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。</p>
-                        <div class="tile-more flex items-center mt-3">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">CHARACTERS</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-chars-sub">キャラ図鑑・相関</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-chars-desc">全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。</p>
+                        <div class="flex items-center mt-3">
                             <img src="assets/faces/kaji.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10" onerror="this.style.display='none'">
                             <img src="assets/faces/gena.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10 -ml-2" onerror="this.style.display='none'">
                             <img src="assets/faces/nathan.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10 -ml-2" onerror="this.style.display='none'">
                             <img src="assets/faces/giantg.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10 -ml-2" onerror="this.style.display='none'">
                             <img src="assets/faces/blair.webp" alt="" class="w-8 h-8 rounded-full border-2 border-[#0b0b0d] object-cover bg-white/10 -ml-2" onerror="this.style.display='none'">
                         </div>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">61 CHARS</span>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 03 SKILLS -->
-                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="location.href='skills.html'">
+                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="location.href='skills.html'">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 03</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">SKILLS</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-skills-sub">スキル一覧</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-skills-desc">共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。</p>
-                        <div class="tile-more flex flex-col gap-1.5 mt-3">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">SKILLS</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-skills-sub">スキル一覧</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-skills-desc">共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。</p>
+                        <div class="flex flex-col gap-1.5 mt-3">
                             <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-2 py-1.5">
                                 <img src="assets/skills/dunk-at-will.png" alt="Dunk At Will" class="w-8 h-8 object-cover rounded-sm shrink-0" onerror="this.style.display='none'">
                                 <span class="text-[10px] font-bold leading-tight">Dunk<br>At Will</span>
@@ -473,80 +472,80 @@
                                 <span class="text-[10px] font-bold leading-tight">Manual<br>Dunk</span>
                             </div>
                         </div>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <span class="font-teko text-2xl font-bold italic text-[#ff4e00] leading-none">172</span>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 04 STATUS -->
-                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="showPage('db')">
+                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="showPage('db')">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 04</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">STATUS</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-status-sub">ステータス</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-status-desc">全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">STATUS</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-status-sub">ステータス</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-status-desc">全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">15 STATS</span>
                                 <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">61 CHARS</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 05 P-BUFF（最強調） -->
-                    <div class="relative flex flex-col bg-gradient-to-b from-[#ff4e00]/25 via-[#ff4e00]/5 to-[#0b0b0d]/90 backdrop-blur border border-[#ff4e00]/80 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00] transition min-h-[248px] xl:min-h-[262px] shadow-[0_0_30px_rgba(255,78,0,0.3)]" onclick="showPage('pbuff')">
+                    <div class="relative flex flex-col bg-gradient-to-b from-[#ff4e00]/25 via-[#ff4e00]/5 to-[#0b0b0d]/90 backdrop-blur border border-[#ff4e00]/80 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00] transition min-h-[104px] shadow-[0_0_30px_rgba(255,78,0,0.3)]" onclick="showPage('pbuff')">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-[#ff7a33]">MODE 05</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-pbuff">P-BUFF</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-pbuff-sub">Pバフ</div>
-                        <p class="tile-more text-[11px] text-gray-300 leading-relaxed mt-2" data-i18n="lobby-tile-pbuff-desc">同ポジション全員に効く永続強化。育成の黄金順で、上級者の必須チェック項目。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5" data-i18n="nav-pbuff">P-BUFF</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-pbuff-sub">Pバフ</div>
+                        <p class="text-[11px] text-gray-300 leading-relaxed mt-2" data-i18n="lobby-tile-pbuff-desc">同ポジション全員に効く永続強化。育成の黄金順で、上級者の必須チェック項目。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00] bg-[#ff4e00]/15 text-[#ff7a33] px-2 py-1" data-i18n="lobby-tile-pbuff-tag">上級者も必見</span>
                                 <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">P5 → P-BUFF</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 06 NOTE -->
-                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="window.open('https://note.com/clean_squid9881', '_blank')">
+                    <div class="relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 mode-tile cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="window.open('https://note.com/clean_squid9881', '_blank')">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 06</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">NOTE</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5" data-i18n="lobby-tile-note-sub">攻略コラム（note）</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-note-desc">NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">NOTE</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5" data-i18n="lobby-tile-note-sub">攻略コラム（note）</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2" data-i18n="lobby-tile-note-desc">NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <div class="flex flex-col items-start gap-1.5">
                                 <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">19 ARTICLES</span>
                                 <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">SRT / note</span>
                             </div>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 07 PET -->
-                    <div class="mode-tile relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="location.href='pets.html'">
+                    <div class="mode-tile relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="location.href='pets.html'">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 07</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">PET</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5">ペット解説</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2">全51種のペットと56種のサブ能力。入養・合成・成長の仕組みを公式資料で整理。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">PET</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5">ペット解説</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">全51種のペットと56種のサブ能力。入養・合成・成長の仕組みを公式資料で整理。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <span class="text-[9px] font-black tracking-widest border border-white/25 text-gray-300 px-2 py-1">51 PETS</span>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                     <!-- MODE 08 FREESTYLE -->
-                    <div class="mode-tile relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[248px] xl:min-h-[262px]" onclick="location.href='freestyle.html'">
+                    <div class="mode-tile relative flex flex-col bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-4 pt-4 pb-3.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[104px]" onclick="location.href='freestyle.html'">
                         <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
                         <div class="text-[9px] font-black tracking-[0.3em] text-gray-500">MODE 08</div>
-                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">FREESTYLE</div>
-                        <div class="tile-more text-[13px] font-black mt-1.5">リニューアルまとめ</div>
-                        <p class="tile-more text-[11px] text-gray-400 leading-relaxed mt-2">サイクル方式・強化の数値・Lv.5ステータスを1枚のインフォグラフィックで整理。</p>
-                        <div class="tile-more mt-auto pt-3 flex items-end justify-between gap-2">
+                        <div class="font-teko text-4xl font-bold italic leading-none mt-1.5">FREESTYLE</div><div class="tile-more">
+                        <div class="text-[13px] font-black mt-1.5">リニューアルまとめ</div>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mt-2">サイクル方式・強化の数値・Lv.5ステータスを1枚のインフォグラフィックで整理。</p>
+                        <div class="mt-auto pt-3 flex items-end justify-between gap-2">
                             <span class="text-[9px] font-black tracking-widest border border-[#ff4e00]/70 text-[#ff7a33] px-2 py-1">UPDATE</span>
                             <i class="fas fa-arrow-right text-[#ff4e00] text-sm"></i>
                         </div>
-                    </div>
+                    </div></div>
                 </div>
                 <!-- 小タイル -->
                 <div class="grid grid-cols-3 gap-3 mt-3 max-w-2xl">
@@ -2101,5 +2100,8 @@
     window.addEventListener('resize', function () { if (!overlay.classList.contains('hidden')) fitFrame(); });
 })();
     </script>
+<script>
+(function(){if(!window.matchMedia('(hover: none)').matches)return;var tiles=document.querySelectorAll('.mode-tile');if(!tiles.length)return;var grid=tiles[0].parentElement;grid.addEventListener('click',function(e){var t=e.target.closest('.mode-tile');if(!t)return;if(!t.classList.contains('open')){e.preventDefault();e.stopPropagation();tiles.forEach(function(x){x.classList.remove('open')});t.classList.add('open');}},true);})();
+</script>
 </body>
 </html>
