@@ -68,3 +68,13 @@ body {
     #home-split-wrapper { flex-direction: column; height: auto; min-height: 100vh; }
     .home-left, .home-right { width: 100%; max-width: none; padding: 2rem 1.5rem; }
 }
+
+/* === STATUS / P-BUFF 見やすさ改善（2026-11-21） === */
+.char-card, .pbuff-card { box-shadow: 0 10px 30px rgba(0,0,0,0.45); transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease; }
+.char-card:hover, .pbuff-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.28); box-shadow: 0 16px 38px rgba(0,0,0,0.55); }
+.stat-box:has(.is-max) { border-color: rgba(250,204,21,0.55); background: rgba(250,204,21,0.07); }
+.is-max { text-shadow: 0 0 10px rgba(250,204,21,0.45); }
+.stat-val { font-variant-numeric: tabular-nums; }
+.pbuff-item { padding-left: 6px; padding-right: 6px; border-radius: 4px; }
+.pbuff-item:nth-child(odd) { background: rgba(255,255,255,0.03); }
+.pbuff-val { font-variant-numeric: tabular-nums; }
