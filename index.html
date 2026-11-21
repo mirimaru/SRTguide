@@ -185,34 +185,49 @@
                         <span class="bg-black/60 backdrop-blur border border-white/20 rounded px-3 py-1.5 text-[11px] font-bold" data-i18n="lobby-platform-steam">Steam（PC）</span>
                         <span class="bg-black/70 backdrop-blur border border-[#ff4e00] rounded px-3 py-1.5 text-[11px] font-black text-[#ff7a33]" data-i18n="lobby-crossplay">クロスプレイ対応</span>
                     </div>
-                    <!-- 件数ステータス -->
-                    <div class="flex flex-wrap gap-x-10 gap-y-3 mt-8">
-                        <div>
-                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">61</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-characters">CHARACTERS</div>
+                    <!-- 左下タイル（DISCORD／ABOUT ME／RECOMMENDED／ACCESS COUNTER・同格4タイル） -->
+                    <div class="grid grid-cols-2 gap-2.5 mt-7 max-w-xl items-stretch">
+                        <a href="discord.html" class="group relative flex flex-col bg-[#0b0b0d]/85 backdrop-blur border border-white/15 hover:border-[#5865F2] rounded-2xl p-3.5 transition min-h-[104px]">
+                            <span class="flex items-center gap-2">
+                                <i class="fab fa-discord text-xl text-[#5865F2] shrink-0"></i>
+                                <span class="font-teko text-xl font-bold italic tracking-widest leading-none">DISCORD</span>
+                            </span>
+                            <span class="block text-[10px] text-gray-400 mt-1.5 leading-relaxed">公式Discordについて。最新情報が最速で届く。PS5と連携するメリットも紹介します。</span>
+                            <i class="fas fa-chevron-right absolute bottom-3 right-3 text-gray-500 group-hover:text-white transition text-xs"></i>
+                        </a>
+                        <div class="flex flex-col bg-[#0b0b0d]/85 backdrop-blur border border-white/15 rounded-2xl p-3.5 min-h-[104px]">
+                            <span class="flex items-center gap-2">
+                                <i class="fas fa-user text-sm text-[#ff4e00] shrink-0"></i>
+                                <span class="font-teko text-xl font-bold italic tracking-widest leading-none" data-i18n="about-title">ABOUT ME</span>
+                            </span>
+                            <p class="text-[10px] text-gray-300 leading-relaxed mt-1.5" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
+                            <p class="text-[10px] text-gray-400 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
                         </div>
-                        <div>
-                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">172</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-skills">SKILLS</div>
-                        </div>
-                        <div>
-                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none">19</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-articles">NOTE ARTICLES</div>
-                        </div>
-                        <div>
-                            <div class="font-teko text-4xl lg:text-5xl font-bold italic leading-none" data-i18n="lobby-stat-steps-num"><span class="text-[#ff4e00]">4</span> STEPS</div>
-                            <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-route">GUIDE ROUTE</div>
+                        <a href="https://www.youtube.com/watch?v=yOpHa_K80wA" target="_blank" rel="noopener" class="group relative block rounded-2xl overflow-hidden border border-white/15 hover:border-cyan-400/60 transition min-h-[104px]">
+                            <img src="https://img.youtube.com/vi/yOpHa_K80wA/hqdefault.jpg" alt="1118 Patchnote Highlight" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition">
+                            <span class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.3));"></span>
+                            <span class="absolute top-2.5 left-3 flex items-center gap-1.5 font-teko text-base font-bold italic tracking-widest text-cyan-300 leading-none"><i class="fab fa-youtube"></i><span data-i18n="home-recommended">RECOMMENDED</span></span>
+                            <span class="absolute inset-0 flex items-center justify-center"><i class="fas fa-play-circle text-4xl text-white/90"></i></span>
+                            <span class="absolute bottom-2.5 left-3 right-3 text-[10px] font-bold text-gray-200 leading-tight">1118 Patchnote Highlight</span>
+                        </a>
+                        <div class="flex flex-col bg-[#0b0b0d]/85 backdrop-blur border border-white/15 rounded-2xl p-3.5 min-h-[104px]">
+                            <span class="flex items-center justify-between gap-2">
+                                <span class="text-[9px] font-black tracking-[0.25em] text-gray-400" data-i18n="lobby-access-counter">ACCESS COUNTER</span>
+                                <span class="flex items-center gap-1.5 bg-black/60 border border-orange-500/40 rounded-full px-2 py-0.5 shrink-0">
+                                    <i class="fas fa-users text-orange-500 text-[10px]"></i>
+                                    <span id="counter_area" class="scale-75 origin-right inline-block"><script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script></span>
+                                </span>
+                            </span>
+                            <span class="flex items-center gap-4 text-gray-400 mt-3">
+                                <a href="https://note.com/clean_squid9881" target="_blank" title="NOTE" class="hover:text-white transition"><i class="fas fa-edit"></i></a>
+                                <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k" target="_blank" title="YOUTUBE" class="hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                                <a href="https://3on3.fsgames.com/" target="_blank" title="OFFICIAL" class="hover:text-white transition"><i class="fas fa-globe"></i></a>
+                                <span onclick="openImageModal('map_box.jpg')" title="プレゼントMAP" class="cursor-pointer text-orange-500 hover:scale-110 transition"><i class="fas fa-map-marked-alt"></i></span>
+                            </span>
+                            <p class="text-[9px] text-gray-500 leading-relaxed mt-2" data-i18n="lobby-ext-links">外部リンク：note（SRT）／YouTube／公式サイト／プレゼントMAP</p>
                         </div>
                     </div>
-                    <!-- Discordタイル -->
-                    <a href="discord.html" class="group mt-7 flex items-center gap-4 bg-[#0b0b0d]/85 backdrop-blur border border-white/15 hover:border-[#5865F2] rounded-2xl px-5 py-4 transition max-w-xl">
-                        <i class="fab fa-discord text-4xl text-[#5865F2] shrink-0"></i>
-                        <span class="min-w-0">
-                            <span class="block font-teko text-2xl font-bold italic tracking-widest leading-none">DISCORD <span class="text-[13px] not-italic font-sans font-bold text-gray-300 tracking-normal">公式Discordについて</span></span>
-                            <span class="block text-xs text-gray-400 mt-1.5 leading-relaxed">最新情報が最速で届く公式Discordのすすめ。PS5と連携するメリットも紹介します。</span>
-                        </span>
-                        <i class="fas fa-chevron-right ml-auto text-gray-500 group-hover:text-white transition shrink-0"></i>
-                    </a>
+                    <p class="text-[9px] text-gray-500 leading-relaxed mt-2.5 max-w-xl" data-i18n="lobby-disclaimer">このサイトは「3on3 FreeStyle」の<span class="text-gray-300 font-bold">非公式ファンサイト</span>です。公式情報は<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">公式サイト</a>をご確認ください。</p>
                 </div>
 
                 <!-- ▼ 右：TODAY'S PICK ▼ -->
@@ -366,94 +381,94 @@
                         </div>
 
                         <!-- SELECT MODE タイル（パネルの空き枠に全14枚・同格） -->
-                        <div class="flex items-baseline gap-3 mt-4 mb-2.5">
+                        <div class="flex items-baseline gap-3 mt-3 mb-2">
                             <span class="font-teko text-xl font-bold italic tracking-[0.2em] leading-none">SELECT MODE</span>
                             <span class="text-[10px] font-black text-gray-400" data-i18n="lobby-select-sub">行き先を選ぶ</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='guide.html'">
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='guide.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 01</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" data-i18n="nav-guide">GUIDE</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">初心者ガイド</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" data-i18n="nav-guide">GUIDE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">初心者ガイド</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='characters.html'">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='characters.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 02</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >CHARACTERS</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">キャラ図鑑・相関</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >CHARACTERS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">キャラ図鑑・相関</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='skills.html'">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='skills.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 03</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >SKILLS</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">スキル一覧</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >SKILLS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">スキル一覧</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="showPage('db')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('db')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 04</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >STATUS</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">ステータス</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >STATUS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">ステータス</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-[#ff4e00]/80 shadow-[0_0_18px_rgba(255,78,0,0.3)] px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="showPage('pbuff')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-[#ff4e00]/80 shadow-[0_0_18px_rgba(255,78,0,0.3)] px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('pbuff')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 05</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" data-i18n="nav-pbuff">P-BUFF</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">Pバフ</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" data-i18n="nav-pbuff">P-BUFF</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">Pバフ</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="window.open('https://note.com/clean_squid9881', '_blank')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://note.com/clean_squid9881', '_blank')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 06</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >NOTE</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">攻略コラム（note）</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >NOTE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">攻略コラム（note）</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='pets.html'">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='pets.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 07</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >PET</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">ペット解説</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >PET</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">ペット解説</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='freestyle.html'">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='freestyle.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 08</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >FREESTYLE</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">リニューアルまとめ</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >FREESTYLE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">リニューアルまとめ</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="window.open('https://3on3.fsgames.com', '_blank')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://3on3.fsgames.com', '_blank')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 09</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >OFFICIAL</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">公式サイト</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >OFFICIAL</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式サイト</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="window.open('https://www.youtube.com/@3on3FreeStyle', '_blank')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://www.youtube.com/@3on3FreeStyle', '_blank')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 10</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >YOUTUBE</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">公式YouTube</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >YOUTUBE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式YouTube</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="showPage('ping')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('ping')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 11</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >PING MAP</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">Pingマップ</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >PING MAP</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">Pingマップ</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="showPage('videos')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('videos')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 12</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >VIDEOS</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">動画リンク集</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >VIDEOS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">動画リンク集</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="showPage('music')">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('music')">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 13</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >MUSIC</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">音楽シリーズ</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >MUSIC</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">音楽シリーズ</p>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-center bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3.5 py-2.5 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[62px]" onclick="location.href='discord.html'">
+                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='discord.html'">
                                 <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
                                 <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 14</div>
-                                <div class="font-teko text-[24px] font-bold italic leading-none mt-0.5" >DISCORD</div>
-                                <p class="text-[10px] text-gray-400 leading-snug mt-1">公式Discord</p>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >DISCORD</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式Discord</p>
                             </div>
                         </div>
 
@@ -530,43 +545,7 @@
         </div>
 
 
-        <!-- ▼ ユーティリティ行（ABOUT／おすすめ動画／アクセスカウンター・外部リンク） ▼ -->
-        <section class="px-6 lg:px-12 pb-16">
-            <div class="max-w-[1500px] mx-auto grid lg:grid-cols-3 gap-4 items-start">
-                <div class="glass-panel neon-border-orange p-6 rounded-r-3xl">
-                    <h3 class="font-teko text-3xl text-orange-500 mb-2 tracking-widest italic leading-none" data-i18n="about-title">ABOUT ME</h3>
-                    <p class="text-xs text-gray-200 leading-relaxed mb-2" data-i18n="about-p1">2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。</p>
-                    <p class="text-xs text-gray-300 leading-relaxed" data-i18n="about-p2">攻略ガイド等を公開中。コミュニティを盛り上げましょう！</p>
-                </div>
-                <div class="glass-panel p-4 rounded-3xl border-t border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.15)]">
-                    <h3 class="font-teko text-xl text-cyan-400 mb-2 tracking-widest italic flex items-center gap-2">
-                        <i class="fab fa-youtube"></i> <span data-i18n="home-recommended">RECOMMENDED</span>
-                    </h3>
-                    <div class="w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/yOpHa_K80wA" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="glass-panel rounded-3xl p-6">
-                    <div class="flex items-center justify-between gap-3 mb-4">
-                        <span class="text-[10px] font-black tracking-[0.25em] text-gray-400" data-i18n="lobby-access-counter">ACCESS COUNTER</span>
-                        <div class="flex items-center gap-2 bg-black/60 backdrop-blur-md border border-orange-500/40 rounded-full px-3 py-1 shadow-[0_0_15px_rgba(255,78,0,0.4)]">
-                            <i class="fas fa-users text-orange-500 text-xs"></i>
-                            <div id="counter_area" class="scale-75 origin-right">
-                                <script language="javascript" type="text/javascript" src="https://counter1.fc2.com/counter.php?id=15608402&main=1"></script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-5 text-gray-400 pt-2 border-t border-white/10">
-                        <a href="https://note.com/clean_squid9881" target="_blank" title="NOTE" class="hover:text-white transition"><i class="fas fa-edit text-lg"></i></a>
-                        <a href="https://www.youtube.com/watch?v=zQQ5CgmNE6k" target="_blank" title="YOUTUBE" class="hover:text-white transition"><i class="fab fa-youtube text-lg"></i></a>
-                        <a href="https://3on3.fsgames.com/" target="_blank" title="OFFICIAL" class="hover:text-white transition"><i class="fas fa-globe text-lg"></i></a>
-                        <div onclick="openImageModal('map_box.jpg')" title="プレゼントMAP" class="cursor-pointer text-orange-500 hover:scale-110 transition"><i class="fas fa-map-marked-alt text-lg"></i></div>
-                    </div>
-                    <p class="text-[10px] text-gray-500 leading-relaxed mt-3" data-i18n="lobby-ext-links">外部リンク：note（SRT）／YouTube／公式サイト／プレゼントMAP</p>
-                    <p class="text-[10px] text-gray-500 leading-relaxed mt-2" data-i18n="lobby-disclaimer">このサイトは「3on3 FreeStyle」の<span class="text-gray-300 font-bold">非公式ファンサイト</span>です。公式情報は<a href="https://3on3.fsgames.com/" target="_blank" class="underline hover:text-white">公式サイト</a>をご確認ください。</p>
-                </div>
-            </div>
-        </section>
+
 
       </div>
     </div>
