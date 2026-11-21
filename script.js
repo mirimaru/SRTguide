@@ -269,6 +269,7 @@ window.termsDict = {
 
 let currentLang = 'ja';
 const posColors = { "PG": "bg-green-950/40", "SG": "bg-orange-950/40", "SF": "bg-cyan-950/40", "PF": "bg-indigo-950/40", "C": "bg-red-950/40" };
+const posAccent = { "PG": "#4ade80", "SG": "#fb923c", "SF": "#22d3ee", "PF": "#a5b4fc", "C": "#f87171" };
 
 // ==========================================
 // ★ データ自動浄化＆言語切り替え ★
@@ -479,7 +480,11 @@ function initDb() {
         card.className = `char-card p-6 relative overflow-hidden ${posColors[c.pos] || 'bg-white/5'} border border-white/10`;
         const searchName = ((c.名前 || '') + ' ' + (c.en || '')).toLowerCase(); 
         card.dataset.name = searchName; card.dataset.pos = c.pos || 'All';
+        card.dataset.total = c.s.reduce((sum, val) => sum + val, 0);
+        card.dataset.stats = c.s.join(',');
+        card.dataset.ord = grid.children.length;
         const cName = c.en || c.名前;
+        const subName = (currentLang === 'ja' && c.名前 && c.名前 !== cName) ? `<div class="text-[11px] text-gray-400 font-bold leading-tight">${c.名前}</div>` : '';
         let sHtml = '<div class="stat-grid">';
         c.s.forEach((v, i) => {
             const isMax = maxStats[c.pos] && v === maxStats[c.pos][i];
@@ -494,10 +499,10 @@ function initDb() {
             <div class="char-content relative z-10">
                 <div class="flex justify-between items-end mb-4 border-b border-white/20 pb-2">
                     <div class="flex items-center gap-3">
-                        <div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>
+                        <div><div class="text-2xl font-black italic tracking-tighter leading-none">${cName}</div>${subName}</div>
                         <div class="bg-orange-500/20 border border-orange-500 text-orange-500 text-xs font-black px-2 py-0.5 rounded-full tracking-tighter italic whitespace-nowrap">TOTAL: ${totalStat}</div>
                     </div>
-                    <div class="text-[#ff4e00] font-black italic text-xl leading-none">${c.pos}</div>
+                    <div class="font-black italic text-xl leading-none" style="color:${posAccent[c.pos] || '#ff4e00'}">${c.pos}</div>
                 </div>
                 ${sHtml}
             </div>
@@ -521,6 +526,21 @@ function filterCards() {
     });
 }
 
+function sortCards() {
+    const grid = document.getElementById('grid');
+    const sel = document.getElementById('sortSelect');
+    if (!grid || !sel) return;
+    const mode = parseInt(sel.value, 10);
+    const cards = Array.from(grid.children);
+    cards.sort((a, b) => {
+        if (mode === -2) return (+a.dataset.ord || 0) - (+b.dataset.ord || 0);
+        const av = mode === -1 ? (+a.dataset.total || 0) : +((a.dataset.stats || '').split(',')[mode] || 0);
+        const bv = mode === -1 ? (+b.dataset.total || 0) : +((b.dataset.stats || '').split(',')[mode] || 0);
+        return bv - av;
+    });
+    cards.forEach(c => grid.appendChild(c));
+}
+
 function initPBuff() {
     const container = document.getElementById('pbuff-grid-container');
     if(!container) return; container.innerHTML = '';
@@ -528,6 +548,8 @@ function initPBuff() {
     if (typeof pBuffData === 'undefined') return;
     
     const posFilter = document.getElementById('pbuffPosFilter').value;
+    const searchEl = document.getElementById('pbuffSearch');
+    const query = searchEl ? searchEl.value.trim().toLowerCase() : '';
     
     for (const [posName, chars] of Object.entries(pBuffData)) {
         if (posName.startsWith("ALL")) continue;
@@ -535,20 +557,34 @@ function initPBuff() {
         const pCode = posName.split(' ')[0];
         if (posFilter !== 'All' && pCode !== posFilter) continue;
         
+        let list = chars;
+        if (query) {
+            list = chars.filter(char => {
+                const nm = ((char.名前 || '') + ' ' + (char.en || '') + ' ' + (char.name || '')).toLowerCase();
+                if (nm.includes(query)) return true;
+                return (char.buffs || []).some(b => (b[0] || '').toLowerCase().includes(query) || getTranslatedText(b[0], currentLang).toLowerCase().includes(query));
+            });
+            if (!list.length) continue;
+        }
+        const accent = posAccent[pCode] || '#ff4e00';
+        
         const title = document.createElement('h3'); 
-        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 border-orange-500 pb-2`; 
+        title.className = `text-4xl font-black italic text-white mb-6 mt-12 border-b-2 pb-2`; 
+        title.style.borderColor = accent;
+        title.style.borderLeft = '8px solid ' + accent;
+        title.style.paddingLeft = '14px';
         title.innerText = posName;
         container.appendChild(title);
         
         const grid = document.createElement('div'); 
         grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6';
         
-        chars.forEach(char => {
+        list.forEach(char => {
             const card = document.createElement('div'); 
             card.className = `pbuff-card p-4 relative overflow-hidden ${posColors[pCode] || 'bg-white/5'} border border-white/10`;
             const cName = char.en || char.name;
             let bHtml = `<div class="char-content relative z-10 min-h-[180px]">
-                <h3 class="text-2xl font-black italic text-orange-500 mb-4">${cName}</h3>
+                <h3 class="text-2xl font-black italic mb-4" style="color:${accent}">${cName}</h3>
                 <div class="space-y-1.5">`;
             
             char.buffs.forEach(b => { 
