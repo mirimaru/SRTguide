@@ -365,6 +365,58 @@
                         </div>
                         </div>
 
+                        <!-- リンクタイル（全部同格・MODEタイルと同デザイン） -->
+                        <div class="grid grid-cols-2 gap-2.5 mt-3.5">
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="window.open('https://3on3.fsgames.com', '_blank')">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-globe text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">OFFICIAL</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">公式サイト</p>
+                            </div>
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="window.open('https://www.youtube.com/@3on3FreeStyle', '_blank')">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fab fa-youtube text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">YOUTUBE</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">公式YouTubeチャンネル</p>
+                            </div>
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="showPage('ping')">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-network-wired text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">PING MAP</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">サーバーPingマップ。現在は東京サーバーのみ対応。</p>
+                            </div>
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="showPage('videos')">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-video text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">VIDEOS</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">キャラ別の紹介・解説動画へのリンク集。</p>
+                            </div>
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="showPage('music')">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-music text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">MUSIC</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">公式の音楽シリーズや関連動画のまとめ。</p>
+                            </div>
+                            <div class="relative bg-[#0b0b0d]/90 backdrop-blur border border-white/10 px-3.5 pt-3 pb-2.5 cursor-pointer hover:border-[#ff4e00]/60 transition min-h-[84px]" onclick="location.href='discord.html'">
+                                <span class="absolute top-0 left-0 w-9 h-[3px] bg-[#ff4e00]"></span>
+                                <div class="flex items-center gap-2">
+                                    <i class="fab fa-discord text-[#ff4e00] text-sm shrink-0"></i>
+                                    <span class="font-teko text-[26px] font-bold italic leading-none tracking-wide">DISCORD</span>
+                                </div>
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-1.5">公式Discordについて。最新情報とPS5連携。</p>
+                            </div>
+                        </div>
+
                         <!-- 全キャラへの導線 -->
                         <div class="mt-auto pt-3.5">
                             <span onclick="location.href='characters.html'" class="inline-flex items-center gap-2 text-[#ff7a33] hover:text-[#ff9a5c] transition font-black text-xs tracking-wider cursor-pointer" data-i18n="lobby-pick-all">キャラ相関ページで全61キャラを見る <i class="fas fa-arrow-right"></i></span>
@@ -435,41 +487,9 @@
 </style>
             <!-- ▼ SELECT MODE：行き先ドック ▼ -->
             <div>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-3.5">
+                <div class="flex items-baseline gap-4 mb-3.5">
                     <span class="font-teko text-2xl lg:text-3xl font-bold italic tracking-[0.2em] leading-none">SELECT MODE</span>
                     <span class="text-sm font-black text-gray-300" data-i18n="lobby-select-sub">行き先を選ぶ</span>
-                <!-- 小タイル（見出し行の右側へ移動） -->
-                <div class="grid grid-cols-3 gap-2.5 items-start w-full sm:w-[540px] sm:ml-auto">
-                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('ping')">
-                        <div class="flex items-center gap-2.5">
-                            <i class="fas fa-network-wired text-[#ff4e00] text-sm shrink-0"></i>
-                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-ping">PING MAP</span>
-                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
-                        </div>
-                        <div class="tile-more">
-                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">サーバーPingの可視化マップ。現在は東京サーバーのみ対応。</p>
-                        </div>
-                    </div>
-                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('videos')">
-                        <div class="flex items-center gap-2.5">
-                            <i class="fas fa-video text-[#ff4e00] text-sm shrink-0"></i>
-                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-videos">VIDEOS</span>
-                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
-                        </div>
-                        <div class="tile-more">
-                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">キャラ別の紹介・解説動画へのリンク集。</p>
-                        </div>
-                    </div>
-                    <div class="mode-tile bg-[#0b0b0d]/90 backdrop-blur border border-white/10 rounded-xl px-3 py-2.5 cursor-pointer hover:border-white/30 transition min-w-0" onclick="showPage('music')">
-                        <div class="flex items-center gap-2.5">
-                            <i class="fas fa-music text-[#ff4e00] text-sm shrink-0"></i>
-                            <span class="font-teko text-lg sm:text-xl font-bold italic tracking-widest pt-0.5 truncate" data-i18n="nav-music">MUSIC</span>
-                            <i class="fas fa-chevron-down text-[10px] text-gray-500 ml-auto shrink-0"></i>
-                        </div>
-                        <div class="tile-more">
-                            <p class="text-[11px] text-gray-400 leading-relaxed mt-2">公式の音楽シリーズや関連動画のまとめ。</p>
-                        </div>
-                    </div>
                 </div>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
