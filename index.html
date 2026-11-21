@@ -199,6 +199,15 @@
                             <div class="text-[10px] font-black tracking-[0.25em] text-gray-400 mt-1" data-i18n="lobby-stat-route">GUIDE ROUTE</div>
                         </div>
                     </div>
+                    <!-- Discordタイル -->
+                    <a href="discord.html" class="group mt-7 flex items-center gap-4 bg-[#0b0b0d]/85 backdrop-blur border border-white/15 hover:border-[#5865F2] rounded-2xl px-5 py-4 transition max-w-xl">
+                        <i class="fab fa-discord text-4xl text-[#5865F2] shrink-0"></i>
+                        <span class="min-w-0">
+                            <span class="block font-teko text-2xl font-bold italic tracking-widest leading-none">DISCORD <span class="text-[13px] not-italic font-sans font-bold text-gray-300 tracking-normal">公式Discordについて</span></span>
+                            <span class="block text-xs text-gray-400 mt-1.5 leading-relaxed">最新情報が最速で届く公式Discordのすすめ。PS5と連携するメリットも紹介します。</span>
+                        </span>
+                        <i class="fas fa-chevron-right ml-auto text-gray-500 group-hover:text-white transition shrink-0"></i>
+                    </a>
                 </div>
 
                 <!-- ▼ 右：TODAY'S PICK ▼ -->
@@ -716,18 +725,10 @@
             <div id="music-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
         </section>
 
-        <!-- サーベイセクション -->
-        <section id="page-survey" class="page-container px-6 lg:px-20 py-10 max-w-5xl mx-auto">
-            <h2 class="text-5xl lg:text-6xl font-black italic mb-6 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-survey">SURVEY</h2>
-            <div class="bg-white/5 p-6 rounded-3xl border border-white/10 shadow-2xl">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe_サンプルURLです/viewform?embedded=true" width="100%" height="700" frameborder="0"></iframe>
-            </div>
-        </section>
-
         <!-- データベースセクション -->
         <section id="page-db" class="page-container px-6 lg:px-20 py-10">
             <div class="flex justify-between items-end mb-10 gap-6">
-                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">DATABASE</h2>
+                <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">STATUS</h2>
                 <div class="flex gap-4">
                     <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-72">
                     <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
@@ -2022,7 +2023,7 @@
     if (!btn || !overlay || !iframe) return;
 
     // showPage の引数になり得るセクション id（本体の実装に合わせる）
-    var MP_PAGES = ['home', 'guide', 'db', 'pbuff', 'ping', 'videos', 'music', 'survey'];
+    var MP_PAGES = ['home', 'guide', 'db', 'pbuff', 'ping', 'videos', 'music'];
 
     // DOM 状態から現在表示中のセクションを判定する
     // showPage は home のとき #standard-content に hidden を付け、
