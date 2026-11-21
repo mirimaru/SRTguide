@@ -79,30 +79,12 @@
         #lobby-pick-expand .pick-chev { transition: transform .4s ease; }
         #lobby-pick-expand:hover .pick-chev, #lobby-pick-expand.open .pick-chev { transform: rotate(180deg); }
     </style>
-    <style>
-      .mp-btn{
-      .mp-btn:hover{background:rgba(255,78,0,.28);color:#fff}
-      .mp-btn svg{flex:none}
-      html.mp-mode .mp-btn, html.mp-mode .mp-overlay{display:none !important}
-      .mp-overlay{
-      .mp-overlay[hidden]{display:none}
-      .mp-bar{
-      .mp-bar .mp-title{font-weight:900;color:#fff;font-size:15px}
-      .mp-bar .mp-title small{color:var(--muted);font-weight:500;font-size:12px;margin-left:8px;letter-spacing:.06em}
-      .mp-close{
-      .mp-close:hover{background:#ff6a26}
-      .mp-stage{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px}
-      .mp-frame{
-      .mp-notch{
-      .mp-frame iframe{display:block;width:390px;height:844px;border:0;background:#050505}
-    </style>
-</head>
+    </head>
 <body class="bg-[#050505] text-white antialiased">
     <header class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur border-b border-white/10">
         <div class="max-w-[1500px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between gap-4">
             <a href="index.html" class="font-teko text-2xl font-bold italic tracking-wider leading-none">3on3 <span class="text-[#ff4e00]">DIVINE</span> <span class="text-[10px] not-italic font-sans font-black tracking-widest text-gray-400 ml-1">SRTGUIDE</span></a>
             <div class="flex items-center gap-4">
-                <button type="button" class="mp-btn" id="mpOpenBtn" aria-haspopup="dialog">スマホ表示</button>
                 <a href="index.html" class="text-xs font-black tracking-wider text-[#ff7a33] hover:text-[#ff9a5c] transition">← SRTguide トップへ戻る</a>
             </div>
         </div>
@@ -195,8 +177,8 @@
                         </div>
                     </div>
                     <div class="glass-panel neon-border-orange rounded-r-3xl p-6 mb-6">
-                        <h4 class="font-black text-lg mb-2" data-i18n="gd-s2-pg4-title">PGから始めるなら「4強」が候補</h4>
-                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="gd-s2-pg4-desc">2026年環境のPGは<span class="text-white font-bold">カジ／ジェネーザ／クララ／アイラ</span>の4強。中でもクララはルーズボールへの対応力と、ジャンプシューターを封じる守備が持ち味で、攻守バランスも高く育成優先度が高い1人です。まずは初期のマードックで基礎を覚えながら、自分のポジションの目標キャラを狙いましょう。</p>
+                        <h4 class="font-black text-lg mb-2" data-i18n="gd-s2-pg4-title">PGから始めるなら「5強」が候補</h4>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="gd-s2-pg4-desc">2026年環境のPGは<span class="text-white font-bold">カジ／ジェネーザ／クララ／アイラ／ペドロ</span>の5強。ペドロはスティールで対面に強いPGです。中でもクララはルーズボールへの対応力と、ジャンプシューターを封じる守備が持ち味で、攻守バランスも高く育成優先度が高い1人です。まずは初期のマードックで基礎を覚えながら、自分のポジションの目標キャラを狙いましょう。</p>
                     </div>
                     <p class="text-gray-400 text-xs font-bold tracking-widest mb-3" data-i18n="gd-s2x-label">追加のおすすめ</p>
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
@@ -396,17 +378,6 @@
             <p>このサイトは『3on3 FreeStyle』の非公式ファンサイトです。公式情報は<a href="https://3on3.fsgames.com" target="_blank" rel="noopener" class="text-[#ff7a33]">公式サイト</a>をご確認ください。</p>
         </div>
     </footer>
-    <div class="mp-overlay" id="mpOverlay" hidden role="dialog" aria-modal="true" aria-label="スマホ表示プレビュー">
-      <div class="mp-bar">
-        <span class="mp-title">スマホ表示プレビュー<small>390 × 844</small></span>
-        <button type="button" class="mp-close" id="mpCloseBtn">✕ 閉じる</button>
-      </div>
-      <div class="mp-stage" id="mpStage">
-        <div class="mp-frame" id="mpFrame">
-          <div class="mp-notch" aria-hidden="true"></div>
-          <iframe id="mpFrameView" title="スマホ表示プレビュー（このページのスマホ幅表示）"></iframe>
-        </div>
-      </div>
     <script>
 
       // ===== ペットデータ（出典B：公式「Pet System Rates & Information」） =====
@@ -663,59 +634,6 @@
         subHtml += '</tbody></table></div></div>';
       });
       subWrap.innerHTML = subHtml;
-
-      // ===== スマホ表示プレビュー =====
-      (function(){
-        var openBtn = document.getElementById("mpOpenBtn");
-        var overlay = document.getElementById("mpOverlay");
-        var closeBtn = document.getElementById("mpCloseBtn");
-        var frame = document.getElementById("mpFrame");
-        var frameView = document.getElementById("mpFrameView");
-        // プレビュー内（?mp=1）ではボタンもオーバーレイも使わない（再帰防止）
-        if (document.documentElement.classList.contains("mp-mode")) {
-          if (openBtn) openBtn.style.display = "none";
-          if (overlay) overlay.style.display = "none";
-          return;
-        }
-        if (!openBtn || !overlay || !closeBtn || !frame || !frameView) return;
-
-        var loaded = false;
-        function fitFrame(){
-          var availW = window.innerWidth - 20;
-          var availH = window.innerHeight - 84; // 上部バー分を差し引く
-          var s = Math.min(1, availW / 412, availH / 866);
-          if (!(s > 0)) s = 1;
-          frame.style.transform = "scale(" + s + ")";
-        }
-        function openPreview(){
-          if (!loaded) {
-            var url = new URL(window.location.href);
-            url.searchParams.set("mp", "1");
-            frameView.src = url.toString();
-            loaded = true;
-          }
-          overlay.hidden = false;
-          document.body.style.overflow = "hidden";
-          fitFrame();
-          closeBtn.focus();
-        }
-        function closePreview(){
-          overlay.hidden = true;
-          document.body.style.overflow = "";
-          openBtn.focus();
-        }
-        openBtn.addEventListener("click", openPreview);
-        closeBtn.addEventListener("click", closePreview);
-        overlay.addEventListener("click", function(e){
-          if (e.target === overlay || e.target.id === "mpStage") closePreview();
-        });
-        document.addEventListener("keydown", function(e){
-          if (e.key === "Escape" && !overlay.hidden) closePreview();
-        });
-        window.addEventListener("resize", function(){
-          if (!overlay.hidden) fitFrame();
-        });
-      })();
     
     </script>
 </body>
