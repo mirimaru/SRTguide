@@ -607,11 +607,11 @@
 
         <!-- データベースセクション -->
         <section id="page-db" class="page-container px-6 lg:px-20 py-10">
-            <div class="flex justify-between items-end mb-10 gap-6">
+            <div class="flex flex-wrap justify-between items-end gap-6 sticky top-[68px] z-30 bg-[#050505]/90 backdrop-blur-md py-4 -mt-2 rounded-2xl">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">STATUS</h2>
-                <div class="flex gap-4">
-                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none focus:border-orange-500 transition w-72">
-                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
+                <div class="flex flex-wrap gap-3">
+                    <input type="text" id="nameInput" oninput="filterCards()" placeholder="Search..." class="bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-base outline-none focus:border-orange-500 transition w-60">
+                    <select id="posFilter" onchange="filterCards()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base outline-none cursor-pointer">
                         <option value="All">ALL</option>
                         <option value="PG">PG</option>
                         <option value="SG">SG</option>
@@ -619,16 +619,37 @@
                         <option value="PF">PF</option>
                         <option value="C">C</option>
                     </select>
+                    <select id="sortSelect" onchange="sortCards()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base outline-none cursor-pointer">
+                        <option value="-2">並び替え：なし</option>
+                        <option value="-1">TOTAL（高い順）</option>
+                        <option value="0">ポスト（高い順）</option>
+                        <option value="1">ミドル（高い順）</option>
+                        <option value="2">3点（高い順）</option>
+                        <option value="3">Sレイ（高い順）</option>
+                        <option value="4">Lレイ（高い順）</option>
+                        <option value="5">Sダン（高い順）</option>
+                        <option value="6">Lダン（高い順）</option>
+                        <option value="7">パス（高い順）</option>
+                        <option value="8">スティ（高い順）</option>
+                        <option value="9">Jブロ（高い順）</option>
+                        <option value="10">Dブロ（高い順）</option>
+                        <option value="11">当たり（高い順）</option>
+                        <option value="12">リバ（高い順）</option>
+                        <option value="13">ラン（高い順）</option>
+                        <option value="14">持久（高い順）</option>
+                    </select>
                 </div>
             </div>
-            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8"></div>
+            <p class="text-xs text-gray-400 mt-3 mb-6"><span class="text-yellow-400 font-black">金色の数値</span>＝そのポジション内での最大値です。</p>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"></div>
         </section>
 
         <!-- P-BUFFセクション -->
         <section id="page-pbuff" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
-                <div class="flex gap-4">
+                <div class="flex flex-wrap gap-3">
+                    <input type="text" id="pbuffSearch" oninput="initPBuff()" placeholder="バフ効果・キャラ名（例：3点シュート）" class="bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-base outline-none focus:border-orange-500 transition w-80">
                     <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
                         <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
                         <option value="PG" class="bg-gray-900 text-white">PG</option>
