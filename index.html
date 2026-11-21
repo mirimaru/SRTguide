@@ -385,94 +385,92 @@
                             <span class="font-teko text-xl font-bold italic tracking-[0.2em] leading-none">SELECT MODE</span>
                             <span class="text-[10px] font-black text-gray-400" data-i18n="lobby-select-sub">行き先を選ぶ</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-1.5">
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='guide.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 01</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" data-i18n="nav-guide">GUIDE</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">初心者ガイド</p>
+                        <div class="grid grid-cols-2 gap-1.5 pick-tiles">
+                            <div onclick="location.href='guide.html'" class="mode-tile tile-c1 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 01</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">GUIDE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">ガイド（別ページ）</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">役割→おすすめキャラ→育成→チームプレイ。迷ったらこの順で進めばOK、4ステップの攻略ルート。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='characters.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 02</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >CHARACTERS</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">キャラ図鑑・相関</p>
+                            <div onclick="showPage('characters')" class="mode-tile tile-c1 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 02</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">CHARACTERS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">全61キャラ・相関マップ</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">全61キャラの紹介と関係性。誰を育てるか、誰と組むかはここで決める。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='skills.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 03</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >SKILLS</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">スキル一覧</p>
+                            <div onclick="showPage('note')" class="mode-tile tile-c1 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 03</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">NOTE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">攻略ノート・記事一覧</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">NGプレイ改善、野良戦術、Pバフ解説まで。ガイドの「続き」は全19記事こちら。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('db')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 04</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >STATUS</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">ステータス</p>
+                            <div onclick="window.open('https://www.youtube.com/channel/UCjf_8cmMLy8zQZWZPbG8EXQ','_blank')" class="mode-tile tile-c1 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 04</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">YOUTUBE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">そらなのチャンネル</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">そらなのYouTubeチャンネル「SRN」。配信や参加型の様子はこちらから。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-[#ff4e00]/80 shadow-[0_0_18px_rgba(255,78,0,0.3)] px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('pbuff')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 05</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" data-i18n="nav-pbuff">P-BUFF</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">Pバフ</p>
+                            <div onclick="showPage('status')" class="mode-tile tile-c2 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 05</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">STATUS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">全キャラステータス比較</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">全キャラの能力値を一覧・比較できるデータベース。育成先の見極めに。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://note.com/clean_squid9881', '_blank')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 06</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >NOTE</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">攻略コラム（note）</p>
+                            <div onclick="showPage('pbuff')" class="mode-tile tile-c2 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 06</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">P-BUFF</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">Pバフ計算・比較</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">Pバフの仕組み・計算と比較。育成やキャラ選びの判断材料に。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='pets.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 07</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >PET</div>
+                            <div onclick="location.href='skills.html'" class="mode-tile tile-c2 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 07</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">SKILLS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">スキル一覧・所持者</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">共通66／固有106、全172件。効果説明と所持者つきで検索・絞り込みできる。</p></div>
+                            </div>
+                            <div onclick="location.href='freestyle.html'" class="mode-tile tile-c2 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 08</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">FREESTYLE</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">リニューアル解説</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">サイクル方式・強化の数値・Lv.5ステータスを1枚のインフォグラフィックで整理。</p></div>
+                            </div>
+                            <div onclick="location.href='pets.html'" class="mode-tile tile-c2 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 09</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">PET</div>
                                 <p class="text-[9px] text-gray-400 leading-tight mt-0.5">ペット解説</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">全51種のペットと56種のサブ能力。入養・合成・成長の仕組みを公式資料で整理。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='freestyle.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 08</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >FREESTYLE</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">リニューアルまとめ</p>
-                            </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://3on3.fsgames.com', '_blank')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 09</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >OFFICIAL</div>
+                            <div onclick="window.open('https://3on3.fsgames.com','_blank')" class="mode-tile tile-c3 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 10</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">OFFICIAL</div>
                                 <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式サイト</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">ゲーム公式サイト。最新のお知らせ・イベント情報はまずこちら。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="window.open('https://www.youtube.com/@3on3FreeStyle', '_blank')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 10</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >YOUTUBE</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式YouTube</p>
+                            <div onclick="showPage('ping')" class="mode-tile tile-c4 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 11</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">PING MAP</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">東京サーバーのみ対応</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">サーバーPingの可視化マップ。現在は東京サーバーのみ対応。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('ping')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 11</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >PING MAP</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">Pingマップ</p>
+                            <div onclick="showPage('videos')" class="mode-tile tile-c4 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 12</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">VIDEOS</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式・解説動画まとめ</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">キャラ別の紹介・解説動画へのリンク集。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('videos')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 12</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >VIDEOS</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">動画リンク集</p>
+                            <div onclick="showPage('music')" class="mode-tile tile-c4 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 13</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">MUSIC</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式音楽シリーズ</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">公式の音楽シリーズや関連動画のまとめ。</p></div>
                             </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="showPage('music')">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 13</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >MUSIC</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">音楽シリーズ</p>
-                            </div>
-                            <div class="mode-tile relative flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/10 px-3 py-2 cursor-pointer hover:border-[#ff4e00]/70 transition min-h-[52px]" onclick="location.href='discord.html'">
-                                <span class="absolute top-0 left-0 w-7 h-[3px] bg-[#ff4e00]"></span>
-                                <div class="text-[8px] font-black tracking-[0.25em] text-gray-500">MODE 14</div>
-                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5" >DISCORD</div>
-                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式Discord</p>
+                            <div onclick="location.href='discord.html'" class="mode-tile tile-c4 flex flex-col justify-start bg-[#0b0b0d]/85 backdrop-blur border border-white/12 px-3 py-2 cursor-pointer transition min-h-[52px]">
+                                <div class="tile-mode text-[8px] font-black tracking-[0.25em]">MODE 14</div>
+                                <div class="font-teko text-[20px] font-bold italic leading-none mt-0.5">DISCORD</div>
+                                <p class="text-[9px] text-gray-400 leading-tight mt-0.5">公式Discordについて</p>
+                                <div class="tile-more"><p class="text-[10px] text-gray-300 leading-relaxed mt-1.5">公式Discordのすすめ。最新情報の入手法とPS5連携のメリット。</p></div>
                             </div>
                         </div>
-
-                        <!-- 全キャラへの導線 -->
                         <div class="mt-auto pt-3.5">
                             <span onclick="location.href='characters.html'" class="inline-flex items-center gap-2 text-[#ff7a33] hover:text-[#ff9a5c] transition font-black text-xs tracking-wider cursor-pointer" data-i18n="lobby-pick-all">キャラ相関ページで全61キャラを見る <i class="fas fa-arrow-right"></i></span>
                         </div>
@@ -539,6 +537,11 @@
             <style>
 .mode-tile .tile-more{display:flex;flex-direction:column;flex:1 1 auto;max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease}
 .mode-tile:hover .tile-more,.mode-tile.open .tile-more{max-height:460px;opacity:1}
+.pick-tiles .mode-tile:hover .tile-more,.pick-tiles .mode-tile.open .tile-more{max-height:120px}
+.tile-c1{border-left:3px solid #ff4e00}.tile-c1 .tile-mode{color:#ff8c5a}.tile-c1:hover{border-color:rgba(255,78,0,.75)}
+.tile-c2{border-left:3px solid #22d3ee}.tile-c2 .tile-mode{color:#67e8f9}.tile-c2:hover{border-color:rgba(34,211,238,.7)}
+.tile-c3{border-left:3px solid #facc15}.tile-c3 .tile-mode{color:#fde047}.tile-c3:hover{border-color:rgba(250,204,21,.7)}
+.tile-c4{border-left:3px solid #a78bfa}.tile-c4 .tile-mode{color:#c4b5fd}.tile-c4:hover{border-color:rgba(167,139,250,.7)}
 </style>
             
         </div>
