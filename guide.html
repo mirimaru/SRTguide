@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROAD TO HIGH TIER｜SRTguide</title>
+
+    <link rel="manifest" href="/SRTguide/manifest.json">
+    <link rel="apple-touch-icon" href="/SRTguide/icon-512x512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/SRTguide/sw.js');
+        });
+      }
+    </script>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- スポーティでかっこいい海外フォント「Teko」を追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        .font-teko { font-family: 'Teko', sans-serif; }
+
+        /* すりガラス（グラスモーフィズム）エフェクト */
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.5);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* サイバー感のあるネオレンジのライン */
+        .neon-border-orange { 
+            border-left: 4px solid #ff4e00; 
+            box-shadow: -10px 0 25px rgba(255, 78, 0, 0.25); 
+        }
+
+        /* サイドバーメニューのホバーアニメーション */
+        .sidebar-item { 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border-left: 2px solid transparent;
+        }
+        .sidebar-item:hover { 
+            background: linear-gradient(90deg, rgba(255,78,0,0.2) 0%, transparent 100%); 
+            border-left-color: #ff4e00;
+            transform: translateX(-4px);
+        }
+
+        /* 背景の巨大アウトラインテキスト */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.04);
+        }
+
+        #home-split-wrapper {
+            background-image: none !important;
+            background-color: #050505 !important;
+        }
+        
+        .glow-text { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .node-server { filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.8)); }
+        .node-client { filter: drop-shadow(0 0 6px rgba(148, 163, 184, 0.5)); }
+        .packet { pointer-events: none; filter: drop-shadow(0 0 5px currentColor); }
+        .link-line { transition: stroke 0.5s ease; }
+        .btn-toggle { transition: all 0.2s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .btn-toggle.active { background-color: #38bdf8; color: #0f172a; box-shadow: 0 0 15px rgba(56, 189, 248, 0.6); border-color: #38bdf8; }
+        .btn-toggle:not(.active):hover { background-color: #1e293b; }
+        /* TODAY'S PICK: character list expands on hover / tap */
+        #lobby-pick-tabs-wrap { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .55s ease, opacity .4s ease; }
+        #lobby-pick-expand:hover #lobby-pick-tabs-wrap, #lobby-pick-expand.open #lobby-pick-tabs-wrap { max-height: 380px; opacity: 1; }
+        #lobby-pick-expand .pick-chev { transition: transform .4s ease; }
+        #lobby-pick-expand:hover .pick-chev, #lobby-pick-expand.open .pick-chev { transform: rotate(180deg); }
+    </style>
+    <style>
+      .mp-btn{
+      .mp-btn:hover{background:rgba(255,78,0,.28);color:#fff}
+      .mp-btn svg{flex:none}
+      html.mp-mode .mp-btn, html.mp-mode .mp-overlay{display:none !important}
+      .mp-overlay{
+      .mp-overlay[hidden]{display:none}
+      .mp-bar{
+      .mp-bar .mp-title{font-weight:900;color:#fff;font-size:15px}
+      .mp-bar .mp-title small{color:var(--muted);font-weight:500;font-size:12px;margin-left:8px;letter-spacing:.06em}
+      .mp-close{
+      .mp-close:hover{background:#ff6a26}
+      .mp-stage{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px}
+      .mp-frame{
+      .mp-notch{
+      .mp-frame iframe{display:block;width:390px;height:844px;border:0;background:#050505}
+    </style>
+</head>
+<body class="bg-[#050505] text-white antialiased">
+    <header class="sticky top-0 z-50 bg-[#050505]/90 backdrop-blur border-b border-white/10">
+        <div class="max-w-[1500px] mx-auto px-6 lg:px-12 h-16 flex items-center justify-between gap-4">
+            <a href="index.html" class="font-teko text-2xl font-bold italic tracking-wider leading-none">3on3 <span class="text-[#ff4e00]">DIVINE</span> <span class="text-[10px] not-italic font-sans font-black tracking-widest text-gray-400 ml-1">SRTGUIDE</span></a>
+            <div class="flex items-center gap-4">
+                <button type="button" class="mp-btn" id="mpOpenBtn" aria-haspopup="dialog">スマホ表示</button>
+                <a href="index.html" class="text-xs font-black tracking-wider text-[#ff7a33] hover:text-[#ff9a5c] transition">← SRTguide トップへ戻る</a>
+            </div>
+        </div>
+    </header>
+    <main class="px-6 lg:px-20 py-10 max-w-[1500px] mx-auto">
+            <h2 class="text-5xl lg:text-6xl font-black italic mb-12 border-l-[12px] border-[#ff4e00] pl-6" data-i18n="guide-title">ROAD TO HIGH TIER</h2>
+            <div class="max-w-7xl mx-auto">
+                <p class="text-gray-300 text-sm lg:text-base leading-relaxed" data-i18n="gd-intro">上位リーグ（High Tier）で勝つために必要なのは、テクニックの前に「順番」です。<span class="text-white font-bold">①役割を知る → ②育てるキャラを決める → ③正しい順序で育成する → ④チームで勝つ立ち回りを覚える。</span>このガイドは、note連載の要点を4ステップに凝縮したものです。詳しい解説は各ステップ末尾のnote記事で読めます。</p>
+
+                <!-- STEP 1 : ポジションの特徴 -->
+                <div class="mt-16">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="font-teko text-5xl lg:text-6xl font-bold italic text-[#ff4e00] leading-none">STEP 1</span>
+                        <h3 class="text-3xl lg:text-4xl font-black italic border-l-[12px] border-[#ff4e00] pl-4 leading-tight" data-i18n="step1-title">ポジションの特徴</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm lg:text-base leading-relaxed mb-6" data-i18n="gd-s1-intro">結論：<span class="text-white font-bold">全てのプレイを1人でやろうとしないこと。</span>自分のポジションの「仕事」を理解しているだけで、味方の安心感も勝率も変わります。</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-2">PG</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s1-pg-role">司令塔</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s1-pg-desc">ボール運びと試合作りが仕事。味方を活かす展開力に加え、守備で流れを変える力も求められます。最初に触るとゲーム理解が一気に深まるポジションです。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-2">SG</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s1-sg-role">スコアラー</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s1-sg-desc">チームの得点源。フリーで打てる位置取りと、味方にフリーを作ってもらう動きの両方が大事です。シューターがいるかどうかで攻撃の形そのものが変わります。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-2">SF</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s1-sf-role">バランサー</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s1-sf-desc">攻守のバランス役。状況に応じて得点役にも守備役にも回れる柔軟さが武器で、チームの穴を埋める存在です。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-4xl font-bold italic text-[#ff4e00] leading-none mb-2">BIG</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s1-big-role">支柱（PF／C）</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s1-big-desc">PFはスクリーン・リバウンド・フィニッシュ、Cはゴール下の守備とリバウンドが仕事。ただしゴール下に居座り続けるのはNGです（STEP 4で解説）。</p>
+                        </div>
+                    </div>
+                    <figure class="glass-panel rounded-3xl p-4 mb-6">
+                        <img src="guide_step1_role.png" alt="各ポジションの役割図" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('guide_step1_role.png')">
+                        <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-role">図解：各ポジションの役割。全てのプレイを1人でやろうとせず、自分の仕事に集中することが大切です。</figcaption>
+                    </figure>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <a href="https://note.com/clean_squid9881/n/n1c29f170160f" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s1-1"><i class="fas fa-edit"></i>続きはnoteで：03. フレンドができる最低限のマナーと知識</a>
+                        <a href="https://note.com/clean_squid9881/n/n4870fad8ed27" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s1-2"><i class="fas fa-edit"></i>続きはnoteで：000. 初心者におすすめのPG決定戦</a>
+                    </div>
+                </div>
+
+                <!-- STEP 2 : おすすめキャラ -->
+                <div class="mt-20">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="font-teko text-5xl lg:text-6xl font-bold italic text-[#ff4e00] leading-none">STEP 2</span>
+                        <h3 class="text-3xl lg:text-4xl font-black italic border-l-[12px] border-[#ff4e00] pl-4 leading-tight" data-i18n="step2-title">おすすめキャラ</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm lg:text-base leading-relaxed mb-6" data-i18n="gd-s2-intro">結論：<span class="text-white font-bold">極めるポジションを1つ決め、目標キャラを早めに定めること。</span>初期キャラの中で現環境でも即戦力になるのはマードック（PF）くらいで、それ以外は環境キャラへの移行が前提になります。</p>
+                    <div class="glass-panel neon-border-orange rounded-r-3xl p-6 mb-6 flex items-center gap-5">
+                        <img src="assets/faces/basky.webp" alt="バスキー" class="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl object-cover shrink-0" onerror="this.style.display='none'">
+                        <div>
+                            <div class="font-teko text-2xl font-bold italic text-[#ff4e00] leading-none mb-1" data-i18n="gd-s2-basky-tag">SPECIAL ― 別枠</div>
+                            <h4 class="font-black text-lg lg:text-xl mb-2" data-i18n="gd-s2-basky-name">バスキー（全ポジション）</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed" data-i18n="gd-s2-basky-desc">現在の最強はこの1人。<span class="text-white font-bold">単独で試合をなんとかできる</span>別格の存在なので、ポジション別の候補とは分けて「別枠」で推奨します。どのポジションから始める人にも真っ先に挙げたい目標キャラです。</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs font-bold tracking-widest mb-3" data-i18n="gd-s2-cand-label">ポジション別の候補（単独で打開できるタイプ）</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6 mb-6">
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">PG</div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2-kaji-name">カジ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2-kaji-desc">守備の要。堅い守備とルーズボール回収で試合の流れを作るPGです。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">SG</div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2-gena-name">ジェナ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2-gena-desc">最強クラスのスコアラー。フェイクと読み合いで得点を量産します。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">SF</div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2-nathan-name">ネイサン</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2-nathan-desc">接戦に強いエース。1人で局面を打開できる打開力が持ち味です。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">PF</div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2-giantg-name">ジャイアントG</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2-giantg-desc">圧倒的な身体能力でゴール下を支配するパワーフォワードです。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">C</div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2-blair-name">ブレア</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2-blair-desc">広いシュートレンジとゴール下プレイを両立する万能型センターです。</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel neon-border-orange rounded-r-3xl p-6 mb-6">
+                        <h4 class="font-black text-lg mb-2" data-i18n="gd-s2-pg4-title">PGから始めるなら「4強」が候補</h4>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="gd-s2-pg4-desc">2026年環境のPGは<span class="text-white font-bold">カジ／ジェネーザ／クララ／アイラ</span>の4強。中でもクララはルーズボールへの対応力と、ジャンプシューターを封じる守備が持ち味で、攻守バランスも高く育成優先度が高い1人です。まずは初期のマードックで基礎を覚えながら、自分のポジションの目標キャラを狙いましょう。</p>
+                    </div>
+                    <p class="text-gray-400 text-xs font-bold tracking-widest mb-3" data-i18n="gd-s2x-label">追加のおすすめ</p>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6">
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/genesa.webp" alt="ジェネーザ" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#00e5ff;border:1px solid rgba(0,229,255,.45);background:rgba(0,229,255,.10)">PG</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-genesa-name">ジェネーザ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-genesa-desc">対面ディフェンス最強格。攻守のバランスも整っている</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/pedro.webp" alt="ペドロ" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#00e5ff;border:1px solid rgba(0,229,255,.45);background:rgba(0,229,255,.10)">PG</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-pedro-name">ペドロ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-pedro-desc">スティールで対面に強いPG</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/ravieta.webp" alt="ラヴィエタ" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#ff4fd8;border:1px solid rgba(255,79,216,.45);background:rgba(255,79,216,.10)">SG</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-ravieta-name">ラヴィエタ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-ravieta-desc">Lunaとペアで成立するMirror Fakeが象徴</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/kim.webp" alt="キム" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#ff4fd8;border:1px solid rgba(255,79,216,.45);background:rgba(255,79,216,.10)">SG</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-kim-name">キム</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-kim-desc">才能が開花したら化ける将来性</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/saru.webp" alt="サル" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#3dff7a;border:1px solid rgba(61,255,122,.4);background:rgba(61,255,122,.10)">SF</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-saru-name">サル</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-saru-desc">野良で止められないアタッカー</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/fei.webp" alt="フェイ" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#ffe93d;border:1px solid rgba(255,233,61,.4);background:rgba(255,233,61,.10)">PF</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-fei-name">フェイ</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-fei-desc">ダンクと突破力の攻撃型フォワード</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/vandell.webp" alt="ヴァンデル" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#ffe93d;border:1px solid rgba(255,233,61,.4);background:rgba(255,233,61,.10)">PF</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-vandell-name">ヴァンデル</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-vandell-desc">Nathanの宿敵として知られるエース</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-5">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img src="assets/faces/marisol.webp" alt="マリソル" class="w-12 h-12 rounded-xl object-cover shrink-0" onerror="this.style.display='none'">
+                                <span class="text-[10px] font-black tracking-widest px-2 py-0.5 rounded-full" style="color:#ffe93d;border:1px solid rgba(255,233,61,.4);background:rgba(255,233,61,.10)">PF</span>
+                            </div>
+                            <h4 class="font-black text-base lg:text-lg mb-2" data-i18n="gd-s2x-marisol-name">マリソル</h4>
+                            <p class="text-xs text-gray-300 leading-relaxed" data-i18n="gd-s2x-marisol-desc">想いと献身が持ち味のフォワード</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <a href="https://note.com/clean_squid9881/n/ne8257d096900" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s2-1"><i class="fas fa-edit"></i>続きはnoteで：04. 上位リーグで通用する立ち回りの基本</a>
+                        <a href="https://note.com/clean_squid9881/n/n4870fad8ed27" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s2-2"><i class="fas fa-edit"></i>続きはnoteで：000. 初心者におすすめのPG決定戦</a>
+                        <a href="https://note.com/clean_squid9881/n/nc81a1742c5ad" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s2-3"><i class="fas fa-edit"></i>続きはnoteで：クララ（Clara）完全攻略ガイド</a>
+                    </div>
+                </div>
+
+                <!-- STEP 3 : 育成手順 -->
+                <div class="mt-20">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="font-teko text-5xl lg:text-6xl font-bold italic text-[#ff4e00] leading-none">STEP 3</span>
+                        <h3 class="text-3xl lg:text-4xl font-black italic border-l-[12px] border-[#ff4e00] pl-4 leading-tight" data-i18n="step3-title">育成手順</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm lg:text-base leading-relaxed mb-6" data-i18n="gd-s3-intro">結論：<span class="text-white font-bold">育成の黄金順は「P5昇級 → Pバフ構築 → カード厳選」。</span>カードパックに資源を注ぐのは最後です。理由はシンプルで、カードは装備した1キャラだけの強化ですが、Pバフは同ポジションの全キャラに効く永続強化だからです。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2" data-i18n="gd-s3-c1-title">1. P5昇級</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s3-c1-head">基盤を作る</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s3-c1-desc">育てるポジションは1つに絞り、メインキャラとPバフ要員を育成します。★4でPバフ1枠目、★5（P5）で2枠目が解放されるので、超越黒本を集めてP5化するのが全ての土台です。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2" data-i18n="gd-s3-c2-title">2. P-BUFF構築</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s3-c2-head">カードより先に完成させる</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s3-c2-desc">同じバフを2枠に重ねがけでき、効果は同ポジション全員へ常時適用されます（例：移動速度アップを2枠で合計+28）。まず移動速度を確保することが、上位のスピードに対抗する前提条件です。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2" data-i18n="gd-s3-c3-title">3. カード厳選</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s3-c3-head">土台の後に仕上げる</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s3-c3-desc">Pバフの土台が完成して初めて、能力カードの厳選に着手します。順番を逆にすると、新キャラを手に入れるたびに引き直しが必要になり、投資が無駄になります。</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <figure class="glass-panel rounded-3xl p-4">
+                            <img src="upgrade_pyramid.png" alt="育成の黄金順ピラミッド" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('upgrade_pyramid.png')">
+                            <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-pyramid">図解：強者のピラミッド。まずはP5昇級で基盤を作り、P-BUFFを構築してからカード厳選に進むのが黄金律です。</figcaption>
+                        </figure>
+                        <figure class="glass-panel rounded-3xl p-4">
+                            <img src="roi_comparison.png" alt="Pバフとカードの投資対効果" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('roi_comparison.png')">
+                            <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-roi">図解：P-BUFFとカードの投資対効果。P-BUFFはポジション全体に永続的な恩恵をもたらすため、カードより圧倒的にコスパが良いです。</figcaption>
+                        </figure>
+                    </div>
+                    <div class="glass-panel rounded-3xl p-6 mb-6">
+                        <h4 class="font-black text-lg mb-3" data-i18n="gd-s3-daily-title">毎日の積み重ね（日課）</h4>
+                        <ul class="text-sm text-gray-300 leading-relaxed space-y-2">
+                            <li data-i18n="gd-s3-daily-1"><i class="fas fa-check text-[#ff4e00] mr-2"></i>デイリーミッションをこなしてポイントを確保する</li>
+                            <li data-i18n="gd-s3-daily-2"><i class="fas fa-check text-[#ff4e00] mr-2"></i>スキルボールは毎日1〜2個買う習慣をつける</li>
+                            <li data-i18n="gd-s3-daily-3"><i class="fas fa-check text-[#ff4e00] mr-2"></i>活動（ミニゲーム）で超越ノートを集める（20冊で超越黒本1冊に交換）</li>
+                            <li data-i18n="gd-s3-daily-4"><i class="fas fa-check text-[#ff4e00] mr-2"></i>初心者ミッションの全制覇とクラブ加入は序盤の最強ブースト</li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <a href="https://note.com/clean_squid9881/n/n0248c82d9b69" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s3-1"><i class="fas fa-edit"></i>続きはnoteで：「Pバフ」の仕様完全解説</a>
+                        <a href="https://note.com/clean_squid9881/n/n6cf5ae71d282" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s3-2"><i class="fas fa-edit"></i>続きはnoteで：07. 「最短・最速」キャラクター育成ルート</a>
+                        <a href="https://note.com/clean_squid9881/n/nc92e81bc4ffa" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s3-3"><i class="fas fa-edit"></i>続きはnoteで：12. 総まとめ 最終チェック</a>
+                    </div>
+                </div>
+
+                <!-- STEP 4 : 最高のチームメイトへの進化 -->
+                <div class="mt-20">
+                    <div class="flex items-end gap-4 mb-6">
+                        <span class="font-teko text-5xl lg:text-6xl font-bold italic text-[#ff4e00] leading-none">STEP 4</span>
+                        <h3 class="text-3xl lg:text-4xl font-black italic border-l-[12px] border-[#ff4e00] pl-4 leading-tight" data-i18n="step4-title">「最高のチームメイト」への進化</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm lg:text-base leading-relaxed mb-6" data-i18n="gd-s4-intro">結論：<span class="text-white font-bold">上手さより先に「一緒にやりやすい人」になること。</span>役割を果たし、邪魔をせず、意図を読み、丁寧に声を掛ける。この4段階が、そのまま勝率に直結します。</p>
+                    <figure class="glass-panel rounded-3xl p-4 mb-6">
+                        <img src="guide_step4_steps.png" alt="最高のチームメイトになるための4段階" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('guide_step4_steps.png')">
+                        <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-steps">図解：良いチームメイトになるための4段階（役割把握 → 邪魔しない → 意図を読む → コミュニケーション）</figcaption>
+                    </figure>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">LEVEL 1</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s4-l1-head">役割を果たす（基礎）</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s4-l1-desc">まずは自分のポジションの仕事に集中すること（STEP 1）。全部を自分でやろうとせず、任せるべき場面は味方に任せるのも役割のうちです。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">LEVEL 2</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s4-l2-head">邪魔をしない（基礎）</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s4-l2-desc">味方と同じ場所に立たない。ドライブコースを塞がない。ボール保持者に近寄らない（自分のマーカーを連れてきてしまいます）。そしてセンターはゴール下に居座らないこと。居座ると相手センターをゴール下に固定し、味方の攻撃ルートに壁を作ってしまいます。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">LEVEL 3</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s4-l3-head">意図を読む（応用）</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s4-l3-desc">味方がドライブしたらスペースを空け、スクリーンには動きを合わせ、シュートが外れたらリバウンドへ。野良の基本形はアイソレーションです。シューターにボールを預け、残り2人は大きく広がって邪魔をしないこと。攻撃の起点は窮屈なサイドではなく、中央（トップ）から作ります。</p>
+                        </div>
+                        <div class="glass-panel rounded-3xl p-6">
+                            <div class="font-teko text-3xl font-bold italic text-[#ff4e00] leading-none mb-2">LEVEL 4</div>
+                            <h4 class="font-black text-lg mb-2" data-i18n="gd-s4-l4-head">コミュニケーション（応用）</h4>
+                            <p class="text-xs lg:text-sm text-gray-300 leading-relaxed" data-i18n="gd-s4-l4-desc">味方のミスには責めずに「大丈夫」。自分がミスしたら謝る。「パス」の連打のような圧のある要求は控えめに。丁寧なやり取りができる人ほど、フレンドに誘われ、固定チームへと繋がっていきます。</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <figure class="glass-panel rounded-3xl p-4">
+                            <img src="guide_step4_space.png" alt="スペースの作り方" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('guide_step4_space.png')">
+                            <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-space">図解：味方と同じ場所に立つと「渋滞」が起きます。ボール保持者に近づかない、ドライブコースを塞がないのが鉄則です。</figcaption>
+                        </figure>
+                        <figure class="glass-panel rounded-3xl p-4">
+                            <img src="guide_step4_space2.png" alt="インサイドに居座らない" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('guide_step4_space2.png')">
+                            <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-inside">図解：インサイド（ゴール下）にずっと居座らないこと。ビッグマンのリバウンド位置とも被らないようにしましょう。</figcaption>
+                        </figure>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <figure class="glass-panel rounded-3xl p-4">
+                            <img src="guide_step4_comm.png" alt="コミュニケーションの基本" class="w-full h-auto rounded-2xl cursor-pointer" onclick="openImageModal('guide_step4_comm.png')">
+                            <figcaption class="text-xs text-gray-400 mt-3 leading-relaxed" data-i18n="img-cap-comm">図解：ミスには「大丈夫」のエモートを。過度な「パス要求」は控え、自分がミスしたら謝るのが基本です。</figcaption>
+                        </figure>
+                        <div class="glass-panel neon-border-orange rounded-r-3xl p-6">
+                            <h4 class="font-black text-lg mb-3" data-i18n="gd-s4-check-title">試合前のセルフチェック</h4>
+                            <ul class="text-sm text-gray-300 leading-relaxed space-y-2">
+                                <li data-i18n="gd-s4-check-1"><i class="fas fa-check text-[#ff4e00] mr-2"></i><span class="text-white font-bold">センターの位置：</span>外に出て、中を空けられているか</li>
+                                <li data-i18n="gd-s4-check-2"><i class="fas fa-check text-[#ff4e00] mr-2"></i><span class="text-white font-bold">味方との距離：</span>寄りすぎず、距離を取れているか</li>
+                                <li data-i18n="gd-s4-check-3"><i class="fas fa-check text-[#ff4e00] mr-2"></i><span class="text-white font-bold">攻撃の起点：</span>中央（トップ）から広く展開できているか</li>
+                                <li data-i18n="gd-s4-check-4"><i class="fas fa-check text-[#ff4e00] mr-2"></i><span class="text-white font-bold">開幕の初動：</span>ボールを持ちすぎず、即パス＆リターンでテンポを作れているか</li>
+                            </ul>
+                            <p class="text-xs text-gray-400 leading-relaxed mt-3" data-i18n="gd-s4-check-note">技術や運に頼る前に、この4点を毎試合問い直すのが「脱・戦犯」への近道です。</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-x-6 gap-y-2">
+                        <a href="https://note.com/clean_squid9881/n/nf3fc4ea59543" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s4-1"><i class="fas fa-edit"></i>続きはnoteで：08. 「地蔵センター」はなぜ負けフラグなのか？</a>
+                        <a href="https://note.com/clean_squid9881/n/n3c569ed9f416" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s4-2"><i class="fas fa-edit"></i>続きはnoteで：14. 野良試合で絶対に覚えるべき「味方への合わせ方」</a>
+                        <a href="https://note.com/clean_squid9881/n/nc92e81bc4ffa" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s4-3"><i class="fas fa-edit"></i>続きはnoteで：12. 総まとめ 最終チェック</a>
+                        <a href="https://note.com/clean_squid9881/n/n1c29f170160f" target="_blank" class="inline-flex items-center gap-2 text-[#ff4e00] font-bold text-sm hover:underline" data-i18n="gd-note-s4-4"><i class="fas fa-edit"></i>続きはnoteで：03. フレンドができる最低限のマナーと知識</a>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+    <footer class="border-t border-white/10 mt-10">
+        <div class="max-w-[1500px] mx-auto px-6 lg:px-12 py-8 text-[11px] text-gray-500 leading-relaxed">
+            <p>このサイトは『3on3 FreeStyle』の非公式ファンサイトです。公式情報は<a href="https://3on3.fsgames.com" target="_blank" rel="noopener" class="text-[#ff7a33]">公式サイト</a>をご確認ください。</p>
+        </div>
+    </footer>
+    <div class="mp-overlay" id="mpOverlay" hidden role="dialog" aria-modal="true" aria-label="スマホ表示プレビュー">
+      <div class="mp-bar">
+        <span class="mp-title">スマホ表示プレビュー<small>390 × 844</small></span>
+        <button type="button" class="mp-close" id="mpCloseBtn">✕ 閉じる</button>
+      </div>
+      <div class="mp-stage" id="mpStage">
+        <div class="mp-frame" id="mpFrame">
+          <div class="mp-notch" aria-hidden="true"></div>
+          <iframe id="mpFrameView" title="スマホ表示プレビュー（このページのスマホ幅表示）"></iframe>
+        </div>
+      </div>
+    <script>
+
+      // ===== ペットデータ（出典B：公式「Pet System Rates & Information」） =====
+      // [名前ENG, 名前KOR, 固有能力ENG, Lv.1値, 最大値]
+      var PETS = {
+        platinum: { label: "Platinum", maxLv: 15, list: [
+          ["Black Cyber Drone","블랙 사이버 드론","Floater Success Rate","0.8%","12%"],
+          ["Red Cyber Drone","레드 사이버 드론","3 Point Fade Away Success Rate","0.6%","8%"],
+          ["White Cleaner Bot","화이트 로봇청소기","Diving Catch Distance","2.4CM","36CM"],
+          ["Red Cleaner Bot","레드 로봇청소기","Diving Catch Success Rate","1%","15%"],
+          ["Space Dog Laika","우주 개 라이카","Pull Up Jumper Success Rate","0.3%","4%"],
+          ["Rabbit Alien UFO","토끼 우주인 UFO","Jump Shot Block","2","25"],
+          ["Astro Gold UFO","아스트로 골드 UFO","Shadow Block Success Rate","0.6%","8%"],
+          ["Astro Silver UFO","아스트로 실버 UFO","Drive In Shot Block","2","25"],
+          ["Cheeky Ghost","메롱 유령","Double Clutch Success Rate","1%","15%"],
+          ["Halloween Ghost","흰천 유령","Shadow Steal Chance","1%","15%"],
+          ["RC Monster Truck","RC 몬스터 트럭","Increased success rate of dash intercepts","1.6%","24%"],
+          ["Candy Pinata","캔디 피냐타","Diving Catch Height","1CM","15CM"],
+          ["Brindled Mini Pig","얼룩 미니피그","Sky Hook Shot Success Rate","0.6%","8%"],
+          ["Baboon","개코 원숭이","Rebound & Shot Success Rate","0.6%","8%"],
+          ["Brown Kappa","브라운 헤어 캇파","Fade Away Success Rate","0.6%","8%"],
+          ["Mini Holstein","미니 얼룩소","Box Out Speed","0.5CM/S","7.5CM/S"],
+          ["Red Messenger","레드 메신저봇","Off Ball Quick Move Speed","0.6%","9%"],
+          ["Blue Messenger","블루 메신저봇","V-Cut Speed","0.6%","9%"],
+          ["Pink Messenger","핑크 메신저봇","Side Hop Step Speed","0.6%","9%"],
+          ["Khaki Messenger","카키 메신저봇","Behind the Back Speed","0.7%","10.5%"],
+          ["Magpie with gat","갓을 쓴 까치","Upper Steal Success rate","0.8%","12%"],
+          ["Hellhound","헬하운드","Deny Intercept Success Rate","0.4%","6%"],
+          ["CarroBot","캐로봇","Quick Jumper Success Rate","0.1%","2%"],
+          ["Big Man Monocle","빅맨 코치 모노클","Power Rebound Distance","1.5CM","20CM"],
+          ["Defense Monocle","수비 코치 모노클","Manual Block Distance","1.5CM","20CM"],
+          ["Shooting Monocle","슈팅 코치 모노클","Shooting Touch Success Rate","0.1%","2%"]
+        ]},
+        gold: { label: "Gold", maxLv: 12, list: [
+          ["Peach Lovebird","고사쿠라 모란 앵무","Kill Pass Speed","12CM/S","144CM/S"],
+          ["Cobalt Lovebird","코발트 모란 앵무","Layup Pass Speed","2CM/S","24CM/S"],
+          ["Pelican","펠리컨","Intercept Range","2CM","24CM"],
+          ["Dandy Pelican","신사 펠리컨","Intercept Success Rate","1.6%","19.2%"],
+          ["Green Frog","청개구리","Manual Layup Distance","1.1CM","13.2CM"],
+          ["Star Frog","별개구리","Manual Layup Angle","1.1°","13.2°"],
+          ["Owl white","올빼미 화이트","Layup Pass Distance","16CM","192CM"],
+          ["Pink Mini Pig","분홍 미니피그","Box Out Strength","1","12"],
+          ["Dachshund black","닥스훈트 블랙","Deny Intercept Distance","1CM","12CM"],
+          ["Halloween Bat","할로윈 박쥐","Double Clutch Defense Resist","0.12%","1.44%"],
+          ["Dachshund brown","닥스훈트 브라운","Post Up Fake Layup Success Rate","1%","12%"],
+          ["Owl brown","올빼미 브라운","Touch Pass Speed","7.5CM/S","80CM/S"],
+          ["Macaque","마카그 원숭이","Tip In Shot Success Rate","1.5%","16%"],
+          ["Green Kappa","그린 헤어 캇파","Over Pass Intercept Success Rate","1.6%","19.2%"],
+          ["Mini Bull","미니 황소","Put Back Dunk Success Rate","1.5%","16%"]
+        ]},
+        silver: { label: "Silver", maxLv: 6, list: [
+          ["Brown Welsh Corgi","브라운 웰시코기","Screen Range","0.5CM","3CM"],
+          ["Black Welsh Corgi","블랙 웰시코기","Screen Angle","1°","6°"],
+          ["German Shepherd","저먼 셰퍼드","Fade Away Defense Resist","0.12%","0.72%"],
+          ["Black Basenji","블랙 바센지","Floater Defense Resist","0.12%","0.72%"]
+        ]},
+        bronze: { label: "Bronze", maxLv: 3, list: [
+          ["Brown Dobermann","브라운 도베르만","3 Point Fade Away Defense Resist","0.12%","0.36%"],
+          ["Black Dobermann","블랙 도베르만","Rebound & Shot Defense Resistance","0.12%","0.36%"],
+          ["Cheese Tabby Cat","치즈태비 고양이","Increase A pass speed","12CM/S","36CM/S"],
+          ["Black Cat","검은 고양이","Kick Out Pass Speed","5CM/S","15CM/S"],
+          ["Siamese Cat","샴 고양이","Jump Shot Pass Distance","16CM","48CM"],
+          ["Calico Cat","삼색 고양이","Running Pass Speed Increase","7.5CM/S","20CM/S"]
+        ]}
+      };
+
+      // ===== ペット画像（公式ペットガイドの画像を直リンク） =====
+      var PET_IMG = {
+        "Black Cyber Drone": "https://3on3-notice.github.io/pet/img/pets/40050101.png",
+        "Red Cyber Drone": "https://3on3-notice.github.io/pet/img/pets/40050102.png",
+        "White Cleaner Bot": "https://3on3-notice.github.io/pet/img/pets/40060102.png",
+        "Red Cleaner Bot": "https://3on3-notice.github.io/pet/img/pets/40060101.png",
+        "Space Dog Laika": "https://3on3-notice.github.io/pet/img/pets/40010201.png",
+        "Rabbit Alien UFO": "https://3on3-notice.github.io/pet/img/pets/40050201.png",
+        "Astro Gold UFO": "https://3on3-notice.github.io/pet/img/pets/40050301.png",
+        "Astro Silver UFO": "https://3on3-notice.github.io/pet/img/pets/40050302.png",
+        "Cheeky Ghost": "https://3on3-notice.github.io/pet/img/pets/40100201.png",
+        "Halloween Ghost": "https://3on3-notice.github.io/pet/img/pets/40100301.png",
+        "RC Monster Truck": "https://3on3-notice.github.io/pet/img/pets/40110101.png",
+        "Candy Pinata": "https://3on3-notice.github.io/pet/img/pets/40110201.png",
+        "Brindled Mini Pig": "https://3on3-notice.github.io/pet/img/pets/40090102.png",
+        "Baboon": "https://3on3-notice.github.io/pet/img/pets/40110302.png",
+        "Brown Kappa": "https://3on3-notice.github.io/pet/img/pets/40110402.png",
+        "Mini Holstein": "https://3on3-notice.github.io/pet/img/pets/40110501.png",
+        "Red Messenger": "https://3on3-notice.github.io/pet/img/pets/40100401.png",
+        "Blue Messenger": "https://3on3-notice.github.io/pet/img/pets/40100402.png",
+        "Pink Messenger": "https://3on3-notice.github.io/pet/img/pets/40100403.png",
+        "Khaki Messenger": "https://3on3-notice.github.io/pet/img/pets/40100404.png",
+        "Magpie with gat": "https://3on3-notice.github.io/pet/img/pets/40040301.png",
+        "Hellhound": "https://3on3-notice.github.io/pet/img/pets/40010301.png",
+        "CarroBot": "https://3on3-notice.github.io/pet/img/pets/40100501.png",
+        "Big Man Monocle": "https://3on3-notice.github.io/pet/img/pets/40100601.png",
+        "Defense Monocle": "https://3on3-notice.github.io/pet/img/pets/40100602.png",
+        "Shooting Monocle": "https://3on3-notice.github.io/pet/img/pets/40100603.png",
+        "Peach Lovebird": "https://3on3-notice.github.io/pet/img/pets/40040101.png",
+        "Cobalt Lovebird": "https://3on3-notice.github.io/pet/img/pets/40040102.png",
+        "Pelican": "https://3on3-notice.github.io/pet/img/pets/40080101.png",
+        "Dandy Pelican": "https://3on3-notice.github.io/pet/img/pets/40080102.png",
+        "Green Frog": "https://3on3-notice.github.io/pet/img/pets/40070101.png",
+        "Star Frog": "https://3on3-notice.github.io/pet/img/pets/40070102.png",
+        "Owl white": "https://3on3-notice.github.io/pet/img/pets/40040201.png",
+        "Pink Mini Pig": "https://3on3-notice.github.io/pet/img/pets/40090101.png",
+        "Dachshund black": "https://3on3-notice.github.io/pet/img/pets/40020201.png",
+        "Halloween Bat": "https://3on3-notice.github.io/pet/img/pets/40100101.png",
+        "Dachshund brown": "https://3on3-notice.github.io/pet/img/pets/40020202.png",
+        "Owl brown": "https://3on3-notice.github.io/pet/img/pets/40040202.png",
+        "Macaque": "https://3on3-notice.github.io/pet/img/pets/40110301.png",
+        "Green Kappa": "https://3on3-notice.github.io/pet/img/pets/40110401.png",
+        "Mini Bull": "https://3on3-notice.github.io/pet/img/pets/40110502.png",
+        "Brown Welsh Corgi": "https://3on3-notice.github.io/pet/img/pets/40020101.png",
+        "Black Welsh Corgi": "https://3on3-notice.github.io/pet/img/pets/40020102.png",
+        "German Shepherd": "https://3on3-notice.github.io/pet/img/pets/40010103.png",
+        "Black Basenji": "https://3on3-notice.github.io/pet/img/pets/40010104.png",
+        "Brown Dobermann": "https://3on3-notice.github.io/pet/img/pets/40010101.png",
+        "Black Dobermann": "https://3on3-notice.github.io/pet/img/pets/40010102.png",
+        "Cheese Tabby Cat": "https://3on3-notice.github.io/pet/img/pets/40030101.png",
+        "Black Cat": "https://3on3-notice.github.io/pet/img/pets/40030102.png",
+        "Siamese Cat": "https://3on3-notice.github.io/pet/img/pets/40030103.png",
+        "Calico Cat": "https://3on3-notice.github.io/pet/img/pets/40030104.png"
+      };
+
+      var GRADE_ORDER = ["platinum","gold","silver","bronze"];
+      var grid = document.getElementById("petGrid");
+      var countLine = document.getElementById("petCount");
+      var emptyBox = document.getElementById("petEmpty");
+      var currentGrade = "all";
+      var query = "";
+
+      function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+      function renderPets(){
+        var html = "";
+        var shown = 0, total = 0;
+        GRADE_ORDER.forEach(function(g){
+          var info = PETS[g];
+          info.list.forEach(function(p){
+            total++;
+            if (currentGrade !== "all" && currentGrade !== g) return;
+            var hay = (p[0] + " " + p[1] + " " + p[2]).toLowerCase();
+            if (query && hay.indexOf(query) === -1) return;
+            shown++;
+            var imgUrl = PET_IMG[p[0]];
+            html += '<article class="pet ' + g + '">'
+              + (imgUrl ? '<img class="p-img" src="' + imgUrl + '" alt="' + esc(p[0]) + '" loading="lazy" onerror="this.remove()">' : '')
+              + '<div class="p-top"><span class="grade">' + info.label.toUpperCase() + '</span>'
+              + '<span class="maxlv">最大 Lv.' + info.maxLv + '</span></div>'
+              + '<h4>' + esc(p[0]) + '</h4>'
+              + '<p class="kor">' + esc(p[1]) + '</p>'
+              + '<div class="ability"><span class="a-label">UNIQUE ABILITY</span>' + esc(p[2]) + '</div>'
+              + '<div class="vals"><span class="v-label">Lv.1</span><span class="v1">' + esc(p[3]) + '</span>'
+              + '<span class="arrow">→</span><span class="v-label">MAX</span><span class="vmax">' + esc(p[4]) + '</span></div>'
+              + '</article>';
+          });
+        });
+        grid.innerHTML = html;
+        emptyBox.hidden = shown !== 0;
+        countLine.textContent = "表示中：" + shown + " 種 / 全 " + total + " 種";
+      }
+
+      var fbtns = document.querySelectorAll(".fbtn");
+      fbtns.forEach(function(btn){
+        btn.addEventListener("click", function(){
+          fbtns.forEach(function(b){ b.classList.remove("active"); });
+          btn.classList.add("active");
+          currentGrade = btn.getAttribute("data-grade");
+          renderPets();
+        });
+      });
+      document.getElementById("petSearch").addEventListener("input", function(e){
+        query = e.target.value.trim().toLowerCase();
+        renderPets();
+      });
+      renderPets();
+
+      // ===== サブ能力データ（出典B） =====
+      // [名前ENG, KOR, 初期値]
+      var SUB_GROUPS = [
+        { title: "全グレード共通（Silver / Gold / Platinum）", grades: "Silver・Gold・Platinum", list: [
+          ["3 Point Shot","3점 슛","4"],
+          ["3 Point Shot Success Rate","3점 슛 성공률","2%"],
+          ["Open 3 Point Shot Success Rate","노마크 3점 슛 성공률","0.80%"],
+          ["3 Point Shot Defense Resist","3점 슛 수비 저항","0.12%"],
+          ["3 Point Shot Release Speed","3점 슛 모션 빠르기","1%"],
+          ["3 Point Shot Blocking Resist","3점 슛 블록 저항","1.25%"],
+          ["Mid Range Shot Success Rate","중거리 슛 성공률","2.50%"],
+          ["Mid Range Shot Defense Resist","중거리 슛 수비 저항","0.24%"],
+          ["Mid Range Shot Release Speed","중거리 슛 모션 빠르기","1.20%"],
+          ["Mid Range Shot Block Resist","중거리 슛 블록 저항","1.25%"],
+          ["Short Distance Dunk Defense Resist","골밑 덩크 수비 저항","0.45%"],
+          ["Long Distance Dunk Defense Resist","원거리 덩크 수비 저항","0.45%"],
+          ["Long Distance Dunk Speed","원거리 덩크 모션 빠르기","0.60%"],
+          ["Long Distance Dunk Block Resist","원거리 덩크 블록 저항","1.25%"],
+          ["Long Distance Layup Range","원거리 레이업 가능 거리","5Cm"],
+          ["Speed","달리기","4"],
+          ["Rebound","리바운드","4"],
+          ["Steal Success Rate","스틸 성공률","3.50%"],
+          ["Steal Speed","스틸 모션 빠르기","1.75%"],
+          ["Normal Moving Speed","일반 이동 속도","3cm/s"],
+          ["Drive Speed","돌파 모션 빠르기","0.70%"],
+          ["Block Resist Shot Success Rate","블록 저항 슛 성공률","1.20%"]
+        ]},
+        { title: "Silver / Gold のみ", grades: "Silver・Gold", list: [
+          ["Mid Range Shot","중거리 슛","4"],
+          ["Close Range Shot Success Rate","골밑 슛 성공률","1%"],
+          ["Close Range Shot Defense Resist","골밑 슛 수비 저항","0.45%"],
+          ["Short Distance Dunk Chance","골밑 덩크 발동 확률","2.50%"],
+          ["Short Distance Dunk Speed","골밑 덩크 모션 빠르기","0.60%"],
+          ["Short Distance Dunk Block Resist","골밑 덩크 블록 저항","1.25%"],
+          ["Long Distance Dunk Chance","원거리 덩크 발동 확률","2.50%"],
+          ["Short Distance Layup Success Rate","골밑 레이업 성공률","1.50%"],
+          ["Short Distance Layup Defense Resist","골밑 레이업 수비 저항","0.45%"],
+          ["Short Distance Layup Block Resist","골밑 레이업 블록 저항","1.25%"],
+          ["Long Distance Layup Success Rate","원거리 레이업 성공률","1%"],
+          ["Long Distance Layup Defense Resist","원거리 레이업 수비 저항","0.45%"],
+          ["Long Distance Layup Block Resist","원거리 레이업 블록 저항","1.25%"],
+          ["Balance","몸싸움","4"],
+          ["Steal","스틸","4"],
+          ["Max Stamina","지구력 최대량","2.5"],
+          ["Stamina Recovery","지구력 회복량","1.5"]
+        ]},
+        { title: "Silver のみ", grades: "Silver", list: [
+          ["Close Range Shot","골밑 슛","4"],
+          ["Short Distance Dunk","골밑 덩크","4"],
+          ["Short Distance Dunk Success Rate","골밑 덩크 성공률","0.40%"],
+          ["Long Distance Dunk","원거리 덩크","4"],
+          ["Long Distance Dunk Success Rate","원거리 덩크 성공률","0.40%"],
+          ["Short Distance Layup","골밑 레이업","4"],
+          ["Long Distance Layup","원거리 레이업","4"],
+          ["Pass","패스","4"],
+          ["Stamina","지구력","4"],
+          ["Collision Angle","일반 이동 충돌 각도","1.25°"],
+          ["Collision Resist","일반 이동 충돌 저항","3.50%"],
+          ["Dribble Steal Resist","드리블 중 스틸 저항력","1%"],
+          ["Intercept Resist","인터셉트 저항력","1%"],
+          ["Reduce Shot Success Rate Decrease after Fake","페이크 후 슛 성공률 감소량 하락","0.30%"],
+          ["Shot Impediment Invalidity","슛 방해 효과 무시","0.20%"],
+          ["Mid-Range Shot Impediment Invalidity","미들 슛 방해 효과 무시","0.50%"],
+          ["3 Point Shot Impediment Invalidity","3점슛 방해 효과 무시","0.50%"]
+        ]}
+      ];
+
+      var subWrap = document.getElementById("subGroups");
+      var subHtml = "";
+      SUB_GROUPS.forEach(function(group){
+        subHtml += '<div class="sub-group"><h3>' + esc(group.title) + ' <span class="cnt">（' + group.list.length + '種）</span></h3>'
+          + '<div class="table-scroll"><table class="resp">'
+          + '<thead><tr><th>Sub Ability</th><th>KOR</th><th class="num">初期値</th><th>登場グレード</th></tr></thead><tbody>';
+        group.list.forEach(function(s){
+          subHtml += '<tr><th data-label="Sub Ability">' + esc(s[0]) + '</th>'
+            + '<td data-label="KOR">' + esc(s[1]) + '</td>'
+            + '<td class="num" data-label="初期値"><span class="init">' + esc(s[2]) + '</span></td>'
+            + '<td data-label="登場グレード">' + esc(group.grades) + '</td></tr>';
+        });
+        subHtml += '</tbody></table></div></div>';
+      });
+      subWrap.innerHTML = subHtml;
+
+      // ===== スマホ表示プレビュー =====
+      (function(){
+        var openBtn = document.getElementById("mpOpenBtn");
+        var overlay = document.getElementById("mpOverlay");
+        var closeBtn = document.getElementById("mpCloseBtn");
+        var frame = document.getElementById("mpFrame");
+        var frameView = document.getElementById("mpFrameView");
+        // プレビュー内（?mp=1）ではボタンもオーバーレイも使わない（再帰防止）
+        if (document.documentElement.classList.contains("mp-mode")) {
+          if (openBtn) openBtn.style.display = "none";
+          if (overlay) overlay.style.display = "none";
+          return;
+        }
+        if (!openBtn || !overlay || !closeBtn || !frame || !frameView) return;
+
+        var loaded = false;
+        function fitFrame(){
+          var availW = window.innerWidth - 20;
+          var availH = window.innerHeight - 84; // 上部バー分を差し引く
+          var s = Math.min(1, availW / 412, availH / 866);
+          if (!(s > 0)) s = 1;
+          frame.style.transform = "scale(" + s + ")";
+        }
+        function openPreview(){
+          if (!loaded) {
+            var url = new URL(window.location.href);
+            url.searchParams.set("mp", "1");
+            frameView.src = url.toString();
+            loaded = true;
+          }
+          overlay.hidden = false;
+          document.body.style.overflow = "hidden";
+          fitFrame();
+          closeBtn.focus();
+        }
+        function closePreview(){
+          overlay.hidden = true;
+          document.body.style.overflow = "";
+          openBtn.focus();
+        }
+        openBtn.addEventListener("click", openPreview);
+        closeBtn.addEventListener("click", closePreview);
+        overlay.addEventListener("click", function(e){
+          if (e.target === overlay || e.target.id === "mpStage") closePreview();
+        });
+        document.addEventListener("keydown", function(e){
+          if (e.key === "Escape" && !overlay.hidden) closePreview();
+        });
+        window.addEventListener("resize", function(){
+          if (!overlay.hidden) fitFrame();
+        });
+      })();
+    
+    </script>
+</body>
+</html>
