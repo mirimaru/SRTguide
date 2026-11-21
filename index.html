@@ -606,7 +606,7 @@
         </section>
 
         <!-- データベースセクション -->
-        <section id="page-db" class="page-container px-6 lg:px-20 py-10">
+        <section id="page-db" class="page-container px-6 lg:px-20 py-10 max-w-7xl mx-auto">
             <div class="flex flex-wrap justify-between items-end gap-6 sticky top-[68px] z-30 bg-[#050505]/90 backdrop-blur-md py-4 -mt-2 rounded-2xl">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-db">STATUS</h2>
                 <div class="flex flex-wrap gap-3">
@@ -620,28 +620,28 @@
                         <option value="C">C</option>
                     </select>
                     <select id="sortSelect" onchange="sortCards()" class="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base outline-none cursor-pointer">
-                        <option value="-2">並び替え：なし</option>
-                        <option value="-1">TOTAL（高い順）</option>
-                        <option value="0">ポスト（高い順）</option>
-                        <option value="1">ミドル（高い順）</option>
-                        <option value="2">3点（高い順）</option>
-                        <option value="3">Sレイ（高い順）</option>
-                        <option value="4">Lレイ（高い順）</option>
-                        <option value="5">Sダン（高い順）</option>
-                        <option value="6">Lダン（高い順）</option>
-                        <option value="7">パス（高い順）</option>
-                        <option value="8">スティ（高い順）</option>
-                        <option value="9">Jブロ（高い順）</option>
-                        <option value="10">Dブロ（高い順）</option>
-                        <option value="11">当たり（高い順）</option>
-                        <option value="12">リバ（高い順）</option>
-                        <option value="13">ラン（高い順）</option>
-                        <option value="14">持久（高い順）</option>
+                        <option value="-2" data-i18n="db-sort-none">並び替え：なし</option>
+                        <option value="-1" data-i18n="db-sort-total">TOTAL（高い順）</option>
+                        <option value="0" data-i18n="db-sort-s0">ポスト（高い順）</option>
+                        <option value="1" data-i18n="db-sort-s1">ミドル（高い順）</option>
+                        <option value="2" data-i18n="db-sort-s2">3点（高い順）</option>
+                        <option value="3" data-i18n="db-sort-s3">Sレイ（高い順）</option>
+                        <option value="4" data-i18n="db-sort-s4">Lレイ（高い順）</option>
+                        <option value="5" data-i18n="db-sort-s5">Sダン（高い順）</option>
+                        <option value="6" data-i18n="db-sort-s6">Lダン（高い順）</option>
+                        <option value="7" data-i18n="db-sort-s7">パス（高い順）</option>
+                        <option value="8" data-i18n="db-sort-s8">スティ（高い順）</option>
+                        <option value="9" data-i18n="db-sort-s9">Jブロ（高い順）</option>
+                        <option value="10" data-i18n="db-sort-s10">Dブロ（高い順）</option>
+                        <option value="11" data-i18n="db-sort-s11">当たり（高い順）</option>
+                        <option value="12" data-i18n="db-sort-s12">リバ（高い順）</option>
+                        <option value="13" data-i18n="db-sort-s13">ラン（高い順）</option>
+                        <option value="14" data-i18n="db-sort-s14">持久（高い順）</option>
                     </select>
                 </div>
             </div>
-            <p class="text-xs text-gray-400 mt-3 mb-6"><span class="text-yellow-400 font-black">金色の数値</span>＝そのポジション内での最大値です。</p>
-            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5"></div>
+            <p class="text-xs text-gray-400 mt-3 mb-6" data-i18n="db-legend"><span class="text-yellow-400 font-black">金色の数値</span>＝そのポジション内での最大値です。</p>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- P-BUFFセクション -->
@@ -649,7 +649,7 @@
             <div class="flex flex-col lg:flex-row justify-between items-end mb-10 gap-6">
                 <h2 class="text-5xl lg:text-6xl font-black italic border-l-[12px] border-[#ff4e00] pl-6" data-i18n="nav-pbuff">P-BUFF</h2>
                 <div class="flex flex-wrap gap-3">
-                    <input type="text" id="pbuffSearch" oninput="initPBuff()" placeholder="バフ効果・キャラ名（例：3点シュート）" class="bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-base outline-none focus:border-orange-500 transition w-80">
+                    <input type="text" id="pbuffSearch" oninput="initPBuff()" data-i18n-ph="pbuff-search-ph" placeholder="バフ効果・キャラ名（例：3点シュート）" class="bg-white/10 border border-white/20 rounded-xl px-5 py-3 text-base outline-none focus:border-orange-500 transition w-80">
                     <select id="pbuffPosFilter" onchange="initPBuff()" class="bg-white/10 border border-white/20 rounded-xl px-6 py-3 text-lg outline-none cursor-pointer">
                         <option value="All" class="bg-gray-900 text-white">ALL POSITIONS</option>
                         <option value="PG" class="bg-gray-900 text-white">PG</option>
@@ -692,6 +692,24 @@
     var LOBBY_I18N = {
         ja: {
             'lobby-fan-chip': '非公式ファンサイト',
+            'db-sort-none': '並び替え：なし', 'db-sort-total': 'TOTAL（高い順）',
+            'db-sort-s0': 'ポスト（高い順）',
+            'db-sort-s1': 'ミドル（高い順）',
+            'db-sort-s2': '3点（高い順）',
+            'db-sort-s3': 'Sレイ（高い順）',
+            'db-sort-s4': 'Lレイ（高い順）',
+            'db-sort-s5': 'Sダン（高い順）',
+            'db-sort-s6': 'Lダン（高い順）',
+            'db-sort-s7': 'パス（高い順）',
+            'db-sort-s8': 'スティ（高い順）',
+            'db-sort-s9': 'Jブロ（高い順）',
+            'db-sort-s10': 'Dブロ（高い順）',
+            'db-sort-s11': '当たり（高い順）',
+            'db-sort-s12': 'リバ（高い順）',
+            'db-sort-s13': 'ラン（高い順）',
+            'db-sort-s14': '持久（高い順）',
+            'db-legend': '<span class="text-yellow-400 font-black">金色の数値</span>＝そのポジション内での最大値です。',
+            'pbuff-search-ph': 'バフ効果・キャラ名（例：3点シュート）',
             'lobby-tagline': 'SRT GUIDE ― 初心者〜中級者向け',
             'lobby-hero-desc': '結論から学べるフリスタ攻略ロビー。ポジションの役割、おすすめキャラ、育成の黄金順、そして「最高のチームメイト」への進化までを4ステップで案内します。',
             'lobby-btn-guide': 'ガイドをはじめる <i class="fas fa-play text-xs ml-2"></i>',
@@ -747,6 +765,24 @@
         },
         en: {
             'lobby-fan-chip': 'UNOFFICIAL FAN SITE',
+            'db-sort-none': 'Sort: None', 'db-sort-total': 'TOTAL (High to Low)',
+            'db-sort-s0': 'Post (High to Low)',
+            'db-sort-s1': 'Mid (High to Low)',
+            'db-sort-s2': '3PT (High to Low)',
+            'db-sort-s3': 'S-Lay (High to Low)',
+            'db-sort-s4': 'L-Lay (High to Low)',
+            'db-sort-s5': 'S-Dunk (High to Low)',
+            'db-sort-s6': 'L-Dunk (High to Low)',
+            'db-sort-s7': 'Pass (High to Low)',
+            'db-sort-s8': 'Steal (High to Low)',
+            'db-sort-s9': 'J-Block (High to Low)',
+            'db-sort-s10': 'D-Block (High to Low)',
+            'db-sort-s11': 'Tough (High to Low)',
+            'db-sort-s12': 'Rebound (High to Low)',
+            'db-sort-s13': 'Run (High to Low)',
+            'db-sort-s14': 'Stamina (High to Low)',
+            'db-legend': '<span class="text-yellow-400 font-black">Gold numbers</span> = highest value in that position.',
+            'pbuff-search-ph': 'Search buffs or characters (e.g. 3PT)',
             'lobby-tagline': 'SRT GUIDE — FOR BEGINNERS & INTERMEDIATE PLAYERS',
             'lobby-hero-desc': 'A 3on3 FreeStyle strategy lobby that starts with the bottom line: position roles, recommended characters, the golden upgrade order, and the path to becoming the "best teammate" — all in 4 steps.',
             'lobby-btn-guide': 'START THE GUIDE <i class="fas fa-play text-xs ml-2"></i>',
@@ -802,6 +838,24 @@
         },
         ko: {
             'lobby-fan-chip': '비공식 팬 사이트',
+            'db-sort-none': '정렬: 없음', 'db-sort-total': 'TOTAL (높은 순)',
+            'db-sort-s0': '포스트 (높은 순)',
+            'db-sort-s1': '미들 (높은 순)',
+            'db-sort-s2': '3점 (높은 순)',
+            'db-sort-s3': 'S-레이업 (높은 순)',
+            'db-sort-s4': 'L-레이업 (높은 순)',
+            'db-sort-s5': 'S-덩크 (높은 순)',
+            'db-sort-s6': 'L-덩크 (높은 순)',
+            'db-sort-s7': '패스 (높은 순)',
+            'db-sort-s8': '스틸 (높은 순)',
+            'db-sort-s9': 'J-블록 (높은 순)',
+            'db-sort-s10': 'D-블록 (높은 순)',
+            'db-sort-s11': '몸싸움 (높은 순)',
+            'db-sort-s12': '리바운드 (높은 순)',
+            'db-sort-s13': '런 (높은 순)',
+            'db-sort-s14': '지구력 (높은 순)',
+            'db-legend': '<span class="text-yellow-400 font-black">금색 수치</span> = 해당 포지션 내 최대값입니다.',
+            'pbuff-search-ph': '버프 효과·캐릭터 검색 (예: 3점슛)',
             'lobby-tagline': 'SRT GUIDE ― 초보~중급자 가이드',
             'lobby-hero-desc': '결론부터 배우는 프리스타 공략 로비. 포지션의 역할, 추천 캐릭터, 육성의 황금 순서, 그리고 \'최고의 팀메이트\'로 성장하는 길까지 4단계로 안내합니다.',
             'lobby-btn-guide': '가이드 시작하기 <i class="fas fa-play text-xs ml-2"></i>',
@@ -857,6 +911,24 @@
         },
         zh: {
             'lobby-fan-chip': '非官方粉丝网站',
+            'db-sort-none': '排序：无', 'db-sort-total': 'TOTAL（从高到低）',
+            'db-sort-s0': '篮下（从高到低）',
+            'db-sort-s1': '中投（从高到低）',
+            'db-sort-s2': '三分（从高到低）',
+            'db-sort-s3': 'S上篮（从高到低）',
+            'db-sort-s4': 'L上篮（从高到低）',
+            'db-sort-s5': 'S扣篮（从高到低）',
+            'db-sort-s6': 'L扣篮（从高到低）',
+            'db-sort-s7': '传球（从高到低）',
+            'db-sort-s8': '抢断（从高到低）',
+            'db-sort-s9': 'J盖帽（从高到低）',
+            'db-sort-s10': 'D盖帽（从高到低）',
+            'db-sort-s11': '对抗（从高到低）',
+            'db-sort-s12': '篮板（从高到低）',
+            'db-sort-s13': '跑动（从高到低）',
+            'db-sort-s14': '体力（从高到低）',
+            'db-legend': '<span class="text-yellow-400 font-black">金色数值</span> = 该位置中的最大值。',
+            'pbuff-search-ph': '搜索增益效果或角色（例：三分）',
             'lobby-tagline': 'SRT GUIDE ― 新手〜中级玩家向',
             'lobby-hero-desc': '从结论学起的FreeStyle攻略大厅。位置职责、推荐角色、养成的黄金顺序，以及成长为"最佳队友"的路径——4步全解。',
             'lobby-btn-guide': '开始看攻略 <i class="fas fa-play text-xs ml-2"></i>',
@@ -1740,6 +1812,27 @@
     </script>
 <script>
 (function(){if(!window.matchMedia('(hover: none)').matches)return;var tiles=document.querySelectorAll('.mode-tile');if(!tiles.length)return;document.addEventListener('click',function(e){var t=e.target.closest('.mode-tile');if(!t)return;if(!t.classList.contains('open')){e.preventDefault();e.stopPropagation();document.querySelectorAll('.mode-tile.open').forEach(function(x){x.classList.remove('open')});t.classList.add('open');}},true);})();
+</script>
+
+<script>
+// プレースホルダーの多言語追随（data-i18n-ph）
+(function () {
+    function applyPh(lang) {
+        if (!window.i18n || !window.i18n[lang]) return;
+        document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-ph');
+            if (window.i18n[lang][key]) el.setAttribute('placeholder', window.i18n[lang][key]);
+        });
+    }
+    if (typeof window.switchLanguage === 'function') {
+        var origSwitch = window.switchLanguage;
+        window.switchLanguage = function (lang, btn) {
+            var r = origSwitch.apply(this, arguments);
+            applyPh(lang);
+            return r;
+        };
+    }
+})();
 </script>
 </body>
 </html>
