@@ -166,7 +166,7 @@ function injectNewCharacters() {
 // ==========================================
 window.i18n = {
     'ja': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'STATUS', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': '2016年頃からこのコートを見守ってきました。一度引退しましたが、2024年に戻ってきました。', 'about-p2': '攻略ガイド等を公開中。コミュニティを盛り上げましょう！',
         'home-recommended': 'RECOMMENDED', 'home-map': 'プレゼントMAP',
         'videos-desc': 'キャラクターアイコンをクリックすると紹介動画を再生します。',
@@ -179,7 +179,7 @@ window.i18n = {
         'qa-q1': 'Q: 数値の「▲」は何？', 'qa-a1': 'A: バフ値（強化分）です。', 'qa-q2': 'Q: 育成はP-Buffとカードどちらが先？', 'qa-a2': 'A: P-Buffが先です。'
     },
     'en': {
-        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'DATABASE', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': 'HOME', 'nav-guide': 'GUIDE', 'nav-db': 'STATUS', 'nav-pet': 'PET', 'nav-ranking': 'RANKING', 'nav-videos': 'VIDEOS', 'nav-pbuff': 'P-BUFF', 'nav-qa': 'Q&A', 'nav-bbs': 'BBS', 'nav-about': 'ABOUT ME', 'nav-survey': 'SURVEY', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': 'ABOUT ME', 'about-p1': 'Watching the court since 2016. Retired once, returned in 2024.', 'about-p2': 'Publishing strategy guides. Let\'s boost the community!',
         'home-recommended': 'RECOMMENDED', 'home-map': 'Village Map',
         'videos-desc': 'Click a character icon to play their introduction video.',
@@ -192,7 +192,7 @@ window.i18n = {
         'qa-q1': 'Q: What does "▲" mean?', 'qa-a1': 'A: Buff value (Stat increase).', 'qa-q2': 'Q: Upgrade P-Buff or Cards first?', 'qa-a2': 'A: P-Buff first.'
     },
     'ko': {
-        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': '데이터베이스', 'nav-pet': '펫', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': '홈', 'nav-guide': '가이드', 'nav-db': 'STATUS', 'nav-pet': '펫', 'nav-ranking': '랭킹', 'nav-videos': '비디오', 'nav-pbuff': 'P-버프', 'nav-qa': '질문답변', 'nav-bbs': '게시판', 'nav-about': '소개', 'nav-survey': '설문조사', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': '저에 대하여', 'about-p1': '2016년부터 코트를 지켜왔습니다. 은퇴 후 2024년에 복귀しました.', 'about-p2': '공략 가이드를 공유합니다. 커뮤니티를 활성화합시다!',
         'home-recommended': '추천 영상', 'home-map': '마을 지도',
         'videos-desc': '캐릭터 아이콘을 클릭하면 소개 영상이 재생됩니다.',
@@ -205,7 +205,7 @@ window.i18n = {
         'qa-q1': 'Q: 수치의 "▲"는 무엇인가요?', 'qa-a1': 'A: 버프 수치 (강화분) 입니다.', 'qa-q2': 'Q: P-버프와 카드 중 무엇을 먼저 하나요?', 'qa-a2': 'A: P-버프가 먼저입니다.'
     },
     'zh': {
-        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': '资料库', 'nav-pet': '宠物', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
+        'nav-home': '首页', 'nav-guide': '攻略', 'nav-db': 'STATUS', 'nav-pet': '宠物', 'nav-ranking': '排名', 'nav-videos': '视频', 'nav-pbuff': 'P-BUFF', 'nav-qa': '问答', 'nav-bbs': '论坛', 'nav-about': '关于', 'nav-survey': '问卷调查', 'nav-ping': 'PING MAP', 'nav-music': 'MUSIC',
         'about-title': '关于我', 'about-p1': '自2016年起关注球场。曾一度退役，2024年回归。', 'about-p2': '分享攻略指南。让我们活跃社区！',
         'home-recommended': '推荐视频', 'home-map': '村庄地图',
         'videos-desc': '点击角色图标播放介绍视频。',
