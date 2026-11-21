@@ -379,5 +379,28 @@
         </div>
     </footer>
     
+
+    <!-- 画像拡大モーダル（index.html / script.js から移植。ガイド内の図7枚の onclick 用。翻訳とは無関係） -->
+    <div id="image-modal" class="hidden fixed inset-0 z-[200] bg-black/95 flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-5xl z-[201]"><i class="fas fa-times"></i></button>
+        <img id="modal-image" src="" class="max-w-[95%] max-h-[95vh] rounded-xl shadow-2xl object-contain">
+    </div>
+    <script>
+      // 画像拡大モーダル（script.js から移植）
+      function openImageModal(src) {
+        var modal = document.getElementById('image-modal');
+        var img = document.getElementById('modal-image');
+        if(!modal || !img) return;
+        img.src = src;
+        modal.classList.remove('hidden');
+        setTimeout(function(){ modal.classList.remove('opacity-0'); }, 10);
+      }
+      function closeImageModal() {
+        var modal = document.getElementById('image-modal');
+        if(!modal) return;
+        modal.classList.add('opacity-0');
+        setTimeout(function(){ modal.classList.add('hidden'); }, 300);
+      }
+    </script>
 </body>
 </html>
